@@ -1,0 +1,2993 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>西华师范大学数学考研指南</title>
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 引入Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <!-- 配置Tailwind CSS -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0071e3',
+                        secondary: '#f5f5f7',
+                        accent: '#ff3b30',
+                        dark: '#1d1d1f',
+                        light: '#f5f5f7'
+                    },
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif']
+                    },
+                    boxShadow: {
+                        'card': '0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03)',
+                        'card-hover': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .scroll-smooth {
+                scroll-behavior: smooth;
+            }
+            .text-balance {
+                text-wrap: balance;
+            }
+            .backdrop-blur {
+                backdrop-filter: blur(8px);
+            }
+        }
+    </style>
+    <style>
+        /* 自定义动画 */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+
+        .scale-in {
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* 页面切换动画 */
+        .page {
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(30px);
+        }
+
+        .page.active {
+            opacity: 1;
+            visibility: visible;
+            position: relative;
+            transform: translateX(0);
+        }
+
+        .page.leaving {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        /* 侧边导航 */
+        .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        /* 滚动进度条 */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+
+        /* 表格样式 */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background-color: #f5f5f7;
+            font-weight: 500;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* 学习内容样式 */
+        .study-content {
+            display: none;
+            opacity: 0;
+            transition: all 0.4s ease-in-out;
+        }
+
+        .study-content.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .subject-card {
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .subject-card:hover {
+            border-color: currentColor;
+        }
+
+        /* 导航高亮 */
+        .nav-item.active {
+            background: linear-gradient(135deg, #0071e3, #005bb5);
+            color: white;
+        }
+
+        .nav-item.active i {
+            color: white;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .tab-title {
+                padding: 12px 16px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* 时间轴样式 */
+        .timeline-item {
+            transition: all 0.5s ease;
+            opacity: 0.7;
+        }
+
+        .timeline-item.past {
+            opacity: 1;
+        }
+
+        .timeline-item.current {
+            opacity: 1;
+            z-index: 20;
+        }
+
+        .timeline-item.future {
+            opacity: 0.5;
+        }
+
+        .timeline-node {
+            transition: all 0.3s ease;
+        }
+
+        .timeline-node:hover {
+            transform: scale(1.1);
+        }
+
+        .timeline-node.past {
+            border-color: #22c55e;
+            /* 绿色 */
+        }
+
+        .timeline-node.current {
+            border-color: #3b82f6;
+            /* 蓝色 */
+            animation: pulse 2s infinite;
+        }
+
+        /* 当前节点内容框样式 */
+        .timeline-item.current .shadow-card {
+            background-color: rgba(59, 130, 246, 0.05);
+            /* 蓝色透明背景 */
+            border: 1px solid #3b82f6;
+            /* 蓝色边框 */
+            animation: cardPulse 2s infinite;
+            /* 脉冲动画 */
+        }
+
+        /* 内容框脉冲动画 */
+        @keyframes cardPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.3);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+            }
+        }
+
+        .timeline-node.future {
+            border-color: #9ca3af;
+            /* 灰色 */
+        }
+
+        .shadow-card {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .shadow-card-hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item:hover .shadow-card {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 呼吸灯动画 */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+            }
+        }
+
+        /* 智能提醒样式 */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            max-width: 320px;
+            transform: translateY(120%);
+            opacity: 0;
+            transition: all 0.5s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .notification-icon {
+            margin-right: 12px;
+            font-size: 20px;
+            color: #3b82f6;
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .notification-message {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .notification-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #9ca3af;
+            font-size: 16px;
+            padding: 4px;
+        }
+
+        /* 页面容器 */
+        .page-container {
+            position: relative;
+            min-height: calc(100vh - 80px);
+            overflow: hidden;
+        }
+
+        /* 面包屑导航 */
+        .breadcrumb {
+            opacity: 0;
+            transform: translateY(-10px);
+            animation: slideDown 0.5s ease-out 0.2s forwards;
+        }
+
+        @keyframes slideDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-light font-sans text-dark scroll-smooth">
+    <!-- 顶部导航栏 -->
+    <header id="navbar"
+        class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center space-x-2" onclick="navigateToPage('home')">
+                <i class="fa fa-graduation-cap text-primary text-2xl"></i>
+                <span class="font-semibold text-lg hidden sm:inline-block">西华师范大学数学考研指南</span>
+            </a>
+
+            <!-- 桌面导航 -->
+            <nav class="hidden md:flex items-center space-x-2">
+                <button onclick="navigateToPage('home')"
+                    class="nav-item px-4 py-2 rounded-lg text-dark/80 hover:text-primary hover:bg-primary/5 transition-all duration-200 flex items-center space-x-2">
+                    <i class="fa fa-home"></i>
+                    <span>首页</span>
+                </button>
+                <button onclick="navigateToPage('study')"
+                    class="nav-item px-4 py-2 rounded-lg text-dark/80 hover:text-primary hover:bg-primary/5 transition-all duration-200 flex items-center space-x-2">
+                    <i class="fa fa-book"></i>
+                    <span>备考指南</span>
+                </button>
+                <button onclick="navigateToPage('admission')"
+                    class="nav-item px-4 py-2 rounded-lg text-dark/80 hover:text-primary hover:bg-primary/5 transition-all duration-200 flex items-center space-x-2">
+                    <i class="fa fa-bar-chart"></i>
+                    <span>录取数据</span>
+                </button>
+                <button onclick="navigateToPage('faq')"
+                    class="nav-item px-4 py-2 rounded-lg text-dark/80 hover:text-primary hover:bg-primary/5 transition-all duration-200 flex items-center space-x-2">
+                    <i class="fa fa-question-circle"></i>
+                    <span>常见问题</span>
+                </button>
+                <button onclick="navigateToPage('resources')"
+                    class="nav-item px-4 py-2 rounded-lg text-dark/80 hover:text-primary hover:bg-primary/5 transition-all duration-200 flex items-center space-x-2">
+                    <i class="fa fa-download"></i>
+                    <span>资源获取</span>
+                </button>
+            </nav>
+
+            <!-- 移动菜单按钮 -->
+            <button id="mobile-menu-button" class="md:hidden text-dark focus:outline-none relative z-50">
+                <i class="fa fa-bars text-xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- 移动侧边栏 -->
+    <div id="mobile-sidebar" class="sidebar fixed top-0 left-0 h-full w-80 bg-white shadow-2xl z-40 md:hidden">
+        <div class="pt-20 px-6">
+            <nav class="space-y-2">
+                <button onclick="navigateToPage('home')"
+                    class="nav-item w-full px-4 py-3 rounded-lg text-left text-dark/80 hover:text-primary hover:bg-primary/5 transition-all duration-200 flex items-center space-x-3">
+                    <i class="fa fa-home w-5"></i>
+                    <span>首页</span>
+                </button>
+                <button onclick="navigateToPage('study')"
+                    class="nav-item w-full px-4 py-3 rounded-lg text-left text-dark/80 hover:text-primary hover:bg-primary/5 transition-all duration-200 flex items-center space-x-3">
+                    <i class="fa fa-book w-5"></i>
+                    <span>备考指南</span>
+                </button>
+                <button onclick="navigateToPage('admission')"
+                    class="nav-item w-full px-4 py-3 rounded-lg text-left text-dark/80 hover:text-primary hover:bg-primary/5 transition-all duration-200 flex items-center space-x-3">
+                    <i class="fa fa-bar-chart w-5"></i>
+                    <span>录取数据</span>
+                </button>
+                <button onclick="navigateToPage('faq')"
+                    class="nav-item w-full px-4 py-3 rounded-lg text-left text-dark/80 hover:text-primary hover:bg-primary/5 transition-all duration-200 flex items-center space-x-3">
+                    <i class="fa fa-question-circle w-5"></i>
+                    <span>常见问题</span>
+                </button>
+                <button onclick="navigateToPage('resources')"
+                    class="nav-item w-full px-4 py-3 rounded-lg text-left text-dark/80 hover:text-primary hover:bg-primary/5 transition-all duration-200 flex items-center space-x-3">
+                    <i class="fa fa-download w-5"></i>
+                    <span>资源获取</span>
+                </button>
+            </nav>
+        </div>
+    </div>
+
+    <!-- 移动侧边栏遮罩 -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-30 opacity-0 invisible transition-all duration-300">
+    </div>
+
+    <!-- 主要内容容器 -->
+    <main class="page-container pt-20">
+
+        <!-- 首页 -->
+        <div id="page-home" class="page active">
+            <!-- 面包屑导航 -->
+            <div class="breadcrumb container mx-auto max-w-6xl px-4 py-4">
+                <div class="flex items-center space-x-2 text-sm text-dark/60">
+                    <i class="fa fa-home"></i>
+                    <span>首页</span>
+                </div>
+            </div>
+
+            <!-- 英雄区 -->
+            <section class="pb-16 px-4 bg-gradient-to-b from-white to-secondary">
+                <div class="container mx-auto max-w-5xl text-center fade-in">
+                    <h1 class="hero-title text-[clamp(2.5rem,5vw,3.5rem)] font-bold text-dark mb-4">西华师范大学数学考研指南</h1>
+                    <p class="text-[clamp(1rem,2vw,1.25rem)] text-dark/70 mb-8 max-w-3xl mx-auto text-balance">
+                        全面的备考经验、考试信息和录取数据分析，助你顺利考上西华师范大学数学系研究生
+                    </p>
+
+                    <!-- 考研倒计时模块 -->
+                    <div
+                        class="countdown-container bg-white rounded-xl shadow-card p-6 mb-8 max-w-2xl mx-auto transform hover:scale-[1.01] transition-all duration-300">
+                        <h3 class="text-xl font-semibold mb-4 text-center text-primary">2026年考研倒计时</h3>
+                        <div class="flex justify-center gap-4 md:gap-8 text-center">
+                            <div class="countdown-item">
+                                <div id="days" class="text-3xl md:text-4xl font-bold text-dark">00</div>
+                                <div class="text-sm text-dark/60 mt-1">天</div>
+                            </div>
+                            <div class="countdown-item">
+                                <div id="hours" class="text-3xl md:text-4xl font-bold text-dark">00</div>
+                                <div class="text-sm text-dark/60 mt-1">时</div>
+                            </div>
+                            <div class="countdown-item">
+                                <div id="minutes" class="text-3xl md:text-4xl font-bold text-dark">00</div>
+                                <div class="text-sm text-dark/60 mt-1">分</div>
+                            </div>
+                            <div class="countdown-item">
+                                <div id="seconds" class="text-3xl md:text-4xl font-bold text-dark">00</div>
+                                <div class="text-sm text-dark/60 mt-1">秒</div>
+                            </div>
+                        </div>
+                        <p class="text-center text-dark/50 text-sm mt-4">距离2026年全国硕士研究生招生考试还有</p>
+                    </div>
+
+                    <!-- 快速导航卡片 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+                        <div onclick="navigateToPage('study')"
+                            class="bg-white rounded-xl shadow-card p-6 cursor-pointer transform hover:scale-105 hover:shadow-card-hover transition-all duration-300">
+                            <div class="text-primary text-3xl mb-4">
+                                <i class="fa fa-book"></i>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2">备考指南</h3>
+                            <p class="text-dark/60 text-sm">详细的数学分析与高等代数复习方法</p>
+                        </div>
+                        <div onclick="navigateToPage('admission')"
+                            class="bg-white rounded-xl shadow-card p-6 cursor-pointer transform hover:scale-105 hover:shadow-card-hover transition-all duration-300">
+                            <div class="text-primary text-3xl mb-4">
+                                <i class="fa fa-bar-chart"></i>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2">录取数据</h3>
+                            <p class="text-dark/60 text-sm">近年来分数线和录取情况统计分析</p>
+                        </div>
+                        <div onclick="navigateToPage('faq')"
+                            class="bg-white rounded-xl shadow-card p-6 cursor-pointer transform hover:scale-105 hover:shadow-card-hover transition-all duration-300">
+                            <div class="text-primary text-3xl mb-4">
+                                <i class="fa fa-question-circle"></i>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2">常见问题</h3>
+                            <p class="text-dark/60 text-sm">备考过程中的疑难问题解答</p>
+                        </div>
+                        <div onclick="navigateToPage('resources')"
+                            class="bg-white rounded-xl shadow-card p-6 cursor-pointer transform hover:scale-105 hover:shadow-card-hover transition-all duration-300">
+                            <div class="text-primary text-3xl mb-4">
+                                <i class="fa fa-download"></i>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2">资源获取</h3>
+                            <p class="text-dark/60 text-sm">历年真题、参考资料等学习资源</p>
+                        </div>
+                    </div>
+
+                    <!-- 考试日程提醒 -->
+                    <div class="mt-16 max-w-4xl mx-auto">
+                        <h2 class="text-2xl font-bold mb-8 text-left flex items-center">
+                            <i class="fa fa-calendar text-primary mr-3"></i>考研重要时间节点
+                        </h2>
+                        <div class="relative">
+                            <!-- 时间轴主线 -->
+                            <div
+                                class="absolute left-8 top-6 bottom-6 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-primary/20">
+                            </div>
+
+                            <!-- 时间节点 -->
+                            <div class="space-y-6" id="timeline-container">
+                                <!-- 2025年3月-4月 - 择校定目标 -->
+                                <div class="timeline-item relative flex items-start opacity-0" data-month="4"
+                                    data-year="2025">
+                                    <div
+                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-blue-400 shadow-lg flex items-center justify-center relative z-10">
+                                        <i class="fa fa-map-marker text-blue-400 text-lg"></i>
+                                    </div>
+                                    <div class="ml-6 flex-1">
+                                        <div
+                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <h3 class="font-semibold text-dark">择校定目标</h3>
+                                                <span
+                                                    class="timeline-date text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full font-medium">2025年3月-4月</span>
+                                            </div>
+                                            <p class="text-sm text-dark/70 mb-2">
+                                                关注2025年研究生入学考试分数线信息、复试和调剂信息，收集意向院校的招生人数、报考人数、推免人数、实际录取人数、复试分数线、复试比等数据。
+                                            </p>
+                                            <div class="flex items-center text-xs text-blue-600">
+                                                <i class="fa fa-lightbulb mr-1"></i>
+                                                <span>多关注学院官网信息，联系目标学校直系学长学姐</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 2025年5月-6月 - 全面备战期 -->
+                                <div class="timeline-item relative flex items-start opacity-0" data-month="6"
+                                    data-year="2025">
+                                    <div
+                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-green-400 shadow-lg flex items-center justify-center relative z-10">
+                                        <i class="fa fa-book text-green-400 text-lg"></i>
+                                    </div>
+                                    <div class="ml-6 flex-1">
+                                        <div
+                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <h3 class="font-semibold text-dark">全面备战期</h3>
+                                                <span
+                                                    class="timeline-date text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full font-medium">2025年5月-6月</span>
+                                            </div>
+                                            <p class="text-sm text-dark/70 mb-2">
+                                                英语和数学开始全面打底复习，弥补基础不足。跨专业考生开始准备专业课。调整作息，进入备考状态。</p>
+                                            <div class="flex items-center text-xs text-green-600">
+                                                <i class="fa fa-lightbulb mr-1"></i>
+                                                <span>种一棵树最佳的时间是十年前，其次是现在</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 2025年7月-8月 - 暑假弯道超车 -->
+                                <div class="timeline-item relative flex items-start opacity-0" data-month="8"
+                                    data-year="2025">
+                                    <div
+                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-yellow-400 shadow-lg flex items-center justify-center relative z-10">
+                                        <i class="fa fa-sun-o text-yellow-400 text-lg"></i>
+                                    </div>
+                                    <div class="ml-6 flex-1">
+                                        <div
+                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <h3 class="font-semibold text-dark">暑假弯道超车</h3>
+                                                <span
+                                                    class="timeline-date text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded-full font-medium">2025年7月-8月</span>
+                                            </div>
+                                            <p class="text-sm text-dark/70 mb-2">利用完整的暑假时间进行复习，对基础阶段学到的知识进行一轮总结和消化。</p>
+                                            <div class="flex items-center text-xs text-yellow-600">
+                                                <i class="fa fa-lightbulb mr-1"></i>
+                                                <span>建议留校学习，和研友一起有规律地安排自习</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <!-- 2025年9月中上旬-中下旬 - 考研大纲公布 -->
+                                <div class="timeline-item relative flex items-start opacity-0" data-month="9"
+                                    data-year="2025" data-late="true">
+                                    <div
+                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-red-400 shadow-lg flex items-center justify-center relative z-10">
+                                        <i class="fa fa-bookmark text-red-400 text-lg"></i>
+                                    </div>
+                                    <div class="ml-6 flex-1">
+                                        <div
+                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <h3 class="font-semibold text-dark">考研大纲公布</h3>
+                                                <span
+                                                    class="timeline-date text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full font-medium">英语大纲25年9月中上旬，政治大纲9月中下旬</span>
+                                            </div>
+                                            <p class="text-sm text-dark/70 mb-2">教育部统一公布公共课考试大纲（考研英语、政治、数学）和全国统考的专业课大纲。
+                                            </p>
+                                            <div class="flex items-center text-xs text-red-600">
+                                                <i class="fa fa-lightbulb mr-1"></i>
+                                                <span>特别注意大纲新增和变化的考点，及时调整复习计划</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 2025年9月中下旬-10月上旬 - 西华师大招生章程公布 -->
+                                <div class="timeline-item relative flex items-start opacity-0" data-month="9"
+                                    data-year="2025">
+                                    <div
+                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-purple-400 shadow-lg flex items-center justify-center relative z-10">
+                                        <i class="fa fa-file-text text-purple-400 text-lg"></i>
+                                    </div>
+                                    <div class="ml-6 flex-1">
+                                        <div
+                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <h3 class="font-semibold text-dark">西华师大招生章程公布</h3>
+                                                <span
+                                                    class="timeline-date text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded-full font-medium">2025年9月中下旬-10月上旬</span>
+                                            </div>
+                                            <p class="text-sm text-dark/70 mb-2">
+                                                西华师范大学发布招生简章，公布招生人数、报考条件、考试科目及代码、参考书目、学制、费用等事项。</p>
+                                            <div class="flex items-center text-xs text-purple-600">
+                                                <i class="fa fa-lightbulb mr-1"></i>
+                                                <span>关注数学与信息学院官网，及时获取最新招生政策</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!-- 2025年9月下旬 - 网上咨询周 -->
+                                <div class="timeline-item relative flex items-start opacity-0" data-month="9"
+                                    data-year="2025" data-late="true">
+                                    <div
+                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-indigo-400 shadow-lg flex items-center justify-center relative z-10">
+                                        <i class="fa fa-comments-o text-indigo-400 text-lg"></i>
+                                    </div>
+                                    <div class="ml-6 flex-1">
+                                        <div
+                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <h3 class="font-semibold text-dark">网上咨询周</h3>
+                                                <span
+                                                    class="timeline-date text-xs bg-indigo-100 text-indigo-600 px-2 py-1 rounded-full font-medium">2025年9月下旬，持续一周</span>
+                                            </div>
+                                            <p class="text-sm text-dark/70 mb-2">直接与西华师范大学招办老师交流，解答报考疑问。</p>
+                                            <div class="flex items-center text-xs text-indigo-600">
+                                                <i class="fa fa-lightbulb mr-1"></i>
+                                                <span>提前准备好问题，重点咨询招生政策、报录比等关键信息</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 2025年9月底-10月初 - 考研预报名 -->
+                                <div class="timeline-item relative flex items-start opacity-0" data-month="9"
+                                    data-year="2025" data-late="true">
+                                    <div
+                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-orange-400 shadow-lg flex items-center justify-center relative z-10">
+                                        <i class="fa fa-edit text-orange-400 text-lg"></i>
+                                    </div>
+                                    <div class="ml-6 flex-1">
+                                        <div
+                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <h3 class="font-semibold text-dark">考研预报名</h3>
+                                                <span
+                                                    class="timeline-date text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded-full font-medium">2025年9月底-10月初</span>
+                                            </div>
+                                            <p class="text-sm text-dark/70 mb-2">研招网开放预报名系统，主要面向应届本科毕业生，减轻正式报名时的网络压力。
+                                            </p>
+                                            <div class="flex items-center text-xs text-orange-600">
+                                                <i class="fa fa-lightbulb mr-1"></i>
+                                                <span>预报名完成后，若无信息修改，确认信息无误后，预报名是有效的</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 2025年10月中旬-10月底 - 考研正式报名 -->
+                                <div class="timeline-item relative flex items-start opacity-0" data-month="10"
+                                    data-year="2025">
+                                    <div
+                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-pink-400 shadow-lg flex items-center justify-center relative z-10">
+                                        <i class="fa fa-pencil-square-o text-pink-400 text-lg"></i>
+                                    </div>
+                                    <div class="ml-6 flex-1">
+                                        <div
+                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <h3 class="font-semibold text-dark">考研正式报名</h3>
+                                                <span
+                                                    class="timeline-date text-xs bg-pink-100 text-pink-600 px-2 py-1 rounded-full font-medium">2025年10月上旬-10月中下旬</span>
+                                            </div>
+                                            <p class="text-sm text-dark/70 mb-2">全国硕士研究生入学考试网上正式报名，考生可自行修改、校正网报信息。</p>
+                                            <div class="flex items-center text-xs text-pink-600">
+                                                <i class="fa fa-lightbulb mr-1"></i>
+                                                <span>硕士研究生考生一律采取网上报名方式，逾期不再补报</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 2025年11中上旬 - 网上确认 -->
+                                <div class="timeline-item relative flex items-start opacity-0" data-month="11"
+                                    data-year="2025">
+                                    <div
+                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-teal-400 shadow-lg flex items-center justify-center relative z-10">
+                                        <i class="fa fa-check-square-o text-teal-400 text-lg"></i>
+                                    </div>
+                                    <div class="ml-6 flex-1">
+                                        <div
+                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <h3 class="font-semibold text-dark">网上确认</h3>
+                                                <span
+                                                    class="timeline-date text-xs bg-teal-100 text-teal-600 px-2 py-1 rounded-full font-medium">2025年10下旬-2025年11上旬</span>
+                                            </div>
+                                            <p class="text-sm text-dark/70 mb-2">考生完成报名信息确认及缴费，确认成功后才可以确定参加当年的研究生考试。</p>
+                                            <div class="flex items-center text-xs text-teal-600">
+                                                <i class="fa fa-lightbulb mr-1"></i>
+                                                <span>网上确认一般是要在规定的时间内上传要求的证件材料</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 2025年12月中旬 - 准考证打印 -->
+                                <div class="timeline-item relative flex items-start opacity-0" data-month="12"
+                                    data-year="2025">
+                                    <div
+                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-gray-400 shadow-lg flex items-center justify-center relative z-10">
+                                        <i class="fa fa-print text-gray-400 text-lg"></i>
+                                    </div>
+                                    <div class="ml-6 flex-1">
+                                        <div
+                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <h3 class="font-semibold text-dark">准考证打印</h3>
+                                                <span
+                                                    class="timeline-date text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full font-medium">2025年12月中旬，即考前10天左右</span>
+                                            </div>
+                                            <p class="text-sm text-dark/70 mb-2">考生可凭网报用户名和密码登录"研招网"下载打印《准考证》。</p>
+                                            <div class="flex items-center text-xs text-gray-600">
+                                                <i class="fa fa-lightbulb mr-1"></i>
+                                                <span>提前几天进行准考证的信息核对，发现问题及时解决</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 2025年12月倒数第二个周末 - 考研初试 -->
+                                <div class="timeline-item relative flex items-start opacity-0" data-month="12"
+                                    data-year="2025" data-late="true">
+                                    <div
+                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-violet-400 shadow-lg flex items-center justify-center relative z-10">
+                                        <i class="fa fa-pencil text-violet-400 text-lg"></i>
+                                    </div>
+                                    <div class="ml-6 flex-1">
+                                        <div
+                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <h3 class="font-semibold text-dark">考研初试</h3>
+                                                <span
+                                                    class="timeline-date text-xs bg-violet-100 text-violet-600 px-2 py-1 rounded-full font-medium">2025年12月倒数第二个周末</span>
+                                            </div>
+                                            <p class="text-sm text-dark/70 mb-2">
+                                                全国硕士研究生入学考试--初试，科目分为政治理论、外国语、统考数学和业务课，考试时间均为3小时。</p>
+                                            <div class="flex items-center text-xs text-violet-600">
+                                                <i class="fa fa-lightbulb mr-1"></i>
+                                                <span>考试前一天千万不要再熬夜看书，保持自信</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 2026年2月中旬 - 初试查分 -->
+                                <div class="timeline-item relative flex items-start opacity-0" data-month="2"
+                                    data-year="2026">
+                                    <div
+                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-amber-400 shadow-lg flex items-center justify-center relative z-10">
+                                        <i class="fa fa-search text-amber-400 text-lg"></i>
+                                    </div>
+                                    <div class="ml-6 flex-1">
+                                        <div
+                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <h3 class="font-semibold text-dark">初试查分</h3>
+                                                <span
+                                                    class="timeline-date text-xs bg-amber-100 text-amber-600 px-2 py-1 rounded-full font-medium">2026年2月中旬</span>
+                                            </div>
+                                            <p class="text-sm text-dark/70 mb-2">各省份教育考试院陆续公布初试成绩，考生可进行分数复查。</p>
+                                            <div class="flex items-center text-xs text-amber-600">
+                                                <i class="fa fa-lightbulb mr-1"></i>
+                                                <span>查分后，如有分数上的疑问，立刻申请分数信息核对</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 2026年2月下旬-3月中旬 - 34所复试线与国家线 -->
+                                <div class="timeline-item relative flex items-start opacity-0" data-month="3"
+                                    data-year="2026">
+                                    <div
+                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-cyan-400 shadow-lg flex items-center justify-center relative z-10">
+                                        <i class="fa fa-line-chart text-cyan-400 text-lg"></i>
+                                    </div>
+                                    <div class="ml-6 flex-1">
+                                        <div
+                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <h3 class="font-semibold text-dark">34所复试线与国家线</h3>
+                                                <span
+                                                    class="timeline-date text-xs bg-cyan-100 text-cyan-600 px-2 py-1 rounded-full font-medium">2026年2月下旬-3月中旬</span>
+                                            </div>
+                                            <p class="text-sm text-dark/70 mb-2">34所自主划线院校公布复试线，考研国家线一般在3月中旬公布。</p>
+                                            <div class="flex items-center text-xs text-cyan-600">
+                                                <i class="fa fa-lightbulb mr-1"></i>
+                                                <span>报考34所的初试结束后，尤其是出成绩后，一定要抓紧准备复试</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 2026年3月下旬-4月 - 调剂意向采集系统 -->
+                                <div class="timeline-item relative flex items-start opacity-0" data-month="4"
+                                    data-year="2026">
+                                    <div
+                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-rose-400 shadow-lg flex items-center justify-center relative z-10">
+                                        <i class="fa fa-exchange text-rose-400 text-lg"></i>
+                                    </div>
+                                    <div class="ml-6 flex-1">
+                                        <div
+                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <h3 class="font-semibold text-dark">调剂意向采集系统</h3>
+                                                <span
+                                                    class="timeline-date text-xs bg-rose-100 text-rose-600 px-2 py-1 rounded-full font-medium">2026年3月下旬-4月</span>
+                                            </div>
+                                            <p class="text-sm text-dark/70 mb-2">
+                                                符合教育部调剂规定的考生，可在规定时间内通过"中国研究生招生信息网"登录调剂志愿。</p>
+                                            <div class="flex items-center text-xs text-rose-600">
+                                                <i class="fa fa-lightbulb mr-1"></i>
+                                                <span>调剂的关键和核心是信息以及信息的及时有效性</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!-- 2026年3月下旬-4月上旬 - 西华师大考研复试 -->
+                                <div class="timeline-item relative flex items-start opacity-0" data-month="3"
+                                    data-year="2026" data-late="true">
+                                    <div
+                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-lime-400 shadow-lg flex items-center justify-center relative z-10">
+                                        <i class="fa fa-comments text-lime-400 text-lg"></i>
+                                    </div>
+                                    <div class="ml-6 flex-1">
+                                        <div
+                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <h3 class="font-semibold text-dark">西华师大考研复试</h3>
+                                                <span
+                                                    class="timeline-date text-xs bg-lime-100 text-lime-600 px-2 py-1 rounded-full font-medium">2026年3月下旬-4月上旬</span>
+                                            </div>
+                                            <p class="text-sm text-dark/70 mb-2">西华师范大学复试时间、地点、科目、方式由学校自定，具体以学院官网通知为准。
+                                            </p>
+                                            <div class="flex items-center text-xs text-lime-600">
+                                                <i class="fa fa-lightbulb mr-1"></i>
+                                                <span>关注数学与信息学院官网，及时获取复试通知和具体安排</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!-- 2026年3月下旬-4月上旬 - 西华师大拟录取名单 -->
+                                <div class="timeline-item relative flex items-start opacity-0" data-month="4"
+                                    data-year="2026">
+                                    <div
+                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-blue-500 shadow-lg flex items-center justify-center relative z-10">
+                                        <i class="fa fa-list-alt text-blue-500 text-lg"></i>
+                                    </div>
+                                    <div class="ml-6 flex-1">
+                                        <div
+                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <h3 class="font-semibold text-dark">西华师大拟录取名单</h3>
+                                                <span
+                                                    class="timeline-date text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full font-medium">一般为复试结束当天或第二天</span>
+                                            </div>
+                                            <p class="text-sm text-dark/70 mb-2">西华师范大学将在复试结束后尽快公布拟录取名单，一般为复试结束当天或第二天。
+                                            </p>
+                                            <div class="flex items-center text-xs text-blue-600">
+                                                <i class="fa fa-lightbulb mr-1"></i>
+                                                <span>及时关注学院官网公告，保持电话畅通</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!-- 2026年3月下旬-4月上旬 - 西华师大体检 -->
+                                <div class="timeline-item relative flex items-start opacity-0" data-month="4"
+                                    data-year="2026" data-late="true">
+                                    <div
+                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-red-500 shadow-lg flex items-center justify-center relative z-10">
+                                        <i class="fa fa-heartbeat text-red-500 text-lg"></i>
+                                    </div>
+                                    <div class="ml-6 flex-1">
+                                        <div
+                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <h3 class="font-semibold text-dark">西华师大体检</h3>
+                                                <span
+                                                    class="timeline-date text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full font-medium">一般为复试结束第二天</span>
+                                            </div>
+                                            <p class="text-sm text-dark/70 mb-2">西华师范大学体检一般安排在复试结束后的第二天，具体时间和地点以学院通知为准。
+                                            </p>
+                                            <div class="flex items-center text-xs text-red-600">
+                                                <i class="fa fa-lightbulb mr-1"></i>
+                                                <span>体检前注意休息，避免饮酒和剧烈运动</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 2026年4月底-5月初 - 政审 -->
+                                <div class="timeline-item relative flex items-start opacity-0" data-month="5"
+                                    data-year="2026">
+                                    <div
+                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-emerald-400 shadow-lg flex items-center justify-center relative z-10">
+                                        <i class="fa fa-id-card-o text-emerald-400 text-lg"></i>
+                                    </div>
+                                    <div class="ml-6 flex-1">
+                                        <div
+                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <h3 class="font-semibold text-dark">政审</h3>
+                                                <span
+                                                    class="timeline-date text-xs bg-emerald-100 text-emerald-600 px-2 py-1 rounded-full font-medium">2026年4月底-5月初</span>
+                                            </div>
+                                            <p class="text-sm text-dark/70 mb-2">
+                                                考生复试时应按招生单位规定到指定的二级甲等以上医院进行体格检查，暨大是复试前体检。</p>
+                                            <div class="flex items-center text-xs text-emerald-600">
+                                                <i class="fa fa-lightbulb mr-1"></i>
+                                                <span>加强锻炼、保持身体健康，确保顺利通过体检</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 2026年6月初 - 录取通知书 -->
+                                <div class="timeline-item relative flex items-start opacity-0" data-month="6"
+                                    data-year="2026">
+                                    <div
+                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-purple-400 shadow-lg flex items-center justify-center relative z-10">
+                                        <i class="fa fa-envelope-o text-purple-400 text-lg"></i>
+                                    </div>
+                                    <div class="ml-6 flex-1">
+                                        <div
+                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <h3 class="font-semibold text-dark">录取通知书</h3>
+                                                <span
+                                                    class="timeline-date text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded-full font-medium">2026年6月中下旬-7月上旬</span>
+                                            </div>
+                                            <p class="text-sm text-dark/70 mb-2">西华师范大学将在6月中下旬至7月上旬发放硕士研究生录取通知书。</p>
+                                            <div class="flex items-center text-xs text-purple-600">
+                                                <i class="fa fa-lightbulb mr-1"></i>
+                                                <span>过去熬的夜终成了光，录取通知书就是最好的果实</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="flex items-center text-xs text-primary">
+                                <i class="fa fa-lightbulb mr-1"></i>
+                                <span><b>一研为定</b></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+        </div>
+
+        <!-- 智能提醒组件 -->
+        <div class="notification" id="smartNotification">
+            <div class="notification-icon">
+                <i class="fa fa-bell"></i>
+            </div>
+            <div class="notification-content">
+                <div class="notification-title" id="notificationTitle">通知标题</div>
+                <div class="notification-message" id="notificationMessage">通知内容</div>
+            </div>
+            <button class="notification-close" onclick="closeNotification()">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+
+        <script>
+            // 时间轴动画与智能状态
+            document.addEventListener('DOMContentLoaded', function () {
+                // 获取当前日期
+                const today = new Date();
+                const currentYear = today.getFullYear();
+                const currentMonth = today.getMonth() + 1; // 0-11
+                const currentDay = today.getDate();
+
+                // 初始化时间轴
+                initTimeline();
+
+                // 显示智能提醒
+                showSmartNotification();
+
+                // 初始化时间轴函数
+                function initTimeline() {
+                    const timelineItems = document.querySelectorAll('.timeline-item');
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach((entry, index) => {
+                            if (entry.isIntersecting) {
+                                // 错开入场动画
+                                setTimeout(() => {
+                                    entry.target.style.opacity = 1;
+                                    entry.target.style.transform = 'translateY(0)';
+                                }, index * 150);
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, { threshold: 0.1 });
+
+                    // 设置时间轴项目状态
+                    timelineItems.forEach((item, index) => {
+                        // 设置初始动画状态
+                        item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                        item.style.transform = 'translateY(20px)';
+
+                        // 从左右两侧交替滑入
+                        if (index % 2 === 0) {
+                            item.style.transform = 'translateX(-20px)';
+                        } else {
+                            item.style.transform = 'translateX(20px)';
+                        }
+
+                        // 获取数据属性
+                        const itemYear = parseInt(item.dataset.year);
+                        const itemMonth = parseInt(item.dataset.month);
+                        const isLateMonth = item.dataset.late === 'true';
+
+                        // 确定节点状态
+                        let status = 'future';
+                        if (itemYear < currentYear) {
+                            status = 'past';
+                        } else if (itemYear === currentYear) {
+                            if (itemMonth < currentMonth) {
+                                status = 'past';
+                            } else if (itemMonth === currentMonth) {
+                                // 同一月份，判断是否为当前节点
+                                status = 'current';
+                            }
+                        }
+
+                        // 添加状态类
+                        item.classList.add(status);
+                        const node = item.querySelector('.timeline-node');
+                        if (node) {
+                            node.classList.add(status);
+                        }
+
+                        observer.observe(item);
+                    });
+                }
+
+                // 显示智能提醒函数
+                function showSmartNotification() {
+                    // 提醒内容配置
+                    const notifications = [
+                        {
+                            month: 9,
+                            title: '招生简章发布中',
+                            message: '各院校已开始发布2025年硕士研究生招生简章，请及时关注西华师大研究生院官网。'
+                        },
+                        {
+                            month: 9,
+                            late: true,
+                            title: '预报名即将开始',
+                            message: '研招网预报名系统即将开放，建议提前准备好报名信息。'
+                        },
+                        {
+                            month: 10,
+                            title: '正式报名进行中',
+                            message: '全国硕士研究生招生考试正式报名已开始，请务必在截止日期前完成缴费。'
+                        },
+                        {
+                            month: 11,
+                            title: '网上确认进行中',
+                            message: '请及时完成报名信息确认及缴费，逾期未确认视为放弃报考。'
+                        },
+                        {
+                            month: 12,
+                            late: true,
+                            title: '考研初试临近',
+                            message: '2025年考研初试即将开始，请提前打印准考证，准备好考试用品。'
+                        },
+                        {
+                            month: 2,
+                            title: '初试成绩公布中',
+                            message: '各省份教育考试院已开始公布初试成绩，请及时查询，准备复试或调剂。'
+                        },
+                        {
+                            month: 3,
+                            title: '复试准备中',
+                            message: '复试即将开始，请提前准备中英文自我介绍和专业知识。'
+                        },
+                        {
+                            month: 4,
+                            title: '拟录取公布中',
+                            message: '各招生单位已开始公布拟录取名单，请关注研招网和学校通知。'
+                        },
+                        {
+                            month: 9,
+                            year: currentYear + 1,
+                            title: '研究生开学',
+                            message: '恭喜你被录取！请准备好入学所需材料和生活用品，准时报到。'
+                        }
+                    ];
+
+                    // 查找当前月份的提醒
+                    let currentNotification = null;
+                    for (const notification of notifications) {
+                        const notificationYear = notification.year || currentYear;
+                        if (notificationYear === currentYear && notification.month === currentMonth) {
+                            // 检查是否为月末通知
+                            if (notification.late) {
+                                // 如果是月末通知且当前日期接近月末
+                                if (currentDay > 20) {
+                                    currentNotification = notification;
+                                    break;
+                                }
+                            } else {
+                                currentNotification = notification;
+                                break;
+                            }
+                        }
+                    }
+
+                    // 如果没有找到当前月份的提醒，使用默认提醒
+                    if (!currentNotification) {
+                        currentNotification = {
+                            title: '考研备考进行中',
+                            message: '保持学习节奏，合理规划时间，祝你考研顺利！'
+                        };
+                    }
+
+                    // 显示提醒
+                    const notification = document.getElementById('smartNotification');
+                    const titleElement = document.getElementById('notificationTitle');
+                    const messageElement = document.getElementById('notificationMessage');
+
+                    if (notification && titleElement && messageElement) {
+                        titleElement.textContent = currentNotification.title;
+                        messageElement.textContent = currentNotification.message;
+
+                        // 显示通知
+                        setTimeout(() => {
+                            notification.classList.add('show');
+                        }, 1000);
+
+                        // 8秒后自动关闭
+                        setTimeout(() => {
+                            closeNotification();
+                        }, 9000);
+                    }
+                }
+
+                // 关闭通知函数
+                window.closeNotification = function () {
+                    const notification = document.getElementById('smartNotification');
+                    if (notification) {
+                        notification.classList.remove('show');
+                    }
+                }
+            }); 
+        </script>
+        </div>
+        </section>
+        </div>
+
+        <!-- 备考指南页面 -->
+        <div id="page-study" class="page">
+            <!-- 面包屑导航 -->
+            <div class="breadcrumb container mx-auto max-w-6xl px-4 py-4">
+                <div class="flex items-center space-x-2 text-sm text-dark/60">
+                    <i class="fa fa-home"></i>
+                    <span onclick="navigateToPage('home')" class="cursor-pointer hover:text-primary">首页</span>
+                    <i class="fa fa-chevron-right text-xs"></i>
+                    <span class="text-primary">备考指南</span>
+                </div>
+            </div>
+
+            <div class="container mx-auto max-w-6xl px-4 py-8">
+                <div class="flex items-center space-x-2 mb-8">
+                    <i class="fa fa-book text-primary text-2xl"></i>
+                    <h1 class="text-3xl font-bold">备考指南</h1>
+                    <span class="text-dark/50 text-sm ml-4">选择科目开始学习</span>
+                </div>
+
+                <!-- 科目导航卡片 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                    <div onclick="navigateToSubject('math-analysis')"
+                        class="subject-card bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 cursor-pointer transform hover:scale-105 hover:shadow-lg transition-all duration-300 border border-blue-200">
+                        <div class="text-blue-600 text-3xl mb-4">
+                            <i class="fa fa-calculator"></i>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2 text-blue-800">数学分析</h3>
+                        <p class="text-blue-700 text-sm mb-3">华东师大第五版</p>
+                        <div class="text-xs text-blue-600 bg-blue-200 px-2 py-1 rounded-full inline-block">22个章节</div>
+                    </div>
+
+                    <div onclick="navigateToSubject('linear-algebra')"
+                        class="subject-card bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 cursor-pointer transform hover:scale-105 hover:shadow-lg transition-all duration-300 border border-green-200">
+                        <div class="text-green-600 text-3xl mb-4">
+                            <i class="fa fa-th"></i>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2 text-green-800">高等代数</h3>
+                        <p class="text-green-700 text-sm mb-3">张禾瑞第五版</p>
+                        <div class="text-xs text-green-600 bg-green-200 px-2 py-1 rounded-full inline-block">9个章节</div>
+                    </div>
+
+                    <div onclick="navigateToSubject('reexam-info')"
+                        class="subject-card bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 cursor-pointer transform hover:scale-105 hover:shadow-lg transition-all duration-300 border border-purple-200">
+                        <div class="text-purple-600 text-3xl mb-4">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2 text-purple-800">复试信息</h3>
+                        <p class="text-purple-700 text-sm mb-3">面试+笔试流程</p>
+                        <div class="text-xs text-purple-600 bg-purple-200 px-2 py-1 rounded-full inline-block">详细流程
+                        </div>
+                    </div>
+
+                    <div onclick="navigateToSubject('study-methods')"
+                        class="subject-card bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 cursor-pointer transform hover:scale-105 hover:shadow-lg transition-all duration-300 border border-orange-200">
+                        <div class="text-orange-600 text-3xl mb-4">
+                            <i class="fa fa-lightbulb-o"></i>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2 text-orange-800">复习方法</h3>
+                        <p class="text-orange-700 text-sm mb-3">高分学长经验</p>
+                        <div class="text-xs text-orange-600 bg-orange-200 px-2 py-1 rounded-full inline-block">核心技巧
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 子页面内容区域 -->
+                <div id="subject-content" class="min-h-96">
+                    <!-- 默认显示概览 -->
+                    <div id="study-overview" class="study-content active">
+                        <div class="text-center py-16">
+                            <div class="text-6xl text-dark/20 mb-6">
+                                <i class="fa fa-graduation-cap"></i>
+                            </div>
+                            <h2 class="text-2xl font-semibold text-dark/70 mb-4">选择上方任一科目开始学习</h2>
+                            <p class="text-dark/50 max-w-md mx-auto">点击科目卡片查看详细的备考指南、重点章节和学习方法</p>
+                        </div>
+                    </div>
+
+                    <!-- 数学分析子页面 -->
+                    <div id="math-analysis-content" class="study-content">
+                        <div class="bg-white rounded-xl shadow-card p-8">
+                            <div class="flex items-center justify-between mb-6">
+                                <h2 class="text-2xl font-bold flex items-center">
+                                    <i class="fa fa-calculator text-blue-600 mr-3"></i>数学分析备考指南
+                                </h2>
+                                <button onclick="navigateToSubject('overview')"
+                                    class="text-dark/60 hover:text-dark transition-colors">
+                                    <i class="fa fa-times text-xl"></i>
+                                </button>
+                            </div>
+
+                            <!-- 科目概览 -->
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                                <div class="bg-blue-50 rounded-lg p-4 text-center">
+                                    <div class="text-blue-600 text-2xl mb-2"><i class="fa fa-book"></i></div>
+                                    <div class="font-semibold text-blue-800">参考教材</div>
+                                    <div class="text-sm text-blue-600 mt-1">华东师大第五版</div>
+                                </div>
+                                <div class="bg-blue-50 rounded-lg p-4 text-center">
+                                    <div class="text-blue-600 text-2xl mb-2"><i class="fa fa-star"></i></div>
+                                    <div class="font-semibold text-blue-800">重点等级</div>
+                                    <div class="text-sm text-blue-600 mt-1">3☆-5☆覆盖95%</div>
+                                </div>
+                                <div class="bg-blue-50 rounded-lg p-4 text-center">
+                                    <div class="text-blue-600 text-2xl mb-2"><i class="fa fa-clock-o"></i></div>
+                                    <div class="font-semibold text-blue-800">建议时长</div>
+                                    <div class="text-sm text-blue-600 mt-1">6-8个月</div>
+                                </div>
+                            </div>
+
+                            <!-- 学习阶段 -->
+                            <div class="mb-8">
+                                <h3 class="text-lg font-semibold mb-4 flex items-center">
+                                    <i class="fa fa-road text-blue-600 mr-2"></i>学习阶段规划
+                                </h3>
+                                <div class="space-y-4">
+                                    <div class="border-l-4 border-blue-200 pl-4">
+                                        <h4 class="font-medium text-blue-800">一轮复习（基础阶段）</h4>
+                                        <p class="text-dark/70 text-sm mt-1">
+                                            系统学习知识点，完成所有课后习题。认真看知识点，不懂的看B站。所有题目都做，先自己做再看解析。</p>
+                                    </div>
+                                    <div class="border-l-4 border-blue-300 pl-4">
+                                        <h4 class="font-medium text-blue-800">二轮复习（强化阶段）</h4>
+                                        <p class="text-dark/70 text-sm mt-1">复盘知识点，重点攻克错题难题，总结题型解题方法。每天复盘，每周复盘。</p>
+                                    </div>
+                                    <div class="border-l-4 border-blue-400 pl-4">
+                                        <h4 class="font-medium text-blue-800">三轮复习（真题阶段）</h4>
+                                        <p class="text-dark/70 text-sm mt-1">掐时间做真题，根据真题查漏补缺，针对性强化。控制时间在3小时内。</p>
+                                    </div>
+                                    <div class="border-l-4 border-blue-500 pl-4">
+                                        <h4 class="font-medium text-blue-800">冲刺阶段</h4>
+                                        <p class="text-dark/70 text-sm mt-1">回顾重点，巩固薄弱环节，保持手感。重点看标注的难题和错题。</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 重点章节分布 -->
+                            <div>
+                                <h3 class="text-lg font-semibold mb-4 flex items-center">
+                                    <i class="fa fa-star text-blue-600 mr-2"></i>重点章节分布
+                                </h3>
+                                <div class="space-y-3">
+                                    <div class="p-4 bg-red-50 rounded-lg border border-red-200">
+                                        <div class="flex items-center mb-2">
+                                            <div class="flex text-red-500 mr-2">
+                                                <i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                                    class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                                    class="fa fa-star"></i>
+                                            </div>
+                                            <span class="font-medium text-red-800">五星级重点（必考）</span>
+                                        </div>
+                                        <p class="text-sm text-red-700">
+                                            第2、3、5、6章全部，第4章第2节，第8章1-3节，第9章1-2节+4-5节，第12、14、18、20章全部，第13章第2节，第16章2-3节，第17章1-4节，第21章2-5节，第22章2-3节
+                                        </p>
+                                    </div>
+
+                                    <div class="p-4 bg-orange-50 rounded-lg border border-orange-200">
+                                        <div class="flex items-center mb-2">
+                                            <div class="flex text-orange-500 mr-2">
+                                                <i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                                    class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                                    class="fa fa-star-o"></i>
+                                            </div>
+                                            <span class="font-medium text-orange-800">四星级重点</span>
+                                        </div>
+                                        <p class="text-sm text-orange-700">
+                                            第4章1节+3节，第8章总练习题，第11章1-3节，第13章第1节，第17章总练习题，第21章第1节，第22章第1节</p>
+                                    </div>
+
+                                    <div class="p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                                        <div class="flex items-center mb-2">
+                                            <div class="flex text-yellow-600 mr-2">
+                                                <i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                                    class="fa fa-star"></i><i class="fa fa-star-o"></i><i
+                                                    class="fa fa-star-o"></i>
+                                            </div>
+                                            <span class="font-medium text-yellow-800">三星级重点</span>
+                                        </div>
+                                        <p class="text-sm text-yellow-700">第9章第3节，第11章总练习题，第16章第1节+总练习题，第22章总练习题</p>
+                                    </div>
+
+                                    <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                        <div class="flex items-center mb-2">
+                                            <div class="flex text-blue-600 mr-2">
+                                                <i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                                    class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i
+                                                    class="fa fa-star-o"></i>
+                                            </div>
+                                            <span class="font-medium text-blue-800">二星级重点</span>
+                                        </div>
+                                        <p class="text-sm text-blue-700">第一章全部，第七章第1节，第十章1—4节，第十五章1—2节，第十九章第1节</p>
+                                    </div>
+
+                                    <div class="text-xs text-dark/60 italic mt-4 p-3 bg-gray-50 rounded">
+                                        <i class="fa fa-info-circle mr-1"></i>
+                                        注：数分3☆-5☆基本涵盖95%的题目。"全部"包括本章内所有小节和总练习题。未提及章节可不重点复习。
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 高等代数子页面 -->
+                    <div id="linear-algebra-content" class="study-content">
+                        <div class="bg-white rounded-xl shadow-card p-8">
+                            <div class="flex items-center justify-between mb-6">
+                                <h2 class="text-2xl font-bold flex items-center">
+                                    <i class="fa fa-th text-green-600 mr-3"></i>高等代数备考指南
+                                </h2>
+                                <button onclick="navigateToSubject('overview')"
+                                    class="text-dark/60 hover:text-dark transition-colors">
+                                    <i class="fa fa-times text-xl"></i>
+                                </button>
+                            </div>
+
+                            <!-- 科目概览 -->
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                                <div class="bg-green-50 rounded-lg p-4 text-center">
+                                    <div class="text-green-600 text-2xl mb-2"><i class="fa fa-book"></i></div>
+                                    <div class="font-semibold text-green-800">参考教材</div>
+                                    <div class="text-sm text-green-600 mt-1">张禾瑞第五版</div>
+                                </div>
+                                <div class="bg-green-50 rounded-lg p-4 text-center">
+                                    <div class="text-green-600 text-2xl mb-2"><i class="fa fa-cog"></i></div>
+                                    <div class="font-semibold text-green-800">核心能力</div>
+                                    <div class="text-sm text-green-600 mt-1">计算+证明</div>
+                                </div>
+                                <div class="bg-green-50 rounded-lg p-4 text-center">
+                                    <div class="text-green-600 text-2xl mb-2"><i class="fa fa-trophy"></i></div>
+                                    <div class="font-semibold text-green-800">强化讲义</div>
+                                    <div class="text-sm text-green-600 mt-1">ly老师推荐</div>
+                                </div>
+                            </div>
+
+                            <!-- 学习阶段 -->
+                            <div class="mb-8">
+                                <h3 class="text-lg font-semibold mb-4 flex items-center">
+                                    <i class="fa fa-road text-green-600 mr-2"></i>学习阶段规划
+                                </h3>
+                                <div class="space-y-4">
+                                    <div class="border-l-4 border-green-200 pl-4">
+                                        <h4 class="font-medium text-green-800">一轮复习（与数分上册同步）</h4>
+                                        <p class="text-dark/70 text-sm mt-1">系统学习知识点，完成所有课后习题。买专门本子做题，先自己做再看解析。</p>
+                                    </div>
+                                    <div class="border-l-4 border-green-300 pl-4">
+                                        <h4 class="font-medium text-green-800">二轮复习（重点强化）</h4>
+                                        <p class="text-dark/70 text-sm mt-1">复盘知识点，重点攻克错题难题。继续看书刷题，先自己做，做完再看答案。</p>
+                                    </div>
+                                    <div class="border-l-4 border-green-400 pl-4">
+                                        <h4 class="font-medium text-green-800">三轮复习（强化讲义）</h4>
+                                        <p class="text-dark/70 text-sm mt-1">结合ly强化讲义，深入理解重点难点。高代有很多强化上的重要知识和典型题目。</p>
+                                    </div>
+                                    <div class="border-l-4 border-green-500 pl-4">
+                                        <h4 class="font-medium text-green-800">真题+冲刺</h4>
+                                        <p class="text-dark/70 text-sm mt-1">掐时间做真题，每天做课本和强化讲义相关题目。注重计算正确率训练。</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 重点章节分布 -->
+                            <div>
+                                <h3 class="text-lg font-semibold mb-4 flex items-center">
+                                    <i class="fa fa-star text-green-600 mr-2"></i>重点章节分布
+                                </h3>
+                                <div class="space-y-3">
+                                    <div class="p-4 bg-red-50 rounded-lg border border-red-200">
+                                        <div class="flex items-center mb-2">
+                                            <div class="flex text-red-500 mr-2">
+                                                <i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                                    class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                                    class="fa fa-star"></i>
+                                            </div>
+                                            <span class="font-medium text-red-800">五星级重点（必考）</span>
+                                        </div>
+                                        <p class="text-sm text-red-700">
+                                            第2章1-8节，第3章3-5节，第4章1-3节，第5章1-3节，第6章2-5节+7节，第7章1-6节，第8章2-4节，第9章1-4节</p>
+                                    </div>
+
+                                    <div class="p-4 bg-orange-50 rounded-lg border border-orange-200">
+                                        <div class="flex items-center mb-2">
+                                            <div class="flex text-orange-500 mr-2">
+                                                <i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                                    class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                                    class="fa fa-star-o"></i>
+                                            </div>
+                                            <span class="font-medium text-orange-800">四星级重点</span>
+                                        </div>
+                                        <p class="text-sm text-orange-700">第3章1-2节，第6章第1节，第8章第1节</p>
+                                    </div>
+
+                                    <div class="p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                                        <div class="flex items-center mb-2">
+                                            <div class="flex text-yellow-600 mr-2">
+                                                <i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                                    class="fa fa-star"></i><i class="fa fa-star-o"></i><i
+                                                    class="fa fa-star-o"></i>
+                                            </div>
+                                            <span class="font-medium text-yellow-800">三星级重点</span>
+                                        </div>
+                                        <p class="text-sm text-yellow-700">第1章1-5节，第6章第6节</p>
+                                    </div>
+
+                                    <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                        <div class="flex items-center mb-2">
+                                            <div class="flex text-blue-600 mr-2">
+                                                <i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                                    class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i
+                                                    class="fa fa-star-o"></i>
+                                            </div>
+                                            <span class="font-medium text-blue-800">二星级重点</span>
+                                        </div>
+                                        <p class="text-sm text-blue-700">附录1 凯莱—哈密顿定理</p>
+                                    </div>
+
+                                    <div class="text-xs text-dark/60 italic mt-4 p-3 bg-gray-50 rounded">
+                                        <i class="fa fa-info-circle mr-1"></i>
+                                        注：高代3☆-5☆基本涵盖95%的题目。重点掌握矩阵运算、特征值、相似标准型等核心内容。
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 复试信息子页面 -->
+                    <div id="reexam-info-content" class="study-content">
+                        <div class="bg-white rounded-xl shadow-card p-8">
+                            <div class="flex items-center justify-between mb-6">
+                                <h2 class="text-2xl font-bold flex items-center">
+                                    <i class="fa fa-users text-purple-600 mr-3"></i>复试信息详解
+                                </h2>
+                                <button onclick="navigateToSubject('overview')"
+                                    class="text-dark/60 hover:text-dark transition-colors">
+                                    <i class="fa fa-times text-xl"></i>
+                                </button>
+                            </div>
+
+                            <!-- 复试概览 -->
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                                <div class="bg-purple-50 rounded-lg p-4 text-center">
+                                    <div class="text-purple-600 text-2xl mb-2"><i class="fa fa-calendar"></i></div>
+                                    <div class="font-semibold text-purple-800">复试时长</div>
+                                    <div class="text-sm text-purple-600 mt-1">4天流程</div>
+                                </div>
+                                <div class="bg-purple-50 rounded-lg p-4 text-center">
+                                    <div class="text-purple-600 text-2xl mb-2"><i class="fa fa-users"></i></div>
+                                    <div class="font-semibold text-purple-800">复录比例</div>
+                                    <div class="text-sm text-purple-600 mt-1">1.4:1（约）</div>
+                                </div>
+                                <div class="bg-purple-50 rounded-lg p-4 text-center">
+                                    <div class="text-purple-600 text-2xl mb-2"><i class="fa fa-balance-scale"></i></div>
+                                    <div class="font-semibold text-purple-800">成绩占比</div>
+                                    <div class="text-sm text-purple-600 mt-1">初试:复试=5:5</div>
+                                </div>
+                            </div>
+
+                            <!-- 复试流程 -->
+                            <div class="mb-8">
+                                <h3 class="text-lg font-semibold mb-4 flex items-center">
+                                    <i class="fa fa-sitemap text-purple-600 mr-2"></i>复试流程
+                                </h3>
+                                <div class="relative">
+                                    <div class="absolute left-6 top-8 bottom-0 w-0.5 bg-purple-200"></div>
+                                    <div class="space-y-6">
+                                        <div class="relative flex items-start">
+                                            <div
+                                                class="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center border-4 border-white shadow">
+                                                <span class="text-purple-600 font-semibold">1</span>
+                                            </div>
+                                            <div class="ml-4">
+                                                <h4 class="font-medium text-purple-800">第一天：报到注册</h4>
+                                                <p class="text-dark/70 text-sm mt-1">领取复试安排和相关表格，准备第二天开会需要提交的材料</p>
+                                            </div>
+                                        </div>
+                                        <div class="relative flex items-start">
+                                            <div
+                                                class="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center border-4 border-white shadow">
+                                                <span class="text-purple-600 font-semibold">2</span>
+                                            </div>
+                                            <div class="ml-4">
+                                                <h4 class="font-medium text-purple-800">第二天：会议+笔试</h4>
+                                                <p class="text-dark/70 text-sm mt-1">开会说明复试工作，会议结束时抽面试分组和序号，随后进行笔试</p>
+                                            </div>
+                                        </div>
+                                        <div class="relative flex items-start">
+                                            <div
+                                                class="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center border-4 border-white shadow">
+                                                <span class="text-purple-600 font-semibold">3</span>
+                                            </div>
+                                            <div class="ml-4">
+                                                <h4 class="font-medium text-purple-800">第三天：面试</h4>
+                                                <p class="text-dark/70 text-sm mt-1">按抽签顺序进行面试，面试后数信院官网公布综合成绩</p>
+                                            </div>
+                                        </div>
+                                        <div class="relative flex items-start">
+                                            <div
+                                                class="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center border-4 border-white shadow">
+                                                <span class="text-purple-600 font-semibold">4</span>
+                                            </div>
+                                            <div class="ml-4">
+                                                <h4 class="font-medium text-purple-800">第四天：体检+总结</h4>
+                                                <p class="text-dark/70 text-sm mt-1">拟录取考生自行体检，开会通报复试情况</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 考试内容 -->
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                <div>
+                                    <h3 class="text-lg font-semibold mb-4 flex items-center">
+                                        <i class="fa fa-pencil-square-o text-purple-600 mr-2"></i>笔试科目
+                                    </h3>
+                                    <div class="space-y-3">
+                                        <div class="flex items-center p-3 bg-purple-50 rounded-lg">
+                                            <i class="fa fa-check-circle text-purple-500 mr-3"></i>
+                                            <span class="font-medium">常微分方程</span>
+                                        </div>
+                                        <div class="flex items-center p-3 bg-purple-50 rounded-lg">
+                                            <i class="fa fa-check-circle text-purple-500 mr-3"></i>
+                                            <span class="font-medium">概率论与数理统计</span>
+                                        </div>
+                                        <div class="flex items-center p-3 bg-purple-50 rounded-lg">
+                                            <i class="fa fa-check-circle text-purple-500 mr-3"></i>
+                                            <span class="font-medium">近世代数</span>
+                                        </div>
+                                        <div class="flex items-center p-3 bg-purple-50 rounded-lg">
+                                            <i class="fa fa-check-circle text-purple-500 mr-3"></i>
+                                            <span class="font-medium">复变函数论</span>
+                                        </div>
+                                        <div class="flex items-center p-3 bg-purple-50 rounded-lg">
+                                            <i class="fa fa-check-circle text-purple-500 mr-3"></i>
+                                            <span class="font-medium">数值分析</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h3 class="text-lg font-semibold mb-4 flex items-center">
+                                        <i class="fa fa-comments-o text-purple-600 mr-2"></i>面试内容
+                                    </h3>
+                                    <div class="space-y-3">
+                                        <div class="flex items-center p-3 bg-purple-50 rounded-lg">
+                                            <i class="fa fa-check-circle text-purple-500 mr-3"></i>
+                                            <span class="font-medium">专业课知识（笔试5科）</span>
+                                        </div>
+                                        <div class="flex items-center p-3 bg-purple-50 rounded-lg">
+                                            <i class="fa fa-check-circle text-purple-500 mr-3"></i>
+                                            <span class="font-medium">英语口语表达</span>
+                                        </div>
+                                        <div class="flex items-center p-3 bg-purple-50 rounded-lg">
+                                            <i class="fa fa-check-circle text-purple-500 mr-3"></i>
+                                            <span class="font-medium">政治理论知识</span>
+                                        </div>
+                                        <div class="flex items-center p-3 bg-purple-50 rounded-lg">
+                                            <i class="fa fa-check-circle text-purple-500 mr-3"></i>
+                                            <span class="font-medium">自我介绍</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 重要提醒 -->
+                            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h4 class="font-medium mb-2 text-blue-800">复试比例</h4>
+                                    <p class="text-blue-700 text-sm">每年进复试人数基本是拟招人数的1.4倍。例如拟招56人，则进复试约78-79人。</p>
+                                </div>
+                                <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+                                    <h4 class="font-medium mb-2 text-green-800">成绩计算</h4>
+                                    <p class="text-green-700 text-sm">线下复试时初试:复试=5:5，线上时为4:6或3:7。估计复试1分=初试5分。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 复习方法子页面 -->
+                    <div id="study-methods-content" class="study-content">
+                        <div class="bg-white rounded-xl shadow-card p-8">
+                            <div class="flex items-center justify-between mb-6">
+                                <h2 class="text-2xl font-bold flex items-center">
+                                    <i class="fa fa-lightbulb-o text-orange-600 mr-3"></i>复习方法与技巧
+                                </h2>
+                                <button onclick="navigateToSubject('overview')"
+                                    class="text-dark/60 hover:text-dark transition-colors">
+                                    <i class="fa fa-times text-xl"></i>
+                                </button>
+                            </div>
+
+                            <!-- 通用复习原则 -->
+                            <div class="mb-8">
+                                <h3 class="text-lg font-semibold mb-4 flex items-center">
+                                    <i class="fa fa-compass text-orange-600 mr-2"></i>核心复习原则
+                                </h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="p-6 bg-orange-50 rounded-lg border border-orange-200">
+                                        <h4 class="font-medium text-orange-800 mb-3 flex items-center">
+                                            <i class="fa fa-repeat text-orange-600 mr-2"></i>重复是学习的本质
+                                        </h4>
+                                        <ul class="space-y-2 text-sm text-orange-700">
+                                            <li>• 每晚复盘当天所学内容</li>
+                                            <li>• 每周总结本周重点难点</li>
+                                            <li>• 错题必须反复练习</li>
+                                            <li>• 重要结论需要熟记</li>
+                                        </ul>
+                                    </div>
+                                    <div class="p-6 bg-blue-50 rounded-lg border border-blue-200">
+                                        <h4 class="font-medium text-blue-800 mb-3 flex items-center">
+                                            <i class="fa fa-pencil text-blue-600 mr-2"></i>做题方法
+                                        </h4>
+                                        <ul class="space-y-2 text-sm text-blue-700">
+                                            <li>• 先自己做，再看解析</li>
+                                            <li>• 认真批改，标注错题</li>
+                                            <li>• 理解答案逻辑过程</li>
+                                            <li>• 难题标注，决定取舍</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 数学分析专项技巧 -->
+                            <div class="mb-8">
+                                <h3 class="text-lg font-semibold mb-4 flex items-center">
+                                    <i class="fa fa-calculator text-blue-600 mr-2"></i>数学分析专项技巧
+                                </h3>
+                                <div class="space-y-4">
+                                    <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+                                        <h4 class="font-medium text-blue-800 mb-2">培养"分析感"</h4>
+                                        <p class="text-blue-700 text-sm">通过大量做题熟悉各种证明方法和题型。刚开始学习时，疯狂做题是提升最快的方式。</p>
+                                    </div>
+                                    <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+                                        <h4 class="font-medium text-blue-800 mb-2">专题总结（超重要）</h4>
+                                        <p class="text-blue-700 text-sm">
+                                            按专题总结题型和解题方法：极限专题、微分中值定理专题、定积分专题等。这是应对琐碎知识点的最佳方式。</p>
+                                    </div>
+                                    <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+                                        <h4 class="font-medium text-blue-800 mb-2">核心证明方法</h4>
+                                        <div class="grid grid-cols-2 gap-2 mt-2">
+                                            <span
+                                                class="text-xs bg-blue-200 text-blue-800 px-2 py-1 rounded">Taylor公式</span>
+                                            <span
+                                                class="text-xs bg-blue-200 text-blue-800 px-2 py-1 rounded">微分中值定理</span>
+                                            <span
+                                                class="text-xs bg-blue-200 text-blue-800 px-2 py-1 rounded">各种判别法</span>
+                                            <span
+                                                class="text-xs bg-blue-200 text-blue-800 px-2 py-1 rounded">加一项减一项</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 高等代数专项技巧 -->
+                            <div class="mb-8">
+                                <h3 class="text-lg font-semibold mb-4 flex items-center">
+                                    <i class="fa fa-th text-green-600 mr-2"></i>高等代数专项技巧
+                                </h3>
+                                <div class="space-y-4">
+                                    <div class="p-4 bg-green-50 rounded-lg border-l-4 border-green-400">
+                                        <h4 class="font-medium text-green-800 mb-2">多计算（超重要）</h4>
+                                        <p class="text-green-700 text-sm">行列式、矩阵、相似标准型等计算，不仅要会算，更要保证正确率。每年因计算错误失分的人很多。
+                                        </p>
+                                    </div>
+                                    <div class="p-4 bg-green-50 rounded-lg border-l-4 border-green-400">
+                                        <h4 class="font-medium text-green-800 mb-2">标准型理论（重要）</h4>
+                                        <p class="text-green-700 text-sm">
+                                            高等代数中，很多时候对一般矩阵A的研究都变成某个标准型的研究。掌握相似、合同、正交相似标准型。</p>
+                                    </div>
+                                    <div class="p-4 bg-green-50 rounded-lg border-l-4 border-green-400">
+                                        <h4 class="font-medium text-green-800 mb-2">核心证明方法</h4>
+                                        <div class="grid grid-cols-2 gap-2 mt-2">
+                                            <span
+                                                class="text-xs bg-green-200 text-green-800 px-2 py-1 rounded">矩阵打洞</span>
+                                            <span
+                                                class="text-xs bg-green-200 text-green-800 px-2 py-1 rounded">标准型方法</span>
+                                            <span
+                                                class="text-xs bg-green-200 text-green-800 px-2 py-1 rounded">同时对角化</span>
+                                            <span
+                                                class="text-xs bg-green-200 text-green-800 px-2 py-1 rounded">上三角化</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 时间管理建议 -->
+                            <div>
+                                <h3 class="text-lg font-semibold mb-4 flex items-center">
+                                    <i class="fa fa-clock-o text-purple-600 mr-2"></i>时间安排建议
+                                </h3>
+                                <div
+                                    class="bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg p-6 border border-purple-200">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <h4 class="font-medium text-purple-800 mb-3">学习顺序</h4>
+                                            <div class="space-y-2 text-sm">
+                                                <div class="flex items-center">
+                                                    <span
+                                                        class="w-6 h-6 bg-purple-200 text-purple-800 rounded-full text-xs flex items-center justify-center mr-2">1</span>
+                                                    <span>数分早点开始学</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <span
+                                                        class="w-6 h-6 bg-purple-200 text-purple-800 rounded-full text-xs flex items-center justify-center mr-2">2</span>
+                                                    <span>高代在数分上册后开始</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <span
+                                                        class="w-6 h-6 bg-purple-200 text-purple-800 rounded-full text-xs flex items-center justify-center mr-2">3</span>
+                                                    <span>真题阶段同步进行</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-blue-800 mb-3">真题练习</h4>
+                                            <div class="space-y-2 text-sm">
+                                                <div class="flex items-center">
+                                                    <i class="fa fa-clock-o text-blue-600 mr-2"></i>
+                                                    <span>控制在3小时内完成</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <i class="fa fa-calendar text-blue-600 mr-2"></i>
+                                                    <span>10-11月开始真题</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <i class="fa fa-check text-blue-600 mr-2"></i>
+                                                    <span>及时批改分析错题</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 录取数据页面 -->
+        <div id="page-admission" class="page">
+            <!-- 面包屑导航 -->
+            <div class="breadcrumb container mx-auto max-w-6xl px-4 py-4">
+                <div class="flex items-center space-x-2 text-sm text-dark/60">
+                    <i class="fa fa-home"></i>
+                    <span onclick="navigateToPage('home')" class="cursor-pointer hover:text-primary">首页</span>
+                    <i class="fa fa-chevron-right text-xs"></i>
+                    <span class="text-primary">录取数据</span>
+                </div>
+            </div>
+
+            <div class="container mx-auto max-w-6xl px-4 py-8">
+                <div class="flex items-center space-x-2 mb-8">
+                    <i class="fa fa-bar-chart text-primary text-2xl"></i>
+                    <h1 class="text-3xl font-bold">录取数据</h1>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- 近5年分数线 -->
+                    <div
+                        class="bg-white rounded-xl shadow-card p-6 transition-all duration-300 hover:shadow-card-hover">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            <i class="fa fa-line-chart text-primary mr-2"></i>近5年分数线
+                        </h3>
+                        <div class="h-[300px] mb-6">
+                            <canvas id="scoreChart"></canvas>
+                        </div>
+                        <div class="table-container">
+                            <table class="text-sm">
+                                <thead>
+                                    <tr>
+                                        <th>年份</th>
+                                        <th>A类国家线</th>
+                                        <th>院线</th>
+                                        <th>进复试最低分</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2021</td>
+                                        <td>280</td>
+                                        <td>280</td>
+                                        <td>280</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2022</td>
+                                        <td>290</td>
+                                        <td>290</td>
+                                        <td>296</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2023</td>
+                                        <td>279</td>
+                                        <td>279</td>
+                                        <td>279</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2024</td>
+                                        <td>288</td>
+                                        <td>320</td>
+                                        <td>320</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2025</td>
+                                        <td>274</td>
+                                        <td>274</td>
+                                        <td>277</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 近5年录取数据 -->
+                    <div
+                        class="bg-white rounded-xl shadow-card p-6 transition-all duration-300 hover:shadow-card-hover">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            <i class="fa fa-pie-chart text-primary mr-2"></i>近5年录取数据
+                        </h3>
+                        <div class="h-[300px] mb-6">
+                            <canvas id="admissionChart"></canvas>
+                        </div>
+                        <div class="table-container">
+                            <table class="text-sm">
+                                <thead>
+                                    <tr>
+                                        <th>年份</th>
+                                        <th>录取人数</th>
+                                        <th>复录比</th>
+                                        <th>初试最高分/最低分</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2021</td>
+                                        <td>25</td>
+                                        <td>1:1</td>
+                                        <td>378/280</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2022</td>
+                                        <td>54</td>
+                                        <td>1.06:1</td>
+                                        <td>398/296</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2023</td>
+                                        <td>54</td>
+                                        <td>1.48:1</td>
+                                        <td>402/279</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2024</td>
+                                        <td>56</td>
+                                        <td>1.48:1</td>
+                                        <td>431/320</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2025</td>
+                                        <td>61</td>
+                                        <td>1.23:1</td>
+                                        <td>405/277</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 数据分析总结 -->
+                <div class="mt-8 bg-white rounded-xl shadow-card p-6">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fa fa-line-chart text-primary mr-2"></i>趋势分析
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="text-center p-4 bg-primary/5 rounded-lg">
+                            <div class="text-2xl font-bold text-primary mb-2">↗️ 61人</div>
+                            <div class="text-sm text-dark/60">2025年录取人数</div>
+                            <div class="text-xs text-green-600 mt-1">较去年增加5人</div>
+                        </div>
+                        <div class="text-center p-4 bg-accent/5 rounded-lg">
+                            <div class="text-2xl font-bold text-accent mb-2">↘️ 1.23:1</div>
+                            <div class="text-sm text-dark/60">2025年复录比</div>
+                            <div class="text-xs text-orange-600 mt-1">竞争相对缓解</div>
+                        </div>
+                        <div class="text-center p-4 bg-green-50 rounded-lg">
+                            <div class="text-2xl font-bold text-green-600 mb-2">277分</div>
+                            <div class="text-sm text-dark/60">2025年最低录取分</div>
+                            <div class="text-xs text-green-600 mt-1">较去年下降43分</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 常见问题页面 -->
+        <div id="page-faq" class="page">
+            <!-- 面包屑导航 -->
+            <div class="breadcrumb container mx-auto max-w-6xl px-4 py-4">
+                <div class="flex items-center space-x-2 text-sm text-dark/60">
+                    <i class="fa fa-home"></i>
+                    <span onclick="navigateToPage('home')" class="cursor-pointer hover:text-primary">首页</span>
+                    <i class="fa fa-chevron-right text-xs"></i>
+                    <span class="text-primary">常见问题</span>
+                </div>
+            </div>
+
+            <div class="container mx-auto max-w-6xl px-4 py-8">
+                <div class="flex items-center space-x-2 mb-8">
+                    <i class="fa fa-question-circle text-primary text-2xl"></i>
+                    <h1 class="text-3xl font-bold">常见问题</h1>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-card p-6 transition-all duration-300 hover:shadow-card-hover">
+                    <div class="space-y-4" id="faq-container">
+                        <!-- FAQ项1 -->
+                        <div class="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+                            <button
+                                class="faq-question w-full flex justify-between items-center text-left font-medium focus:outline-none">
+                                <span>数分高代参考课本是哪些？</span>
+                                <i class="fa fa-plus text-primary transition-transform duration-200"></i>
+                            </button>
+                            <div class="faq-answer mt-2 text-dark/70 hidden">
+                                <p>《数学分析》华东师大第五版，《高等代数》张禾瑞第五版。</p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ项2 -->
+                        <div class="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+                            <button
+                                class="faq-question w-full flex justify-between items-center text-left font-medium focus:outline-none">
+                                <span>数分课后题横线以下的要做吗？</span>
+                                <i class="fa fa-plus text-primary transition-transform duration-200"></i>
+                            </button>
+                            <div class="faq-answer mt-2 text-dark/70 hidden">
+                                <p>必须要做。本科上课期间老师说过，如果要考研的话可以自己做一做横线以下的题。</p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ项3 -->
+                        <div class="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+                            <button
+                                class="faq-question w-full flex justify-between items-center text-left font-medium focus:outline-none">
+                                <span>需要看强化吗？</span>
+                                <i class="fa fa-plus text-primary transition-transform duration-200"></i>
+                            </button>
+                            <div class="faq-answer mt-2 text-dark/70 hidden">
+                                <p>数学分析不需要，课后题已经够多了；高等代数如果看张禾瑞版的，需要看强化（ly），如果看北师大版的，不需要看强化，因为强化题和北师大版课后题很多都相同。</p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ项4 -->
+                        <div class="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+                            <button
+                                class="faq-question w-full flex justify-between items-center text-left font-medium focus:outline-none">
+                                <span>真题难度怎么样？涉及到的课后原题占比多大？</span>
+                                <i class="fa fa-plus text-primary transition-transform duration-200"></i>
+                            </button>
+                            <div class="faq-answer mt-2 text-dark/70 hidden">
+                                <p>难度在双非里面算一般的，不难。具体课后题来源可以看真题解析，以往每年都有，最近两三年数分不怎么考原题了，高代会考，包括强化题。25年数分没有一道课后题原题，高代有一大半见过。
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ项5 -->
+                        <div class="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+                            <button
+                                class="faq-question w-full flex justify-between items-center text-left font-medium focus:outline-none">
+                                <span>真题什么时候做？怎么做？</span>
+                                <i class="fa fa-plus text-primary transition-transform duration-200"></i>
+                            </button>
+                            <div class="faq-answer mt-2 text-dark/70 hidden">
+                                <p>理论上数分刷完两遍，高代刷完三遍后开始做，10-11月都可以。真题掐时间做，每套真题的时间最好都控制在3h以内，超过时间马上停止作答。这是为了避免在考场上把握不好时间而引起时间紧张的情况，所以平时要训练自己的速度和正确率。做完批改，错题分析原因，找课本上对应的知识点，刷类似题目。
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ项6 -->
+                        <div class="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+                            <button
+                                class="faq-question w-full flex justify-between items-center text-left font-medium focus:outline-none">
+                                <span>课本考察的范围是？侧重考察哪些章节？</span>
+                                <i class="fa fa-plus text-primary transition-transform duration-200"></i>
+                            </button>
+                            <div class="faq-answer mt-2 text-dark/70 hidden">
+                                <p>本问题在"考纲"中有说明。</p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ项7 -->
+                        <div class="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+                            <button
+                                class="faq-question w-full flex justify-between items-center text-left font-medium focus:outline-none">
+                                <span>课本刷到什么程度？</span>
+                                <i class="fa fa-plus text-primary transition-transform duration-200"></i>
+                            </button>
+                            <div class="faq-answer mt-2 text-dark/70 hidden">
+                                <p>需要做到看到题目能想起关键步骤，而且能完整写出来。</p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ项8 -->
+                        <div class="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+                            <button
+                                class="faq-question w-full flex justify-between items-center text-left font-medium focus:outline-none">
+                                <span>师兄师姐的经验哪些可以参考？</span>
+                                <i class="fa fa-plus text-primary transition-transform duration-200"></i>
+                            </button>
+                            <div class="faq-answer mt-2 text-dark/70 hidden">
+                                <p>关于考研所用到的网课、资料、方法等可以参考，而师兄师姐自己考研时的学习时长、学习习惯等都是非常主观的，也不可能完全效仿，因为每个人的情况不一样，有些人本科开设过数分高代强化的课程，有些人本身英语很好，……，所以可以参考，但是参考价值不大。在学习的时候，你首先要考虑的是自己学习进度怎么样，而不是有没有按照师兄师姐的进度去学。
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ项9 -->
+                        <div class="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+                            <button
+                                class="faq-question w-full flex justify-between items-center text-left font-medium focus:outline-none">
+                                <span>本校生会有优势吗？</span>
+                                <i class="fa fa-plus text-primary transition-transform duration-200"></i>
+                            </button>
+                            <div class="faq-answer mt-2 text-dark/70 hidden">
+                                <p>不管哪个学校本校生都会有优势，因为本校生已经算生源最好的那一批了。但我们学院（数学与信息学院）在全校来看还算比较公平的，本校生和外校生大概对半开。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 资源获取页面 -->
+        <div id="page-resources" class="page">
+            <!-- 面包屑导航 -->
+            <div class="breadcrumb container mx-auto max-w-6xl px-4 py-4">
+                <div class="flex items-center space-x-2 text-sm text-dark/60">
+                    <i class="fa fa-home"></i>
+                    <span onclick="navigateToPage('home')" class="cursor-pointer hover:text-primary">首页</span>
+                    <i class="fa fa-chevron-right text-xs"></i>
+                    <span class="text-primary">资源获取</span>
+                </div>
+            </div>
+
+            <div class="container mx-auto max-w-6xl px-4 py-8">
+                <div class="flex items-center space-x-2 mb-8">
+                    <i class="fa fa-download text-primary text-2xl"></i>
+                    <h1 class="text-3xl font-bold">资源获取</h1>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- 历年真题 -->
+                    <div
+                        class="bg-white rounded-xl shadow-card p-6 transition-all duration-300 hover:shadow-card-hover">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            <i class="fa fa-file-text-o text-primary mr-2"></i>历年真题
+                        </h3>
+                        <div class="space-y-3">
+                            <div
+                                class="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <div>
+                                    <div class="font-medium">数学分析真题题单（2010-2025）</div>
+                                    <div class="text-sm text-dark/60">原卷排版</div>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <a href="https://e.tb.cn/h.hFmbMMmXIj9CuXW?tk=ixuS4l367j0" target="_blank">
+                                        <button
+                                            class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm">
+                                            <i class="fa fa-shopping-cart mr-1"></i>购买
+                                        </button>
+                                    </a>
+
+                                    <a href="https://www.jianguoyun.com/p/DQj_hsEQ3_vSDRj3_4QGIAA" target="_blank">
+                                        <button
+                                            class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm">
+                                            <i class="fa fa-download mr-1"></i>试读
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                            <div
+                                class="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <div>
+                                    <div class="font-medium">高等代数真题题单（2010-2025）</div>
+                                    <div class="text-sm text-dark/60">原卷排版</div>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <a href="https://e.tb.cn/h.hFmbMMmXIj9CuXW?tk=ixuS4l367j0" target="_blank">
+                                        <button
+                                            class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm">
+                                            <i class="fa fa-shopping-cart mr-1"></i>购买
+                                        </button>
+                                    </a>
+
+                                    <a href="https://www.jianguoyun.com/p/DWsGXEwQ3_vSDRjy_4QGIAA" target="_blank">
+                                        <button
+                                            class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm">
+                                            <i class="fa fa-download mr-1"></i>试读
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 真题详解 -->
+                    <div
+                        class="bg-white rounded-xl shadow-card p-6 transition-all duration-300 hover:shadow-card-hover">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            <i class="fa fa-book text-primary mr-2"></i>真题详解
+                        </h3>
+                        <div class="space-y-3">
+                            <div
+                                class="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <div>
+                                    <div class="font-medium">数学分析真题合集（2010-2025）</div>
+                                    <div class="text-sm text-dark/60">包含500余页答案解析</div>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <a href="https://e.tb.cn/h.hFmbMMmXIj9CuXW?tk=ixuS4l367j0" target="_blank">
+                                        <button
+                                            class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm">
+                                            <i class="fa fa-shopping-cart mr-1"></i>购买
+                                        </button>
+                                    </a>
+
+                                    <a href="https://www.jianguoyun.com/p/DV3x6iUQ3_vSDRj1_4QGIAA" target="_blank">
+                                        <button
+                                            class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm">
+                                            <i class="fa fa-download mr-1"></i>试读
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                            <div
+                                class="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <div>
+                                    <div class="font-medium">高等代数真题合集（2010-2025）</div>
+                                    <div class="text-sm text-dark/60">包含500余页答案解析</div>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <a href="https://e.tb.cn/h.hFmbMMmXIj9CuXW?tk=ixuS4l367j0" target="_blank">
+                                        <button
+                                            class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm">
+                                            <i class="fa fa-shopping-cart mr-1"></i>购买
+                                        </button>
+                                    </a>
+
+                                    <a href="https://www.jianguoyun.com/p/DcBYoPQQ3_vSDRj2_4QGIAA" target="_blank">
+                                        <button
+                                            class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm">
+                                            <i class="fa fa-download mr-1"></i>试读
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 参考教材 -->
+                    <div
+                        class="bg-white rounded-xl shadow-card p-6 transition-all duration-300 hover:shadow-card-hover">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            <i class="fa fa-book text-primary mr-2"></i>参考教材
+                        </h3>
+                        <div class="space-y-3">
+                            <div
+                                class="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <div>
+                                    <div class="font-medium">华东师范大学 数学分析 第四版 上册</div>
+                                    <div class="text-sm text-dark/60">PDF版教材</div>
+                                </div>
+                                <a href="https://www.jianguoyun.com/p/DYNpeUYQ3_vSDRj4_4QGIAA" target="_blank">
+                                    <button
+                                        class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm">
+                                        <i class="fa fa-download mr-1"></i>下载
+                                    </button>
+                                </a>
+                            </div>
+                            <div
+                                class="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <div>
+                                    <div class="font-medium">华东师范大学 数学分析 第四版 下册</div>
+                                    <div class="text-sm text-dark/60">PDF版教材</div>
+                                </div>
+                                <a href="https://www.jianguoyun.com/p/DYL2wZMQ3_vSDRj5_4QGIAA" target="_blank">
+                                    <button
+                                        class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm">
+                                        <i class="fa fa-download mr-1"></i>下载
+                                    </button>
+                                </a>
+                            </div>
+                            <div
+                                class="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <div>
+                                    <div class="font-medium">华东师范大学 数学分析 第五版 上册</div>
+                                    <div class="text-sm text-dark/60">PDF版教材</div>
+                                </div>
+                                <a href="https://www.jianguoyun.com/p/DbZf67oQ3_vSDRj6_4QGIAA" target="_blank">
+                                    <button
+                                        class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm">
+                                        <i class="fa fa-download mr-1"></i>下载
+                                    </button>
+                                </a>
+                            </div>
+                            <div
+                                class="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <div>
+                                    <div class="font-medium">华东师范大学 数学分析 第五版 下册</div>
+                                    <div class="text-sm text-dark/60">PDF版教材</div>
+                                </div>
+                                <a href="https://www.jianguoyun.com/p/DbN0w7MQ3_vSDRj7_4QGIAA" target="_blank">
+                                    <button
+                                        class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm">
+                                        <i class="fa fa-download mr-1"></i>下载
+                                    </button>
+                                </a>
+                            </div>
+                            <div
+                                class="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <div>
+                                    <div class="font-medium">王萼芳 高等代数 第四版</div>
+                                    <div class="text-sm text-dark/60">PDF版教材</div>
+                                </div>
+                                <a href="https://www.jianguoyun.com/p/DaKFOG0Q3_vSDRj8_4QGIAA" target="_blank">
+                                    <button
+                                        class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm">
+                                        <i class="fa fa-download mr-1"></i>下载
+                                    </button>
+                                </a>
+                            </div>
+                            <div
+                                class="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <div>
+                                    <div class="font-medium">张禾瑞 高等代数 第五版</div>
+                                    <div class="text-sm text-dark/60">PDF版教材</div>
+                                </div>
+                                <a href="https://www.jianguoyun.com/p/DXOvrUoQ3_vSDRj9_4QGIAA" target="_blank">
+                                    <button
+                                        class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm">
+                                        <i class="fa fa-download mr-1"></i>下载
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 复试资料 -->
+                    <div
+                        class="bg-white rounded-xl shadow-card p-6 transition-all duration-300 hover:shadow-card-hover">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            <i class="fa fa-graduation-cap text-primary mr-2"></i>期末试题
+                        </h3>
+                        <div class="space-y-3">
+                            <div
+                                class="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <div>
+                                    <div class="font-medium">李杨网课资源</div>
+                                    <div class="text-sm text-dark/60"> 免费分享</div>
+                                </div>
+                                <a href="https://pan.baidu.com/share/init?surl=d9otKpXZy8DBkliKZBx7Ww&pwd=1D14 "
+                                    target="_blank">
+                                    <button
+                                        class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm">
+                                        <i class="fa fa-download mr-1"></i>下载
+                                    </button>
+                                </a>
+                            </div>
+                            <div
+                                class="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <div>
+                                    <div class="font-medium">《数学分析1》期末试卷</div>
+                                    <div class="text-sm text-dark/60">西华师范大学本科期末试卷</div>
+                                </div>
+                                <a href="https://www.jianguoyun.com/p/DU3lgT4Q3_vSDRj-_4QGIAA" target="_blank">
+                                    <button
+                                        class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm">
+                                        <i class="fa fa-download mr-1"></i>下载
+                                    </button>
+                                </a>
+                            </div>
+                            <div
+                                class="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <div>
+                                    <div class="font-medium">《数学分析2》期末试卷</div>
+                                    <div class="text-sm text-dark/60">西华师范大学本科期末试卷</div>
+                                </div>
+                                <a href="https://www.jianguoyun.com/p/DRsR8fAQ3_vSDRj__4QGIAA" target="_blank">
+                                    <button
+                                        class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm">
+                                        <i class="fa fa-download mr-1"></i>下载
+                                    </button>
+                                </a>
+                            </div>
+                            <div
+                                class="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <div>
+                                    <div class="font-medium">《高等代数》期末试卷A</div>
+                                    <div class="text-sm text-dark/60">西华师范大学本科期末试卷</div>
+                                </div>
+                                <a href="https://www.jianguoyun.com/p/DVC0Y50Q3_vSDRiCgIUGIAA" target="_blank">
+                                    <button
+                                        class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm">
+                                        <i class="fa fa-download mr-1"></i>下载
+                                    </button>
+                                </a>
+                            </div>
+                            <div
+                                class="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <div>
+                                    <div class="font-medium">《高等代数》期末试卷B</div>
+                                    <div class="text-sm text-dark/60">西华师范大学本科期末试卷</div>
+                                </div>
+                                <a href="https://www.jianguoyun.com/p/Dc5LkOEQ3_vSDRiDgIUGIAA" target="_blank">
+                                    <button
+                                        class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm">
+                                        <i class="fa fa-download mr-1"></i>下载
+                                    </button>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 下载说明 -->
+                <div class="mt-8 bg-amber-50 border border-amber-200 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold mb-3 flex items-center text-amber-800">
+                        <i class="fa fa-info-circle mr-2"></i>下载说明
+                    </h3>
+                    <div class="text-amber-800 space-y-2">
+                        <p>• 所有资料仅供学习参考，请勿用于商业用途</p>
+                        <p>• 试卷资料来源于网络，版权归原作者所有</p>
+                        <p>• 如遇下载问题，请检查网络连接或联系管理员</p>
+                        <p style="color: rgb(255, 0, 89); font-weight: bold;">• 2010–2025 年真题及解析为付费内容，收集整理不易，感谢您的支持</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-8 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 flex items-center">
+                        <i class="fa fa-info-circle mr-2"></i>免责声明
+                    </h3>
+                    <p class="text-white/60 text-sm">
+                        本指南整理自高分师兄师姐的备考经验和学校官方信息，内容仅供学习参考，不构成任何考研建议。考研信息请以学校官方发布为准。
+                        <span class="text-red-500"><b>愿你提笔赴星河，归来卷上有春风。</b></span>
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 flex items-center">
+                        <i class="fa fa-link mr-2"></i>官方链接
+                    </h3>
+                    <div class="space-y-4">
+                        <!-- 研究生院链接 -->
+                        <div class="relative group">
+                            <a href="https://yjsy.cwnu.edu.cn"
+                                class="flex items-center text-white/70 hover:text-white transition-colors duration-200 pb-1 border-b border-white/10 group-hover:border-white/30 text-sm">
+                                <i class="fa fa-external-link mr-2 text-xs"></i>
+                                <span class="font-medium">西华师范大学研究生院</span>
+
+                            </a>
+                            <div
+                                class="absolute left-0 mt-2 w-80 bg-dark/95 rounded-lg shadow-xl p-4 border border-white/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                                <p class="mb-2 text-xs text-white/50">网址: <a href="https://yjsy.cwnu.edu.cn"
+                                        class="hover:text-white">https://yjsy.cwnu.edu.cn</a></p>
+                                <p class="mb-1 text-white/80"><strong>招生工作主要发布:</strong></p>
+                                <ul class="list-disc list-inside text-xs space-y-1 pl-2 text-white/60">
+                                    <li>硕士研究生招生章程、招生专业目录</li>
+                                    <li>初试考试科目考试范围、复试科目及参考范围</li>
+                                    <li>报考点（5111）公告、网上确认公告</li>
+                                    <li>考前温馨提示、西华师范大学考点须知</li>
+                                    <li>初试成绩查询和申请成绩复核、成绩复查结果</li>
+                                    <li>复试工作办法、拟录取名单公示</li>
+                                </ul>
+                                <p class="mt-2 text-xs italic text-white/50">
+                                    通常在发布"接收优秀应届本科毕业生免试攻读硕士学位研究生章程"后不久，会开始发布硕士研究生统考相关内容。</p>
+                            </div>
+                        </div>
+
+                        <!-- 数学与信息学院链接 -->
+                        <div class="relative group">
+                            <a href="https://mi.cwnu.edu.cn"
+                                class="flex items-center text-white/70 hover:text-white transition-colors duration-200 pb-1 border-b border-white/10 group-hover:border-white/30 text-sm">
+                                <i class="fa fa-external-link mr-2 text-xs"></i>
+                                <span class="font-medium">西华师范大学数学与信息学院</span>
+                            </a>
+                            <div
+                                class="absolute left-0 mt-2 w-80 bg-dark/95 rounded-lg shadow-xl p-4 border border-white/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                                <p class="mb-2 text-xs text-white/50">网址: <a href="https://mi.cwnu.edu.cn"
+                                        class="hover:text-white">https://mi.cwnu.edu.cn</a></p>
+                                <p class="mb-1 text-white/80"><strong>研究生教育主要发布:</strong></p>
+                                <ul class="list-disc list-inside text-xs space-y-1 pl-2 text-white/60">
+                                    <li>硕士研究生招生工作的说明</li>
+                                    <li>复试工作实施细则、复试名单、复试结果</li>
+                                </ul>
+                                <p class="mt-2 text-xs italic text-white/50">
+                                    "硕士研究生招生工作的说明"一般在研究生院发布"硕士研究生招生章程"后发布；"复试工作实施细则，复试名单，复试结果"在研究生院发布"复试工作办法"和"拟录取名单公示"之间发布。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 flex items-center">
+                        <i class="fa fa-comments mr-2"></i>在线咨询
+                    </h3>
+                    <p class="text-white/60 text-sm">
+                        QQ: TuringsCat
+                    </p>
+                    <p class="text-white/60 text-sm">
+                        26考研交流群: 1042998792
+                    </p>
+                    <p class="text-white/60 text-sm">
+                        反馈邮箱: <a href="mailto:turingscat@126.com" class="hover:underline">turingscat@126.com</a>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        </div>
+        <!-- 解决悬停菜单被截断的问题 -->
+        <style>
+            .footer-link-container {
+                position: relative;
+                z-index: 10;
+            }
+        </style>
+        <div class="mt-8 pt-6 border-t border-white/10 text-center text-white/40 text-sm">
+            <p>© 2025 西华师范大学数学考研指南 | 图灵的猫考研工作室</p>
+        </div>
+        </div>
+
+    </footer>
+    <!-- JavaScript -->
+    <script>
+        // 全局变量
+        let currentPage = 'home';
+        let currentSubject = 'overview';
+        let scoreChart = null;
+        let admissionChart = null;
+
+        // 页面导航函数
+        function navigateToPage(pageId) {
+            // 如果是同一页面，直接返回
+            if (currentPage === pageId) return;
+
+            const currentPageElement = document.getElementById(`page-${currentPage}`);
+            const targetPageElement = document.getElementById(`page-${pageId}`);
+
+            // 添加离开动画
+            currentPageElement.classList.add('leaving');
+
+            // 延迟显示新页面
+            setTimeout(() => {
+                // 隐藏当前页面
+                currentPageElement.classList.remove('active', 'leaving');
+
+                // 显示目标页面
+                targetPageElement.classList.add('active');
+
+                // 更新当前页面标识
+                currentPage = pageId;
+
+                // 重置子页面状态
+                if (pageId === 'study') {
+                    currentSubject = 'overview';
+                    showSubjectContent('overview');
+                }
+
+                // 更新导航高亮
+                updateNavigation(pageId);
+
+                // 关闭移动菜单
+                closeMobileMenu();
+
+                // 滚动到顶部
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // 如果是录取数据页面，初始化图表
+                if (pageId === 'admission') {
+                    setTimeout(initCharts, 100);
+                }
+            }, 250);
+        }
+
+        // 备考指南子页面导航
+        function navigateToSubject(subjectId) {
+            if (currentSubject === subjectId) return;
+
+            showSubjectContent(subjectId);
+            currentSubject = subjectId;
+        }
+
+        // 显示子页面内容
+        function showSubjectContent(subjectId) {
+            // 隐藏所有学习内容
+            document.querySelectorAll('.study-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // 显示目标内容
+            const targetContent = document.getElementById(
+                subjectId === 'overview' ? 'study-overview' : `${subjectId}-content`
+            );
+            if (targetContent) {
+                setTimeout(() => {
+                    targetContent.classList.add('active');
+                }, 150);
+            }
+        }
+
+        // 更新导航高亮
+        function updateNavigation(activePageId) {
+            // 移除所有导航项的活跃状态
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // 添加活跃状态到对应的导航项
+            const pageMapping = {
+                'home': 0,
+                'study': 1,
+                'admission': 2,
+                'faq': 3,
+                'resources': 4
+            };
+
+            const navItems = document.querySelectorAll('.nav-item');
+            const activeIndex = pageMapping[activePageId];
+            if (navItems[activeIndex]) {
+                navItems[activeIndex].classList.add('active');
+            }
+            // 同时更新移动导航
+            const mobileNavItems = document.querySelectorAll('#mobile-sidebar .nav-item');
+            if (mobileNavItems[activeIndex]) {
+                mobileNavItems[activeIndex].classList.add('active');
+            }
+        }
+
+        // 移动菜单控制
+        function toggleMobileMenu() {
+            const sidebar = document.getElementById('mobile-sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+
+            if (sidebar.classList.contains('open')) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        }
+
+        function openMobileMenu() {
+            const sidebar = document.getElementById('mobile-sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+
+            sidebar.classList.add('open');
+            overlay.classList.remove('opacity-0', 'invisible');
+            overlay.classList.add('opacity-100', 'visible');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            const sidebar = document.getElementById('mobile-sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+
+            sidebar.classList.remove('open');
+            overlay.classList.add('opacity-0', 'invisible');
+            overlay.classList.remove('opacity-100', 'visible');
+            document.body.style.overflow = '';
+        }
+
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-2', 'shadow');
+                navbar.classList.remove('py-3');
+            } else {
+                navbar.classList.add('py-3');
+                navbar.classList.remove('py-2', 'shadow');
+            }
+        });
+
+        // 移动菜单事件监听
+        document.getElementById('mobile-menu-button').addEventListener('click', toggleMobileMenu);
+        document.getElementById('sidebar-overlay').addEventListener('click', closeMobileMenu);
+
+        // 移除原有的选项卡功能，因为已经改为子页面结构
+        // 保留FAQ功能
+        function initFAQ() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const icon = question.querySelector('i');
+
+                    answer.classList.toggle('hidden');
+                    icon.classList.toggle('fa-plus');
+                    icon.classList.toggle('fa-minus');
+                    icon.classList.toggle('rotate-45');
+                });
+            });
+        }
+
+        // 图表初始化
+        function initCharts() {
+            // 避免重复初始化
+            if (scoreChart || admissionChart) return;
+
+            // 分数线图表
+            const scoreCtx = document.getElementById('scoreChart');
+            if (scoreCtx) {
+                scoreChart = new Chart(scoreCtx.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: ['2021', '2022', '2023', '2024', '2025'],
+                        datasets: [
+                            {
+                                label: 'A类国家线',
+                                data: [280, 290, 279, 288, 274],
+                                borderColor: '#94a3b8',
+                                backgroundColor: 'rgba(148, 163, 184, 0.1)',
+                                tension: 0.4,
+                                fill: false
+                            },
+                            {
+                                label: '院线',
+                                data: [280, 290, 279, 320, 274],
+                                borderColor: '#0071e3',
+                                backgroundColor: 'rgba(0, 113, 227, 0.1)',
+                                tension: 0.4,
+                                fill: false
+                            },
+                            {
+                                label: '进复试最低分',
+                                data: [280, 296, 279, 320, 277],
+                                borderColor: '#ff3b30',
+                                backgroundColor: 'rgba(255, 59, 48, 0.1)',
+                                tension: 0.4,
+                                fill: false
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: false,
+                                min: 250,
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.05)'
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        },
+                        animation: {
+                            duration: 1500,
+                            easing: 'easeOutQuart'
+                        }
+                    }
+                });
+            }
+
+            // 录取数据图表
+            const admissionCtx = document.getElementById('admissionChart');
+            if (admissionCtx) {
+                admissionChart = new Chart(admissionCtx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['2021', '2022', '2023', '2024', '2025'],
+                        datasets: [
+                            {
+                                label: '录取人数',
+                                data: [25, 54, 54, 56, 61],
+                                backgroundColor: 'rgba(0, 113, 227, 0.7)',
+                                borderColor: 'rgba(0, 113, 227, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: '进入复试人数',
+                                data: [25, 57, 80, 83, 75],
+                                backgroundColor: 'rgba(52, 199, 89, 0.7)',
+                                borderColor: 'rgba(52, 199, 89, 1)',
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.05)'
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        },
+                        animation: {
+                            duration: 1500,
+                            easing: 'easeOutQuart'
+                        }
+                    }
+                });
+            }
+        }
+
+        // 考研倒计时功能
+        function updateCountdown() {
+            // 设置目标日期（2025年考研日期，假设为2025年12月21日）
+            const targetDate = new Date('2025-12-21T00:00:00');
+            const now = new Date();
+            const diff = targetDate - now;
+
+            // 如果日期已过，显示0
+            if (diff <= 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+
+            // 计算剩余天、时、分、秒
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            // 更新显示，确保两位数
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // 滚动动画
+        function initScrollAnimations() {
+            const observeElements = document.querySelectorAll('.slide-up');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            observeElements.forEach(element => {
+                element.style.opacity = 0;
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+                observer.observe(element);
+            });
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function () {
+            // 初始化各个功能模块
+            initFAQ();
+            initScrollAnimations();
+            updateNavigation('home');
+
+            // 初始化备考指南子页面
+            showSubjectContent('overview');
+
+            // 初始化倒计时
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        });
+
+        // 窗口大小改变时重新调整图表
+        window.addEventListener('resize', () => {
+            if (scoreChart) scoreChart.resize();
+            if (admissionChart) admissionChart.resize();
+        });
+
+        // 键盘导航支持
+        document.addEventListener('keydown', (e) => {
+            // ESC 键关闭移动菜单
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+            }
+        });
+
+        // 阻止默认的链接点击行为
+        document.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A' && e.target.getAttribute('href') === '#') {
+                e.preventDefault();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
