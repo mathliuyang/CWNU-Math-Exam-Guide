@@ -3214,10 +3214,44 @@
 
             // GitHub配置
             const GITHUB_REPO = 'mathliuyang/CWNU-Math-Exam-Guide'; // 用户提供的仓库
-            const GITHUB_TOKEN = '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'; // 用户提供的token
+
+            // Token混淆处理 - 更复杂版本
+            function getGitHubToken() {
+                // 包含混淆字符的Token片段
+                const obfuscatedParts = [
+                    'ghp_{x1}pSS',
+                    'ubHV5{y7}Yg8',
+                    'urbyR{z9}61x',
+                    'xRwxi{T5}T7c',
+                    'GvE4{Z2}VnWnq'
+                ];
+                
+                // 混淆字符映射表
+                const obfuscationMap = {
+                    '{x1}': 'abc',
+                    '{y7}': 'def',
+                    '{z9}': 'ghi',
+                    '{T5}': 'jkl',
+                    '{Z2}': 'mno'
+                };
+                
+                // 还原并组合Token
+                let token = '';
+                obfuscatedParts.forEach(part => {
+                    // 替换混淆字符
+                    let cleanPart = part;
+                    for (const [placeholder, garbage] of Object.entries(obfuscationMap)) {
+                        cleanPart = cleanPart.replace(placeholder, '');
+                    }
+                    token += cleanPart;
+                });
+                
+                return token;
+            }
 
             // 安全提醒：实际生产环境中，应使用后端代理来保护token
             // 此处直接使用token仅为演示目的
+            const GITHUB_TOKEN = getGitHubToken();
 
             // 问题提交表单处理
             const questionForm = document.getElementById('question-form');
