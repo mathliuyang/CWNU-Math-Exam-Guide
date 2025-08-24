@@ -1,19 +1,29 @@
 {
   "predefinedCodes": [
-    "2024CS",
-    "XHNU2025",
-    "MATH2025",
-    "GRAD2025",
-    "CSXHNU"
+    "TEST2024",
+    "TESTXHNU",
+    "TESTMATH"
   ],
   "customCodes": [
-    "2JQR0Y",
-    "KPBAOS",
-    "J097NK",
-    "GSTZGQ",
-    "34W54J",
-    "8YSX0Y",
-    "MLPXWA",
-    "EGZFPA"
+    {
+      "code": "TESTBY2XE5",
+      "devices": []
+    },
+    {
+      "code": "TESTTYJKPM",
+      "devices": []
+    },
+    {
+      "code": "TESTXX265Y",
+      "devices": []
+    },
+    {
+      "code": "TEST12SBMK",
+      "devices": []
+    },
+    {
+      "code": "TESTBS4XQ0",
+      "devices": []
+    }
   ]
 }
