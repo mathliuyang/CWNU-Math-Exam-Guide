@@ -327,6 +327,11 @@
             align-items: flex-start;
             border: 1px solid #0071e320;
             background-color: rgba(0, 113, 227, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .notification-container:hover {
+            transform: scale(1.01);
         }
 
         @keyframes fadeIn {
@@ -376,14 +381,115 @@
         }
 
         /* 确保考研倒计时模块标题样式统一 */
+        .inspirational-quote {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .inspirational-quote::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 113, 227, 0.1) 0%, rgba(138, 43, 226, 0.1) 100%);
+            z-index: -1;
+            transition: all 0.3s ease;
+        }
+
+        .inspirational-quote:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .inspirational-quote:hover::before {
+            background: linear-gradient(135deg, rgba(0, 113, 227, 0.2) 0%, rgba(138, 43, 226, 0.2) 100%);
+        }
+
         .inspirational-quote #motivationalQuote {
             font-size: 1.125rem !important;
             font-weight: 500;
             line-height: 1.5;
+            position: relative;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .inspirational-quote #motivationalQuote::before,
+        .inspirational-quote #motivationalQuote::after {
+            content: '"';
+            font-size: 2rem;
+            color: rgba(0, 113, 227, 0.3);
+            position: absolute;
+            opacity: 0.7;
+        }
+
+        .inspirational-quote #motivationalQuote::before {
+            top: -1.2rem;
+            left: -1.2rem;
+        }
+
+        .inspirational-quote #motivationalQuote::after {
+            content: '"';
+            bottom: -1.5rem;
+            right: -1.2rem;
         }
 
         .notification-message {
             font-size: 14px;
+            color: #4b5563;
+        }
+
+        /* 通知列表样式 */
+        .notification-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .notification-item {
+            padding: 12px 12px 12px 20px !important;
+            margin-bottom: 10px;
+            background-color: #f9fafb;
+            border-radius: 8px;
+            border-left: 3px solid #0071e3;
+            transition: all 0.2s ease;
+        }
+
+        .notification-item:hover {
+            transform: translateX(3px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .notification-item-title {
+            font-weight: 500;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            color: #111827;
+        }
+
+        .notification-item-title i {
+            margin-right: 8px;
+            color: #0071e3;
+        }
+
+        .notification-item-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .notification-item-date {
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 6px;
+        }
+
+        .notification-item-message {
+            line-height: 1.5;
             color: #4b5563;
         }
 
@@ -544,6 +650,11 @@
                     <i class="fa fa-bar-chart w-5"></i>
                     <span>录取数据</span>
                 </button>
+                <button onclick="navigateToPage('timeline')"
+                    class="nav-item w-full px-4 py-3 rounded-lg text-left text-dark/80 hover:text-primary hover:bg-primary/5 transition-all duration-200 flex items-center space-x-3">
+                    <i class="fa fa-calendar w-5"></i>
+                    <span>考研时间节点</span>
+                </button>
                 <button onclick="navigateToPage('faq')"
                     class="nav-item w-full px-4 py-3 rounded-lg text-left text-dark/80 hover:text-primary hover:bg-primary/5 transition-all duration-200 flex items-center space-x-3">
                     <i class="fa fa-question-circle w-5"></i>
@@ -588,7 +699,7 @@
                         <!-- 考研倒计时模块 -->
                         <div
                             class="countdown-container bg-white rounded-xl shadow-card p-6 flex-1 transform hover:scale-[1.01] transition-all duration-300">
-                            <h3 class="text-xl font-semibold mb-4 text-center text-primary">2026年考研倒计时</h3>
+                            <h3 class="text-lg font-semibold mb-4 text-center text-primary">2026年考研倒计时</h3>
 
                             <div class="flex justify-center gap-4 md:gap-8 text-center">
                                 <div class="countdown-item">
@@ -622,10 +733,7 @@
                         <!-- 智能通知模块 -->
                         <div id="smartNotification"
                             class="notification-container bg-white rounded-xl shadow-card p-6 flex-1 max-w-md">
-                            <div class="notification-icon">
-                                <i class="fa fa-lightbulb-o text-primary"></i>
-                            </div>
-                            <div class="notification-content flex-1 ml-4">
+                            <div class="notification-content flex-1 ml-0">
                                 <h3 id="notificationTitle" class="notification-title text-lg font-semibold mb-3"></h3>
                                 <div id="notificationMessage" class="notification-message"></div>
                             </div>
@@ -859,7 +967,7 @@
 
                     if (notification && titleElement && messageElement) {
                         // 设置提醒框标题
-                        titleElement.textContent = '考研提醒';
+                        titleElement.textContent = '近期代办提醒';
                         if (currentNotifications.length > 0) {
                             // 有当前项目
                             // 定义励志语录数组
@@ -923,10 +1031,12 @@
 
                                 messageHtml += `
                                 <li class="notification-item">
-                                    <div class="notification-item-title">
-                                        <i class="fa fa-calendar-check-o"></i>${item.title}
+                                    <div class="notification-item-header">
+                                        <div class="notification-item-title">
+                                            <i class="fa fa-calendar-check-o"></i>${item.title}
+                                        </div>
+                                        <div class="notification-item-date ml-4">${dateRange}</div>
                                     </div>
-                                    <div class="notification-item-date">${dateRange}</div>
                                     <div class="notification-item-message">${item.message}</div>
                                 </li>`;
                             });
@@ -2063,7 +2173,7 @@
                             </div>
                         </div>
                         <!-- 2025年9月中下旬-10月上旬 - 西华师大招生章程公布 -->
-                        <div class="timeline-item relative flex items-start opacity-0" data-start-month="8"
+                        <div class="timeline-item relative flex items-start opacity-0" data-start-month="9"
                             data-end-month="10" data-year="2025">
                             <div
                                 class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-purple-400 shadow-lg flex items-center justify-center relative z-10">
