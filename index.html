@@ -318,46 +318,73 @@
         }
 
         /* 智能提醒样式 */
-        .notification {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
+        .notification-container {
             background-color: white;
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-            max-width: 320px;
-            transform: translateY(120%);
-            opacity: 0;
-            transition: all 0.5s ease;
-            z-index: 1000;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
             display: flex;
             align-items: flex-start;
+            border: 1px solid #0071e320;
+            background-color: rgba(0, 113, 227, 0.03);
         }
 
-        .notification.show {
-            transform: translateY(0);
-            opacity: 1;
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(120%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .notification-icon {
             margin-right: 12px;
             font-size: 20px;
             color: #3b82f6;
+            padding: 8px;
+            background-color: #eff6ff;
+            border-radius: 50%;
+            height: 40px;
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .notification-content {
             flex: 1;
         }
 
-        .notification-title {
+        #notificationTitle.notification-title {
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
+            color: #0071e3;
+            font-size: 1.125rem !important;
+            /* 与text-lg保持一致 */
+            line-height: 1.5;
+        }
+
+        /* 确保考研倒计时模块标题样式统一 */
+        .inspirational-quote #motivationalQuote {
+            font-size: 1.125rem !important;
+            font-weight: 500;
+            line-height: 1.5;
         }
 
         .notification-message {
             font-size: 14px;
-            color: #6b7280;
+            color: #4b5563;
         }
 
         .notification-close {
@@ -367,6 +394,60 @@
             color: #9ca3af;
             font-size: 16px;
             padding: 4px;
+            border-radius: 50%;
+            height: 24px;
+            width: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .notification-close:hover {
+            background-color: #f3f4f6;
+            color: #6b7280;
+        }
+
+        .notification-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .notification-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .notification-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .notification-item-title {
+            font-weight: 500;
+            color: #111827;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+        }
+
+        .notification-item-title i {
+            color: #3b82f6;
+            margin-right: 6px;
+            font-size: 12px;
+        }
+
+        .notification-item-date {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-bottom: 4px;
+        }
+
+        .notification-item-message {
+            font-size: 14px;
+            color: #4b5563;
+            line-height: 1.5;
         }
 
         /* 页面容器 */
@@ -419,6 +500,11 @@
                     class="nav-item px-4 py-2 rounded-lg text-dark/80 hover:text-primary hover:bg-primary/5 transition-all duration-200 flex items-center space-x-2">
                     <i class="fa fa-bar-chart"></i>
                     <span>录取数据</span>
+                </button>
+                <button onclick="navigateToPage('timeline')"
+                    class="nav-item px-4 py-2 rounded-lg text-dark/80 hover:text-primary hover:bg-primary/5 transition-all duration-200 flex items-center space-x-2">
+                    <i class="fa fa-calendar"></i>
+                    <span>考研时间节点</span>
                 </button>
                 <button onclick="navigateToPage('faq')"
                     class="nav-item px-4 py-2 rounded-lg text-dark/80 hover:text-primary hover:bg-primary/5 transition-all duration-200 flex items-center space-x-2">
@@ -497,33 +583,57 @@
                         全面的备考经验、考试信息和录取数据分析，助你顺利考上西华师范大学数学系研究生
                     </p>
 
-                    <!-- 考研倒计时模块 -->
-                    <div
-                        class="countdown-container bg-white rounded-xl shadow-card p-6 mb-8 max-w-2xl mx-auto transform hover:scale-[1.01] transition-all duration-300">
-                        <h3 class="text-xl font-semibold mb-4 text-center text-primary">2026年考研倒计时</h3>
-                        <div class="flex justify-center gap-4 md:gap-8 text-center">
-                            <div class="countdown-item">
-                                <div id="days" class="text-3xl md:text-4xl font-bold text-dark">00</div>
-                                <div class="text-sm text-dark/60 mt-1">天</div>
+                    <!-- 考研倒计时和通知组合模块 -->
+                    <div class="flex flex-col lg:flex-row gap-6 mb-8 max-w-5xl mx-auto">
+                        <!-- 考研倒计时模块 -->
+                        <div
+                            class="countdown-container bg-white rounded-xl shadow-card p-6 flex-1 transform hover:scale-[1.01] transition-all duration-300">
+                            <h3 class="text-xl font-semibold mb-4 text-center text-primary">2026年考研倒计时</h3>
+
+                            <div class="flex justify-center gap-4 md:gap-8 text-center">
+                                <div class="countdown-item">
+                                    <div id="days" class="text-3xl md:text-4xl font-bold text-dark">00</div>
+                                    <div class="text-sm text-dark/60 mt-1">天</div>
+                                </div>
+                                <div class="countdown-item">
+                                    <div id="hours" class="text-3xl md:text-4xl font-bold text-dark">00</div>
+                                    <div class="text-sm text-dark/60 mt-1">时</div>
+                                </div>
+                                <div class="countdown-item">
+                                    <div id="minutes" class="text-3xl md:text-4xl font-bold text-dark">00</div>
+                                    <div class="text-sm text-dark/60 mt-1">分</div>
+                                </div>
+                                <div class="countdown-item">
+                                    <div id="seconds" class="text-3xl md:text-4xl font-bold text-dark">00</div>
+                                    <div class="text-sm text-dark/60 mt-1">秒</div>
+                                </div>
                             </div>
-                            <div class="countdown-item">
-                                <div id="hours" class="text-3xl md:text-4xl font-bold text-dark">00</div>
-                                <div class="text-sm text-dark/60 mt-1">时</div>
+                            <p class="text-center text-dark/50 text-sm mt-4">距离2026年全国硕士研究生招生考试还有</p>
+                            <div
+                                class="inspirational-quote mt-6 text-center p-4 bg-primary/5 rounded-lg border border-primary/20">
+                                <p id="motivationalQuote" class="text-lg font-medium text-primary italic"></p>
                             </div>
-                            <div class="countdown-item">
-                                <div id="minutes" class="text-3xl md:text-4xl font-bold text-dark">00</div>
-                                <div class="text-sm text-dark/60 mt-1">分</div>
+                            <p class="text-center text-dark/50 text-sm mt-4">2026全国硕士研究生初试时间：2025年12月21日 星期日
+                                乙巳年（蛇年）农历十一月初二 考试时间为：12月21日至23日（具体考试时间以官方公布为准）</p>
+
+
+                        </div>
+
+                        <!-- 智能通知模块 -->
+                        <div id="smartNotification"
+                            class="notification-container bg-white rounded-xl shadow-card p-6 flex-1 max-w-md">
+                            <div class="notification-icon">
+                                <i class="fa fa-lightbulb-o text-primary"></i>
                             </div>
-                            <div class="countdown-item">
-                                <div id="seconds" class="text-3xl md:text-4xl font-bold text-dark">00</div>
-                                <div class="text-sm text-dark/60 mt-1">秒</div>
+                            <div class="notification-content flex-1 ml-4">
+                                <h3 id="notificationTitle" class="notification-title text-lg font-semibold mb-3"></h3>
+                                <div id="notificationMessage" class="notification-message"></div>
                             </div>
                         </div>
-                        <p class="text-center text-dark/50 text-sm mt-4">距离2026年全国硕士研究生招生考试还有</p>
                     </div>
 
                     <!-- 快速导航卡片 -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mt-12">
                         <div onclick="navigateToPage('study')"
                             class="bg-white rounded-xl shadow-card p-6 cursor-pointer transform hover:scale-105 hover:shadow-card-hover transition-all duration-300">
                             <div class="text-primary text-3xl mb-4">
@@ -539,6 +649,14 @@
                             </div>
                             <h3 class="font-semibold text-lg mb-2">录取数据</h3>
                             <p class="text-dark/60 text-sm">近年来分数线和录取情况统计分析</p>
+                        </div>
+                        <div onclick="navigateToPage('timeline')"
+                            class="bg-white rounded-xl shadow-card p-6 cursor-pointer transform hover:scale-105 hover:shadow-card-hover transition-all duration-300">
+                            <div class="text-primary text-3xl mb-4">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2">考研时间节点</h3>
+                            <p class="text-dark/60 text-sm">详细的考研备考时间规划和重要节点</p>
                         </div>
                         <div onclick="navigateToPage('faq')"
                             class="bg-white rounded-xl shadow-card p-6 cursor-pointer transform hover:scale-105 hover:shadow-card-hover transition-all duration-300">
@@ -558,518 +676,16 @@
                         </div>
                     </div>
 
-                    <!-- 考试日程提醒 -->
-                    <div class="mt-16 max-w-4xl mx-auto">
-                        <h2 class="text-2xl font-bold mb-8 text-left flex items-center">
-                            <i class="fa fa-calendar text-primary mr-3"></i>考研重要时间节点
-                        </h2>
-                        <div class="relative">
-                            <!-- 时间轴主线 -->
-                            <div
-                                class="absolute left-8 top-6 bottom-6 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-primary/20">
-                            </div>
-
-                            <!-- 时间节点 -->
-                            <div class="space-y-6" id="timeline-container">
-                                <!-- 2025年3月-4月 - 择校定目标 -->
-                                <div class="timeline-item relative flex items-start opacity-0" data-month="4"
-                                    data-year="2025">
-                                    <div
-                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-blue-400 shadow-lg flex items-center justify-center relative z-10">
-                                        <i class="fa fa-map-marker text-blue-400 text-lg"></i>
-                                    </div>
-                                    <div class="ml-6 flex-1">
-                                        <div
-                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
-                                            <div class="flex items-center justify-between mb-2">
-                                                <h3 class="font-semibold text-dark">择校定目标</h3>
-                                                <span
-                                                    class="timeline-date text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full font-medium">2025年3月-4月</span>
-                                            </div>
-                                            <p class="text-sm text-dark/70 mb-2">
-                                                关注2025年研究生入学考试分数线信息、复试和调剂信息，收集意向院校的招生人数、报考人数、推免人数、实际录取人数、复试分数线、复试比等数据。
-                                            </p>
-                                            <div class="flex items-center text-xs text-blue-600">
-                                                <i class="fa fa-lightbulb mr-1"></i>
-                                                <span>多关注学院官网信息，联系目标学校直系学长学姐</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 2025年5月-6月 - 全面备战期 -->
-                                <div class="timeline-item relative flex items-start opacity-0" data-month="6"
-                                    data-year="2025">
-                                    <div
-                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-green-400 shadow-lg flex items-center justify-center relative z-10">
-                                        <i class="fa fa-book text-green-400 text-lg"></i>
-                                    </div>
-                                    <div class="ml-6 flex-1">
-                                        <div
-                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
-                                            <div class="flex items-center justify-between mb-2">
-                                                <h3 class="font-semibold text-dark">全面备战期</h3>
-                                                <span
-                                                    class="timeline-date text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full font-medium">2025年5月-6月</span>
-                                            </div>
-                                            <p class="text-sm text-dark/70 mb-2">
-                                                英语和数学开始全面打底复习，弥补基础不足。跨专业考生开始准备专业课。调整作息，进入备考状态。</p>
-                                            <div class="flex items-center text-xs text-green-600">
-                                                <i class="fa fa-lightbulb mr-1"></i>
-                                                <span>种一棵树最佳的时间是十年前，其次是现在</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 2025年7月-8月 - 暑假弯道超车 -->
-                                <div class="timeline-item relative flex items-start opacity-0" data-month="8"
-                                    data-year="2025">
-                                    <div
-                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-yellow-400 shadow-lg flex items-center justify-center relative z-10">
-                                        <i class="fa fa-sun-o text-yellow-400 text-lg"></i>
-                                    </div>
-                                    <div class="ml-6 flex-1">
-                                        <div
-                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
-                                            <div class="flex items-center justify-between mb-2">
-                                                <h3 class="font-semibold text-dark">暑假弯道超车</h3>
-                                                <span
-                                                    class="timeline-date text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded-full font-medium">2025年7月-8月</span>
-                                            </div>
-                                            <p class="text-sm text-dark/70 mb-2">利用完整的暑假时间进行复习，对基础阶段学到的知识进行一轮总结和消化。</p>
-                                            <div class="flex items-center text-xs text-yellow-600">
-                                                <i class="fa fa-lightbulb mr-1"></i>
-                                                <span>建议留校学习，和研友一起有规律地安排自习</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
 
-
-
-                                <!-- 2025年9月中上旬-中下旬 - 考研大纲公布 -->
-                                <div class="timeline-item relative flex items-start opacity-0" data-month="9"
-                                    data-year="2025" data-late="true">
-                                    <div
-                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-red-400 shadow-lg flex items-center justify-center relative z-10">
-                                        <i class="fa fa-bookmark text-red-400 text-lg"></i>
-                                    </div>
-                                    <div class="ml-6 flex-1">
-                                        <div
-                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
-                                            <div class="flex items-center justify-between mb-2">
-                                                <h3 class="font-semibold text-dark">考研大纲公布</h3>
-                                                <span
-                                                    class="timeline-date text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full font-medium">英语大纲25年9月中上旬，政治大纲9月中下旬</span>
-                                            </div>
-                                            <p class="text-sm text-dark/70 mb-2">教育部统一公布公共课考试大纲（考研英语、政治、数学）和全国统考的专业课大纲。
-                                            </p>
-                                            <div class="flex items-center text-xs text-red-600">
-                                                <i class="fa fa-lightbulb mr-1"></i>
-                                                <span>特别注意大纲新增和变化的考点，及时调整复习计划</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 2025年9月中下旬-10月上旬 - 西华师大招生章程公布 -->
-                                <div class="timeline-item relative flex items-start opacity-0" data-month="9"
-                                    data-year="2025">
-                                    <div
-                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-purple-400 shadow-lg flex items-center justify-center relative z-10">
-                                        <i class="fa fa-file-text text-purple-400 text-lg"></i>
-                                    </div>
-                                    <div class="ml-6 flex-1">
-                                        <div
-                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
-                                            <div class="flex items-center justify-between mb-2">
-                                                <h3 class="font-semibold text-dark">西华师大招生章程公布</h3>
-                                                <span
-                                                    class="timeline-date text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded-full font-medium">2025年9月中下旬-10月上旬</span>
-                                            </div>
-                                            <p class="text-sm text-dark/70 mb-2">
-                                                西华师范大学发布招生简章，公布招生人数、报考条件、考试科目及代码、参考书目、学制、费用等事项。</p>
-                                            <div class="flex items-center text-xs text-purple-600">
-                                                <i class="fa fa-lightbulb mr-1"></i>
-                                                <span>关注数学与信息学院官网，及时获取最新招生政策</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <!-- 2025年9月下旬 - 网上咨询周 -->
-                                <div class="timeline-item relative flex items-start opacity-0" data-month="9"
-                                    data-year="2025" data-late="true">
-                                    <div
-                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-indigo-400 shadow-lg flex items-center justify-center relative z-10">
-                                        <i class="fa fa-comments-o text-indigo-400 text-lg"></i>
-                                    </div>
-                                    <div class="ml-6 flex-1">
-                                        <div
-                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
-                                            <div class="flex items-center justify-between mb-2">
-                                                <h3 class="font-semibold text-dark">网上咨询周</h3>
-                                                <span
-                                                    class="timeline-date text-xs bg-indigo-100 text-indigo-600 px-2 py-1 rounded-full font-medium">2025年9月下旬，持续一周</span>
-                                            </div>
-                                            <p class="text-sm text-dark/70 mb-2">直接与西华师范大学招办老师交流，解答报考疑问。</p>
-                                            <div class="flex items-center text-xs text-indigo-600">
-                                                <i class="fa fa-lightbulb mr-1"></i>
-                                                <span>提前准备好问题，重点咨询招生政策、报录比等关键信息</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 2025年9月底-10月初 - 考研预报名 -->
-                                <div class="timeline-item relative flex items-start opacity-0" data-month="9"
-                                    data-year="2025" data-late="true">
-                                    <div
-                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-orange-400 shadow-lg flex items-center justify-center relative z-10">
-                                        <i class="fa fa-edit text-orange-400 text-lg"></i>
-                                    </div>
-                                    <div class="ml-6 flex-1">
-                                        <div
-                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
-                                            <div class="flex items-center justify-between mb-2">
-                                                <h3 class="font-semibold text-dark">考研预报名</h3>
-                                                <span
-                                                    class="timeline-date text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded-full font-medium">2025年9月底-10月初</span>
-                                            </div>
-                                            <p class="text-sm text-dark/70 mb-2">研招网开放预报名系统，主要面向应届本科毕业生，减轻正式报名时的网络压力。
-                                            </p>
-                                            <div class="flex items-center text-xs text-orange-600">
-                                                <i class="fa fa-lightbulb mr-1"></i>
-                                                <span>预报名完成后，若无信息修改，确认信息无误后，预报名是有效的</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 2025年10月中旬-10月底 - 考研正式报名 -->
-                                <div class="timeline-item relative flex items-start opacity-0" data-month="10"
-                                    data-year="2025">
-                                    <div
-                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-pink-400 shadow-lg flex items-center justify-center relative z-10">
-                                        <i class="fa fa-pencil-square-o text-pink-400 text-lg"></i>
-                                    </div>
-                                    <div class="ml-6 flex-1">
-                                        <div
-                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
-                                            <div class="flex items-center justify-between mb-2">
-                                                <h3 class="font-semibold text-dark">考研正式报名</h3>
-                                                <span
-                                                    class="timeline-date text-xs bg-pink-100 text-pink-600 px-2 py-1 rounded-full font-medium">2025年10月上旬-10月中下旬</span>
-                                            </div>
-                                            <p class="text-sm text-dark/70 mb-2">全国硕士研究生入学考试网上正式报名，考生可自行修改、校正网报信息。</p>
-                                            <div class="flex items-center text-xs text-pink-600">
-                                                <i class="fa fa-lightbulb mr-1"></i>
-                                                <span>硕士研究生考生一律采取网上报名方式，逾期不再补报</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 2025年11中上旬 - 网上确认 -->
-                                <div class="timeline-item relative flex items-start opacity-0" data-month="11"
-                                    data-year="2025">
-                                    <div
-                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-teal-400 shadow-lg flex items-center justify-center relative z-10">
-                                        <i class="fa fa-check-square-o text-teal-400 text-lg"></i>
-                                    </div>
-                                    <div class="ml-6 flex-1">
-                                        <div
-                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
-                                            <div class="flex items-center justify-between mb-2">
-                                                <h3 class="font-semibold text-dark">网上确认</h3>
-                                                <span
-                                                    class="timeline-date text-xs bg-teal-100 text-teal-600 px-2 py-1 rounded-full font-medium">2025年10下旬-2025年11上旬</span>
-                                            </div>
-                                            <p class="text-sm text-dark/70 mb-2">考生完成报名信息确认及缴费，确认成功后才可以确定参加当年的研究生考试。</p>
-                                            <div class="flex items-center text-xs text-teal-600">
-                                                <i class="fa fa-lightbulb mr-1"></i>
-                                                <span>网上确认一般是要在规定的时间内上传要求的证件材料</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 2025年12月中旬 - 准考证打印 -->
-                                <div class="timeline-item relative flex items-start opacity-0" data-month="12"
-                                    data-year="2025">
-                                    <div
-                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-gray-400 shadow-lg flex items-center justify-center relative z-10">
-                                        <i class="fa fa-print text-gray-400 text-lg"></i>
-                                    </div>
-                                    <div class="ml-6 flex-1">
-                                        <div
-                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
-                                            <div class="flex items-center justify-between mb-2">
-                                                <h3 class="font-semibold text-dark">准考证打印</h3>
-                                                <span
-                                                    class="timeline-date text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full font-medium">2025年12月中旬，即考前10天左右</span>
-                                            </div>
-                                            <p class="text-sm text-dark/70 mb-2">考生可凭网报用户名和密码登录"研招网"下载打印《准考证》。</p>
-                                            <div class="flex items-center text-xs text-gray-600">
-                                                <i class="fa fa-lightbulb mr-1"></i>
-                                                <span>提前几天进行准考证的信息核对，发现问题及时解决</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 2025年12月倒数第二个周末 - 考研初试 -->
-                                <div class="timeline-item relative flex items-start opacity-0" data-month="12"
-                                    data-year="2025" data-late="true">
-                                    <div
-                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-violet-400 shadow-lg flex items-center justify-center relative z-10">
-                                        <i class="fa fa-pencil text-violet-400 text-lg"></i>
-                                    </div>
-                                    <div class="ml-6 flex-1">
-                                        <div
-                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
-                                            <div class="flex items-center justify-between mb-2">
-                                                <h3 class="font-semibold text-dark">考研初试</h3>
-                                                <span
-                                                    class="timeline-date text-xs bg-violet-100 text-violet-600 px-2 py-1 rounded-full font-medium">2025年12月倒数第二个周末</span>
-                                            </div>
-                                            <p class="text-sm text-dark/70 mb-2">
-                                                全国硕士研究生入学考试--初试，科目分为政治理论、外国语、统考数学和业务课，考试时间均为3小时。</p>
-                                            <div class="flex items-center text-xs text-violet-600">
-                                                <i class="fa fa-lightbulb mr-1"></i>
-                                                <span>考试前一天千万不要再熬夜看书，保持自信</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 2026年2月中旬 - 初试查分 -->
-                                <div class="timeline-item relative flex items-start opacity-0" data-month="2"
-                                    data-year="2026">
-                                    <div
-                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-amber-400 shadow-lg flex items-center justify-center relative z-10">
-                                        <i class="fa fa-search text-amber-400 text-lg"></i>
-                                    </div>
-                                    <div class="ml-6 flex-1">
-                                        <div
-                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
-                                            <div class="flex items-center justify-between mb-2">
-                                                <h3 class="font-semibold text-dark">初试查分</h3>
-                                                <span
-                                                    class="timeline-date text-xs bg-amber-100 text-amber-600 px-2 py-1 rounded-full font-medium">2026年2月中旬</span>
-                                            </div>
-                                            <p class="text-sm text-dark/70 mb-2">各省份教育考试院陆续公布初试成绩，考生可进行分数复查。</p>
-                                            <div class="flex items-center text-xs text-amber-600">
-                                                <i class="fa fa-lightbulb mr-1"></i>
-                                                <span>查分后，如有分数上的疑问，立刻申请分数信息核对</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 2026年2月下旬-3月中旬 - 34所复试线与国家线 -->
-                                <div class="timeline-item relative flex items-start opacity-0" data-month="3"
-                                    data-year="2026">
-                                    <div
-                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-cyan-400 shadow-lg flex items-center justify-center relative z-10">
-                                        <i class="fa fa-line-chart text-cyan-400 text-lg"></i>
-                                    </div>
-                                    <div class="ml-6 flex-1">
-                                        <div
-                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
-                                            <div class="flex items-center justify-between mb-2">
-                                                <h3 class="font-semibold text-dark">34所复试线与国家线</h3>
-                                                <span
-                                                    class="timeline-date text-xs bg-cyan-100 text-cyan-600 px-2 py-1 rounded-full font-medium">2026年2月下旬-3月中旬</span>
-                                            </div>
-                                            <p class="text-sm text-dark/70 mb-2">34所自主划线院校公布复试线，考研国家线一般在3月中旬公布。</p>
-                                            <div class="flex items-center text-xs text-cyan-600">
-                                                <i class="fa fa-lightbulb mr-1"></i>
-                                                <span>报考34所的初试结束后，尤其是出成绩后，一定要抓紧准备复试</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 2026年3月下旬-4月 - 调剂意向采集系统 -->
-                                <div class="timeline-item relative flex items-start opacity-0" data-month="4"
-                                    data-year="2026">
-                                    <div
-                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-rose-400 shadow-lg flex items-center justify-center relative z-10">
-                                        <i class="fa fa-exchange text-rose-400 text-lg"></i>
-                                    </div>
-                                    <div class="ml-6 flex-1">
-                                        <div
-                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
-                                            <div class="flex items-center justify-between mb-2">
-                                                <h3 class="font-semibold text-dark">调剂意向采集系统</h3>
-                                                <span
-                                                    class="timeline-date text-xs bg-rose-100 text-rose-600 px-2 py-1 rounded-full font-medium">2026年3月下旬-4月</span>
-                                            </div>
-                                            <p class="text-sm text-dark/70 mb-2">
-                                                符合教育部调剂规定的考生，可在规定时间内通过"中国研究生招生信息网"登录调剂志愿。</p>
-                                            <div class="flex items-center text-xs text-rose-600">
-                                                <i class="fa fa-lightbulb mr-1"></i>
-                                                <span>调剂的关键和核心是信息以及信息的及时有效性</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <!-- 2026年3月下旬-4月上旬 - 西华师大考研复试 -->
-                                <div class="timeline-item relative flex items-start opacity-0" data-month="3"
-                                    data-year="2026" data-late="true">
-                                    <div
-                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-lime-400 shadow-lg flex items-center justify-center relative z-10">
-                                        <i class="fa fa-comments text-lime-400 text-lg"></i>
-                                    </div>
-                                    <div class="ml-6 flex-1">
-                                        <div
-                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
-                                            <div class="flex items-center justify-between mb-2">
-                                                <h3 class="font-semibold text-dark">西华师大考研复试</h3>
-                                                <span
-                                                    class="timeline-date text-xs bg-lime-100 text-lime-600 px-2 py-1 rounded-full font-medium">2026年3月下旬-4月上旬</span>
-                                            </div>
-                                            <p class="text-sm text-dark/70 mb-2">西华师范大学复试时间、地点、科目、方式由学校自定，具体以学院官网通知为准。
-                                            </p>
-                                            <div class="flex items-center text-xs text-lime-600">
-                                                <i class="fa fa-lightbulb mr-1"></i>
-                                                <span>关注数学与信息学院官网，及时获取复试通知和具体安排</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <!-- 2026年3月下旬-4月上旬 - 西华师大拟录取名单 -->
-                                <div class="timeline-item relative flex items-start opacity-0" data-month="4"
-                                    data-year="2026">
-                                    <div
-                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-blue-500 shadow-lg flex items-center justify-center relative z-10">
-                                        <i class="fa fa-list-alt text-blue-500 text-lg"></i>
-                                    </div>
-                                    <div class="ml-6 flex-1">
-                                        <div
-                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
-                                            <div class="flex items-center justify-between mb-2">
-                                                <h3 class="font-semibold text-dark">西华师大拟录取名单</h3>
-                                                <span
-                                                    class="timeline-date text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full font-medium">一般为复试结束当天或第二天</span>
-                                            </div>
-                                            <p class="text-sm text-dark/70 mb-2">西华师范大学将在复试结束后尽快公布拟录取名单，一般为复试结束当天或第二天。
-                                            </p>
-                                            <div class="flex items-center text-xs text-blue-600">
-                                                <i class="fa fa-lightbulb mr-1"></i>
-                                                <span>及时关注学院官网公告，保持电话畅通</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <!-- 2026年3月下旬-4月上旬 - 西华师大体检 -->
-                                <div class="timeline-item relative flex items-start opacity-0" data-month="4"
-                                    data-year="2026" data-late="true">
-                                    <div
-                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-red-500 shadow-lg flex items-center justify-center relative z-10">
-                                        <i class="fa fa-heartbeat text-red-500 text-lg"></i>
-                                    </div>
-                                    <div class="ml-6 flex-1">
-                                        <div
-                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
-                                            <div class="flex items-center justify-between mb-2">
-                                                <h3 class="font-semibold text-dark">西华师大体检</h3>
-                                                <span
-                                                    class="timeline-date text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full font-medium">一般为复试结束第二天</span>
-                                            </div>
-                                            <p class="text-sm text-dark/70 mb-2">西华师范大学体检一般安排在复试结束后的第二天，具体时间和地点以学院通知为准。
-                                            </p>
-                                            <div class="flex items-center text-xs text-red-600">
-                                                <i class="fa fa-lightbulb mr-1"></i>
-                                                <span>体检前注意休息，避免饮酒和剧烈运动</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 2026年4月底-5月初 - 政审 -->
-                                <div class="timeline-item relative flex items-start opacity-0" data-month="5"
-                                    data-year="2026">
-                                    <div
-                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-emerald-400 shadow-lg flex items-center justify-center relative z-10">
-                                        <i class="fa fa-id-card-o text-emerald-400 text-lg"></i>
-                                    </div>
-                                    <div class="ml-6 flex-1">
-                                        <div
-                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
-                                            <div class="flex items-center justify-between mb-2">
-                                                <h3 class="font-semibold text-dark">政审</h3>
-                                                <span
-                                                    class="timeline-date text-xs bg-emerald-100 text-emerald-600 px-2 py-1 rounded-full font-medium">2026年4月底-5月初</span>
-                                            </div>
-                                            <p class="text-sm text-dark/70 mb-2">
-                                                考生复试时应按招生单位规定到指定的二级甲等以上医院进行体格检查，暨大是复试前体检。</p>
-                                            <div class="flex items-center text-xs text-emerald-600">
-                                                <i class="fa fa-lightbulb mr-1"></i>
-                                                <span>加强锻炼、保持身体健康，确保顺利通过体检</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 2026年6月初 - 录取通知书 -->
-                                <div class="timeline-item relative flex items-start opacity-0" data-month="6"
-                                    data-year="2026">
-                                    <div
-                                        class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-purple-400 shadow-lg flex items-center justify-center relative z-10">
-                                        <i class="fa fa-envelope-o text-purple-400 text-lg"></i>
-                                    </div>
-                                    <div class="ml-6 flex-1">
-                                        <div
-                                            class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
-                                            <div class="flex items-center justify-between mb-2">
-                                                <h3 class="font-semibold text-dark">录取通知书</h3>
-                                                <span
-                                                    class="timeline-date text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded-full font-medium">2026年6月中下旬-7月上旬</span>
-                                            </div>
-                                            <p class="text-sm text-dark/70 mb-2">西华师范大学将在6月中下旬至7月上旬发放硕士研究生录取通知书。</p>
-                                            <div class="flex items-center text-xs text-purple-600">
-                                                <i class="fa fa-lightbulb mr-1"></i>
-                                                <span>过去熬的夜终成了光，录取通知书就是最好的果实</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="flex items-center text-xs text-primary">
-                                <i class="fa fa-lightbulb mr-1"></i>
-                                <span><b>一研为定</b></span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
+
+        </div>
         </div>
         </div>
 
-        <!-- 智能提醒组件 -->
-        <div class="notification" id="smartNotification">
-            <div class="notification-icon">
-                <i class="fa fa-bell"></i>
-            </div>
-            <div class="notification-content">
-                <div class="notification-title" id="notificationTitle">通知标题</div>
-                <div class="notification-message" id="notificationMessage">通知内容</div>
-            </div>
-            <button class="notification-close" onclick="closeNotification()">
-                <i class="fa fa-times"></i>
-            </button>
+        </div>
         </div>
 
         <script>
@@ -1087,6 +703,11 @@
                 // 显示智能提醒
                 showSmartNotification();
 
+                // 获取月份天数的函数
+                function getDaysInMonth(year, month) {
+                    return new Date(year, month, 0).getDate();
+                }
+
                 // 初始化时间轴函数
                 function initTimeline() {
                     const timelineItems = document.querySelectorAll('.timeline-item');
@@ -1103,8 +724,28 @@
                         });
                     }, { threshold: 0.1 });
 
+                    // 先收集所有时间轴项目并按时间排序
+                    const sortedItems = Array.from(timelineItems).sort((a, b) => {
+                        const yearA = parseInt(a.dataset.year);
+                        const monthA = parseInt(a.dataset.startMonth);
+                        const isLateA = a.dataset.late === 'true';
+
+                        const yearB = parseInt(b.dataset.year);
+                        const monthB = parseInt(b.dataset.startMonth);
+                        const isLateB = b.dataset.late === 'true';
+
+                        if (yearA !== yearB) {
+                            return yearA - yearB;
+                        }
+                        if (monthA !== monthB) {
+                            return monthA - monthB;
+                        }
+                        // 同一个月内，late的项目排在后面
+                        return (isLateA ? 1 : 0) - (isLateB ? 1 : 0);
+                    });
+
                     // 设置时间轴项目状态
-                    timelineItems.forEach((item, index) => {
+                    sortedItems.forEach((item, index) => {
                         // 设置初始动画状态
                         item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
                         item.style.transform = 'translateY(20px)';
@@ -1118,7 +759,8 @@
 
                         // 获取数据属性
                         const itemYear = parseInt(item.dataset.year);
-                        const itemMonth = parseInt(item.dataset.month);
+                        const itemStartMonth = parseInt(item.dataset.startMonth);
+                        const itemEndMonth = parseInt(item.dataset.endMonth);
                         const isLateMonth = item.dataset.late === 'true';
 
                         // 确定节点状态
@@ -1126,11 +768,31 @@
                         if (itemYear < currentYear) {
                             status = 'past';
                         } else if (itemYear === currentYear) {
-                            if (itemMonth < currentMonth) {
-                                status = 'past';
-                            } else if (itemMonth === currentMonth) {
-                                // 同一月份，判断是否为当前节点
+                            // 检查是否在事件的月份范围内
+                            if (currentMonth >= itemStartMonth && currentMonth <= itemEndMonth) {
                                 status = 'current';
+                            } else if (currentMonth > itemEndMonth) {
+                                status = 'past';
+                            }
+                            // 如果是同一月份内的事件，考虑上旬/下旬
+                            if (itemStartMonth === itemEndMonth && itemStartMonth === currentMonth) {
+                                const daysInMonth = getDaysInMonth(currentYear, currentMonth);
+                                const midMonth = Math.ceil(daysInMonth / 2);
+
+                                // 如果是月末事件且当前日期在中旬之后
+                                if (isLateMonth && currentDay > midMonth) {
+                                    status = 'current';
+                                }
+                                // 如果是非月末事件且当前日期在中旬之前
+                                else if (!isLateMonth && currentDay <= midMonth) {
+                                    status = 'current';
+                                }
+                                // 否则根据具体日期判断
+                                else if (currentDay > midMonth && !isLateMonth) {
+                                    status = 'past';
+                                } else {
+                                    status = 'future';
+                                }
                             }
                         }
 
@@ -1141,90 +803,54 @@
                             node.classList.add(status);
                         }
 
+                        // 移除旧的状态类
+                        item.classList.remove('past', 'current', 'future');
+                        if (node) {
+                            node.classList.remove('past', 'current', 'future');
+                        }
+
+                        // 添加新状态类
+                        item.classList.add(status);
+                        if (node) {
+                            node.classList.add(status);
+                        }
+
                         observer.observe(item);
                     });
                 }
 
                 // 显示智能提醒函数
                 function showSmartNotification() {
-                    // 提醒内容配置
-                    const notifications = [
-                        {
-                            month: 9,
-                            title: '招生简章发布中',
-                            message: '各院校已开始发布2025年硕士研究生招生简章，请及时关注西华师大研究生院官网。'
-                        },
-                        {
-                            month: 9,
-                            late: true,
-                            title: '预报名即将开始',
-                            message: '研招网预报名系统即将开放，建议提前准备好报名信息。'
-                        },
-                        {
-                            month: 10,
-                            title: '正式报名进行中',
-                            message: '全国硕士研究生招生考试正式报名已开始，请务必在截止日期前完成缴费。'
-                        },
-                        {
-                            month: 11,
-                            title: '网上确认进行中',
-                            message: '请及时完成报名信息确认及缴费，逾期未确认视为放弃报考。'
-                        },
-                        {
-                            month: 12,
-                            late: true,
-                            title: '考研初试临近',
-                            message: '2025年考研初试即将开始，请提前打印准考证，准备好考试用品。'
-                        },
-                        {
-                            month: 2,
-                            title: '初试成绩公布中',
-                            message: '各省份教育考试院已开始公布初试成绩，请及时查询，准备复试或调剂。'
-                        },
-                        {
-                            month: 3,
-                            title: '复试准备中',
-                            message: '复试即将开始，请提前准备中英文自我介绍和专业知识。'
-                        },
-                        {
-                            month: 4,
-                            title: '拟录取公布中',
-                            message: '各招生单位已开始公布拟录取名单，请关注研招网和学校通知。'
-                        },
-                        {
-                            month: 9,
-                            year: currentYear + 1,
-                            title: '研究生开学',
-                            message: '恭喜你被录取！请准备好入学所需材料和生活用品，准时报到。'
-                        }
-                    ];
+                    // 从时间轴项目中提取提醒信息，确保与时间轴数据一致
+                    const timelineItems = document.querySelectorAll('.timeline-item');
+                    const currentNotifications = [];
 
-                    // 查找当前月份的提醒
-                    let currentNotification = null;
-                    for (const notification of notifications) {
-                        const notificationYear = notification.year || currentYear;
-                        if (notificationYear === currentYear && notification.month === currentMonth) {
-                            // 检查是否为月末通知
-                            if (notification.late) {
-                                // 如果是月末通知且当前日期接近月末
-                                if (currentDay > 20) {
-                                    currentNotification = notification;
-                                    break;
-                                }
-                            } else {
-                                currentNotification = notification;
-                                break;
-                            }
-                        }
-                    }
+                    timelineItems.forEach(item => {
+                        const year = parseInt(item.dataset.year);
+                        const startMonth = parseInt(item.dataset.startMonth);
+                        const endMonth = parseInt(item.dataset.endMonth);
+                        const title = item.querySelector('h3').textContent;
+                        const description = item.querySelector('p').textContent;
 
-                    // 如果没有找到当前月份的提醒，使用默认提醒
-                    if (!currentNotification) {
-                        currentNotification = {
-                            title: '考研备考进行中',
-                            message: '保持学习节奏，合理规划时间，祝你考研顺利！'
-                        };
-                    }
+                        // 检查项目是否在当前时间范围内
+                        if (year === currentYear && currentMonth >= startMonth && currentMonth <= endMonth) {
+                            currentNotifications.push({
+                                year: year,
+                                startMonth: startMonth,
+                                endMonth: endMonth,
+                                title: title,
+                                message: description
+                            });
+                        }
+                    });
+
+                    // 按时间顺序排序当前通知
+                    currentNotifications.sort((a, b) => {
+                        if (a.startMonth !== b.startMonth) {
+                            return a.startMonth - b.startMonth;
+                        }
+                        return a.endMonth - b.endMonth;
+                    });
 
                     // 显示提醒
                     const notification = document.getElementById('smartNotification');
@@ -1232,28 +858,98 @@
                     const messageElement = document.getElementById('notificationMessage');
 
                     if (notification && titleElement && messageElement) {
-                        titleElement.textContent = currentNotification.title;
-                        messageElement.textContent = currentNotification.message;
+                        // 设置提醒框标题
+                        titleElement.textContent = '考研提醒';
+                        if (currentNotifications.length > 0) {
+                            // 有当前项目
+                            // 定义励志语录数组
+                            const inspirationalQuotes = [
+                                "放弃很容易，可坚持一定很酷",
+                                "流水不争先，争的是滔滔不绝",
+                                "总有人要赢的，那为什么不能是我呢",
+                                "如果你瞄准了月亮，即使迷失，也在星辰之间",
+                                "没有那么多天赋异禀，优秀的人总是努力翻山越岭",
+                                "我不停奔跑，只为追赶当年那个被寄予厚望的自己",
+                                "追风赶月莫停留，平芜尽处是春山",
+                                "若你决定灿烂，山无遮，海无拦",
+                                "路虽远行则将至，事虽难做将必成",
+                                "我没有天赋，但我想试试，一个普通人怀有梦想会是什么样",
+                                "功不唐捐，玉汝于成",
+                                "祝你此生梦想光芒，野蛮生长，永不仿徨",
+                                "很喜欢那种通过一点点的努力，然后感受到自己正在慢慢进步的感觉",
+                                "你想去的终点，从来就是那一个，也只有那一个值得",
+                                "很多事不是看到了希望才去努力，而是努力了才看到希望",
+                                "那些看似不起眼的日复一日，会在将来突然让你看到坚持的意义",
+                                "生命中的一切无心插柳，其实都是水到渠成",
+                                "没有一朵花从一开始就是花",
+                                "在心里种花，人生才不会荒芜",
+                                "山不让尘，川不辞盈",
+                                "花会沿路盛开，你以后的路也是",
+                                "我将玫瑰裁于身后，风起花落，从此鲜花赠自己，纵马踏花向自由",
+                                "等春风得意，等时间嘉许",
+                                "生活原本沉闷，但跑起来总会有风",
+                                "看不清未来，就比别人坚持久一点",
+                                "所有的为时已晚，其实是恰逢其时",
+                                "坚持的东西，总有一天会反过来拥抱你",
+                                "我追逐的不是别人啊，是我自己满怀期待的心",
+                                "永远不要忘记，曾经滂沱大雨没有伞的日子",
+                                "路过山水万程，祝自己与温柔重逢",
+                                "纵有疾风起，人生不言弃",
+                                "愿你成为自己的太阳，无需借谁的光",
+                                "祝你肆意，浪漫且自由！",
+                                "敬过往，爱当下，向未来"
 
-                        // 显示通知
-                        setTimeout(() => {
-                            notification.classList.add('show');
-                        }, 1000);
+                            ];
 
-                        // 8秒后自动关闭
-                        setTimeout(() => {
-                            closeNotification();
-                        }, 9000);
+                            // 随机选择一条语录
+                            const randomIndex = Math.floor(Math.random() * inspirationalQuotes.length);
+                            // 同时设置到考研倒计时模块中的语录区域
+                            const quoteElement = document.getElementById('motivationalQuote');
+                            if (quoteElement) {
+                                quoteElement.textContent = inspirationalQuotes[randomIndex];
+                            }
+
+                            // 创建项目列表
+                            let messageHtml = '<ul class="notification-list">';
+                            currentNotifications.forEach(item => {
+                                // 格式化日期显示
+                                const startMonthName = new Date(item.year, item.startMonth - 1).toLocaleString('zh-CN', { month: 'long' });
+                                const endMonthName = new Date(item.year, item.endMonth - 1).toLocaleString('zh-CN', { month: 'long' });
+                                let dateRange = `${startMonthName}`;
+                                if (item.startMonth !== item.endMonth) {
+                                    dateRange += ` - ${endMonthName}`;
+                                }
+                                dateRange += ` ${item.year}`;
+
+                                messageHtml += `
+                                <li class="notification-item">
+                                    <div class="notification-item-title">
+                                        <i class="fa fa-calendar-check-o"></i>${item.title}
+                                    </div>
+                                    <div class="notification-item-date">${dateRange}</div>
+                                    <div class="notification-item-message">${item.message}</div>
+                                </li>`;
+                            });
+                            messageHtml += '</ul>';
+
+                            messageElement.innerHTML = messageHtml;
+                        } else {
+                            // 没有当前项目
+                            titleElement.textContent = '当前无进行中的项目';
+                            messageElement.innerHTML = '<p class="text-center py-4 text-gray-500">请查看时间轴了解未来计划</p>';
+                        }
+
+                        // 移除了自动显示和关闭逻辑，因为通知现在是页面固定部分
                     }
                 }
 
-                // 关闭通知函数
-                window.closeNotification = function () {
-                    const notification = document.getElementById('smartNotification');
-                    if (notification) {
-                        notification.classList.remove('show');
-                    }
-                }
+                // 关闭通知函数已移除，因为通知现在是页面固定部分不再需要关闭功能
+                // window.closeNotification = function () {
+                //     const notification = document.getElementById('smartNotification');
+                //     if (notification) {
+                //         notification.classList.remove('show');
+                //     }
+                // }
             }); 
         </script>
         </div>
@@ -1411,7 +1107,7 @@
                                             <span class="font-medium text-red-800">五星级重点（必考）</span>
                                         </div>
                                         <p class="text-sm text-red-700">
-                                            第2、3、5、6章全部，第4章第2节，第8章1-3节，第9章1-2节+4-5节，第12、14、18、20章全部，第13章第2节，第16章2-3节，第17章1-4节，第21章2-5节，第22章2-3节
+                                            第2、3、5、6、12、14、18、20章全部，第4章第2节，第8章1-3节，第9章1-2节+4-5节+总练习题，第13章第2节+总练习题，第16章2-3节，第17章1-4节，第21章2-5节+总练习题，第22章2-3节
                                         </p>
                                     </div>
 
@@ -1489,7 +1185,7 @@
                                 <div class="bg-green-50 rounded-lg p-4 text-center">
                                     <div class="text-green-600 text-2xl mb-2"><i class="fa fa-trophy"></i></div>
                                     <div class="font-semibold text-green-800">强化讲义</div>
-                                    <div class="text-sm text-green-600 mt-1">ly老师推荐</div>
+                                    <div class="text-sm text-green-600 mt-1">李扬老师推荐</div>
                                 </div>
                             </div>
 
@@ -1509,7 +1205,7 @@
                                     </div>
                                     <div class="border-l-4 border-green-400 pl-4">
                                         <h4 class="font-medium text-green-800">三轮复习（强化讲义）</h4>
-                                        <p class="text-dark/70 text-sm mt-1">结合ly强化讲义，深入理解重点难点。高代有很多强化上的重要知识和典型题目。</p>
+                                        <p class="text-dark/70 text-sm mt-1">结合李扬强化讲义，深入理解重点难点。高代有很多强化上的重要知识和典型题目。</p>
                                     </div>
                                     <div class="border-l-4 border-green-500 pl-4">
                                         <h4 class="font-medium text-green-800">真题+冲刺</h4>
@@ -1729,7 +1425,8 @@
                                 </div>
                                 <div class="p-4 bg-green-50 rounded-lg border border-green-200">
                                     <h4 class="font-medium mb-2 text-green-800">成绩计算</h4>
-                                    <p class="text-green-700 text-sm">线下复试时初试:复试=5:5，线上时为4:6或3:7。估计复试1分=初试5分。</p>
+                                    <p class="text-green-700 text-sm">线下复试时初试:复试≈5:5，线上时为4:6或3:7。估计26年仍为线下复试，复试1分≈初始5分
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -1803,11 +1500,12 @@
                                                 class="text-xs bg-blue-200 text-blue-800 px-2 py-1 rounded">微分中值定理</span>
                                             <span
                                                 class="text-xs bg-blue-200 text-blue-800 px-2 py-1 rounded">各种判别法</span>
-                                            <span
-                                                class="text-xs bg-blue-200 text-blue-800 px-2 py-1 rounded">加一项减一项</span>
+                                            <a href="https://e.tb.cn/h.hFmbMMmXIj9CuXW?tk=ixuS4l367j0"
+                                                class="text-xs bg-blue-200 text-blue-800 px-2 py-1 rounded">查看更多</a>
                                         </div>
                                     </div>
                                 </div>
+                                <p class="text-xs text-gray-500 mt-2 text-right italic">参考小红书博主"数学与你"经验技巧</p>
                             </div>
 
                             <!-- 高等代数专项技巧 -->
@@ -1835,11 +1533,12 @@
                                                 class="text-xs bg-green-200 text-green-800 px-2 py-1 rounded">标准型方法</span>
                                             <span
                                                 class="text-xs bg-green-200 text-green-800 px-2 py-1 rounded">同时对角化</span>
-                                            <span
-                                                class="text-xs bg-green-200 text-green-800 px-2 py-1 rounded">上三角化</span>
+                                            <a href="https://e.tb.cn/h.hFmbMMmXIj9CuXW?tk=ixuS4l367j0"
+                                                class="text-xs bg-green-200 text-green-800 px-2 py-1 rounded">查看更多</a>
                                         </div>
                                     </div>
                                 </div>
+                                <p class="text-xs text-gray-500 mt-2 text-right italic">参考小红书博主"数学与你"经验技巧</p>
                             </div>
 
                             <!-- 时间管理建议 -->
@@ -1930,6 +1629,8 @@
                                     <tr>
                                         <th>年份</th>
                                         <th>A类国家线</th>
+                                        <th>单科=100</th>
+                                        <th>单科>100</th>
                                         <th>院线</th>
                                         <th>进复试最低分</th>
                                     </tr>
@@ -1938,36 +1639,48 @@
                                     <tr>
                                         <td>2021</td>
                                         <td>280</td>
+                                        <td>37</td>
+                                        <td>56</td>
                                         <td>280</td>
                                         <td>280</td>
                                     </tr>
                                     <tr>
                                         <td>2022</td>
                                         <td>290</td>
+                                        <td>39</td>
+                                        <td>59</td>
                                         <td>290</td>
                                         <td>296</td>
                                     </tr>
                                     <tr>
                                         <td>2023</td>
                                         <td>279</td>
+                                        <td>38</td>
+                                        <td>57</td>
                                         <td>279</td>
                                         <td>279</td>
                                     </tr>
                                     <tr>
                                         <td>2024</td>
                                         <td>288</td>
+                                        <td>41</td>
+                                        <td>62</td>
                                         <td>320</td>
                                         <td>320</td>
                                     </tr>
                                     <tr>
                                         <td>2025</td>
                                         <td>274</td>
+                                        <td>34</td>
+                                        <td>51</td>
                                         <td>274</td>
                                         <td>277</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+                        <p class="mt-4 text-sm text-dark/60">院线的单科分数线与国家线一致
+                        </p>
                     </div>
 
                     <!-- 近5年录取数据 -->
@@ -1984,44 +1697,65 @@
                                 <thead>
                                     <tr>
                                         <th>年份</th>
+                                        <th>拟招人数</th>
+                                        <th>进面人数</th>
                                         <th>录取人数</th>
                                         <th>复录比</th>
-                                        <th>初试最高分/最低分</th>
+                                        <th>拟录取最高分</th>
+                                        <th>拟录取最低分</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>2021</td>
+                                        <td>52</td>
+                                        <td>25</td>
                                         <td>25</td>
                                         <td>1:1</td>
-                                        <td>378/280</td>
+                                        <td>378</td>
+                                        <td>280</td>
                                     </tr>
                                     <tr>
                                         <td>2022</td>
                                         <td>54</td>
+                                        <td>57</td>
+                                        <td>54</td>
                                         <td>1.06:1</td>
-                                        <td>398/296</td>
+                                        <td>398</td>
+                                        <td>296</td>
                                     </tr>
                                     <tr>
                                         <td>2023</td>
+                                        <td>55</td>
+                                        <td>80</td>
                                         <td>54</td>
                                         <td>1.48:1</td>
-                                        <td>402/279</td>
+                                        <td>402</td>
+                                        <td>279</td>
                                     </tr>
                                     <tr>
                                         <td>2024</td>
                                         <td>56</td>
+                                        <td>83</td>
+                                        <td>56</td>
                                         <td>1.48:1</td>
-                                        <td>431/320</td>
+                                        <td>431</td>
+                                        <td>324</td>
                                     </tr>
                                     <tr>
                                         <td>2025</td>
+                                        <td>56</td>
+                                        <td>75</td>
                                         <td>61</td>
                                         <td>1.23:1</td>
-                                        <td>405/277</td>
+                                        <td>405</td>
+                                        <td>280</td>
                                     </tr>
                                 </tbody>
                             </table>
+                            <p class="mt-4 text-sm text-dark/60">表格统计的是西华师范大学数学与信息学院 070100
+                                数学专业全日制非定向的录取情况，只计算统考，不计算推免和调剂
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -2043,10 +1777,19 @@
                             <div class="text-xs text-orange-600 mt-1">竞争相对缓解</div>
                         </div>
                         <div class="text-center p-4 bg-green-50 rounded-lg">
-                            <div class="text-2xl font-bold text-green-600 mb-2">277分</div>
+                            <div class="text-2xl font-bold text-green-600 mb-2">280分</div>
                             <div class="text-sm text-dark/60">2025年最低录取分</div>
-                            <div class="text-xs text-green-600 mt-1">较去年下降43分</div>
+                            <div class="text-xs text-green-600 mt-1">较去年下降44分</div>
                         </div>
+                    </div>
+                    <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+                        <p class="text-sm text-dark mb-2">学校线下复试时，复试：初试 = 5:5，线上复试时，复试：初试 = 4:6 或 3:7。估计 26 年线下，复试 1 分 =
+                            初试 5 分。</p>
+                        <p class="text-sm text-dark mb-2">每年的进复试人数基本是拟招人数的 1.4 倍（没超过拟招人数就是 1 倍），例如 26 年拟招 56
+                            人，则进入复试人数（78.4）最多为 78 或 79 人。</p>
+                        <p class="text-sm text-dark mb-2">24 年出现了院线超国家线 30 分的特殊情况，这年竞争很激烈，复试中有 350 分被淘汰的，也有 324
+                            分被录取的，其实我们可以计算一下：350 - 324 = 26 分，那么 324 分的复试分数只要比 350 分的高 26 / 5 = 5.2 分，综合成绩就能一样。</p>
+                        <p class="text-sm text-dark mb-0">这样看复试的成绩还是挺重要的，不过初试如果排在前几名一般也不会被刷，所以大家还是要好好准备初试！</p>
                     </div>
                 </div>
             </div>
@@ -2104,7 +1847,7 @@
                                 <i class="fa fa-plus text-primary transition-transform duration-200"></i>
                             </button>
                             <div class="faq-answer mt-2 text-dark/70 hidden">
-                                <p>数学分析不需要，课后题已经够多了；高等代数如果看张禾瑞版的，需要看强化（ly），如果看北师大版的，不需要看强化，因为强化题和北师大版课后题很多都相同。</p>
+                                <p>数学分析不需要，课后题已经够多了；高等代数如果看张禾瑞版的，需要看强化（李扬），如果看北师大版的，不需要看强化，因为强化题和北师大版课后题很多都相同。</p>
                             </div>
                         </div>
 
@@ -2182,12 +1925,501 @@
                                 <p>不管哪个学校本校生都会有优势，因为本校生已经算生源最好的那一批了。但我们学院（数学与信息学院）在全校来看还算比较公平的，本校生和外校生大概对半开。</p>
                             </div>
                         </div>
+
+                        <!-- FAQ项10 -->
+                        <div class="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+                            <button
+                                class="faq-question w-full flex justify-between items-center text-left font-medium focus:outline-none">
+                                <span>西华师范大学本科阶段的数学分析和高等代数的期末考试卷需要看吗？</span>
+                                <i class="fa fa-plus text-primary transition-transform duration-200"></i>
+                            </button>
+                            <div class="faq-answer mt-2 text-dark/70 hidden">
+                                <p>没有必要看，前期如果学有余力可以做一做（资料获取板块可下载），后期以课本、真题和强化为主。</p>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- 资源获取页面 -->
+        <div id="page-timeline" class="page">
+            <div class="container mx-auto px-4 py-12">
+                <div class="breadcrumb mb-8">
+                    <a href="#" onclick="navigateToPage('home')" class="text-primary hover:underline">首页</a>
+                    <span class="mx-2 text-gray-400">/</span>
+                    <span class="text-gray-600">考研时间节点</span>
+                </div>
+
+                <h1 class="text-3xl font-bold mb-8 text-center">考研重要时间节点</h1>
+                <div class="relative max-w-4xl mx-auto">
+
+
+                    <!-- 时间轴主线 -->
+                    <div
+                        class="absolute left-8 top-6 bottom-6 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-primary/20">
+                    </div>
+
+                    <!-- 时间节点 -->
+                    <div class="space-y-6" id="timeline-container">
+                        <!-- 2025年3月-4月 - 择校定目标 -->
+                        <div class="timeline-item relative flex items-start opacity-0" data-start-month="3"
+                            data-end-month="4" data-year="2025">
+                            <div
+                                class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-blue-400 shadow-lg flex items-center justify-center relative z-10">
+                                <i class="fa fa-map-marker text-blue-400 text-lg"></i>
+                            </div>
+                            <div class="ml-6 flex-1">
+                                <div
+                                    class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-dark">择校定目标</h3>
+                                        <span
+                                            class="timeline-date text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full font-medium">2025年3月-4月</span>
+                                    </div>
+                                    <p class="text-sm text-dark/70 mb-2">
+                                        关注2025年研究生入学考试分数线信息、复试和调剂信息，收集意向院校的招生人数、报考人数、推免人数、实际录取人数、复试分数线、复试比等数据。
+                                    </p>
+                                    <div class="flex items-center text-xs text-blue-600">
+                                        <i class="fa fa-lightbulb mr-1"></i>
+                                        <span>多关注学院官网信息，联系目标学校直系学长学姐</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2025年5月-6月 - 全面备战期 -->
+                        <div class="timeline-item relative flex items-start opacity-0" data-start-month="5"
+                            data-end-month="6" data-year="2025">
+                            <div
+                                class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-green-400 shadow-lg flex items-center justify-center relative z-10">
+                                <i class="fa fa-book text-green-400 text-lg"></i>
+                            </div>
+                            <div class="ml-6 flex-1">
+                                <div
+                                    class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-dark">全面备战期</h3>
+                                        <span
+                                            class="timeline-date text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full font-medium">2025年5月-6月</span>
+                                    </div>
+                                    <p class="text-sm text-dark/70 mb-2">
+                                        英语和数学开始全面打底复习，弥补基础不足。跨专业考生开始准备专业课。调整作息，进入备考状态。</p>
+                                    <div class="flex items-center text-xs text-green-600">
+                                        <i class="fa fa-lightbulb mr-1"></i>
+                                        <span>种一棵树最佳的时间是十年前，其次是现在</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2025年7月-8月 - 暑假弯道超车 -->
+                        <div class="timeline-item relative flex items-start opacity-0" data-start-month="7"
+                            data-end-month="8" data-year="2025">
+                            <div
+                                class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-yellow-400 shadow-lg flex items-center justify-center relative z-10">
+                                <i class="fa fa-sun-o text-yellow-400 text-lg"></i>
+                            </div>
+                            <div class="ml-6 flex-1">
+                                <div
+                                    class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-dark">暑假弯道超车</h3>
+                                        <span
+                                            class="timeline-date text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded-full font-medium">2025年7月-8月</span>
+                                    </div>
+                                    <p class="text-sm text-dark/70 mb-2">利用完整的暑假时间进行复习，对基础阶段学到的知识进行一轮总结和消化。</p>
+                                    <div class="flex items-center text-xs text-yellow-600">
+                                        <i class="fa fa-lightbulb mr-1"></i>
+                                        <span>建议留校学习，和研友一起有规律地安排自习</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2025年9月中上旬-中下旬 - 考研大纲公布 -->
+                        <div class="timeline-item relative flex items-start opacity-0" data-start-month="9"
+                            data-end-month="9" data-year="2025">
+                            <div
+                                class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-red-400 shadow-lg flex items-center justify-center relative z-10">
+                                <i class="fa fa-bookmark text-red-400 text-lg"></i>
+                            </div>
+                            <div class="ml-6 flex-1">
+                                <div
+                                    class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-dark">考研大纲公布</h3>
+                                        <span
+                                            class="timeline-date text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full font-medium">英语大纲25年9月中上旬，政治大纲9月中下旬</span>
+                                    </div>
+                                    <p class="text-sm text-dark/70 mb-2">教育部统一公布公共课考试大纲（考研英语、政治、数学）和全国统考的专业课大纲。
+                                    </p>
+                                    <div class="flex items-center text-xs text-red-600">
+                                        <i class="fa fa-lightbulb mr-1"></i>
+                                        <span>特别注意大纲新增和变化的考点，及时调整复习计划</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 2025年9月中下旬-10月上旬 - 西华师大招生章程公布 -->
+                        <div class="timeline-item relative flex items-start opacity-0" data-start-month="8"
+                            data-end-month="10" data-year="2025">
+                            <div
+                                class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-purple-400 shadow-lg flex items-center justify-center relative z-10">
+                                <i class="fa fa-file-text text-purple-400 text-lg"></i>
+                            </div>
+                            <div class="ml-6 flex-1">
+                                <div
+                                    class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-dark">西华师大招生章程公布</h3>
+                                        <span
+                                            class="timeline-date text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded-full font-medium">2025年9月中下旬-10月上旬</span>
+                                    </div>
+                                    <p class="text-sm text-dark/70 mb-2">
+                                        西华师范大学发布招生简章，公布招生人数、报考条件、考试科目及代码、参考书目、学制、费用等事项。</p>
+                                    <div class="flex items-center text-xs text-purple-600">
+                                        <i class="fa fa-lightbulb mr-1"></i>
+                                        <span>关注数学与信息学院官网，及时获取最新招生政策</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2025年9月下旬 - 网上咨询周 -->
+                        <div class="timeline-item relative flex items-start opacity-0" data-start-month="9"
+                            data-end-month="9" data-year="2025" data-late="true">
+                            <div
+                                class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-indigo-400 shadow-lg flex items-center justify-center relative z-10">
+                                <i class="fa fa-comments-o text-indigo-400 text-lg"></i>
+                            </div>
+                            <div class="ml-6 flex-1">
+                                <div
+                                    class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-dark">网上咨询周</h3>
+                                        <span
+                                            class="timeline-date text-xs bg-indigo-100 text-indigo-600 px-2 py-1 rounded-full font-medium">2025年9月下旬，持续一周</span>
+                                    </div>
+                                    <p class="text-sm text-dark/70 mb-2">直接与西华师范大学招办老师交流，解答报考疑问。</p>
+                                    <div class="flex items-center text-xs text-indigo-600">
+                                        <i class="fa fa-lightbulb mr-1"></i>
+                                        <span>提前准备好问题，重点咨询招生政策、报录比等关键信息</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2025年9月底-10月初 - 考研预报名 -->
+                        <div class="timeline-item relative flex items-start opacity-0" data-start-month="9"
+                            data-end-month="10" data-year="2025" data-late="true">
+                            <div
+                                class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-orange-400 shadow-lg flex items-center justify-center relative z-10">
+                                <i class="fa fa-edit text-orange-400 text-lg"></i>
+                            </div>
+                            <div class="ml-6 flex-1">
+                                <div
+                                    class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-dark">考研预报名</h3>
+                                        <span
+                                            class="timeline-date text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded-full font-medium">2025年9月底-10月初</span>
+                                    </div>
+                                    <p class="text-sm text-dark/70 mb-2">研招网开放预报名系统，主要面向应届本科毕业生，减轻正式报名时的网络压力。
+                                    </p>
+                                    <div class="flex items-center text-xs text-orange-600">
+                                        <i class="fa fa-lightbulb mr-1"></i>
+                                        <span>预报名完成后，若无信息修改，确认信息无误后，预报名是有效的</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2025年10月中旬-10月底 - 考研正式报名 -->
+                        <div class="timeline-item relative flex items-start opacity-0" data-start-month="10"
+                            data-end-month="10" data-year="2025" data-late="true">
+                            <div
+                                class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-pink-400 shadow-lg flex items-center justify-center relative z-10">
+                                <i class="fa fa-pencil-square-o text-pink-400 text-lg"></i>
+                            </div>
+                            <div class="ml-6 flex-1">
+                                <div
+                                    class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-dark">考研正式报名</h3>
+                                        <span
+                                            class="timeline-date text-xs bg-pink-100 text-pink-600 px-2 py-1 rounded-full font-medium">2025年10月上旬-10月中下旬</span>
+                                    </div>
+                                    <p class="text-sm text-dark/70 mb-2">全国硕士研究生入学考试网上正式报名，考生可自行修改、校正网报信息。</p>
+                                    <div class="flex items-center text-xs text-pink-600">
+                                        <i class="fa fa-lightbulb mr-1"></i>
+                                        <span>硕士研究生考生一律采取网上报名方式，逾期不再补报</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2025年11中上旬 - 网上确认 -->
+                        <div class="timeline-item relative flex items-start opacity-0" data-start-month="10"
+                            data-end-month="11" data-year="2025">
+                            <div
+                                class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-teal-400 shadow-lg flex items-center justify-center relative z-10">
+                                <i class="fa fa-check-square-o text-teal-400 text-lg"></i>
+                            </div>
+                            <div class="ml-6 flex-1">
+                                <div
+                                    class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-dark">网上确认</h3>
+                                        <span
+                                            class="timeline-date text-xs bg-teal-100 text-teal-600 px-2 py-1 rounded-full font-medium">2025年10月下旬-2025年11月上旬</span>
+                                    </div>
+                                    <p class="text-sm text-dark/70 mb-2">考生完成报名信息确认及缴费，确认成功后才可以确定参加当年的研究生考试。</p>
+                                    <div class="flex items-center text-xs text-teal-600">
+                                        <i class="fa fa-lightbulb mr-1"></i>
+                                        <span>网上确认一般是要在规定的时间内上传要求的证件材料</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2025年12月中旬 - 准考证打印 -->
+                        <div class="timeline-item relative flex items-start opacity-0" data-start-month="12"
+                            data-end-month="12" data-year="2025">
+                            <div
+                                class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-gray-400 shadow-lg flex items-center justify-center relative z-10">
+                                <i class="fa fa-print text-gray-400 text-lg"></i>
+                            </div>
+                            <div class="ml-6 flex-1">
+                                <div
+                                    class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-dark">准考证打印</h3>
+                                        <span
+                                            class="timeline-date text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full font-medium">2025年12月中旬，即考前10天左右</span>
+                                    </div>
+                                    <p class="text-sm text-dark/70 mb-2">考生可凭网报用户名和密码登录"研招网"下载打印《准考证》。</p>
+                                    <div class="flex items-center text-xs text-gray-600">
+                                        <i class="fa fa-lightbulb mr-1"></i>
+                                        <span>提前几天进行准考证的信息核对，发现问题及时解决</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2025年12月倒数第二个周末 - 考研初试 -->
+                        <!-- data-late="true" 用于标记该时间轴项目在所属月份中较晚发生。
+                            在代码逻辑里，当同一月份存在多个时间轴项目时，会依据这个属性将标记为 late 的项目排在后面 -->
+                        <div class="timeline-item relative flex items-start opacity-0" data-start-month="12"
+                            data-end-month="12" data-year="2025" data-late="true">
+                            <div
+                                class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-violet-400 shadow-lg flex items-center justify-center relative z-10">
+                                <i class="fa fa-pencil text-violet-400 text-lg"></i>
+                            </div>
+                            <div class="ml-6 flex-1">
+                                <div
+                                    class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-dark">考研初试</h3>
+                                        <span
+                                            class="timeline-date text-xs bg-violet-100 text-violet-600 px-2 py-1 rounded-full font-medium">2025年12月倒数第二个周末</span>
+                                    </div>
+                                    <p class="text-sm text-dark/70 mb-2">
+                                        全国硕士研究生入学考试--初试，科目分为政治理论、外国语、统考数学和业务课，考试时间均为3小时。</p>
+                                    <div class="flex items-center text-xs text-violet-600">
+                                        <i class="fa fa-lightbulb mr-1"></i>
+                                        <span>考试前一天千万不要再熬夜看书，保持自信</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2026年2月中旬 - 初试查分 -->
+                        <div class="timeline-item relative flex items-start opacity-0" data-start-month="2"
+                            data-end-month="2" data-year="2026">
+                            <div
+                                class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-amber-400 shadow-lg flex items-center justify-center relative z-10">
+                                <i class="fa fa-search text-amber-400 text-lg"></i>
+                            </div>
+                            <div class="ml-6 flex-1">
+                                <div
+                                    class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-dark">初试查分</h3>
+                                        <span
+                                            class="timeline-date text-xs bg-amber-100 text-amber-600 px-2 py-1 rounded-full font-medium">2026年2月中旬</span>
+                                    </div>
+                                    <p class="text-sm text-dark/70 mb-2">各省份教育考试院陆续公布初试成绩，考生可进行分数复查。</p>
+                                    <div class="flex items-center text-xs text-amber-600">
+                                        <i class="fa fa-lightbulb mr-1"></i>
+                                        <span>查分后，如有分数上的疑问，立刻申请分数信息核对</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2026年2月下旬-3月中旬 - 34所复试线与国家线 -->
+                        <div class="timeline-item relative flex items-start opacity-0" data-start-month="2"
+                            data-end-month="3" data-year="2026">
+                            <div
+                                class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-cyan-400 shadow-lg flex items-center justify-center relative z-10">
+                                <i class="fa fa-line-chart text-cyan-400 text-lg"></i>
+                            </div>
+                            <div class="ml-6 flex-1">
+                                <div
+                                    class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-dark">34所复试线与国家线</h3>
+                                        <span
+                                            class="timeline-date text-xs bg-cyan-100 text-cyan-600 px-2 py-1 rounded-full font-medium">2026年2月下旬-3月中旬</span>
+                                    </div>
+                                    <p class="text-sm text-dark/70 mb-2">34所自主划线院校公布复试线，考研国家线一般在3月中旬公布。</p>
+                                    <div class="flex items-center text-xs text-cyan-600">
+                                        <i class="fa fa-lightbulb mr-1"></i>
+                                        <span>报考34所的初试结束后，尤其是出成绩后，一定要抓紧准备复试</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2026年3月下旬-4月 - 调剂意向采集系统 -->
+                        <div class="timeline-item relative flex items-start opacity-0" data-start-month="3"
+                            data-end-month="4" data-year="2026">
+                            <div
+                                class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-rose-400 shadow-lg flex items-center justify-center relative z-10">
+                                <i class="fa fa-exchange text-rose-400 text-lg"></i>
+                            </div>
+                            <div class="ml-6 flex-1">
+                                <div
+                                    class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-dark">调剂意向采集系统</h3>
+                                        <span
+                                            class="timeline-date text-xs bg-rose-100 text-rose-600 px-2 py-1 rounded-full font-medium">2026年3月下旬-4月</span>
+                                    </div>
+                                    <p class="text-sm text-dark/70 mb-2">
+                                        符合教育部调剂规定的考生，可在规定时间内通过"中国研究生招生信息网"登录调剂志愿。</p>
+                                    <div class="flex items-center text-xs text-rose-600">
+                                        <i class="fa fa-lightbulb mr-1"></i>
+                                        <span>调剂的关键和核心是信息以及信息的及时有效性</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- 2026年3月下旬-4月上旬 - 西华师大考研复试 -->
+                        <div class="timeline-item relative flex items-start opacity-0" data-start-month="3"
+                            data-end-month="4" data-end-month="4" data-year="2026" data-late="true">
+                            <div
+                                class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-lime-400 shadow-lg flex items-center justify-center relative z-10">
+                                <i class="fa fa-comments text-lime-400 text-lg"></i>
+                            </div>
+                            <div class="ml-6 flex-1">
+                                <div
+                                    class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-dark">西华师大考研复试</h3>
+                                        <span
+                                            class="timeline-date text-xs bg-lime-100 text-lime-600 px-2 py-1 rounded-full font-medium">2026年3月下旬-4月上旬</span>
+                                    </div>
+                                    <p class="text-sm text-dark/70 mb-2">西华师范大学复试时间、地点、科目、方式由学校自定，具体以学院官网通知为准。
+                                    </p>
+                                    <div class="flex items-center text-xs text-lime-600">
+                                        <i class="fa fa-lightbulb mr-1"></i>
+                                        <span>关注数学与信息学院官网，及时获取复试通知和具体安排</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- 2026年3月下旬-4月上旬 - 西华师大拟录取名单 -->
+                        <div class="timeline-item relative flex items-start opacity-0" data-start-month="3"
+                            data-end-month="4" data-year="2026">
+                            <div
+                                class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-blue-500 shadow-lg flex items-center justify-center relative z-10">
+                                <i class="fa fa-list-alt text-blue-500 text-lg"></i>
+                            </div>
+                            <div class="ml-6 flex-1">
+                                <div
+                                    class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-dark">西华师大拟录取名单</h3>
+                                        <span
+                                            class="timeline-date text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full font-medium">一般为复试结束当天或第二天</span>
+                                    </div>
+                                    <p class="text-sm text-dark/70 mb-2">西华师范大学将在复试结束后尽快公布拟录取名单，一般为复试结束当天或第二天。
+                                    </p>
+                                    <div class="flex items-center text-xs text-blue-600">
+                                        <i class="fa fa-lightbulb mr-1"></i>
+                                        <span>及时关注学院官网公告，保持电话畅通</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- 2026年3月下旬-4月上旬 - 西华师大体检 -->
+                        <div class="timeline-item relative flex items-start opacity-0" data-start-month="3"
+                            data-end-month="4" data-year="2026" data-late="true">
+                            <div
+                                class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-red-500 shadow-lg flex items-center justify-center relative z-10">
+                                <i class="fa fa-heartbeat text-red-500 text-lg"></i>
+                            </div>
+                            <div class="ml-6 flex-1">
+                                <div
+                                    class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-dark">西华师大体检</h3>
+                                        <span
+                                            class="timeline-date text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full font-medium">一般为复试结束第二天</span>
+                                    </div>
+                                    <p class="text-sm text-dark/70 mb-2">西华师范大学体检一般安排在复试结束后的第二天，具体时间和地点以学院通知为准。
+                                    </p>
+                                    <div class="flex items-center text-xs text-red-600">
+                                        <i class="fa fa-lightbulb mr-1"></i>
+                                        <span>体检前注意休息，避免饮酒和剧烈运动</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- 2026年6月初 - 录取通知书 -->
+                        <div class="timeline-item relative flex items-start opacity-0" data-start-month="6"
+                            data-end-month="6" data-end-month="7" data-year="2026">
+                            <div
+                                class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-purple-400 shadow-lg flex items-center justify-center relative z-10">
+                                <i class="fa fa-envelope-o text-purple-400 text-lg"></i>
+                            </div>
+                            <div class="ml-6 flex-1">
+                                <div
+                                    class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-dark">录取通知书</h3>
+                                        <span
+                                            class="timeline-date text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded-full font-medium">2026年6月中下旬-7月上旬</span>
+                                    </div>
+                                    <p class="text-sm text-dark/70 mb-2">西华师范大学将在6月中下旬至7月上旬发放硕士研究生录取通知书。</p>
+                                    <div class="flex items-center text-xs text-purple-600">
+                                        <i class="fa fa-lightbulb mr-1"></i>
+                                        <span>过去熬的夜终成了光，录取通知书就是最好的果实</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center text-xs text-primary">
+                            <i class="fa fa-lightbulb mr-1"></i>
+                            <span><b>一研为定</b></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="page-resources" class="page">
             <!-- 面包屑导航 -->
             <div class="breadcrumb container mx-auto max-w-6xl px-4 py-4">
@@ -2412,8 +2644,8 @@
                             <div
                                 class="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                                 <div>
-                                    <div class="font-medium">李杨网课资源</div>
-                                    <div class="text-sm text-dark/60"> 免费分享</div>
+                                    <div class="font-medium">李扬网课资源免费分享</div>
+                                    <div class="text-sm text-dark/60"> 若涉及版权问题，请及时联系，我们将立即予以删除</div>
                                 </div>
                                 <a href="https://pan.baidu.com/share/init?surl=d9otKpXZy8DBkliKZBx7Ww&pwd=1D14 "
                                     target="_blank">
@@ -2487,8 +2719,8 @@
                         <i class="fa fa-info-circle mr-2"></i>下载说明
                     </h3>
                     <div class="text-amber-800 space-y-2">
-                        <p>• 所有资料仅供学习参考，请勿用于商业用途</p>
-                        <p>• 试卷资料来源于网络，版权归原作者所有</p>
+                        <p>• 所有可下载资料仅供学习参考，请勿用于商业用途</p>
+                        <p>• 试卷及网课资料来源于网络，版权归原作者所有</p>
                         <p>• 如遇下载问题，请检查网络连接或联系管理员</p>
                         <p style="color: rgb(255, 0, 89); font-weight: bold;">• 2010–2025 年真题及解析为付费内容，收集整理不易，感谢您的支持</p>
                     </div>
@@ -2592,7 +2824,7 @@
             }
         </style>
         <div class="mt-8 pt-6 border-t border-white/10 text-center text-white/40 text-sm">
-            <p>© 2025 西华师范大学数学考研指南 | 图灵的猫考研工作室</p>
+            <p>© 2026 西华师范大学数学考研指南 | 图灵的猫考研工作室</p>
         </div>
         </div>
 
@@ -2687,8 +2919,9 @@
                 'home': 0,
                 'study': 1,
                 'admission': 2,
-                'faq': 3,
-                'resources': 4
+                'timeline': 3,
+                'faq': 4,
+                'resources': 5
             };
 
             const navItems = document.querySelectorAll('.nav-item');
@@ -2789,6 +3022,7 @@
                                 tension: 0.4,
                                 fill: false
                             },
+
                             {
                                 label: '院线',
                                 data: [280, 290, 279, 320, 274],
@@ -2850,10 +3084,10 @@
                         labels: ['2021', '2022', '2023', '2024', '2025'],
                         datasets: [
                             {
-                                label: '录取人数',
-                                data: [25, 54, 54, 56, 61],
-                                backgroundColor: 'rgba(0, 113, 227, 0.7)',
-                                borderColor: 'rgba(0, 113, 227, 1)',
+                                label: '拟招人数',
+                                data: [52, 54, 55, 56, 56],
+                                backgroundColor: 'rgba(255, 159, 64, 0.7)',
+                                borderColor: 'rgba(255, 159, 64, 1)',
                                 borderWidth: 1
                             },
                             {
@@ -2861,6 +3095,13 @@
                                 data: [25, 57, 80, 83, 75],
                                 backgroundColor: 'rgba(52, 199, 89, 0.7)',
                                 borderColor: 'rgba(52, 199, 89, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: '录取人数',
+                                data: [25, 54, 54, 56, 61],
+                                backgroundColor: 'rgba(0, 113, 227, 0.7)',
+                                borderColor: 'rgba(0, 113, 227, 1)',
                                 borderWidth: 1
                             }
                         ]
