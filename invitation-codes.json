@@ -1,1 +1,1018 @@
-
+{
+  "predefinedCodes": [
+    {
+      "code": "TEST123",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "TEST456",
+      "expiry": "2025-12-31"
+    }
+  ],
+  "customCodes": [
+    {
+      "code": "CQ5QDOWB",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "0QAJNSNO",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "I61XEO5R",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "I5FBQIJJ",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "NC3CM89Q",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "VRIHVN",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "FVC4Y8",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "X2J03V",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "8J4ASD",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "PFKPL8",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "ZIIQV4",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "GINWE2",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "07DWRF",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "1MLWND",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "QR8HM1",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "BO5VZQ",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "16QQ52",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "PEEFGD",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "8VAF7U",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "KNPSTZ",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "HMM1VO",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "DUAT7C",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "NERUI5",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "TP7TJF",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "UR8PXS",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "YO3GWB",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "MYX7TH",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "771MYO",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "YHHN64",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "WMBOXS",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "KS3DBV",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "U1SKSE",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "WFPPU1",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "H9SH55",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "CT2FRP",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "OC7MCS",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "XDPFGC",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "BWNCC4",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "X7MKQR",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "IHFCCA",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "ML4F6H",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "J6X9ZW",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "BWYIRN",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "9MAU5F",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "3JKY0H",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "1AF8BK",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "C1LZDZ",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "TROEMF",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "Y9KZQ7",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "BM90RA",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "OOJ43G",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "1RS20N",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "FDI90Z",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "SHRVBB",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "WFB4MK",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "TEST123",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "TEST456",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "CQ5QDOWB",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "0QAJNSNO",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "I61XEO5R",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "I5FBQIJJ",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "NC3CM89Q",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "VRIHVN",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "FVC4Y8",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "X2J03V",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "8J4ASD",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "PFKPL8",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "ZIIQV4",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "GINWE2",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "07DWRF",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "1MLWND",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "QR8HM1",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "BO5VZQ",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "16QQ52",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "PEEFGD",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "8VAF7U",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "KNPSTZ",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "HMM1VO",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "DUAT7C",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "NERUI5",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "TP7TJF",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "UR8PXS",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "YO3GWB",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "MYX7TH",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "771MYO",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "YHHN64",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "WMBOXS",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "KS3DBV",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "U1SKSE",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "WFPPU1",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "H9SH55",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "CT2FRP",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "OC7MCS",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "XDPFGC",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "BWNCC4",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "X7MKQR",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "IHFCCA",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "ML4F6H",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "J6X9ZW",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "BWYIRN",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "9MAU5F",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "3JKY0H",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "1AF8BK",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "C1LZDZ",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "TROEMF",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "Y9KZQ7",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "BM90RA",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "OOJ43G",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "1RS20N",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "FDI90Z",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "SHRVBB",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "WFB4MK",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "35H7MI",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "MZ9FGY",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "3D6DH0",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "LQ825O",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "UF4HCU",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "LF2Q2Q",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "6K0KVK",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "NX6QL9",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "N61FB5",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "O5PSPO",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "TEST123",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "TEST456",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "CQ5QDOWB",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "0QAJNSNO",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "I61XEO5R",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "I5FBQIJJ",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "NC3CM89Q",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "VRIHVN",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "FVC4Y8",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "X2J03V",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "8J4ASD",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "PFKPL8",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "ZIIQV4",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "GINWE2",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "07DWRF",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "1MLWND",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "QR8HM1",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "BO5VZQ",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "16QQ52",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "PEEFGD",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "8VAF7U",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "KNPSTZ",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "HMM1VO",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "DUAT7C",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "NERUI5",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "TP7TJF",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "UR8PXS",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "YO3GWB",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "MYX7TH",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "771MYO",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "YHHN64",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "WMBOXS",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "KS3DBV",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "U1SKSE",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "WFPPU1",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "H9SH55",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "CT2FRP",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "OC7MCS",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "XDPFGC",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "BWNCC4",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "X7MKQR",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "IHFCCA",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "ML4F6H",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "J6X9ZW",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "BWYIRN",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "9MAU5F",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "3JKY0H",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "1AF8BK",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "C1LZDZ",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "TROEMF",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "Y9KZQ7",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "BM90RA",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "OOJ43G",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "1RS20N",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "FDI90Z",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "SHRVBB",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "WFB4MK",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "TEST123",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "TEST456",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "CQ5QDOWB",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "0QAJNSNO",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "I61XEO5R",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "I5FBQIJJ",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "NC3CM89Q",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "VRIHVN",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "FVC4Y8",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "X2J03V",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "8J4ASD",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "PFKPL8",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "ZIIQV4",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "GINWE2",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "07DWRF",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "1MLWND",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "QR8HM1",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "BO5VZQ",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "16QQ52",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "PEEFGD",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "8VAF7U",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "KNPSTZ",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "HMM1VO",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "DUAT7C",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "NERUI5",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "TP7TJF",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "UR8PXS",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "YO3GWB",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "MYX7TH",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "771MYO",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "YHHN64",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "WMBOXS",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "KS3DBV",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "U1SKSE",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "WFPPU1",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "H9SH55",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "CT2FRP",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "OC7MCS",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "XDPFGC",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "BWNCC4",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "X7MKQR",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "IHFCCA",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "ML4F6H",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "J6X9ZW",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "BWYIRN",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "9MAU5F",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "3JKY0H",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "1AF8BK",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "C1LZDZ",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "TROEMF",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "Y9KZQ7",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "BM90RA",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "OOJ43G",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "1RS20N",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "FDI90Z",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "SHRVBB",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "WFB4MK",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "35H7MI",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "MZ9FGY",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "3D6DH0",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "LQ825O",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "UF4HCU",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "LF2Q2Q",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "6K0KVK",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "NX6QL9",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "N61FB5",
+      "expiry": "2025-12-31"
+    },
+    {
+      "code": "O5PSPO",
+      "expiry": "2025-12-31"
+    },
+    "W2DGPQ",
+    "D2V3OZ",
+    "R9JNIN",
+    "RKHS89",
+    "ZXE5SW",
+    "CMVRH0",
+    "1MDH3Q",
+    "VT8DXV",
+    "VI3TC3",
+    "3A3I2H",
+    "QK8EXZ",
+    "GG09A1",
+    "SXVW76",
+    "3RBCGZ",
+    "IJK0PP",
+    "OK6UCX",
+    "U9523T",
+    "GJ1TRY",
+    "HRUYDO",
+    "7ZKR8O"
+  ]
+}
