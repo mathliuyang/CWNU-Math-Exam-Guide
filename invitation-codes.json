@@ -59,9 +59,9 @@
       "type": "normal",
       "generatedDate": "2025-08-25T15:30:14.976Z",
       "expiryDate": "2025-09-24T15:30:14.976Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null
+      "used": true,
+      "usedBy": "device_u13x5m",
+      "usedTime": "2025-08-25T16:21:30.017Z"
     },
     {
       "code": "1TS1FBSHV7",
@@ -631,7 +631,7 @@
       "usedTime": ""
     }
   ],
-  "uploadDate": "2025-08-25T16:21:00.348Z",
+  "uploadDate": "2025-08-25T16:21:34.677Z",
   "totalCodes": 70,
-  "activeCodes": 63
+  "activeCodes": 62
 }
