@@ -52,7 +52,7 @@
       "expiryDate": "2025-09-24T15:30:14.976Z",
       "used": true,
       "usedBy": "device_35ljs",
-      "usedTime": "2025-08-25T16:19:17.440Z"
+      "usedTime": "2025-08-25T16:20:10.178Z"
     },
     {
       "code": "BHADTKATDA",
@@ -631,7 +631,7 @@
       "usedTime": ""
     }
   ],
-  "uploadDate": "2025-08-25T16:19:19.308Z",
+  "uploadDate": "2025-08-25T16:20:12.401Z",
   "totalCodes": 70,
   "activeCodes": 63
 }
