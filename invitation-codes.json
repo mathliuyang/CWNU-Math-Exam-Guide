@@ -1,190 +1,91 @@
 {
   "invitationCodes": [
     {
-      "code": "2024CS",
-      "type": "general",
-      "generatedDate": "2025-08-25",
-      "expiryDate": "2026-08-25",
-      "used": false,
-      "usedBy": "",
-      "usedTime": ""
-    },
-    {
-      "code": "XHNU2025",
-      "type": "general",
-      "generatedDate": "2025-08-25",
-      "expiryDate": "2026-08-25",
-      "used": false,
-      "usedBy": "",
-      "usedTime": ""
-    },
-    {
-      "code": "MATH2025",
-      "type": "general",
-      "generatedDate": "2025-08-25",
-      "expiryDate": "2026-08-25",
-      "used": false,
-      "usedBy": "",
-      "usedTime": ""
-    },
-    {
-      "code": "GRAD2025",
-      "type": "general",
-      "generatedDate": "2025-08-25",
-      "expiryDate": "2026-08-25",
-      "used": false,
-      "usedBy": "",
-      "usedTime": ""
-    },
-    {
-      "code": "CSXHNU",
-      "type": "general",
-      "generatedDate": "2025-08-25",
-      "expiryDate": "2026-08-25",
-      "used": false,
-      "usedBy": "",
-      "usedTime": ""
-    },
-    {
-      "code": "YWR0X9",
+      "code": "GTUWAJDM",
       "type": "normal",
-      "generatedDate": "2025-08-25T08:58:38.275Z",
-      "expiryDate": "2025-09-24T08:58:38.275Z",
+      "generatedDate": "2025-08-25T12:40:09.756Z",
+      "expiryDate": "2025-09-24T12:40:09.756Z",
       "used": false,
       "usedBy": null,
       "usedTime": null
     },
     {
-      "code": "7E2C6R",
+      "code": "1VJSFLRZ",
       "type": "normal",
-      "generatedDate": "2025-08-25T08:58:38.275Z",
-      "expiryDate": "2025-09-24T08:58:38.275Z",
+      "generatedDate": "2025-08-25T12:40:09.756Z",
+      "expiryDate": "2025-09-24T12:40:09.756Z",
       "used": false,
       "usedBy": null,
       "usedTime": null
     },
     {
-      "code": "MA2UKK",
+      "code": "AF88NUD3",
       "type": "normal",
-      "generatedDate": "2025-08-25T08:58:38.275Z",
-      "expiryDate": "2025-09-24T08:58:38.275Z",
+      "generatedDate": "2025-08-25T12:40:09.756Z",
+      "expiryDate": "2025-09-24T12:40:09.756Z",
       "used": false,
       "usedBy": null,
       "usedTime": null
     },
     {
-      "code": "BZYFLN",
+      "code": "S3LZDU7G",
       "type": "normal",
-      "generatedDate": "2025-08-25T08:58:38.275Z",
-      "expiryDate": "2025-09-24T08:58:38.275Z",
+      "generatedDate": "2025-08-25T12:40:09.756Z",
+      "expiryDate": "2025-09-24T12:40:09.756Z",
       "used": false,
       "usedBy": null,
       "usedTime": null
     },
     {
-      "code": "E26S1S",
+      "code": "T15E9GKM",
       "type": "normal",
-      "generatedDate": "2025-08-25T08:58:38.275Z",
-      "expiryDate": "2025-09-24T08:58:38.275Z",
+      "generatedDate": "2025-08-25T12:40:09.756Z",
+      "expiryDate": "2025-09-24T12:40:09.756Z",
       "used": false,
       "usedBy": null,
       "usedTime": null
     },
     {
-      "code": "BCHPDM",
+      "code": "JTRJ559B",
       "type": "normal",
-      "generatedDate": "2025-08-25T09:04:16.221Z",
-      "expiryDate": "2025-09-24T09:04:16.221Z",
+      "generatedDate": "2025-08-25T12:40:09.756Z",
+      "expiryDate": "2025-09-24T12:40:09.756Z",
       "used": false,
       "usedBy": null,
       "usedTime": null
     },
     {
-      "code": "KTUFPY",
+      "code": "09VJQWAV",
       "type": "normal",
-      "generatedDate": "2025-08-25T09:04:16.221Z",
-      "expiryDate": "2025-09-24T09:04:16.221Z",
+      "generatedDate": "2025-08-25T12:40:09.756Z",
+      "expiryDate": "2025-09-24T12:40:09.756Z",
       "used": false,
       "usedBy": null,
       "usedTime": null
     },
     {
-      "code": "DMUHGN",
+      "code": "UE7YWEEG",
       "type": "normal",
-      "generatedDate": "2025-08-25T09:04:16.221Z",
-      "expiryDate": "2025-09-24T09:04:16.221Z",
+      "generatedDate": "2025-08-25T12:40:09.756Z",
+      "expiryDate": "2025-09-24T12:40:09.756Z",
       "used": false,
       "usedBy": null,
       "usedTime": null
     },
     {
-      "code": "8KSUHH",
+      "code": "3VASB17X",
       "type": "normal",
-      "generatedDate": "2025-08-25T09:04:16.221Z",
-      "expiryDate": "2025-09-24T09:04:16.221Z",
+      "generatedDate": "2025-08-25T12:40:09.756Z",
+      "expiryDate": "2025-09-24T12:40:09.756Z",
       "used": false,
       "usedBy": null,
       "usedTime": null
     },
     {
-      "code": "H3RXW2",
+      "code": "9A5BWBPM",
       "type": "normal",
-      "generatedDate": "2025-08-25T09:04:16.221Z",
-      "expiryDate": "2025-09-24T09:04:16.221Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null
-    },
-    {
-      "code": "PZ5WVP",
-      "type": "normal",
-      "generatedDate": "2025-08-25T09:18:57.616Z",
-      "expiryDate": "2025-09-24T09:18:57.616Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null
-    },
-    {
-      "code": "U7G9N6",
-      "type": "normal",
-      "generatedDate": "2025-08-25T09:18:57.616Z",
-      "expiryDate": "2025-09-24T09:18:57.616Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null
-    },
-    {
-      "code": "CP28LV",
-      "type": "normal",
-      "generatedDate": "2025-08-25T09:18:57.616Z",
-      "expiryDate": "2025-09-24T09:18:57.616Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null
-    },
-    {
-      "code": "5H4G0S",
-      "type": "normal",
-      "generatedDate": "2025-08-25T09:18:57.616Z",
-      "expiryDate": "2025-09-24T09:18:57.616Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null
-    },
-    {
-      "code": "YBZC34",
-      "type": "normal",
-      "generatedDate": "2025-08-25T09:18:57.616Z",
-      "expiryDate": "2025-08-24T09:18:57.616Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null
-    },
-    {
-      "code": "KFLJKM",
-      "type": "normal",
-      "generatedDate": "2025-08-25T12:40:07.000Z",
-      "expiryDate": "2025-09-24T12:40:07.005Z",
+      "generatedDate": "2025-08-25T12:40:09.755Z",
+      "expiryDate": "2025-09-24T12:40:09.756Z",
       "used": false,
       "usedBy": null,
       "usedTime": null
@@ -271,97 +172,196 @@
       "usedTime": null
     },
     {
-      "code": "9A5BWBPM",
+      "code": "KFLJKM",
       "type": "normal",
-      "generatedDate": "2025-08-25T12:40:09.755Z",
-      "expiryDate": "2025-09-24T12:40:09.756Z",
+      "generatedDate": "2025-08-25T12:40:07.000Z",
+      "expiryDate": "2025-09-24T12:40:07.005Z",
       "used": false,
       "usedBy": null,
       "usedTime": null
     },
     {
-      "code": "GTUWAJDM",
+      "code": "PZ5WVP",
       "type": "normal",
-      "generatedDate": "2025-08-25T12:40:09.756Z",
-      "expiryDate": "2025-09-24T12:40:09.756Z",
+      "generatedDate": "2025-08-25T09:18:57.616Z",
+      "expiryDate": "2025-09-24T09:18:57.616Z",
       "used": false,
       "usedBy": null,
       "usedTime": null
     },
     {
-      "code": "1VJSFLRZ",
+      "code": "U7G9N6",
       "type": "normal",
-      "generatedDate": "2025-08-25T12:40:09.756Z",
-      "expiryDate": "2025-09-24T12:40:09.756Z",
+      "generatedDate": "2025-08-25T09:18:57.616Z",
+      "expiryDate": "2025-09-24T09:18:57.616Z",
       "used": false,
       "usedBy": null,
       "usedTime": null
     },
     {
-      "code": "AF88NUD3",
+      "code": "CP28LV",
       "type": "normal",
-      "generatedDate": "2025-08-25T12:40:09.756Z",
-      "expiryDate": "2025-09-24T12:40:09.756Z",
+      "generatedDate": "2025-08-25T09:18:57.616Z",
+      "expiryDate": "2025-09-24T09:18:57.616Z",
       "used": false,
       "usedBy": null,
       "usedTime": null
     },
     {
-      "code": "S3LZDU7G",
+      "code": "5H4G0S",
       "type": "normal",
-      "generatedDate": "2025-08-25T12:40:09.756Z",
-      "expiryDate": "2025-09-24T12:40:09.756Z",
+      "generatedDate": "2025-08-25T09:18:57.616Z",
+      "expiryDate": "2025-09-24T09:18:57.616Z",
       "used": false,
       "usedBy": null,
       "usedTime": null
     },
     {
-      "code": "T15E9GKM",
+      "code": "YBZC34",
       "type": "normal",
-      "generatedDate": "2025-08-25T12:40:09.756Z",
-      "expiryDate": "2025-09-24T12:40:09.756Z",
+      "generatedDate": "2025-08-25T09:18:57.616Z",
+      "expiryDate": "2025-08-24T09:18:57.616Z",
       "used": false,
       "usedBy": null,
       "usedTime": null
     },
     {
-      "code": "JTRJ559B",
+      "code": "BCHPDM",
       "type": "normal",
-      "generatedDate": "2025-08-25T12:40:09.756Z",
-      "expiryDate": "2025-09-24T12:40:09.756Z",
+      "generatedDate": "2025-08-25T09:04:16.221Z",
+      "expiryDate": "2025-09-24T09:04:16.221Z",
       "used": false,
       "usedBy": null,
       "usedTime": null
     },
     {
-      "code": "09VJQWAV",
+      "code": "KTUFPY",
       "type": "normal",
-      "generatedDate": "2025-08-25T12:40:09.756Z",
-      "expiryDate": "2025-09-24T12:40:09.756Z",
+      "generatedDate": "2025-08-25T09:04:16.221Z",
+      "expiryDate": "2025-09-24T09:04:16.221Z",
       "used": false,
       "usedBy": null,
       "usedTime": null
     },
     {
-      "code": "UE7YWEEG",
+      "code": "DMUHGN",
       "type": "normal",
-      "generatedDate": "2025-08-25T12:40:09.756Z",
-      "expiryDate": "2025-09-24T12:40:09.756Z",
+      "generatedDate": "2025-08-25T09:04:16.221Z",
+      "expiryDate": "2025-09-24T09:04:16.221Z",
       "used": false,
       "usedBy": null,
       "usedTime": null
     },
     {
-      "code": "3VASB17X",
+      "code": "8KSUHH",
       "type": "normal",
-      "generatedDate": "2025-08-25T12:40:09.756Z",
-      "expiryDate": "2025-09-24T12:40:09.756Z",
+      "generatedDate": "2025-08-25T09:04:16.221Z",
+      "expiryDate": "2025-09-24T09:04:16.221Z",
       "used": false,
       "usedBy": null,
       "usedTime": null
+    },
+    {
+      "code": "H3RXW2",
+      "type": "normal",
+      "generatedDate": "2025-08-25T09:04:16.221Z",
+      "expiryDate": "2025-09-24T09:04:16.221Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null
+    },
+    {
+      "code": "YWR0X9",
+      "type": "normal",
+      "generatedDate": "2025-08-25T08:58:38.275Z",
+      "expiryDate": "2025-09-24T08:58:38.275Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null
+    },
+    {
+      "code": "7E2C6R",
+      "type": "normal",
+      "generatedDate": "2025-08-25T08:58:38.275Z",
+      "expiryDate": "2025-09-24T08:58:38.275Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null
+    },
+    {
+      "code": "MA2UKK",
+      "type": "normal",
+      "generatedDate": "2025-08-25T08:58:38.275Z",
+      "expiryDate": "2025-09-24T08:58:38.275Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null
+    },
+    {
+      "code": "BZYFLN",
+      "type": "normal",
+      "generatedDate": "2025-08-25T08:58:38.275Z",
+      "expiryDate": "2025-09-24T08:58:38.275Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null
+    },
+    {
+      "code": "E26S1S",
+      "type": "normal",
+      "generatedDate": "2025-08-25T08:58:38.275Z",
+      "expiryDate": "2025-09-24T08:58:38.275Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null
+    },
+    {
+      "code": "2024CS",
+      "type": "general",
+      "generatedDate": "2025-08-25",
+      "expiryDate": "2026-08-25",
+      "used": false,
+      "usedBy": "",
+      "usedTime": ""
+    },
+    {
+      "code": "XHNU2025",
+      "type": "general",
+      "generatedDate": "2025-08-25",
+      "expiryDate": "2026-08-25",
+      "used": false,
+      "usedBy": "",
+      "usedTime": ""
+    },
+    {
+      "code": "MATH2025",
+      "type": "general",
+      "generatedDate": "2025-08-25",
+      "expiryDate": "2026-08-25",
+      "used": false,
+      "usedBy": "",
+      "usedTime": ""
+    },
+    {
+      "code": "GRAD2025",
+      "type": "general",
+      "generatedDate": "2025-08-25",
+      "expiryDate": "2026-08-25",
+      "used": false,
+      "usedBy": "",
+      "usedTime": ""
+    },
+    {
+      "code": "CSXHNU",
+      "type": "general",
+      "generatedDate": "2025-08-25",
+      "expiryDate": "2026-08-25",
+      "used": false,
+      "usedBy": "",
+      "usedTime": ""
     }
   ],
-  "uploadDate": "2025-08-25T12:40:13.601Z",
+  "uploadDate": "2025-08-25T15:25:12.204Z",
   "totalCodes": 40,
   "activeCodes": 39
 }
