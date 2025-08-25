@@ -1,6 +1,51 @@
 {
   "invitationCodes": [
     {
+      "code": "YUDSFA4LE2ZYPR4D",
+      "type": "normal",
+      "generatedDate": "2025-08-25T15:31:28.527Z",
+      "expiryDate": "2025-09-24T15:31:28.527Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null
+    },
+    {
+      "code": "DJ3FKW9E1UW38717",
+      "type": "normal",
+      "generatedDate": "2025-08-25T15:31:28.527Z",
+      "expiryDate": "2025-09-24T15:31:28.527Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null
+    },
+    {
+      "code": "ZG35PJNDYQ4GY4TN",
+      "type": "normal",
+      "generatedDate": "2025-08-25T15:31:28.527Z",
+      "expiryDate": "2025-09-24T15:31:28.527Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null
+    },
+    {
+      "code": "TEYBKY9VA4PKCY48",
+      "type": "normal",
+      "generatedDate": "2025-08-25T15:31:28.527Z",
+      "expiryDate": "2025-09-24T15:31:28.527Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null
+    },
+    {
+      "code": "J39H8KXX4WY07BPJ",
+      "type": "normal",
+      "generatedDate": "2025-08-25T15:31:28.527Z",
+      "expiryDate": "2025-09-24T15:31:28.527Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null
+    },
+    {
       "code": "9TE8CNXHDB",
       "type": "normal",
       "generatedDate": "2025-08-25T15:30:14.976Z",
@@ -586,7 +631,7 @@
       "usedTime": ""
     }
   ],
-  "uploadDate": "2025-08-25T15:30:39.958Z",
-  "totalCodes": 65,
-  "activeCodes": 64
+  "uploadDate": "2025-08-25T15:31:34.394Z",
+  "totalCodes": 70,
+  "activeCodes": 69
 }
