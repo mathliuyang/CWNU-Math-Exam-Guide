@@ -1,28 +1,97 @@
 {
-  "predefinedCodes": [
-    "2024CS",
-    "XHNU2025",
-    "MATH2025",
-    "GRAD2025",
-    "CSXHNU"
-  ],
-  "customCodes": [
-    "3TO47H",
-    "DR6GYF",
-    "ZD4D7N",
-    "VOW8EK",
-    "OFKA62"
-  ],
-  "codes": [
+  "invitationCodes": [
     {
-      "code": "N1LLB86I",
+      "code": "2024CS",
       "type": "general",
       "generatedDate": "2025-08-25",
-      "expiryDate": "2025-09-24",
+      "expiryDate": "2026-08-25",
       "used": false,
       "usedBy": "",
       "usedTime": ""
+    },
+    {
+      "code": "XHNU2025",
+      "type": "general",
+      "generatedDate": "2025-08-25",
+      "expiryDate": "2026-08-25",
+      "used": false,
+      "usedBy": "",
+      "usedTime": ""
+    },
+    {
+      "code": "MATH2025",
+      "type": "general",
+      "generatedDate": "2025-08-25",
+      "expiryDate": "2026-08-25",
+      "used": false,
+      "usedBy": "",
+      "usedTime": ""
+    },
+    {
+      "code": "GRAD2025",
+      "type": "general",
+      "generatedDate": "2025-08-25",
+      "expiryDate": "2026-08-25",
+      "used": false,
+      "usedBy": "",
+      "usedTime": ""
+    },
+    {
+      "code": "CSXHNU",
+      "type": "general",
+      "generatedDate": "2025-08-25",
+      "expiryDate": "2026-08-25",
+      "used": false,
+      "usedBy": "",
+      "usedTime": ""
+    },
+    {
+      "code": "YWRNYU",
+      "type": "normal",
+      "generatedDate": "2025-08-25T08:55:05.719Z",
+      "expiryDate": "2025-09-24T08:55:05.719Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null
+    },
+    {
+      "code": "A56P8F",
+      "type": "normal",
+      "generatedDate": "2025-08-25T08:55:05.719Z",
+      "expiryDate": "2025-09-24T08:55:05.719Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null
+    },
+    {
+      "code": "Y4G54Y",
+      "type": "normal",
+      "generatedDate": "2025-08-25T08:55:05.719Z",
+      "expiryDate": "2025-09-24T08:55:05.719Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null
+    },
+    {
+      "code": "EV30UV",
+      "type": "normal",
+      "generatedDate": "2025-08-25T08:55:05.719Z",
+      "expiryDate": "2025-09-24T08:55:05.719Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null
+    },
+    {
+      "code": "D0EABT",
+      "type": "normal",
+      "generatedDate": "2025-08-25T08:55:05.719Z",
+      "expiryDate": "2025-09-24T08:55:05.719Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null
     }
   ],
-  "lastUpdated": "2025-08-25T08:49:37.879Z"
+  "uploadDate": "2025-08-25T08:55:09.887Z",
+  "totalCodes": 10,
+  "activeCodes": 10
 }
