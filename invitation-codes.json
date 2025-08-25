@@ -665,36 +665,9 @@
       "used": false,
       "usedBy": null,
       "usedTime": null
-    },
-    {
-      "code": "QY8QFT6NWA",
-      "type": "normal",
-      "generatedDate": "2025-08-25T18:23:15.968Z",
-      "expiryDate": "2026-06-21T18:53:36.725Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null
-    },
-    {
-      "code": "EM2WC5B2MY",
-      "type": "normal",
-      "generatedDate": "2025-08-25T18:23:15.968Z",
-      "expiryDate": "2025-09-24T18:23:15.968Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null
-    },
-    {
-      "code": "WZZXVS6E86",
-      "type": "normal",
-      "generatedDate": "2025-08-25T18:23:15.968Z",
-      "expiryDate": "2025-09-24T18:23:15.968Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null
     }
   ],
-  "uploadDate": "2025-08-25T18:53:43.233Z",
-  "totalCodes": 77,
-  "activeCodes": 69
+  "uploadDate": "2025-08-25T18:54:10.518Z",
+  "totalCodes": 74,
+  "activeCodes": 66
 }
