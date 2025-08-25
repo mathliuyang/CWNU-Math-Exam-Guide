@@ -45,7 +45,17 @@
       "usedBy": "",
       "usedTime": "",
       "school": "SCU"
+    },
+    {
+      "code": "77VHFITA",
+      "type": "school",
+      "generatedDate": "2025-08-25",
+      "expiryDate": "2025-09-24",
+      "used": false,
+      "usedBy": "",
+      "usedTime": "",
+      "school": "四川大学"
     }
   ],
-  "lastUpdated": "2025-08-25T05:59:48.219Z"
+  "lastUpdated": "2025-08-25T06:00:37.420Z"
 }
