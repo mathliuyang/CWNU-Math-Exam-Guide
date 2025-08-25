@@ -1,61 +1,16 @@
 {
-  "codes": [
-    {
-      "code": "IP3FSN8M",
-      "type": "general",
-      "generatedDate": "2025-08-25",
-      "expiryDate": "2025-09-24",
-      "used": false,
-      "usedBy": "",
-      "usedTime": ""
-    },
-    {
-      "code": "FRQ0KBUU",
-      "type": "general",
-      "generatedDate": "2025-08-25",
-      "expiryDate": "2025-09-24",
-      "used": false,
-      "usedBy": "",
-      "usedTime": ""
-    },
-    {
-      "code": "FENKZUKN",
-      "type": "general",
-      "generatedDate": "2025-08-25",
-      "expiryDate": "2025-09-24",
-      "used": false,
-      "usedBy": "",
-      "usedTime": ""
-    },
-    {
-      "code": "QCZ2I0FR",
-      "type": "general",
-      "generatedDate": "2025-08-25",
-      "expiryDate": "2025-09-24",
-      "used": false,
-      "usedBy": "",
-      "usedTime": ""
-    },
-    {
-      "code": "UDJX4FMP",
-      "type": "school",
-      "generatedDate": "2025-08-25",
-      "expiryDate": "2025-09-24",
-      "used": false,
-      "usedBy": "",
-      "usedTime": "",
-      "school": "SCU"
-    },
-    {
-      "code": "77VHFITA",
-      "type": "school",
-      "generatedDate": "2025-08-25",
-      "expiryDate": "2025-09-24",
-      "used": false,
-      "usedBy": "",
-      "usedTime": "",
-      "school": "四川大学"
-    }
+  "predefinedCodes": [
+    "2024CS",
+    "XHNU2025",
+    "MATH2025",
+    "GRAD2025",
+    "CSXHNU"
   ],
-  "lastUpdated": "2025-08-25T06:00:37.420Z"
+  "customCodes": [
+    "3TO47H",
+    "DR6GYF",
+    "ZD4D7N",
+    "VOW8EK",
+    "OFKA62"
+  ]
 }
