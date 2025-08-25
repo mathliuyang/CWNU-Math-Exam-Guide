@@ -23,9 +23,9 @@
       "type": "normal",
       "generatedDate": "2025-08-25T15:31:28.527Z",
       "expiryDate": "2025-09-24T15:31:28.527Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null
+      "used": true,
+      "usedBy": "device_92dulq40h2a_1756138212051",
+      "usedTime": "2025-08-25T16:10:12.051Z"
     },
     {
       "code": "TEYBKY9VA4PKCY48",
@@ -631,7 +631,7 @@
       "usedTime": ""
     }
   ],
-  "uploadDate": "2025-08-25T16:08:59.471Z",
+  "uploadDate": "2025-08-25T16:10:13.593Z",
   "totalCodes": 70,
-  "activeCodes": 67
+  "activeCodes": 66
 }
