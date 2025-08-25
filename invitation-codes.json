@@ -35,7 +35,17 @@
       "used": false,
       "usedBy": "",
       "usedTime": ""
+    },
+    {
+      "code": "UDJX4FMP",
+      "type": "school",
+      "generatedDate": "2025-08-25",
+      "expiryDate": "2025-09-24",
+      "used": false,
+      "usedBy": "",
+      "usedTime": "",
+      "school": "SCU"
     }
   ],
-  "lastUpdated": "2025-08-25T05:57:19.854Z"
+  "lastUpdated": "2025-08-25T05:59:48.219Z"
 }
