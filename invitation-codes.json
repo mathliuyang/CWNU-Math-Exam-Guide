@@ -5,18 +5,18 @@
       "type": "normal",
       "generatedDate": "2025-08-25T15:31:28.527Z",
       "expiryDate": "2025-09-24T15:31:28.527Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null
+      "used": true,
+      "usedBy": "device_k3htcnk8w5d_1756137695658",
+      "usedTime": "2025-08-25T16:02:29.297Z"
     },
     {
       "code": "DJ3FKW9E1UW38717",
       "type": "normal",
       "generatedDate": "2025-08-25T15:31:28.527Z",
       "expiryDate": "2025-09-24T15:31:28.527Z",
-      "used": true,
-      "usedBy": "device_k3htcnk8w5d_1756137695658",
-      "usedTime": "2025-08-25T16:01:58.585Z"
+      "used": false,
+      "usedBy": null,
+      "usedTime": null
     },
     {
       "code": "ZG35PJNDYQ4GY4TN",
@@ -631,7 +631,7 @@
       "usedTime": ""
     }
   ],
-  "uploadDate": "2025-08-25T16:01:58.586Z",
+  "uploadDate": "2025-08-25T16:02:29.298Z",
   "totalCodes": 70,
   "activeCodes": 68
 }
