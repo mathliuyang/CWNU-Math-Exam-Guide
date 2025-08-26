@@ -630,8 +630,7 @@
             <form id="invitation-form">
                 <div class="form-group">
                     <label for="invitation-code" class="form-label">邀请码</label>
-                    <input type="text" id="invitation-code" class="form-input" placeholder="请输入6位、8位、10位、12位或16位邀请码"
-                        autocomplete="off">
+                    <input type="text" id="invitation-code" class="form-input" placeholder="请输入邀请码" autocomplete="off">
                 </div>
 
                 <button type="button" id="verify-button" class="btn btn-primary">
@@ -726,7 +725,7 @@
                 <a href="index.html#page-faq">常见问题</a>
             </div>
             <div class="copyright">
-                &copy; 2023 西华师范大学数学专业考试指南. 保留所有权利.
+                &copy; 2026 西华师范大学数学专业考试指南. 保留所有权利.
             </div>
         </div>
     </footer>
@@ -1012,8 +1011,9 @@
 
             if (isVerified && verifiedCode) {
                 // 查找已验证的邀请码信息
+                // 统一标准化比较逻辑
                 const matchedCode = invitationCodes.find(codeObj =>
-                    codeObj.code.toUpperCase() === verifiedCode.toUpperCase()
+                    codeObj.code.replace(/[^a-zA-Z0-9]/g, '').toUpperCase() === verifiedCode.replace(/[^a-zA-Z0-9]/g, '').toUpperCase()
                 );
 
                 if (matchedCode) {
@@ -1083,8 +1083,8 @@
                 verificationMessage.className = 'message';
 
                 setTimeout(() => {
-                    // 获取输入的邀请码（移除格式化符号）
-                    const code = invitationCodeInput.value.replace(/[^a-zA-Z0-9]/g, '').trim();
+                    // 获取输入的邀请码（保留连字符格式）
+                    const code = invitationCodeInput.value.trim();
 
                     // 验证邀请码，并传递按钮引用以便清除加载状态
                     verifyInvitationCode(code, verifyButton);
@@ -1109,29 +1109,16 @@
 
             // 自动格式化邀请码输入
             invitationCodeInput.addEventListener('input', function () {
-                // 移除所有非字母数字字符
+                // 移除所有非字母数字字符和连字符
                 let value = this.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
 
-                // 根据邀请码长度进行格式化
+                // 根据固定格式SVIP-SOVJUFST进行格式化
                 if (value.length > 0) {
-                    let formattedValue = '';
+                    let formattedValue = value;
 
-                    // 对于不同长度的邀请码，使用不同的分隔方式
-                    if (value.length <= 6) {
-                        // 6位邀请码不添加分隔符
-                        formattedValue = value;
-                    } else if (value.length <= 8) {
-                        // 8位邀请码：XXXX-XXXX
+                    // 按照SVIP-SOVJUFST格式，在第4个字符后添加连字符
+                    if (value.length > 4) {
                         formattedValue = value.substring(0, 4) + '-' + value.substring(4);
-                    } else if (value.length <= 10) {
-                        // 10位邀请码：XXXXX-XXXXX
-                        formattedValue = value.substring(0, 5) + '-' + value.substring(5);
-                    } else if (value.length <= 12) {
-                        // 12位邀请码：XXX-XXX-XXX-XXX
-                        formattedValue = value.match(/.{1,3}/g).join('-');
-                    } else {
-                        // 16位邀请码：XXXX-XXXX-XXXX-XXXX
-                        formattedValue = value.match(/.{1,4}/g).join('-');
                     }
 
                     // 保存当前光标位置
@@ -1156,9 +1143,9 @@
                 const verificationMessage = document.getElementById('verification-message');
 
                 // 清除之前的验证消息
-                if (code.length > 0 && code.length < 6) {
-                    showMessage(verificationMessage, '邀请码格式不正确，请输入6位、8位、10位、12位或16位邀请码', 'warning');
-                } else if ([6, 8, 10, 12, 16].includes(code.length) && verificationMessage) {
+                if (code.length > 0 && code !== 'SVIPSOVJUFST') {
+                    showMessage(verificationMessage, '邀请码格式不正确，参考格式SVIP-XXXXXXXX', 'warning');
+                } else if (code === 'SVIPSOVJUFST' && verificationMessage) {
                     verificationMessage.textContent = '';
                     verificationMessage.className = 'message';
                 }
@@ -1196,9 +1183,11 @@
                     return;
                 }
 
-                // 支持6位、8位、10位、12位和16位邀请码
-                if (![6, 8, 10, 12, 16].includes(code.length)) {
-                    showMessage(verificationMessage, '邀请码格式不正确，请输入6位、8位、10位、12位或16位邀请码', 'error');
+                // 只支持固定格式SVIP-SOVJUFST
+                // 统一标准化处理：移除所有非字母数字字符（包括连字符），转为大写
+                const normalizedCode = code.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().trim();
+                if (normalizedCode !== 'SVIPSOVJUFST') {
+                    showMessage(verificationMessage, '邀请码格式不正确，参考格式SVIP-XXXXXXXX', 'error');
                     if (invitationCodeInput) {
                         invitationCodeInput.focus();
                         shakeElement(invitationCodeInput);
@@ -1207,8 +1196,8 @@
                     return;
                 }
 
-                // 将输入的邀请码转换为大写进行比较
-                const codeUpper = code.toUpperCase();
+                // 使用标准化后的邀请码进行比较（统一处理连字符）
+                const codeUpper = normalizedCode;
 
                 // 设置默认的邀请码数据（防止GitHub获取失败）
                 let finalGithubData = { invitationCodes: [] };
@@ -1243,8 +1232,9 @@
                 });
 
                 // 先查找本地邀请码，确保能快速匹配
+                // 统一标准化比较逻辑
                 let matchedCode = invitationCodes.find(codeObj =>
-                    codeObj.code.toUpperCase() === codeUpper
+                    codeObj.code.replace(/[^a-zA-Z0-9]/g, '').toUpperCase() === codeUpper
                 );
 
                 // 并行检查GitHub数据，不阻塞本地验证
@@ -1252,8 +1242,9 @@
                     try {
                         // 如果GitHub返回了数据，检查是否有该邀请码的最新信息
                         if (githubData.invitationCodes && Array.isArray(githubData.invitationCodes)) {
+                            // 统一标准化比较逻辑，确保带连字符的GitHub验证码能正确匹配
                             const githubMatchedCode = githubData.invitationCodes.find(codeObj =>
-                                codeObj.code.toUpperCase() === codeUpper
+                                codeObj.code.replace(/[^a-zA-Z0-9]/g, '').toUpperCase() === codeUpper
                             );
 
                             // 如果GitHub上有该邀请码的最新信息，使用GitHub上的数据（特别是usageCount）
@@ -1272,8 +1263,9 @@
 
                         // 如果本地和GitHub都没有匹配的邀请码，但有预定义的测试邀请码，则使用预定义邀请码
                         if (!matchedCode && predefinedCodes) {
+                            // 统一标准化比较逻辑
                             matchedCode = predefinedCodes.find(codeObj =>
-                                codeObj.code.toUpperCase() === codeUpper
+                                codeObj.code.replace(/[^a-zA-Z0-9]/g, '').toUpperCase() === codeUpper
                             );
                             if (matchedCode) {
                                 console.log('使用预定义测试邀请码:', matchedCode.code);
@@ -1821,7 +1813,7 @@
             document.getElementById('status-value').textContent = '已验证';
             document.getElementById('device-value').textContent = deviceDisplay;
             document.getElementById('verify-time-value').textContent = usedTime.toLocaleString('zh-CN');
-            document.getElementById('expiry-date-value').textContent = expiryDate ? expiryDate.toLocaleDateString('zh-CN') : '长期有效';
+            document.getElementById('expiry-date-value').textContent = codeObj.type === 'premium' ? '永久' : (expiryDate ? expiryDate.toLocaleDateString('zh-CN') : '长期有效');
             document.getElementById('days-remaining-value').textContent = daysRemaining !== null ?
                 (daysRemaining > 0 ? daysRemaining + '天' : '已过期') : '无限制';
 
