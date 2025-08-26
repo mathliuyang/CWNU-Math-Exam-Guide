@@ -635,9 +635,9 @@
       "type": "normal",
       "generatedDate": "2025-08-25T17:09:40.686Z",
       "expiryDate": "2027-07-27T00:42:55.473Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null
+      "used": true,
+      "usedBy": "device_b2pa4a",
+      "usedTime": "2025-08-26T02:34:55.507Z"
     },
     {
       "code": "M4PV7A2CPRGPV7R7",
@@ -658,7 +658,7 @@
       "usedTime": null
     }
   ],
-  "uploadDate": "2025-08-26T00:42:59.115Z",
+  "uploadDate": "2025-08-26T02:34:56.974Z",
   "totalCodes": 73,
-  "activeCodes": 65
+  "activeCodes": 64
 }
