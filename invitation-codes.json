@@ -493,7 +493,7 @@
       "expiryDate": "2025-09-24T09:04:16.221Z",
       "used": true,
       "usedBy": "device_h3a0b4ncdh6_1756189914256",
-      "usedTime": "2025-08-26T06:38:56.655Z",
+      "usedTime": "2025-08-26T06:39:16.727Z",
       "usageCount": 1
     },
     {
@@ -660,7 +660,7 @@
     },
     {
       "code": "TEST123",
-      "type": "æµè¯",
+      "type": "Ã¦ÂµÂÃ¨Â¯Â",
       "generatedDate": "2023-12-01",
       "expiryDate": "2024-12-31",
       "used": false,
@@ -669,7 +669,7 @@
     },
     {
       "code": "DEMO456",
-      "type": "æ¼ç¤º",
+      "type": "Ã¦Â¼ÂÃ§Â¤Âº",
       "generatedDate": "2023-12-10",
       "expiryDate": "2024-12-31",
       "used": false,
@@ -677,7 +677,7 @@
       "usedTime": null
     }
   ],
-  "uploadDate": "2025-08-26T06:38:58.091Z",
+  "uploadDate": "2025-08-26T06:39:24.029Z",
   "totalCodes": 75,
   "activeCodes": 60
 }
