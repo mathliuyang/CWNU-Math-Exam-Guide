@@ -26,9 +26,9 @@
       "generatedDate": "2025-08-26T07:56:41.465Z",
       "expiryDate": "2026-02-22T07:56:41.465Z",
       "used": true,
-      "usedBy": "device_jgarv2vieyr_1756195545632",
-      "usedTime": "2025-08-26T08:05:45.632Z",
-      "usageCount": 6
+      "usedBy": "device_b2pa4a",
+      "usedTime": "2025-08-26T08:02:43.337Z",
+      "usageCount": 7
     },
     {
       "code": "E5BML28U3LDBB3EJ",
@@ -4011,7 +4011,7 @@
       "usageCount": 1
     }
   ],
-  "uploadDate": "2025-08-26T08:05:46.720Z",
+  "uploadDate": "2025-08-26T08:06:20.640Z",
   "totalCodes": 401,
   "activeCodes": 399
 }
