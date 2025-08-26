@@ -1,27 +1,87 @@
 {
   "invitationCodes": [
     {
-      "code": "VIP-DFTDH1NX",
-      "type": "normal",
-      "generatedDate": "2025-08-26T16:41:30.496Z",
-      "expiryDate": "2025-09-02T16:41:30.496Z",
+      "code": "SVIP-X4KA4WGC",
+      "type": "vip",
+      "generatedDate": "2025-08-26T16:52:25.217Z",
+      "expiryDate": "2025-09-02T16:52:25.217Z",
       "used": false,
       "usedBy": null,
       "usedTime": null,
       "usageCount": 0
     },
     {
-      "code": "CODE-VTFOQD3B",
+      "code": "SVIP-Y4ERWP4Z",
       "type": "normal",
-      "generatedDate": "2025-08-26T16:23:24.265Z",
-      "expiryDate": "2025-09-07T16:23:24.265Z",
+      "generatedDate": "2025-08-26T16:52:22.989Z",
+      "expiryDate": "2025-09-02T16:52:22.989Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-47J1JZ5T",
+      "type": "premium",
+      "generatedDate": "2025-08-26T16:52:21.268Z",
+      "expiryDate": "2025-09-02T16:52:21.268Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-3JP9K1BJ",
+      "type": "测试",
+      "generatedDate": "2025-08-26T16:52:19.267Z",
+      "expiryDate": "2025-09-02T16:52:19.267Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-SOVJUFST",
+      "type": "演示",
+      "generatedDate": "2025-08-26T16:52:17.413Z",
+      "expiryDate": "2025-09-02T16:52:17.413Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-HZ596EKE",
+      "type": "normal",
+      "generatedDate": "2025-08-26T16:52:14.614Z",
+      "expiryDate": "2025-09-02T16:52:14.614Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-GPFOV626",
+      "type": "normal",
+      "generatedDate": "2025-08-26T16:52:14.372Z",
+      "expiryDate": "2025-09-02T16:52:14.372Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-R90I4CPP",
+      "type": "normal",
+      "generatedDate": "2025-08-26T16:52:13.665Z",
+      "expiryDate": "2025-09-02T16:52:13.665Z",
       "used": false,
       "usedBy": null,
       "usedTime": null,
       "usageCount": 0
     }
   ],
-  "uploadDate": "2025-08-26T16:43:16.019Z",
-  "totalCodes": 2,
-  "activeCodes": 2
+  "uploadDate": "2025-08-26T16:52:39.743Z",
+  "totalCodes": 8,
+  "activeCodes": 8
 }
