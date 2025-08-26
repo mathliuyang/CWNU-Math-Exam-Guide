@@ -504,7 +504,7 @@
       "used": true,
       "usedBy": "device_h3a0b4ncdh6_1756189914256",
       "usedTime": "2025-08-26T06:39:34.609Z",
-      "usageCount": 1
+      "usageCount": 2
     },
     {
       "code": "DMUHGN",
@@ -661,7 +661,7 @@
     },
     {
       "code": "TEST123",
-      "type": "ÃÂ¦ÃÂµÃÂÃÂ¨ÃÂ¯ÃÂ",
+      "type": "ÃÂÃÂ¦ÃÂÃÂµÃÂÃÂÃÂÃÂ¨ÃÂÃÂ¯ÃÂÃÂ",
       "generatedDate": "2023-12-01",
       "expiryDate": "2024-12-31",
       "used": false,
@@ -670,7 +670,7 @@
     },
     {
       "code": "DEMO456",
-      "type": "ÃÂ¦ÃÂ¼ÃÂÃÂ§ÃÂ¤ÃÂº",
+      "type": "ÃÂÃÂ¦ÃÂÃÂ¼ÃÂÃÂÃÂÃÂ§ÃÂÃÂ¤ÃÂÃÂº",
       "generatedDate": "2023-12-10",
       "expiryDate": "2024-12-31",
       "used": false,
@@ -678,7 +678,7 @@
       "usedTime": null
     }
   ],
-  "uploadDate": "2025-08-26T06:39:38.818Z",
+  "uploadDate": "2025-08-26T06:40:03.027Z",
   "totalCodes": 75,
   "activeCodes": 59
 }
