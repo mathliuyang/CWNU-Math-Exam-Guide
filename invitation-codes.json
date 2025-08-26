@@ -15,10 +15,10 @@
       "type": "normal",
       "generatedDate": "2025-08-26T07:26:22.055Z",
       "expiryDate": "2025-09-25T07:26:22.055Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null,
-      "usageCount": 0
+      "used": true,
+      "usedBy": "device_hkejpvguavp_1756192704165",
+      "usedTime": "2025-08-26T07:55:12.066Z",
+      "usageCount": 2
     },
     {
       "code": "M84978SBNV",
@@ -101,7 +101,7 @@
       "usageCount": 0
     }
   ],
-  "uploadDate": "2025-08-26T07:51:43.284Z",
+  "uploadDate": "2025-08-26T07:55:13.100Z",
   "totalCodes": 10,
-  "activeCodes": 9
+  "activeCodes": 8
 }
