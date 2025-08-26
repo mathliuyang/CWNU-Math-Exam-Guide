@@ -1,67 +1,527 @@
 {
   "invitationCodes": [
     {
-      "code": "SVIP-X4KA4WGC",
-      "type": "vip",
-      "generatedDate": "2025-08-26T16:52:25.217Z",
-      "expiryDate": "2025-09-02T16:52:25.217Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null,
-      "usageCount": 0
-    },
-    {
-      "code": "SVIP-Y4ERWP4Z",
-      "type": "normal",
-      "generatedDate": "2025-08-26T16:52:22.989Z",
-      "expiryDate": "2025-09-02T16:52:22.989Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null,
-      "usageCount": 0
-    },
-    {
-      "code": "SVIP-47J1JZ5T",
+      "code": "SVIP-MNDRLHDL",
       "type": "premium",
-      "generatedDate": "2025-08-26T16:52:21.268Z",
-      "expiryDate": "2025-09-02T16:52:21.268Z",
+      "generatedDate": "2025-08-26T17:41:18.776Z",
+      "expiryDate": "3025-08-26T17:41:18.776Z",
       "used": false,
       "usedBy": null,
       "usedTime": null,
       "usageCount": 0
     },
     {
-      "code": "SVIP-HZ596EKE",
-      "type": "normal",
-      "generatedDate": "2025-08-26T16:52:14.614Z",
-      "expiryDate": "2025-09-02T16:52:14.614Z",
+      "code": "SVIP-L13T410Y",
+      "type": "premium",
+      "generatedDate": "2025-08-26T17:41:18.776Z",
+      "expiryDate": "3025-08-26T17:41:18.776Z",
       "used": false,
       "usedBy": null,
       "usedTime": null,
       "usageCount": 0
     },
     {
-      "code": "SVIP-GPFOV626",
-      "type": "normal",
-      "generatedDate": "2025-08-26T16:52:14.372Z",
-      "expiryDate": "2025-09-02T16:52:14.372Z",
+      "code": "SVIP-GZO1D6OV",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
       "used": false,
       "usedBy": null,
       "usedTime": null,
       "usageCount": 0
     },
     {
-      "code": "SVIP-R90I4CPP",
-      "type": "normal",
-      "generatedDate": "2025-08-26T16:52:13.665Z",
-      "expiryDate": "2025-09-02T16:52:13.665Z",
+      "code": "SVIP-IKCUPQ3Y",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-A28PHGYC",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-FLK3X3ES",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-XTQ1DP66",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-0BVI37V4",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-Y74R9S15",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-15RBQBT2",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-DDQ0HWCI",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-GHQ5JCXL",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-PE3M3105",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-2ANAJTO6",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-9DG76FVB",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-9FFJPXIC",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-3DBBM2RH",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-PR5M7WER",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-3KT9QFPX",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-SA65OYH4",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-VJG48GG1",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-LKOQGKW5",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-WD3TTVAE",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-F8RLHJ1B",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-3QEQFFUR",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-N9AFC8O8",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-XKE5L19Q",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-7EDKZ44D",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-ABK2NPF6",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-R0211ZUO",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-V40ANP6Q",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-LFZO1JKW",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-PCCAD5KB",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-214LOR78",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-70RF0L3L",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-IZBKHP6D",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-BHHN1F8T",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-XN8DAWJS",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-ZBWKOE9E",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-IIK855AW",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-UXHC6JG5",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-H8LU9F98",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-AV3B2M61",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-USAVXJ77",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-B4HRXRUM",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-U7Y0KXTS",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-FGA5YLDY",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-F0GRO631",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-SQN6IJR8",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-NNKIBSZG",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-SJBGXENW",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-X3JAK4FU",
+      "type": "svip",
+      "generatedDate": "2025-08-26T17:41:10.973Z",
+      "expiryDate": "2025-12-25T15:59:59.000Z",
       "used": false,
       "usedBy": null,
       "usedTime": null,
       "usageCount": 0
     }
   ],
-  "uploadDate": "2025-08-26T17:11:23.314Z",
-  "totalCodes": 6,
-  "activeCodes": 6
+  "uploadDate": "2025-08-26T17:41:24.457Z",
+  "totalCodes": 52,
+  "activeCodes": 52
 }
