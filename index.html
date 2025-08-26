@@ -2630,28 +2630,10 @@
                     <h1 class="text-3xl font-bold">资源获取</h1>
                 </div>
 
-                <!-- 邀请码验证表单 -->
-                <div id="invitation-code-form" class="max-w-md mx-auto bg-white rounded-xl shadow-card p-8 mb-8">
-                    <h3 class="text-xl font-semibold mb-6 text-center">请输入邀请码</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <label for="invitation-code"
-                                class="block text-sm font-medium text-gray-700 mb-1">邀请码</label>
-                            <input type="text" id="invitation-code" name="invitation-code" required
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200"
-                                placeholder="请输入邀请码">
-                        </div>
-                        <p id="verification-message" class="text-sm text-red-500 hidden"></p>
-                        <button id="verify-button" type="button"
-                            class="w-full px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all duration-200 flex items-center justify-center space-x-2">
-                            <i class="fa fa-lock"></i>
-                            <span>验证</span>
-                        </button>
-                    </div>
-                </div>
 
-                <!-- 资源内容区域 (默认隐藏) -->
-                <div id="resources-content" class="hidden">
+
+                <!-- 资源内容区域 (默认可见) -->
+                <div id="resources-content">
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <!-- 历年真题 -->
@@ -4177,424 +4159,166 @@
             // 立即检查DOM元素是否存在
             function checkElements() {
                 // 获取DOM元素
-                const invitationForm = document.getElementById('invitation-code-form');
                 const resourcesContent = document.getElementById('resources-content');
-                const verificationMessage = document.getElementById('verification-message');
-                const verifyButton = document.getElementById('verify-button');
-                const invitationCodeInput = document.getElementById('invitation-code');
 
                 console.log('DOM元素检查结果:');
-                console.log('invitationForm:', invitationForm ? '存在' : '不存在');
                 console.log('resourcesContent:', resourcesContent ? '存在' : '不存在');
-                console.log('verificationMessage:', verificationMessage ? '存在' : '不存在');
-                console.log('verifyButton:', verifyButton ? '存在' : '不存在');
-                console.log('invitationCodeInput:', invitationCodeInput ? '存在' : '不存在');
 
-                // 注意：根据需求，不再检查或使用本地存储中的已验证邀请码
-                // 每次页面加载时都需要重新验证，确保使用最新的GitHub上的邀请码数据
-
-                // 确保所有必要元素都存在
-                if (!invitationForm || !verifyButton || !invitationCodeInput || !verificationMessage) {
-                    console.error('缺少必要的DOM元素，无法初始化邀请码验证功能');
+                if (!resourcesContent) {
+                    console.error('缺少必要的DOM元素，无法初始化资源内容');
                     return;
                 }
 
-                // 添加点击计数器和视觉反馈
-                let clickCount = 0;
-                const feedbackElement = document.createElement('div');
-                feedbackElement.style.position = 'fixed';
-                feedbackElement.style.bottom = '20px';
-                feedbackElement.style.right = '20px';
-                feedbackElement.style.backgroundColor = 'rgba(0,0,0,0.7)';
-                feedbackElement.style.color = 'white';
-                feedbackElement.style.padding = '10px 15px';
-                feedbackElement.style.borderRadius = '5px';
-                feedbackElement.style.zIndex = '1000';
-                feedbackElement.style.display = 'none';
-                document.body.appendChild(feedbackElement);
+                console.log('资源内容功能初始化完成');
+            }
 
-                // 添加简单的点击效果，验证按钮是否能响应
-                verifyButton.style.backgroundColor = '#4CAF50';
-                verifyButton.style.transition = 'all 0.3s ease';
-                verifyButton.onmouseover = function () { this.style.backgroundColor = '#45a049'; };
-                verifyButton.onmouseout = function () { this.style.backgroundColor = '#4CAF50'; };
-
-                // 绑定验证按钮点击事件
-                verifyButton.onclick = function () {
-                    clickCount++;
-                    console.log('验证按钮被点击 - 第' + clickCount + '次');
-
-                    // 显示点击反馈
-                    feedbackElement.textContent = '按钮被点击: ' + clickCount + '次';
-                    feedbackElement.style.display = 'block';
-                    setTimeout(function () {
-                        feedbackElement.style.display = 'none';
-                    }, 2000);
-
-                    // 按钮视觉反馈
-                    this.style.backgroundColor = '#8BC34A';
-                    setTimeout(function () {
-                        verifyButton.style.backgroundColor = '#4CAF50';
-                    }, 300);
-
-                    const code = invitationCodeInput.value.trim();
-                    console.log('输入的邀请码:', code);
-
-                    // 清除之前的消息
-                    verificationMessage.textContent = '';
-                    verificationMessage.classList.add('hidden');
-                    verificationMessage.classList.remove('text-red-500', 'text-green-500');
-
-                    if (!code) {
-                        verificationMessage.textContent = '请输入邀请码';
-                        verificationMessage.classList.add('text-red-500');
-                        verificationMessage.classList.remove('hidden');
-                        return;
-                    }
-
-                    // 支持6位、8位、10位、12位和16位邀请码
-                    if (![6, 8, 10, 12, 16].includes(code.length)) {
-                        verificationMessage.textContent = '邀请码格式不正确，请输入6位、8位、10位、12位或16位邀请码';
-                        verificationMessage.classList.add('text-red-500');
-                        verificationMessage.classList.remove('hidden');
-                        return;
-                    }
-
-                    // 将输入的邀请码转换为大写进行比较，确保大小写不敏感
-                    const codeUpper = code.toUpperCase();
-                    console.log('输入的邀请码(大写):', codeUpper);
-                    console.log('当前有效邀请码数量:', invitationCodes.length);
-
-                    // 查找匹配的邀请码对象，确保大小写不敏感比较
-                    const matchedCode = invitationCodes.find(codeObj => codeObj.code.toUpperCase() === codeUpper);
-
-                    if (matchedCode) {
-                        const now = new Date();
-                        const expiryDate = matchedCode.expiryDate ? new Date(matchedCode.expiryDate) : null;
-
-                        // 默认允许获取设备信息，无需用户确认
-                        localStorage.setItem('has_device_permission', 'true');
-                        let deviceInfo = null;
-
-                        // 获取当前设备ID，使用localStorage持久化存储
-                        let deviceId = localStorage.getItem('invitation_device_id');
-
-                        if (!deviceId) {
-                            // 先尝试获取基本设备信息
-                            const basicDeviceInfo = {
-                                userAgent: navigator.userAgent,
-                                platform: navigator.platform,
-                                screenWidth: screen.width,
-                                screenHeight: screen.height,
-                                colorDepth: screen.colorDepth,
-                                language: navigator.language
-                            };
-
-                            // 直接尝试获取更多设备信息
-                            try {
-                                // 创建一个基于多种设备特征的哈希值
-                                const deviceFingerprint = createDeviceFingerprint(basicDeviceInfo);
-                                deviceInfo = {
-                                    ...basicDeviceInfo,
-                                    fingerprint: deviceFingerprint
-                                };
-
-                                console.log('已获取设备信息:', deviceInfo);
-                            } catch (error) {
-                                console.error('获取设备信息时出错:', error);
-                            }
-
-                            // 生成设备唯一标识，如果有指纹信息则使用指纹，否则使用随机字符串
-                            if (deviceInfo && deviceInfo.fingerprint) {
-                                deviceId = 'device_' + deviceInfo.fingerprint.substring(0, 20);
-                            } else {
-                                deviceId = 'device_' + Math.random().toString(36).substring(2, 15) + '_' + Date.now();
-                            }
-                            // 立即保存到localStorage，确保即使刷新页面也能保持相同ID
-                            localStorage.setItem('invitation_device_id', deviceId);
-                        }
-
-                        // 检查邀请码是否已被其他设备使用
-                        if (matchedCode.used) {
-                            // 如果邀请码已被使用，检查是否是当前设备
-                            if (matchedCode.usedBy === deviceId) {
-                                // 同一设备再次使用已激活的邀请码，允许访问
-                                verificationMessage.textContent = '邀请码已被此设备激活，正在跳转到资源...';
-                                verificationMessage.classList.add('text-green-500');
-                                verificationMessage.classList.remove('hidden');
-                                console.log('邀请码已被此设备激活，允许访问:', codeUpper);
-                            } else {
-                                // 邀请码已被其他设备使用，拒绝访问
-                                verificationMessage.textContent = '邀请码已被其他设备激活，每个邀请码仅限一台设备使用';
-                                verificationMessage.classList.add('text-red-500');
-                                verificationMessage.classList.remove('hidden');
-                                console.log('邀请码已被其他设备使用，拒绝访问:', codeUpper);
-                                return;
-                            }
-                        }
-
-                        // 检查邀请码是否过期
-                        if (expiryDate && now > expiryDate) {
-                            verificationMessage.textContent = '邀请码已过期';
-                            verificationMessage.classList.add('text-red-500');
-                            verificationMessage.classList.remove('hidden');
-                            console.log('邀请码已过期:', codeUpper, '到期时间:', expiryDate);
-                            return;
-                        }
-                        // 验证通过
-                        let expiryMsg = '';
-                        let warningMsg = '';
-                        if (expiryDate) {
-                            const daysRemaining = Math.ceil((expiryDate - now) / (1000 * 60 * 60 * 24));
-                            expiryMsg = ` (有效期至: ${expiryDate.toLocaleDateString('zh-CN')}, 剩余${daysRemaining}天)`;
-
-                            // 当邀请码即将过期时显示警告
-                            if (daysRemaining <= 7 && daysRemaining > 0) {
-                                warningMsg = ' (注意：该邀请码将在7天内过期)';
-                            }
-                        }
-                        verificationMessage.textContent = `邀请码验证通过！${expiryMsg}${warningMsg} 正在跳转到资源...`;
-                        verificationMessage.classList.add('text-green-500');
-                        verificationMessage.classList.remove('hidden');
-
-                        // 设备指纹生成函数
-                        function createDeviceFingerprint(basicInfo) {
-                            // 简单的哈希函数，根据设备信息生成指纹
-                            function simpleHash(str) {
-                                let hash = 0;
-                                if (str.length === 0) return hash;
-                                for (let i = 0; i < str.length; i++) {
-                                    const char = str.charCodeAt(i);
-                                    hash = ((hash << 5) - hash) + char;
-                                    hash = hash & hash; // 转换为32位整数
-                                }
-                                return Math.abs(hash).toString(36);
-                            }
-
-                            // 组合多个设备特征创建指纹
-                            const fingerprintData =
-                                basicInfo.userAgent +
-                                basicInfo.platform +
-                                basicInfo.screenWidth +
-                                basicInfo.screenHeight +
-                                basicInfo.colorDepth +
-                                basicInfo.language;
-
-                            return simpleHash(fingerprintData);
-                        }
-
-                        // 更新邀请码使用状态 - 实现自动统计功能
-                        matchedCode.used = true;
-                        // 使用之前已获取的deviceId（如果不存在则生成并存储）
-                        if (!deviceId) {
-                            deviceId = 'device_' + Math.random().toString(36).substring(2, 15) + '_' + Date.now();
-                            localStorage.setItem('invitation_device_id', deviceId);
-                        }
-                        matchedCode.usedBy = deviceId;
-                        matchedCode.usedTime = now.toISOString();
-
-                        console.log('已更新邀请码使用状态:', {
-                            code: matchedCode.code,
-                            used: matchedCode.used,
-                            usedBy: matchedCode.usedBy,
-                            usedTime: matchedCode.usedTime
-                        });
-
-                        // 注意：根据需求，不再存储验证状态到本地存储
-                        // 每次访问都需要重新验证，确保使用最新的GitHub上的邀请码数据
-                        console.log('验证成功，邀请码信息:', {
-                            code: code.toUpperCase(),
-                            type: matchedCode.type || '普通',
-                            generatedDate: matchedCode.generatedDate,
-                            expiryDate: matchedCode.expiryDate,
-                            daysRemaining: expiryDate ? Math.ceil((expiryDate - now) / (1000 * 60 * 60 * 24)) : null,
-                            used: matchedCode.used,
-                            usedBy: matchedCode.usedBy,
-                            usedTime: matchedCode.usedTime
-                        });
-
-                        // 自动同步更新后的邀请码数据到GitHub
-                        console.log('开始自动同步更新后的邀请码数据到GitHub...');
-                        try {
-                            // 不显示alert提示，静默同步
-                            const token = getGitHubToken();
-                            if (token && token.length > 0) {
-                                // GitHub API配置
-                                const owner = 'mathliuyang';
-                                const repo = 'CWNU-Math-Exam-Guide';
-                                const path = 'invitation-codes.json';
-                                const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
-
-                                // 1. 首先获取GitHub上最新的邀请码数据，避免覆盖其他更新
-                                fetch(apiUrl, {
-                                    method: 'GET',
-                                    headers: {
-                                        'Authorization': `token ${token}`,
-                                        'Accept': 'application/vnd.github.v3+json'
-                                    }
-                                })
-                                    .then(response => {
-                                        if (!response.ok) {
-                                            if (response.status === 404) {
-                                                // 文件不存在，直接使用本地数据创建
-                                                console.log('GitHub上未找到邀请码文件，将使用本地数据创建');
-                                                return Promise.resolve({ sha: null, localData: true });
-                                            }
-                                            throw new Error(`获取最新文件失败: ${response.status}`);
-                                        }
-                                        return response.json();
-                                    })
-                                    .then(fileData => {
-                                        // 如果文件存在且不是本地创建模式，解析GitHub上的最新数据
-                                        if (fileData && !fileData.localData) {
-                                            try {
-                                                // 解码Base64内容
-                                                const decodedContent = atob(fileData.content);
-                                                const githubData = JSON.parse(decodedContent);
-
-                                                // 2. 在最新GitHub数据的基础上应用当前的更新
-                                                console.log('成功获取GitHub最新数据，开始合并更新...');
-
-                                                // 查找并更新当前使用的邀请码
-                                                const githubMatchedCodeIndex = githubData.invitationCodes.findIndex(code => code.code === matchedCode.code);
-                                                if (githubMatchedCodeIndex !== -1) {
-                                                    // 检查GitHub上的邀请码是否已被其他设备激活
-                                                    // 如果已被激活且激活设备不是当前设备，则保持GitHub上的状态不变
-                                                    const githubMatchedCode = githubData.invitationCodes[githubMatchedCodeIndex];
-                                                    if (githubMatchedCode.used && githubMatchedCode.usedBy !== matchedCode.usedBy) {
-                                                        console.log('GitHub上的邀请码已被其他设备激活，保持原状态不变');
-                                                    } else {
-                                                        // 只更新已验证的邀请码状态，保留其他所有数据
-                                                        githubData.invitationCodes[githubMatchedCodeIndex].used = matchedCode.used;
-                                                        githubData.invitationCodes[githubMatchedCodeIndex].usedBy = matchedCode.usedBy;
-                                                        githubData.invitationCodes[githubMatchedCodeIndex].usedTime = matchedCode.usedTime;
-                                                        console.log('成功更新GitHub数据中的邀请码状态');
-                                                    }
-                                                }
-
-                                                // 更新统计信息
-                                                githubData.uploadDate = new Date().toISOString();
-                                                githubData.totalCodes = githubData.invitationCodes.length;
-                                                githubData.activeCodes = githubData.invitationCodes.filter(code => !code.used && new Date().toISOString().split('T')[0] <= code.expiryDate).length;
-
-                                                // 3. 准备上传的数据
-                                                const jsonStr = JSON.stringify(githubData, null, 2);
-                                                return {
-                                                    sha: fileData.sha,
-                                                    content: btoa(unescape(encodeURIComponent(jsonStr)))
-                                                };
-                                            } catch (error) {
-                                                console.error('解析GitHub数据失败，将使用本地数据:', error);
-                                                // 解析失败时回退到使用本地数据
-                                                const data = {
-                                                    invitationCodes: invitationCodes,
-                                                    uploadDate: new Date().toISOString(),
-                                                    totalCodes: invitationCodes.length,
-                                                    activeCodes: invitationCodes.filter(code => !code.used && new Date().toISOString().split('T')[0] <= code.expiryDate).length
-                                                };
-                                                const jsonStr = JSON.stringify(data, null, 2);
-                                                return {
-                                                    sha: fileData ? fileData.sha : null,
-                                                    content: btoa(unescape(encodeURIComponent(jsonStr)))
-                                                };
-                                            }
-                                        } else {
-                                            // 文件不存在或解析失败，使用本地数据
-                                            const data = {
-                                                invitationCodes: invitationCodes,
-                                                uploadDate: new Date().toISOString(),
-                                                totalCodes: invitationCodes.length,
-                                                activeCodes: invitationCodes.filter(code => !code.used && new Date().toISOString().split('T')[0] <= code.expiryDate).length
-                                            };
-                                            const jsonStr = JSON.stringify(data, null, 2);
-                                            return {
-                                                sha: null,
-                                                content: btoa(unescape(encodeURIComponent(jsonStr)))
-                                            };
-                                        }
-                                    })
-                                    .then(uploadData => {
-                                        // 构建请求体
-                                        const requestBody = {
-                                            message: `邀请码使用记录更新 - ${matchedCode.code}`,
-                                            content: uploadData.content
-                                        };
-
-                                        // 如果文件存在，添加SHA
-                                        if (uploadData.sha) {
-                                            requestBody.sha = uploadData.sha;
-                                        }
-
-                                        // 4. 发送更新请求
-                                        console.log('准备上传合并后的数据到GitHub...');
-                                        return fetch(apiUrl, {
-                                            method: uploadData.sha ? 'PUT' : 'POST',
-                                            headers: {
-                                                'Authorization': `token ${token}`,
-                                                'Content-Type': 'application/json',
-                                                'Accept': 'application/vnd.github.v3+json'
-                                            },
-                                            body: JSON.stringify(requestBody)
-                                        });
-                                    })
-                                    .then(response => {
-                                        if (!response.ok) {
-                                            throw new Error(`上传文件失败: ${response.status}`);
-                                        }
-                                        return response.json();
-                                    })
-                                    .then(data => {
-                                        console.log('自动同步邀请码数据到GitHub成功:', data);
-                                        // 同步成功后，更新本地邀请码数组为最新的GitHub数据
-                                        // 这样可以确保下次操作使用的是最新数据
-                                        console.log('更新本地邀请码数据为最新版本');
-                                    })
-                                    .catch(error => {
-                                        console.error('自动同步邀请码数据到GitHub失败:', error);
-                                    });
-                            } else {
-                                console.warn('GitHub Token无效，无法自动同步邀请码数据');
-                            }
-                        } catch (error) {
-                            console.error('自动同步过程发生异常:', error);
-                        }
-
-                        // 显示资源
-                        setTimeout(function () {
-                            invitationForm.classList.add('hidden');
-                            resourcesContent.classList.remove('hidden');
-                            console.log('显示资源内容');
-                        }, 1000);
+            // 检查是否已验证邀请码
+            function checkVerifiedStatus() {
+                const isVerified = localStorage.getItem('invitation_verified') === 'true';
+                const resourcesContent = document.getElementById('resources-content');
+                
+                if (resourcesContent) {
+                    // 始终显示资源内容，但下载链接需要验证
+                    resourcesContent.classList.remove('hidden');
+                    if (isVerified) {
+                        console.log('检测到已验证邀请码，资源下载已解锁');
                     } else {
-                        // 验证失败
-                        verificationMessage.textContent = '邀请码无效，请重试';
-                        verificationMessage.classList.add('text-red-500');
-                        verificationMessage.classList.remove('hidden');
-                        invitationCodeInput.select();
-                        console.log('邀请码无效:', code);
-                        console.log('当前有效邀请码列表:', invitationCodes);
-                        console.log('当前有效邀请码数量:', invitationCodes.length);
+                        console.log('未检测到已验证邀请码，点击下载链接将跳转到验证页面');
                     }
-                };
-
-                // 绑定回车键提交
-                invitationCodeInput.onkeypress = function (e) {
-                    if (e.key === 'Enter') {
-                        console.log('回车键被按下，触发验证');
-                        verifyButton.click();
-                    }
-                };
-
-
-
-                console.log('邀请码验证功能初始化完成');
+                } else {
+                    console.error('无法获取必要的DOM元素');
+                }
+                
+                // 无论验证状态如何，都更新星级考点的显示
+                if (typeof setupStarPointVerification === 'function') {
+                    setupStarPointVerification();
+                }
             }
 
             // 立即检查元素并初始化
             checkElements();
+            checkVerifiedStatus();
+            setupStarPointVerification();
 
             // 为了确保元素已经加载，1秒后再次检查
-            setTimeout(checkElements, 1000);
+            setTimeout(function() {
+                checkElements();
+                checkVerifiedStatus();
+                setupStarPointVerification();
+            }, 1000);
+
+            // 添加测试功能，用于清除验证状态（仅用于测试）
+            function clearVerificationStatus() {
+                localStorage.removeItem('invitation_verified');
+                localStorage.removeItem('verified_code');
+                console.log('已清除验证状态');
+                // 刷新页面以应用更改
+                location.reload();
+            }
+
+            // 如果是测试环境或开发环境，可以添加清除验证状态的按钮
+            // 这里我们添加一个按特定组合键清除验证状态的功能
+            document.addEventListener('keydown', function(e) {
+                // Ctrl+Shift+C 清除验证状态
+                if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+                    clearVerificationStatus();
+                }
+            });
+
+            // 滚动到邀请码验证表单并显示 - 绑定到window对象以便在HTML中访问
+            window.scrollToVerificationForm = function() {
+                // 跳转到专门的验证页面
+                window.location.href = 'verification.html';
+            };
+            
+            // 为星级考点添加验证逻辑
+            function setupStarPointVerification() {
+                // 检查用户是否已验证
+                const isVerified = localStorage.getItem('invitation_verified') === 'true';
+                
+                // 获取所有星级考点的内容区域
+                const starPointSections = document.querySelectorAll('.p-4.bg-red-50, .p-4.bg-orange-50, .p-4.bg-yellow-50, .p-4.bg-blue-50');
+                
+                // 保存原始内容
+                starPointSections.forEach(section => {
+                    // 只处理还没有被处理过的区域
+                    if (!section.hasAttribute('data-original-content')) {
+                        // 保存原始内容
+                        section.setAttribute('data-original-content', section.innerHTML);
+                    }
+                });
+                
+                // 根据验证状态显示或隐藏内容
+                starPointSections.forEach(section => {
+                    const originalContent = section.getAttribute('data-original-content');
+                    const levelElement = section.querySelector('.flex.items-center.mb-2');
+                    const contentElement = section.querySelector('p');
+                    
+                    if (isVerified) {
+                        // 已验证，显示完整内容
+                        section.innerHTML = originalContent;
+                    } else {
+                        // 未验证，只显示考点级别，隐藏具体内容
+                        if (levelElement && contentElement) {
+                            // 创建锁定提示
+                            const lockHint = document.createElement('div');
+                            lockHint.className = 'text-sm text-gray-500 flex items-center mt-2 space-x-2';
+                            lockHint.innerHTML = '<i class="fa fa-lock mr-1"></i> 请验证邀请码查看具体考点内容 <button class="bg-blue-500 text-white text-xs px-2 py-1 rounded hover:bg-blue-600 transition-colors" onclick="scrollToVerificationForm()">去验证</button>';
+                            
+                            // 清空内容并只添加级别和锁定提示
+                            section.innerHTML = '';
+                            section.appendChild(levelElement);
+                            section.appendChild(lockHint);
+                        }
+                    }
+                });
+            }
+            
+            // 为下载链接添加验证逻辑
+            function setupDownloadLinks() {
+                // 使用更可靠的方式找到所有下载按钮的链接
+                // 先找到所有带下载图标的元素
+                const downloadIcons = document.querySelectorAll('i.fa-download');
+                console.log('找到下载图标数量:', downloadIcons.length);
+
+                // 存储所有需要验证的下载链接
+                const downloadLinks = [];
+                
+                // 从图标找到对应的a标签
+                downloadIcons.forEach(icon => {
+                    const button = icon.closest('button');
+                    const link = button ? button.closest('a') : null;
+                    if (link) {
+                        downloadLinks.push(link);
+                    }
+                });
+                
+                console.log('找到下载链接数量:', downloadLinks.length);
+
+                // 为每个下载链接添加验证逻辑
+                downloadLinks.forEach(link => {
+                    // 保存原始链接
+                    const originalLink = link.href;
+
+                    // 添加点击事件监听器
+                    link.onclick = function(e) {
+                        const isVerified = localStorage.getItem('invitation_verified') === 'true';
+                        
+                        if (!isVerified) {
+                            // 未验证，阻止默认行为并跳转到专门的验证页面
+                            e.preventDefault();
+                            window.location.href = 'verification.html';
+                            console.log('未验证邀请码，跳转到验证页面');
+                        } else {
+                            // 已验证，允许下载
+                            console.log('已验证邀请码，允许下载');
+                        }
+                    };
+                });
+            }
+
+            // 设置下载链接验证逻辑
+            setTimeout(setupDownloadLinks, 1500);
 
             // 检查是否为管理员模式
             const urlParams = new URLSearchParams(window.location.search);
