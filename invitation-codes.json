@@ -656,9 +656,27 @@
       "used": false,
       "usedBy": null,
       "usedTime": null
+    },
+    {
+      "code": "TEST123",
+      "type": "测试",
+      "generatedDate": "2023-12-01",
+      "expiryDate": "2024-12-31",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null
+    },
+    {
+      "code": "DEMO456",
+      "type": "演示",
+      "generatedDate": "2023-12-10",
+      "expiryDate": "2024-12-31",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null
     }
   ],
-  "uploadDate": "2025-08-26T04:33:23.864Z",
-  "totalCodes": 73,
+  "uploadDate": "2025-08-26T06:06:08.577Z",
+  "totalCodes": 75,
   "activeCodes": 63
 }
