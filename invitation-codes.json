@@ -25,10 +25,10 @@
       "type": "normal",
       "generatedDate": "2025-08-26T07:56:41.465Z",
       "expiryDate": "2026-02-22T07:56:41.465Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null,
-      "usageCount": 0
+      "used": true,
+      "usedBy": "device_waj6c2b0n6j_1756195287580",
+      "usedTime": "2025-08-26T08:01:27.580Z",
+      "usageCount": 2
     },
     {
       "code": "E5BML28U3LDBB3EJ",
@@ -4011,7 +4011,7 @@
       "usageCount": 1
     }
   ],
-  "uploadDate": "2025-08-26T07:58:31.012Z",
+  "uploadDate": "2025-08-26T08:01:28.626Z",
   "totalCodes": 401,
-  "activeCodes": 400
+  "activeCodes": 399
 }
