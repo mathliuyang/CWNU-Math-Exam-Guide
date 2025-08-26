@@ -638,9 +638,10 @@
                     <span class="text">验证邀请码</span>
                     <div class="loader" style="display: none;"></div>
                 </button>
-                
+
                 <!-- 测试GitHub连接失败处理的按钮 - 在控制台输入testGitHubFailureHandling()可手动触发 -->
-                <button type="button" id="test-failure-btn" class="btn btn-secondary" style="margin-top: 0.75rem; display: none;">
+                <button type="button" id="test-failure-btn" class="btn btn-secondary"
+                    style="margin-top: 0.75rem; display: none;">
                     测试GitHub连接失败处理
                 </button>
 
@@ -783,24 +784,24 @@
 
             // 设置邀请码输入格式化
             setupCodeInputFormatting();
-            
+
             // 设置定期同步机制
             setupPeriodicSync();
-            
+
             // 为测试按钮添加事件监听器（仅在开发模式或控制台手动设置时显示）
             const testButton = document.getElementById('test-failure-btn');
             if (testButton) {
                 // 可以在控制台通过 `window.showTestButton = true` 来显示测试按钮
-                testButton.addEventListener('click', function() {
+                testButton.addEventListener('click', function () {
                     if (window.testGitHubFailureHandling && typeof window.testGitHubFailureHandling === 'function') {
                         window.testGitHubFailureHandling();
                     } else {
                         alert('测试函数未找到，请刷新页面后重试。');
                     }
                 });
-                
+
                 // 允许在控制台手动显示测试按钮
-                window.toggleTestButton = function(show) {
+                window.toggleTestButton = function (show) {
                     testButton.style.display = show ? 'block' : 'none';
                 };
             }
@@ -839,7 +840,7 @@
 
             return token;
         }
-        
+
         // 定期同步邀请码使用次数到GitHub
         function setupPeriodicSync() {
             // 检查是否有未同步的更新
@@ -847,21 +848,21 @@
                 try {
                     // 获取最后一次同步时间
                     const lastSyncTime = localStorage.getItem('last_github_sync_time');
-                    
+
                     // 如果超过5分钟没有同步，或者没有同步记录，则尝试同步
                     if (!lastSyncTime || (new Date() - new Date(lastSyncTime)) > 5 * 60 * 1000) {
                         console.log('执行定期同步检查...');
-                        
+
                         // 检查是否已验证
                         const isVerified = localStorage.getItem('invitation_verified') === 'true';
                         const verifiedCode = localStorage.getItem('verified_code');
-                        
+
                         if (isVerified && verifiedCode) {
                             // 查找当前设备使用的邀请码
                             const matchedCode = invitationCodes.find(codeObj =>
                                 codeObj.code.toUpperCase() === verifiedCode.toUpperCase()
                             );
-                            
+
                             if (matchedCode) {
                                 // 再次尝试同步更新
                                 console.log('尝试重新同步邀请码使用次数:', matchedCode.code);
@@ -873,10 +874,10 @@
                     console.error('定期同步检查时出错:', error);
                 }
             };
-            
+
             // 每30秒检查一次
             setInterval(checkForPendingSync, 30 * 1000);
-            
+
             // 立即执行一次检查
             checkForPendingSync();
         }
@@ -886,15 +887,15 @@
             const MAX_RETRIES = 3;
             let retryCount = 0;
             const TIMEOUT_MS = 10000; // 10秒超时
-            
+
             function attemptFetch() {
                 console.log(`正在从GitHub刷新邀请码数据 (第${retryCount + 1}/${MAX_RETRIES}次)...`, githubRawUrl);
-                
+
                 // 创建带超时的fetch请求
-                const timeoutPromise = new Promise((_, reject) => 
+                const timeoutPromise = new Promise((_, reject) =>
                     setTimeout(() => reject(new Error('请求超时')), TIMEOUT_MS)
                 );
-                
+
                 Promise.race([
                     fetch(githubRawUrl, {
                         headers: {
@@ -903,103 +904,103 @@
                     }),
                     timeoutPromise
                 ])
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP错误! 状态码: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.invitationCodes && Array.isArray(data.invitationCodes)) {
-                        // 合并GitHub数据和本地示例数据，但优先使用GitHub上的数据（包括使用次数等）
-                        const githubCodes = data.invitationCodes;
-                        
-                        // 创建一个映射，便于快速查找GitHub上的邀请码
-                        const githubCodeMap = new Map();
-                        githubCodes.forEach(code => {
-                            githubCodeMap.set(code.code.toUpperCase(), code);
-                        });
-                        
-                        // 合并数据 - 对于GitHub上已有的邀请码，使用GitHub数据；对于没有的，使用本地示例数据
-                        const allCodes = [];
-                        
-                        // 首先添加GitHub上的所有邀请码
-                        allCodes.push(...githubCodes);
-                        
-                        // 然后添加本地示例数据中GitHub上不存在的邀请码
-                        predefinedCodes.forEach(localCode => {
-                            if (!githubCodeMap.has(localCode.code.toUpperCase())) {
-                                allCodes.push(localCode);
-                            }
-                        });
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP错误! 状态码: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.invitationCodes && Array.isArray(data.invitationCodes)) {
+                            // 合并GitHub数据和本地示例数据，但优先使用GitHub上的数据（包括使用次数等）
+                            const githubCodes = data.invitationCodes;
 
-                        predefinedCodes = allCodes;
-                        console.log('成功加载邀请码数据，总数:', allCodes.length);
-                    } else {
-                        console.warn('GitHub数据格式不正确，将使用本地示例数据');
-                    }
+                            // 创建一个映射，便于快速查找GitHub上的邀请码
+                            const githubCodeMap = new Map();
+                            githubCodes.forEach(code => {
+                                githubCodeMap.set(code.code.toUpperCase(), code);
+                            });
 
-                    // 更新邀请码列表
-                    invitationCodes = predefinedCodes;
-                    validInvitationCodes = invitationCodes.map(code => code.code.toUpperCase());
+                            // 合并数据 - 对于GitHub上已有的邀请码，使用GitHub数据；对于没有的，使用本地示例数据
+                            const allCodes = [];
 
-                    console.log('更新后的邀请码列表:', invitationCodes);
-                    console.log('更新后的兼容旧版邀请码列表:', validInvitationCodes);
-                    
-                    // 将GitHub数据备份到本地存储，作为备用
-                    try {
-                        localStorage.setItem('local_invitation_codes', JSON.stringify(invitationCodes));
-                        localStorage.setItem('last_github_sync_time', new Date().toISOString());
-                        console.log('已将GitHub邀请码数据备份到本地存储');
-                    } catch (e) {
-                        console.error('备份邀请码数据到本地存储失败:', e);
-                    }
-                })
-                .catch(error => {
-                    console.error('获取邀请码数据时出错:', error);
-                    retryCount++;
-                    
-                    if (retryCount < MAX_RETRIES) {
-                        // 指数退避重试
-                        const delay = Math.pow(2, retryCount) * 1000;
-                        console.log(`将在${delay}ms后重试...`);
-                        setTimeout(attemptFetch, delay);
-                    } else {
-                        // 重试次数用完
-                        console.log('重试次数用完，尝试使用本地存储的邀请码数据作为备用');
-                        
-                        // 检查是否有本地存储的邀请码作为备用
+                            // 首先添加GitHub上的所有邀请码
+                            allCodes.push(...githubCodes);
+
+                            // 然后添加本地示例数据中GitHub上不存在的邀请码
+                            predefinedCodes.forEach(localCode => {
+                                if (!githubCodeMap.has(localCode.code.toUpperCase())) {
+                                    allCodes.push(localCode);
+                                }
+                            });
+
+                            predefinedCodes = allCodes;
+                            console.log('成功加载邀请码数据，总数:', allCodes.length);
+                        } else {
+                            console.warn('GitHub数据格式不正确，将使用本地示例数据');
+                        }
+
+                        // 更新邀请码列表
+                        invitationCodes = predefinedCodes;
+                        validInvitationCodes = invitationCodes.map(code => code.code.toUpperCase());
+
+                        console.log('更新后的邀请码列表:', invitationCodes);
+                        console.log('更新后的兼容旧版邀请码列表:', validInvitationCodes);
+
+                        // 将GitHub数据备份到本地存储，作为备用
                         try {
-                            const storedCodes = localStorage.getItem('local_invitation_codes');
-                            if (storedCodes) {
-                                const parsedCodes = JSON.parse(storedCodes);
-                                if (parsedCodes && Array.isArray(parsedCodes) && parsedCodes.length > 0) {
-                                    console.log('成功使用本地存储的邀请码数据作为备用');
-                                    invitationCodes = parsedCodes;
-                                    validInvitationCodes = invitationCodes.map(code => code.code.toUpperCase());
-                                    console.log('使用本地存储的邀请码列表:', invitationCodes);
+                            localStorage.setItem('local_invitation_codes', JSON.stringify(invitationCodes));
+                            localStorage.setItem('last_github_sync_time', new Date().toISOString());
+                            console.log('已将GitHub邀请码数据备份到本地存储');
+                        } catch (e) {
+                            console.error('备份邀请码数据到本地存储失败:', e);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('获取邀请码数据时出错:', error);
+                        retryCount++;
+
+                        if (retryCount < MAX_RETRIES) {
+                            // 指数退避重试
+                            const delay = Math.pow(2, retryCount) * 1000;
+                            console.log(`将在${delay}ms后重试...`);
+                            setTimeout(attemptFetch, delay);
+                        } else {
+                            // 重试次数用完
+                            console.log('重试次数用完，尝试使用本地存储的邀请码数据作为备用');
+
+                            // 检查是否有本地存储的邀请码作为备用
+                            try {
+                                const storedCodes = localStorage.getItem('local_invitation_codes');
+                                if (storedCodes) {
+                                    const parsedCodes = JSON.parse(storedCodes);
+                                    if (parsedCodes && Array.isArray(parsedCodes) && parsedCodes.length > 0) {
+                                        console.log('成功使用本地存储的邀请码数据作为备用');
+                                        invitationCodes = parsedCodes;
+                                        validInvitationCodes = invitationCodes.map(code => code.code.toUpperCase());
+                                        console.log('使用本地存储的邀请码列表:', invitationCodes);
+                                    } else {
+                                        // 使用本地示例数据
+                                        console.log('本地存储数据无效，使用本地示例数据');
+                                        invitationCodes = predefinedCodes;
+                                        validInvitationCodes = invitationCodes.map(code => code.code.toUpperCase());
+                                    }
                                 } else {
                                     // 使用本地示例数据
-                                    console.log('本地存储数据无效，使用本地示例数据');
+                                    console.log('本地存储中没有备用邀请码数据，使用本地示例数据');
                                     invitationCodes = predefinedCodes;
                                     validInvitationCodes = invitationCodes.map(code => code.code.toUpperCase());
                                 }
-                            } else {
+                            } catch (e) {
+                                console.error('读取本地存储邀请码失败:', e);
                                 // 使用本地示例数据
-                                console.log('本地存储中没有备用邀请码数据，使用本地示例数据');
                                 invitationCodes = predefinedCodes;
                                 validInvitationCodes = invitationCodes.map(code => code.code.toUpperCase());
                             }
-                        } catch (e) {
-                            console.error('读取本地存储邀请码失败:', e);
-                            // 使用本地示例数据
-                            invitationCodes = predefinedCodes;
-                            validInvitationCodes = invitationCodes.map(code => code.code.toUpperCase());
                         }
-                    }
-                });
+                    });
             }
-            
+
             // 开始第一次尝试
             attemptFetch();
         }
@@ -1028,35 +1029,35 @@
             const verificationCard = document.getElementById('verification-card');
             verificationCard.classList.add('verified');
         }
-        
+
         // 测试GitHub连接失败处理机制的函数
-        window.testGitHubFailureHandling = function() {
+        window.testGitHubFailureHandling = function () {
             console.log('=== 开始测试GitHub连接失败处理机制 ===');
-            
+
             // 1. 先备份原始的githubRawUrl
             const originalGithubRawUrl = githubRawUrl;
-            
+
             // 2. 创建测试用的本地存储数据
             const testCodes = [
                 { code: 'TEST001', type: 'test', generatedDate: '2024-01-01', expiryDate: '2025-12-31', used: false, usedBy: '', usedTime: '', usageCount: 0 },
                 { code: 'TEST002', type: 'test', generatedDate: '2024-01-01', expiryDate: '2025-12-31', used: false, usedBy: '', usedTime: '', usageCount: 2 }
             ];
-            
+
             // 3. 保存测试数据到本地存储
             localStorage.setItem('local_invitation_codes', JSON.stringify(testCodes));
             localStorage.setItem('last_github_sync_time', new Date().toISOString());
             console.log('已保存测试数据到本地存储:', testCodes);
-            
+
             // 4. 修改githubRawUrl为无效地址，模拟连接失败
             githubRawUrl = 'https://invalid-url-that-will-fail-123456789.com/invitation-codes.json';
             console.log('已修改githubRawUrl为无效地址，将模拟连接失败');
-            
+
             // 5. 调用refresh函数测试错误处理
             setTimeout(() => {
                 console.log('调用refreshInvitationCodesFromGitHub测试错误处理...');
                 refreshInvitationCodesFromGitHub();
             }, 1000);
-            
+
             // 6. 5秒后恢复原始设置
             setTimeout(() => {
                 console.log('恢复原始设置');
@@ -1211,7 +1212,7 @@
 
                 // 设置默认的邀请码数据（防止GitHub获取失败）
                 let finalGithubData = { invitationCodes: [] };
-                
+
                 // 创建一个Promise来获取GitHub数据，设置超时处理
                 const fetchGitHubData = new Promise((resolve) => {
                     // 设置5秒超时
@@ -1219,7 +1220,7 @@
                         console.warn('从GitHub获取数据超时，将使用本地缓存数据');
                         resolve({ invitationCodes: [] });
                     }, 5000);
-                    
+
                     // 尝试从GitHub获取数据
                     fetch(githubRawUrl)
                         .then(response => {
@@ -1254,7 +1255,7 @@
                             const githubMatchedCode = githubData.invitationCodes.find(codeObj =>
                                 codeObj.code.toUpperCase() === codeUpper
                             );
-                             
+
                             // 如果GitHub上有该邀请码的最新信息，使用GitHub上的数据（特别是usageCount）
                             if (githubMatchedCode) {
                                 console.log('从GitHub获取到最新的邀请码数据:', githubMatchedCode);
@@ -1271,7 +1272,7 @@
 
                         // 如果本地和GitHub都没有匹配的邀请码，但有预定义的测试邀请码，则使用预定义邀请码
                         if (!matchedCode && predefinedCodes) {
-                            matchedCode = predefinedCodes.find(codeObj => 
+                            matchedCode = predefinedCodes.find(codeObj =>
                                 codeObj.code.toUpperCase() === codeUpper
                             );
                             if (matchedCode) {
@@ -1297,35 +1298,35 @@
                                     // 同一设备再次使用
                                     // 增加使用次数 - 基于从GitHub获取的最新次数
                                     matchedCode.usageCount = (matchedCode.usageCount || 0) + 1;
-                                      
+
                                     // 确保更新反映到全局数组中
-                            const codeIndex = invitationCodes.findIndex(code => code.code.toUpperCase() === codeUpper);
-                            if (codeIndex !== -1) {
-                                invitationCodes[codeIndex] = { ...matchedCode };
-                                console.log('已更新全局邀请码数组中的状态和使用次数:', invitationCodes[codeIndex]);
-                            }
-                                      
-                            // 显示成功消息和信息
-                            showMessage(verificationMessage, `邀请码已被此设备激活，使用次数: ${matchedCode.usageCount}`, 'success');
-                            showVerificationInfo(matchedCode);
+                                    const codeIndex = invitationCodes.findIndex(code => code.code.toUpperCase() === codeUpper);
+                                    if (codeIndex !== -1) {
+                                        invitationCodes[codeIndex] = { ...matchedCode };
+                                        console.log('已更新全局邀请码数组中的状态和使用次数:', invitationCodes[codeIndex]);
+                                    }
 
-                            // 添加成功动画
-                            successAnimation();
+                                    // 显示成功消息和信息
+                                    showMessage(verificationMessage, `邀请码已被此设备激活，使用次数: ${matchedCode.usageCount}`, 'success');
+                                    showVerificationInfo(matchedCode);
 
-                            // 更新验证状态
-                            localStorage.setItem('invitation_verified', 'true');
-                            localStorage.setItem('verified_code', codeUpper);
+                                    // 添加成功动画
+                                    successAnimation();
 
-                            // 清除加载状态
-                            cleanup();
+                                    // 更新验证状态
+                                    localStorage.setItem('invitation_verified', 'true');
+                                    localStorage.setItem('verified_code', codeUpper);
 
-                            // 上传更新后的邀请码数据到GitHub - 确保使用最新的次数
-                            uploadUpdatedInvitationCodeToGithub(matchedCode);
-                               
-                            // 增加等待时间，确保异步上传有足够时间完成
-                            setTimeout(() => {
-                                window.location.href = 'index.html#page-resources';
-                            }, 5000);
+                                    // 清除加载状态
+                                    cleanup();
+
+                                    // 上传更新后的邀请码数据到GitHub - 确保使用最新的次数
+                                    uploadUpdatedInvitationCodeToGithub(matchedCode);
+
+                                    // 增加等待时间，确保异步上传有足够时间完成
+                                    setTimeout(() => {
+                                        window.location.href = 'index.html#page-resources';
+                                    }, 5000);
                                 } else {
                                     // 邀请码已被其他设备使用
                                     showMessage(verificationMessage, '邀请码已被其他设备激活，每个邀请码仅限一台设备使用', 'error');
@@ -1350,7 +1351,7 @@
                             // 验证通过
                             // 增加使用次数 - 基于从GitHub获取的最新次数
                             matchedCode.usageCount = (matchedCode.usageCount || 0) + 1;
-                               
+
                             let expiryMsg = '';
                             let warningMsg = '';
 
@@ -1566,10 +1567,10 @@
             // 设置最大重试次数
             const MAX_RETRIES = 3;
             let retryCount = 0;
-            
+
             function attemptUpload() {
                 console.log(`尝试上传邀请码使用次数 (第${retryCount + 1}/${MAX_RETRIES}次):`, updatedCode.code);
-                
+
                 const token = getGitHubToken();
                 if (!token) {
                     console.error('无法获取GitHub Token');
@@ -1583,145 +1584,145 @@
                         'Accept': 'application/vnd.github.v3+json'
                     }
                 })
-                .then(response => {
-                    console.log('获取GitHub文件状态:', response.status);
-                    if (!response.ok) {
-                        if (response.status === 404) {
-                            // 文件不存在，使用全局数组（包含最新更新的邀请码）
-                            console.log('GitHub文件不存在，使用本地最新数据创建文件');
-                            return { content: btoa(JSON.stringify({ invitationCodes: invitationCodes })) };
-                        }
-                        throw new Error(`获取文件失败: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    try {
-                        // 解码现有数据
-                        let existingData = {};
-                        try {
-                            existingData = data.content ? JSON.parse(atob(data.content)) : {};
-                        } catch (e) {
-                            console.error('解析现有数据失败，使用空对象:', e);
-                            existingData = { invitationCodes: [] };
-                        }
-                        
-                        // 确保existingData是正确的结构
-                        if (!Array.isArray(existingData.invitationCodes)) {
-                            existingData.invitationCodes = [];
-                        }
-                        
-                        console.log('现有邀请码数量:', existingData.invitationCodes.length);
-                        
-                        // 查找并更新特定邀请码
-                        const codeIndex = existingData.invitationCodes.findIndex(code => 
-                            code.code.toUpperCase() === updatedCode.code.toUpperCase()
-                        );
-                        
-                        // 创建要更新的邀请码副本
-                        let codeToUpdate = { ...updatedCode };
-                        
-                        if (codeIndex !== -1) {
-                            // 如果GitHub上已存在此邀请码，确保使用GitHub上最新的usageCount作为基础
-                            // 这确保即使有多个设备同时更新，也能正确累计次数
-                            const githubCode = existingData.invitationCodes[codeIndex];
-                            const latestUsageCount = Math.max(
-                                (githubCode.usageCount || 0),
-                                (updatedCode.usageCount || 0)
-                            );
-                            
-                            // 如果本地和GitHub的次数不一致，取最大值并+1，确保不会丢失任何验证
-                            if ((githubCode.usageCount || 0) !== (updatedCode.usageCount || 0)) {
-                                codeToUpdate.usageCount = latestUsageCount + 1;
-                                console.log('检测到次数不一致，使用最大值并+1:', codeToUpdate.usageCount);
+                    .then(response => {
+                        console.log('获取GitHub文件状态:', response.status);
+                        if (!response.ok) {
+                            if (response.status === 404) {
+                                // 文件不存在，使用全局数组（包含最新更新的邀请码）
+                                console.log('GitHub文件不存在，使用本地最新数据创建文件');
+                                return { content: btoa(JSON.stringify({ invitationCodes: invitationCodes })) };
                             }
-                            
-                            // 更新现有邀请码对象
-                            existingData.invitationCodes[codeIndex] = { ...codeToUpdate };
-                            console.log('已增量更新GitHub上的邀请码数据:', updatedCode.code, '新次数:', codeToUpdate.usageCount);
+                            throw new Error(`获取文件失败: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        try {
+                            // 解码现有数据
+                            let existingData = {};
+                            try {
+                                existingData = data.content ? JSON.parse(atob(data.content)) : {};
+                            } catch (e) {
+                                console.error('解析现有数据失败，使用空对象:', e);
+                                existingData = { invitationCodes: [] };
+                            }
+
+                            // 确保existingData是正确的结构
+                            if (!Array.isArray(existingData.invitationCodes)) {
+                                existingData.invitationCodes = [];
+                            }
+
+                            console.log('现有邀请码数量:', existingData.invitationCodes.length);
+
+                            // 查找并更新特定邀请码
+                            const codeIndex = existingData.invitationCodes.findIndex(code =>
+                                code.code.toUpperCase() === updatedCode.code.toUpperCase()
+                            );
+
+                            // 创建要更新的邀请码副本
+                            let codeToUpdate = { ...updatedCode };
+
+                            if (codeIndex !== -1) {
+                                // 如果GitHub上已存在此邀请码，确保使用GitHub上最新的usageCount作为基础
+                                // 这确保即使有多个设备同时更新，也能正确累计次数
+                                const githubCode = existingData.invitationCodes[codeIndex];
+                                const latestUsageCount = Math.max(
+                                    (githubCode.usageCount || 0),
+                                    (updatedCode.usageCount || 0)
+                                );
+
+                                // 如果本地和GitHub的次数不一致，取最大值并+1，确保不会丢失任何验证
+                                if ((githubCode.usageCount || 0) !== (updatedCode.usageCount || 0)) {
+                                    codeToUpdate.usageCount = latestUsageCount + 1;
+                                    console.log('检测到次数不一致，使用最大值并+1:', codeToUpdate.usageCount);
+                                }
+
+                                // 更新现有邀请码对象
+                                existingData.invitationCodes[codeIndex] = { ...codeToUpdate };
+                                console.log('已增量更新GitHub上的邀请码数据:', updatedCode.code, '新次数:', codeToUpdate.usageCount);
+                            } else {
+                                // 如果不存在，则添加新的邀请码
+                                existingData.invitationCodes.push(codeToUpdate);
+                                console.log('添加新的邀请码到GitHub:', updatedCode.code);
+                            }
+
+                            // 更新统计信息
+                            existingData.uploadDate = new Date().toISOString();
+                            existingData.totalCodes = existingData.invitationCodes.length;
+                            existingData.activeCodes = existingData.invitationCodes.filter(code =>
+                                !code.used &&
+                                (!code.expiryDate || new Date().toISOString().split('T')[0] <= code.expiryDate)
+                            ).length;
+
+                            // 重新编码数据
+                            const jsonStr = JSON.stringify(existingData, null, 2);
+                            const content = btoa(unescape(encodeURIComponent(jsonStr))); // Base64编码
+
+                            console.log('准备上传更新后的数据，大小:', content.length, '字符');
+
+                            // 构建请求体
+                            const requestBody = {
+                                message: `更新邀请码使用次数 - ${updatedCode.code} (次数: ${codeToUpdate.usageCount})`,
+                                content: content
+                            };
+
+                            // 如果文件存在，添加SHA
+                            if (data.sha) {
+                                requestBody.sha = data.sha;
+                            }
+
+                            // 发送请求
+                            return fetch(apiUrl, {
+                                method: data.sha ? 'PUT' : 'POST',
+                                headers: {
+                                    'Authorization': `token ${token}`,
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/vnd.github.v3+json'
+                                },
+                                body: JSON.stringify(requestBody),
+                                // 增加超时设置
+                                timeout: 10000
+                            });
+                        } catch (error) {
+                            console.error('处理数据时出错:', error);
+                            throw error;
+                        }
+                    })
+                    .then(response => {
+                        console.log('上传请求响应状态:', response.status);
+                        if (!response.ok) {
+                            throw new Error(`上传更新失败: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('增量更新成功:', data);
+                        // 可以考虑在这里存储一个标记，表示最近一次同步成功的时间
+                        localStorage.setItem('last_github_sync_time', new Date().toISOString());
+                    })
+                    .catch(error => {
+                        console.error('增量更新失败:', error);
+                        retryCount++;
+
+                        if (retryCount < MAX_RETRIES) {
+                            // 指数退避重试
+                            const delay = Math.pow(2, retryCount) * 1000;
+                            console.log(`将在${delay}ms后重试...`);
+                            setTimeout(() => {
+                                attemptUpload();
+                            }, delay);
                         } else {
-                            // 如果不存在，则添加新的邀请码
-                            existingData.invitationCodes.push(codeToUpdate);
-                            console.log('添加新的邀请码到GitHub:', updatedCode.code);
+                            // 重试次数用完，尝试使用完整上传作为备选方案
+                            console.log('重试次数用完，尝试使用完整上传作为备选方案');
+                            uploadInvitationCodesToGithub();
                         }
-                        
-                        // 更新统计信息
-                        existingData.uploadDate = new Date().toISOString();
-                        existingData.totalCodes = existingData.invitationCodes.length;
-                        existingData.activeCodes = existingData.invitationCodes.filter(code => 
-                            !code.used && 
-                            (!code.expiryDate || new Date().toISOString().split('T')[0] <= code.expiryDate)
-                        ).length;
-                        
-                        // 重新编码数据
-                        const jsonStr = JSON.stringify(existingData, null, 2);
-                        const content = btoa(unescape(encodeURIComponent(jsonStr))); // Base64编码
-                        
-                        console.log('准备上传更新后的数据，大小:', content.length, '字符');
-                        
-                        // 构建请求体
-                        const requestBody = {
-                            message: `更新邀请码使用次数 - ${updatedCode.code} (次数: ${codeToUpdate.usageCount})`,
-                            content: content
-                        };
-                        
-                        // 如果文件存在，添加SHA
-                        if (data.sha) {
-                            requestBody.sha = data.sha;
-                        }
-                        
-                        // 发送请求
-                        return fetch(apiUrl, {
-                            method: data.sha ? 'PUT' : 'POST',
-                            headers: {
-                                'Authorization': `token ${token}`,
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/vnd.github.v3+json'
-                            },
-                            body: JSON.stringify(requestBody),
-                            // 增加超时设置
-                            timeout: 10000
-                        });
-                    } catch (error) {
-                        console.error('处理数据时出错:', error);
-                        throw error;
-                    }
-                })
-                .then(response => {
-                    console.log('上传请求响应状态:', response.status);
-                    if (!response.ok) {
-                        throw new Error(`上传更新失败: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('增量更新成功:', data);
-                    // 可以考虑在这里存储一个标记，表示最近一次同步成功的时间
-                    localStorage.setItem('last_github_sync_time', new Date().toISOString());
-                })
-                .catch(error => {
-                    console.error('增量更新失败:', error);
-                    retryCount++;
-                    
-                    if (retryCount < MAX_RETRIES) {
-                        // 指数退避重试
-                        const delay = Math.pow(2, retryCount) * 1000;
-                        console.log(`将在${delay}ms后重试...`);
-                        setTimeout(() => {
-                            attemptUpload();
-                        }, delay);
-                    } else {
-                        // 重试次数用完，尝试使用完整上传作为备选方案
-                        console.log('重试次数用完，尝试使用完整上传作为备选方案');
-                        uploadInvitationCodesToGithub();
-                    }
-                });
+                    });
             }
-            
+
             // 开始第一次上传尝试
             attemptUpload();
         }
-        
+
         // 完整上传所有邀请码数据到GitHub（作为备用方法）
         function uploadInvitationCodesToGithub() {
             console.log('准备上传更新后的邀请码数据到GitHub');
@@ -1823,7 +1824,7 @@
             document.getElementById('expiry-date-value').textContent = expiryDate ? expiryDate.toLocaleDateString('zh-CN') : '长期有效';
             document.getElementById('days-remaining-value').textContent = daysRemaining !== null ?
                 (daysRemaining > 0 ? daysRemaining + '天' : '已过期') : '无限制';
-            
+
             // 如果存在使用次数元素，则更新
             const usageCountElement = document.getElementById('usage-count-value');
             if (usageCountElement) {
