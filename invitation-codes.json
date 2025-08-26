@@ -622,33 +622,6 @@
       "usedTime": ""
     },
     {
-      "code": "FGTB49V96MW2556E",
-      "type": "normal",
-      "generatedDate": "2025-08-25T17:09:40.686Z",
-      "expiryDate": "2025-09-01T17:09:40.686Z",
-      "used": true,
-      "usedBy": "device_35ljs",
-      "usedTime": "2025-08-25T17:12:04.048Z"
-    },
-    {
-      "code": "SEVKE259KYX4HELS",
-      "type": "normal",
-      "generatedDate": "2025-08-25T17:09:40.686Z",
-      "expiryDate": "2027-07-27T00:42:55.473Z",
-      "used": true,
-      "usedBy": "device_b2pa4a",
-      "usedTime": "2025-08-26T02:36:06.959Z"
-    },
-    {
-      "code": "M4PV7A2CPRGPV7R7",
-      "type": "normal",
-      "generatedDate": "2025-08-25T17:09:40.686Z",
-      "expiryDate": "2025-09-01T17:09:40.686Z",
-      "used": true,
-      "usedBy": "device_u13x5m",
-      "usedTime": "2025-08-26T04:33:22.711Z"
-    },
-    {
       "code": "DAPECZA9ND4F2YVE",
       "type": "normal",
       "generatedDate": "2025-08-25T17:09:40.686Z",
@@ -676,7 +649,7 @@
       "usedTime": null
     }
   ],
-  "uploadDate": "2025-08-26T06:23:01.421Z",
-  "totalCodes": 75,
+  "uploadDate": "2025-08-26T06:28:48.122Z",
+  "totalCodes": 72,
   "activeCodes": 61
 }
