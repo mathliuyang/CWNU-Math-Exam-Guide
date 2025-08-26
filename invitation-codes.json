@@ -68,9 +68,9 @@
       "type": "normal",
       "generatedDate": "2025-08-25T15:30:14.976Z",
       "expiryDate": "2025-09-24T15:30:14.976Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null
+      "used": true,
+      "usedBy": "device_v9ctbbhl17_1756184652337",
+      "usedTime": "2025-08-26T06:23:01.420Z"
     },
     {
       "code": "T1Q9UNSJ0L",
@@ -676,7 +676,7 @@
       "usedTime": null
     }
   ],
-  "uploadDate": "2025-08-26T06:14:38.235Z",
+  "uploadDate": "2025-08-26T06:23:01.421Z",
   "totalCodes": 75,
-  "activeCodes": 62
+  "activeCodes": 61
 }
