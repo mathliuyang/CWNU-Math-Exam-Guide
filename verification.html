@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>邀请码验证 - 西华师范大学数学专业考试指南</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4a6cf7;
+            --primary-hover: #3a59e0;
+            --primary-gradient: linear-gradient(135deg, #4a6cf7 0%, #3a59e0 100%);
+            --secondary-color: #6c757d;
+            --danger-color: #f44336;
+            --success-color: #4CAF50;
+            --warning-color: #ff9800;
+            --text-color: #343a40;
+            --text-secondary: #666;
+            --background-color: #f5f7fa;
+            --card-background: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+            --card-hover-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            background-image: radial-gradient(circle at 50% 50%, rgba(74, 108, 247, 0.05) 0%, transparent 70%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: var(--card-background);
+            box-shadow: var(--shadow);
+            padding: 1.5rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        .verification-card {
+            background-color: var(--card-background);
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            padding: 2.5rem;
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto 2.5rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .verification-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary-gradient);
+        }
+
+        .verification-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-hover-shadow);
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 500;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #fff;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #aaa;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+            z-index: -1;
+        }
+
+        .btn:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #3a59e0 0%, #2a48d0 100%);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(74, 108, 247, 0.3);
+        }
+
+        .message {
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .message-error {
+            background-color: rgba(244, 67, 54, 0.1);
+            color: var(--danger-color);
+            border: 1px solid rgba(244, 67, 54, 0.2);
+        }
+
+        .message-success {
+            background-color: rgba(76, 175, 80, 0.1);
+            color: var(--success-color);
+            border: 1px solid rgba(76, 175, 80, 0.2);
+        }
+
+        .message-info {
+            background-color: rgba(33, 150, 243, 0.1);
+            color: var(--secondary-color);
+            border: 1px solid rgba(33, 150, 243, 0.2);
+        }
+
+        .message-warning {
+            background-color: rgba(255, 152, 0, 0.1);
+            color: var(--warning-color);
+            border: 1px solid rgba(255, 152, 0, 0.2);
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .verification-info {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-top: 1.875rem;
+            display: none;
+            transition: var(--transition);
+            border: 1px solid #dee2e6;
+        }
+
+        .verification-info.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .info-value {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .purchase-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .purchase-link a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .purchase-link a:hover {
+            text-decoration: underline;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.875rem;
+            max-width: 1000px;
+            width: 100%;
+            margin-top: 3rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .feature-card {
+            background-color: var(--card-background);
+            border-radius: 12px;
+            padding: 1.875rem;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-hover-shadow);
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            background-color: rgba(74, 108, 247, 0.1);
+            width: 3.75rem;
+            height: 3.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .feature-content h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .feature-content p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        footer {
+            background-color: var(--card-background);
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        /* 加载动画 */
+        .loader {
+            display: none;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 2px solid white;
+            animation: spin 1s linear infinite;
+            vertical-align: middle;
+            margin-left: 0.5rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 元素抖动动画 */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        /* 成功动画 */
+        @keyframes successAnimation {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            50% {
+                transform: scale(1.02);
+                box-shadow: 0 15px 30px rgba(40, 167, 69, 0.2);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        .success-animation {
+            animation: successAnimation 1s ease-in-out;
+        }
+
+        /* 已验证状态 */
+        .verified {
+            border-color: rgba(40, 167, 69, 0.5);
+            background: linear-gradient(to bottom, #f8fff9, white);
+        }
+
+        /* 庆祝粒子效果 */
+        .confetti {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0;
+            animation: confetti-fall 3s ease-in-out forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                opacity: 1;
+                transform: translateY(-100%) rotate(0deg) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100%) rotate(360deg) scale(0.5);
+            }
+        }
+
+        /* 验证信息显示动画 */
+        #verification-info {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+
+        #verification-info.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .btn-loading {
+            position: relative;
+            pointer-events: none;
+        }
+
+        .btn-loading .text {
+            visibility: hidden;
+        }
+
+        .btn-loading .loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+            display: inline-block;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .verification-card {
+                padding: 1.5rem;
+            }
+
+            .card-title {
+                font-size: 1.5rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-card {
+                padding: 1.25rem;
+            }
+        }
+
+        /* 添加微妙的动画效果 */
+        .verification-card,
+        .feature-card {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 返回按钮样式 */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background-color: transparent;
+            color: var(--text-secondary);
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+
+        .back-button:hover {
+            background-color: #f8f9fa;
+            color: var(--text-color);
+            border-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>西华师范大学数学专业考试指南</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>返回首页</span>
+        </a>
+
+        <div class="verification-card">
+            <div class="card-header">
+                <h1 class="card-title">邀请码验证</h1>
+                <p class="card-subtitle">输入有效的邀请码以解锁完整学习资源</p>
+            </div>
+
+            <div class="message" id="verification-message"></div>
+
+            <form id="invitation-form">
+                <div class="form-group">
+                    <label for="invitation-code" class="form-label">邀请码</label>
+                    <input 
+                        type="text" 
+                        id="invitation-code" 
+                        class="form-input" 
+                        placeholder="请输入6位、8位、10位、12位或16位邀请码"
+                        autocomplete="off"
+                    >
+                </div>
+
+                <button 
+                    type="button" 
+                    id="verify-button" 
+                    class="btn btn-primary"
+                >
+                    <span class="text">验证邀请码</span>
+                    <div class="loader" style="display: none;"></div>
+                </button>
+
+                <div class="purchase-link">
+                    <a href="https://e.tb.cn/h.hFmbMMmXIj9CuXW?tk=ixuS4l367j0" target="_blank">
+                        <i class="fas fa-shopping-cart"></i> 购买真题领取邀请码
+                    </a>
+                </div>
+            </form>
+
+            <!-- 验证信息展示区域 -->
+            <div id="verification-info" class="verification-info">
+                <h3 style="margin-bottom: 1rem; color: var(--primary-color);">验证信息</h3>
+                <div class="info-item">
+                    <span class="info-label">邀请码状态</span>
+                    <span class="info-value" id="status-value">已验证</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">使用设备</span>
+                    <span class="info-value" id="device-value">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">验证时间</span>
+                    <span class="info-value" id="verify-time-value">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">有效期至</span>
+                    <span class="info-value" id="expiry-date-value">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">剩余天数</span>
+                    <span class="info-value" id="days-remaining-value">-</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 功能特点 -->
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>安全验证</h3>
+                    <p>每个邀请码仅限一台设备使用，确保资源安全不被滥用</p>
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>查看有效期</h3>
+                    <p>验证后可实时查看邀请码有效期和剩余使用天数</p>
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-download"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>解锁全部资源</h3>
+                    <p>成功验证后可访问所有学习资料和历年真题</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-links">
+                <a href="index.html">首页</a>
+                <a href="index.html#page-study">备考指南</a>
+                <a href="index.html#page-admission">录取数据</a>
+                <a href="index.html#page-resources">学习资源</a>
+                <a href="index.html#page-faq">常见问题</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 西华师范大学数学专业考试指南. 保留所有权利.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 全局变量
+        let invitationCodes = [];
+        let validInvitationCodes = [];
+        let predefinedCodes = [
+            // 添加一些示例邀请码用于测试
+            {
+                code: "TEST123",
+                type: "测试",
+                generatedDate: "2023-12-01",
+                expiryDate: "2024-12-31",
+                used: false,
+                usedBy: null,
+                usedTime: null
+            },
+            {
+                code: "DEMO456",
+                type: "演示",
+                generatedDate: "2023-12-10",
+                expiryDate: "2024-12-31",
+                used: false,
+                usedBy: null,
+                usedTime: null
+            }
+        ];
+
+        // GitHub原始数据URL
+        const githubRawUrl = 'https://raw.githubusercontent.com/mathliuyang/CWNU-Math-Exam-Guide/main/invitation-codes.json';
+
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', function() {
+            // 加载邀请码数据
+            refreshInvitationCodesFromGitHub();
+            
+            // 检查是否已验证
+            checkVerificationStatus();
+            
+            // 设置验证按钮事件
+            setupVerificationButton();
+            
+            // 设置回车键提交
+            setupEnterKeySubmit();
+            
+            // 设置邀请码输入格式化
+            setupCodeInputFormatting();
+        });
+
+        // 从GitHub刷新邀请码数据
+        function refreshInvitationCodesFromGitHub() {
+            console.log('正在从GitHub刷新邀请码数据...');
+            
+            fetch(githubRawUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        console.warn('无法从GitHub获取邀请码数据，将使用本地示例数据');
+                        return Promise.resolve({ invitationCodes: predefinedCodes });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.invitationCodes && Array.isArray(data.invitationCodes)) {
+                        // 合并GitHub数据和本地示例数据
+                        const githubCodes = data.invitationCodes;
+                        const allCodes = [...githubCodes, ...predefinedCodes.filter(code => 
+                            !githubCodes.some(gc => gc.code.toUpperCase() === code.code.toUpperCase())
+                        )];
+                        
+                        predefinedCodes = allCodes;
+                        console.log('成功加载邀请码数据，总数:', allCodes.length);
+                    } else {
+                        console.warn('GitHub数据格式不正确，将使用本地示例数据');
+                    }
+                    
+                    // 更新邀请码列表
+                    invitationCodes = predefinedCodes;
+                    validInvitationCodes = invitationCodes.map(code => code.code.toUpperCase());
+                    
+                    console.log('更新后的邀请码列表:', invitationCodes);
+                    console.log('更新后的兼容旧版邀请码列表:', validInvitationCodes);
+                })
+                .catch(error => {
+                    console.error('获取邀请码数据时出错:', error);
+                    // 使用本地示例数据
+                    invitationCodes = predefinedCodes;
+                    validInvitationCodes = invitationCodes.map(code => code.code.toUpperCase());
+                });
+        }
+
+        // 检查验证状态
+        function checkVerificationStatus() {
+            const isVerified = localStorage.getItem('invitation_verified') === 'true';
+            const verifiedCode = localStorage.getItem('verified_code');
+            
+            if (isVerified && verifiedCode) {
+                // 查找已验证的邀请码信息
+                const matchedCode = invitationCodes.find(codeObj => 
+                    codeObj.code.toUpperCase() === verifiedCode.toUpperCase()
+                );
+                
+                if (matchedCode) {
+                    showVerificationInfo(matchedCode);
+                    // 添加验证状态的视觉反馈
+                    highlightVerifiedStatus();
+                }
+            }
+        }
+        
+        // 高亮显示已验证状态
+        function highlightVerifiedStatus() {
+            const verificationCard = document.getElementById('verification-card');
+            verificationCard.classList.add('verified');
+            // 添加微妙的成功动画
+            verificationCard.style.boxShadow = '0 0 30px rgba(40, 167, 69, 0.2)';
+        }
+
+        // 设置验证按钮
+        function setupVerificationButton() {
+            const verifyButton = document.getElementById('verify-button');
+            const invitationCodeInput = document.getElementById('invitation-code');
+            const verificationMessage = document.getElementById('verification-message');
+            
+            verifyButton.addEventListener('click', function() {
+                // 显示加载状态
+                verifyButton.classList.add('btn-loading');
+                verifyButton.querySelector('.loader').style.display = 'inline-block';
+                
+                // 清除之前的消息
+                verificationMessage.textContent = '';
+                verificationMessage.className = 'message';
+                
+                setTimeout(() => {
+                    // 获取输入的邀请码（移除格式化符号）
+                    const code = invitationCodeInput.value.replace(/[^a-zA-Z0-9]/g, '').trim();
+                    
+                    // 验证邀请码，并传递按钮引用以便清除加载状态
+                    verifyInvitationCode(code, verifyButton);
+                }, 300); // 模拟网络延迟，增强用户体验
+            });
+        }
+
+        // 设置回车键提交
+        function setupEnterKeySubmit() {
+            const invitationCodeInput = document.getElementById('invitation-code');
+            
+            invitationCodeInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    document.getElementById('verify-button').click();
+                }
+            });
+        }
+        
+        // 设置邀请码输入格式化
+        function setupCodeInputFormatting() {
+            const invitationCodeInput = document.getElementById('invitation-code');
+            
+            // 自动格式化邀请码输入
+            invitationCodeInput.addEventListener('input', function() {
+                // 移除所有非字母数字字符
+                let value = this.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
+                
+                // 根据邀请码长度进行格式化
+                if (value.length > 0) {
+                    let formattedValue = '';
+                    
+                    // 对于不同长度的邀请码，使用不同的分隔方式
+                    if (value.length <= 6) {
+                        // 6位邀请码不添加分隔符
+                        formattedValue = value;
+                    } else if (value.length <= 8) {
+                        // 8位邀请码：XXXX-XXXX
+                        formattedValue = value.substring(0, 4) + '-' + value.substring(4);
+                    } else if (value.length <= 10) {
+                        // 10位邀请码：XXXXX-XXXXX
+                        formattedValue = value.substring(0, 5) + '-' + value.substring(5);
+                    } else if (value.length <= 12) {
+                        // 12位邀请码：XXX-XXX-XXX-XXX
+                        formattedValue = value.match(/.{1,3}/g).join('-');
+                    } else {
+                        // 16位邀请码：XXXX-XXXX-XXXX-XXXX
+                        formattedValue = value.match(/.{1,4}/g).join('-');
+                    }
+                    
+                    // 保存当前光标位置
+                    const start = this.selectionStart;
+                    const end = this.selectionEnd;
+                    
+                    // 更新输入值
+                    this.value = formattedValue;
+                    
+                    // 尝试恢复光标位置
+                    setTimeout(() => {
+                        // 计算新的光标位置（考虑添加的分隔符）
+                        const newPosition = start + (formattedValue.length - value.length);
+                        this.setSelectionRange(newPosition, newPosition);
+                    }, 0);
+                }
+            });
+            
+            // 添加输入实时反馈
+            invitationCodeInput.addEventListener('input', function() {
+                const code = this.value.replace(/[^a-zA-Z0-9]/g, '').trim();
+                const verificationMessage = document.getElementById('verification-message');
+                
+                // 清除之前的验证消息
+                if (code.length > 0 && code.length < 6) {
+                    showMessage(verificationMessage, '邀请码格式不正确，请输入6位、8位、10位、12位或16位邀请码', 'warning');
+                } else if ([6, 8, 10, 12, 16].includes(code.length) && verificationMessage) {
+                    verificationMessage.textContent = '';
+                    verificationMessage.className = 'message';
+                }
+            });
+        }
+
+        // 验证邀请码
+        function verifyInvitationCode(code, verifyButton) {
+            const verificationMessage = document.getElementById('verification-message') || document.createElement('div');
+            const invitationCodeInput = document.getElementById('invitation-code');
+            
+            // 函数结束时隐藏加载状态（无论成功或失败）
+            function cleanup() {
+                if (verifyButton) {
+                    verifyButton.classList.remove('btn-loading');
+                    try {
+                        const loader = verifyButton.querySelector('.loader');
+                        if (loader) loader.style.display = 'none';
+                    } catch (e) {
+                        console.log('清除加载状态时出错:', e);
+                    }
+                }
+            }
+            
+            // 确保在函数退出时执行清除操作
+            try {
+                // 检查输入
+                if (!code) {
+                    showMessage(verificationMessage, '请输入邀请码', 'error');
+                    if (invitationCodeInput) {
+                        invitationCodeInput.focus();
+                        shakeElement(invitationCodeInput);
+                    }
+                    cleanup();
+                    return;
+                }
+                
+                // 支持6位、8位、10位、12位和16位邀请码
+                if (![6, 8, 10, 12, 16].includes(code.length)) {
+                    showMessage(verificationMessage, '邀请码格式不正确，请输入6位、8位、10位、12位或16位邀请码', 'error');
+                    if (invitationCodeInput) {
+                        invitationCodeInput.focus();
+                        shakeElement(invitationCodeInput);
+                    }
+                    cleanup();
+                    return;
+                }
+                
+                // 将输入的邀请码转换为大写进行比较
+                const codeUpper = code.toUpperCase();
+                
+                // 查找匹配的邀请码
+                const matchedCode = invitationCodes.find(codeObj => 
+                    codeObj.code.toUpperCase() === codeUpper
+                );
+                
+                if (matchedCode) {
+                    const now = new Date();
+                    const expiryDate = matchedCode.expiryDate ? new Date(matchedCode.expiryDate) : null;
+                    
+                    // 获取或生成设备ID
+                    let deviceId = localStorage.getItem('invitation_device_id');
+                    
+                    if (!deviceId) {
+                        deviceId = 'device_' + Math.random().toString(36).substring(2, 15) + '_' + Date.now();
+                        localStorage.setItem('invitation_device_id', deviceId);
+                    }
+                    
+                    // 检查邀请码是否已被使用
+                    if (matchedCode.used) {
+                        if (matchedCode.usedBy === deviceId) {
+                            // 同一设备再次使用
+                            showMessage(verificationMessage, '邀请码已被此设备激活', 'success');
+                            showVerificationInfo(matchedCode);
+                            
+                            // 添加成功动画
+                            successAnimation();
+                            
+                            // 更新验证状态
+                            localStorage.setItem('invitation_verified', 'true');
+                            localStorage.setItem('verified_code', codeUpper);
+                            
+                            // 清除加载状态
+                            cleanup();
+                            
+                            // 3秒后跳转到资源页面
+                            setTimeout(() => {
+                                window.location.href = 'index.html#page-resources';
+                            }, 3000);
+                        } else {
+                            // 邀请码已被其他设备使用
+                            showMessage(verificationMessage, '邀请码已被其他设备激活，每个邀请码仅限一台设备使用', 'error');
+                            if (invitationCodeInput) {
+                                shakeElement(invitationCodeInput);
+                            }
+                            cleanup();
+                        }
+                        return;
+                    }
+                    
+                    // 检查邀请码是否过期
+                    if (expiryDate && now > expiryDate) {
+                        showMessage(verificationMessage, '邀请码已过期', 'error');
+                        if (invitationCodeInput) {
+                            shakeElement(invitationCodeInput);
+                        }
+                        cleanup();
+                        return;
+                    }
+                    
+                    // 验证通过
+                    let expiryMsg = '';
+                    let warningMsg = '';
+                    
+                    if (expiryDate) {
+                        const daysRemaining = Math.ceil((expiryDate - now) / (1000 * 60 * 60 * 24));
+                        expiryMsg = `有效期至: ${expiryDate.toLocaleDateString('zh-CN')}`;
+                        
+                        // 当邀请码即将过期时显示警告
+                        if (daysRemaining <= 7 && daysRemaining > 0) {
+                            warningMsg = ' (注意：该邀请码将在7天内过期)';
+                        }
+                    }
+                    
+                    // 更新邀请码使用状态
+                    matchedCode.used = true;
+                    matchedCode.usedBy = deviceId;
+                    matchedCode.usedTime = now.toISOString();
+                    
+                    // 显示成功消息
+                    showMessage(verificationMessage, `邀请码验证通过！${expiryMsg}${warningMsg}`, 'success');
+                    
+                    // 显示验证信息
+                    showVerificationInfo(matchedCode);
+                    
+                    // 检查验证卡片元素是否存在，存在才添加成功动画
+                    const verificationCard = document.getElementById('verification-card');
+                    if (verificationCard && verificationCard.classList) {
+                        successAnimation();
+                    } else {
+                        console.log('验证卡片元素不存在，跳过成功动画');
+                    }
+                    
+                    // 更新验证状态
+                    localStorage.setItem('invitation_verified', 'true');
+                    localStorage.setItem('verified_code', codeUpper);
+                    
+                    // 清除加载状态
+                    cleanup();
+                    
+                    // 不再自动跳转，等待用户点击确认按钮
+                } else {
+                    // 验证失败
+                    showMessage(verificationMessage, '邀请码无效，请重试', 'error');
+                    if (invitationCodeInput) {
+                        invitationCodeInput.select();
+                        shakeElement(invitationCodeInput);
+                    }
+                    cleanup();
+                }
+            } catch (error) {
+                console.error('验证过程中出错:', error);
+                showMessage(verificationMessage, '验证过程中发生错误，请重试', 'error');
+                cleanup();
+            }
+        }
+        
+        // 元素抖动动画 - 用于错误反馈
+        function shakeElement(element) {
+            // 确保元素存在且有classList属性
+            if (!element || !element.classList) {
+                console.error('shakeElement: 元素为空或不支持classList');
+                return;
+            }
+            
+            try {
+                element.classList.add('shake');
+                setTimeout(() => {
+                    if (element && element.classList) {
+                        element.classList.remove('shake');
+                    }
+                }, 500);
+            } catch (error) {
+                console.error('执行抖动动画时出错:', error);
+            }
+        }
+        
+        // 成功动画效果
+        function successAnimation() {
+            const verificationCard = document.getElementById('verification-card');
+            
+            // 确保元素存在且有classList属性
+            if (!verificationCard || !verificationCard.classList) {
+                console.error('successAnimation: 验证卡片元素为空或不支持classList');
+                return;
+            }
+            
+            try {
+                // 添加成功动画类
+                verificationCard.classList.add('success-animation');
+                
+                // 创建粒子效果
+                try {
+                    createConfetti();
+                } catch (e) {
+                    console.error('创建粒子效果时出错:', e);
+                }
+                
+                // 3秒后移除动画类
+                setTimeout(() => {
+                    if (verificationCard && verificationCard.classList) {
+                        verificationCard.classList.remove('success-animation');
+                    }
+                }, 3000);
+            } catch (error) {
+                console.error('执行成功动画时出错:', error);
+            }
+        }
+        
+        // 创建庆祝粒子效果
+        function createConfetti() {
+            const container = document.getElementById('verification-card');
+            const colors = ['#4a6cf7', '#3a59e0', '#28a745', '#dc3545', '#ffc107'];
+            
+            // 确保容器元素存在
+            if (!container) {
+                console.error('createConfetti: 容器元素不存在');
+                return;
+            }
+            
+            try {
+                // 创建100个粒子
+                for (let i = 0; i < 100; i++) {
+                    const confetti = document.createElement('div');
+                    
+                    try {
+                        confetti.classList.add('confetti');
+                        
+                        // 随机颜色
+                        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                        
+                        // 随机大小
+                        const size = Math.random() * 10 + 5;
+                        confetti.style.width = `${size}px`;
+                        confetti.style.height = `${size}px`;
+                        
+                        // 随机位置
+                        confetti.style.left = `${Math.random() * 100}%`;
+                        confetti.style.top = `${Math.random() * 100}%`;
+                        
+                        // 随机动画持续时间和延迟
+                        confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                        confetti.style.animationDelay = `${Math.random() * 2}s`;
+                        
+                        container.appendChild(confetti);
+                        
+                        // 动画结束后移除粒子
+                        setTimeout(() => {
+                            try {
+                                confetti.remove();
+                            } catch (e) {
+                                // 忽略已被移除的粒子错误
+                            }
+                        }, 5000);
+                    } catch (e) {
+                        console.error('创建单个粒子时出错:', e);
+                    }
+                }
+            } catch (error) {
+                console.error('创建粒子效果时出错:', error);
+            }
+        }
+
+        // 显示消息
+        function showMessage(element, text, type) {
+            // 确保元素存在
+            if (!element) {
+                console.error('showMessage: 消息元素为空');
+                return;
+            }
+            
+            try {
+                element.textContent = text;
+                element.className = 'message message-' + type + ' show';
+                
+                // 3秒后自动隐藏非错误消息
+                if (type !== 'error') {
+                    setTimeout(() => {
+                        if (element && element.classList) {
+                            element.classList.remove('show');
+                            // 完全隐藏前等待动画完成
+                            setTimeout(() => {
+                                if (element && element.classList && !element.classList.contains('show')) {
+                                    element.textContent = '';
+                                    element.className = 'message';
+                                }
+                            }, 300);
+                        }
+                    }, 3000);
+                }
+            } catch (error) {
+                console.error('显示消息时出错:', error);
+            }
+        }
+
+        // 显示验证信息
+        function showVerificationInfo(codeObj) {
+            const now = new Date();
+            const expiryDate = codeObj.expiryDate ? new Date(codeObj.expiryDate) : null;
+            const usedTime = codeObj.usedTime ? new Date(codeObj.usedTime) : now;
+            const daysRemaining = expiryDate ? Math.ceil((expiryDate - now) / (1000 * 60 * 60 * 24)) : null;
+            
+            // 计算设备信息显示
+            let deviceDisplay = '未知设备';
+            if (codeObj.usedBy) {
+                deviceDisplay = codeObj.usedBy.length > 15 ? codeObj.usedBy.substring(0, 15) + '...' : codeObj.usedBy;
+            }
+            
+            // 更新信息显示
+            document.getElementById('status-value').textContent = '已验证';
+            document.getElementById('device-value').textContent = deviceDisplay;
+            document.getElementById('verify-time-value').textContent = usedTime.toLocaleString('zh-CN');
+            document.getElementById('expiry-date-value').textContent = expiryDate ? expiryDate.toLocaleDateString('zh-CN') : '长期有效';
+            document.getElementById('days-remaining-value').textContent = daysRemaining !== null ? 
+                (daysRemaining > 0 ? daysRemaining + '天' : '已过期') : '无限制';
+            
+            // 显示信息区域
+            const verificationInfo = document.getElementById('verification-info');
+            verificationInfo.classList.add('show');
+            
+            // 添加平滑显示动画
+            setTimeout(() => {
+                verificationInfo.style.opacity = '1';
+                verificationInfo.style.transform = 'translateY(0)';
+            }, 10);
+            
+            // 创建确认按钮（如果不存在）
+            let confirmButton = document.getElementById('confirm-verification');
+            if (!confirmButton) {
+                confirmButton = document.createElement('button');
+                confirmButton.id = 'confirm-verification';
+                confirmButton.className = 'btn btn-primary';
+                confirmButton.textContent = '确认并返回首页';
+                
+                // 添加点击事件处理
+                confirmButton.addEventListener('click', () => {
+                    window.location.href = 'index.html#page-resources';
+                });
+                
+                // 添加到验证信息区域
+                verificationInfo.appendChild(confirmButton);
+            }
+            
+            // 确保按钮可见
+            confirmButton.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
