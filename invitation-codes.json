@@ -631,19 +631,10 @@
       "usedTime": "2025-08-25T17:12:04.048Z"
     },
     {
-      "code": "VTNF4W6TPD2NPY7F",
-      "type": "normal",
-      "generatedDate": "2025-08-25T17:09:40.686Z",
-      "expiryDate": "2025-09-01T17:09:40.686Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null
-    },
-    {
       "code": "SEVKE259KYX4HELS",
       "type": "normal",
       "generatedDate": "2025-08-25T17:09:40.686Z",
-      "expiryDate": "2025-09-01T17:09:40.686Z",
+      "expiryDate": "2027-07-27T00:42:55.473Z",
       "used": false,
       "usedBy": null,
       "usedTime": null
@@ -667,7 +658,7 @@
       "usedTime": null
     }
   ],
-  "uploadDate": "2025-08-25T18:54:10.518Z",
-  "totalCodes": 74,
-  "activeCodes": 66
+  "uploadDate": "2025-08-26T00:42:59.115Z",
+  "totalCodes": 73,
+  "activeCodes": 65
 }
