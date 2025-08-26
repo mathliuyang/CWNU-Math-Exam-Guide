@@ -493,7 +493,7 @@
       "expiryDate": "2025-09-24T09:04:16.221Z",
       "used": true,
       "usedBy": "device_h3a0b4ncdh6_1756189914256",
-      "usedTime": "2025-08-26T06:32:41.116Z",
+      "usedTime": "2025-08-26T06:38:56.655Z",
       "usageCount": 1
     },
     {
@@ -660,7 +660,7 @@
     },
     {
       "code": "TEST123",
-      "type": "测试",
+      "type": "æµè¯",
       "generatedDate": "2023-12-01",
       "expiryDate": "2024-12-31",
       "used": false,
@@ -669,7 +669,7 @@
     },
     {
       "code": "DEMO456",
-      "type": "演示",
+      "type": "æ¼ç¤º",
       "generatedDate": "2023-12-10",
       "expiryDate": "2024-12-31",
       "used": false,
@@ -677,7 +677,7 @@
       "usedTime": null
     }
   ],
-  "uploadDate": "2025-08-26T06:32:41.116Z",
+  "uploadDate": "2025-08-26T06:38:58.091Z",
   "totalCodes": 75,
   "activeCodes": 60
 }
