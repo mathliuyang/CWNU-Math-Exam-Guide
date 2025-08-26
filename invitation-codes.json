@@ -203,9 +203,10 @@
       "type": "normal",
       "generatedDate": "2025-08-25T15:30:06.968Z",
       "expiryDate": "2025-09-24T15:30:06.968Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null
+      "used": true,
+      "usedBy": "device_h3a0b4ncdh6_1756189914256",
+      "usedTime": "2025-08-26T06:31:54.256Z",
+      "usageCount": 1
     },
     {
       "code": "5V3C8SKJZM",
@@ -674,59 +675,9 @@
       "used": false,
       "usedBy": null,
       "usedTime": null
-    },
-    {
-      "code": "LWDPGZLFMN",
-      "type": "normal",
-      "generatedDate": "2025-08-26T06:30:41.974Z",
-      "expiryDate": "2025-09-25T06:30:41.974Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null,
-      "usageCount": 0
-    },
-    {
-      "code": "RULEVHYSR6",
-      "type": "normal",
-      "generatedDate": "2025-08-26T06:30:41.974Z",
-      "expiryDate": "2025-09-25T06:30:41.974Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null,
-      "usageCount": 0
-    },
-    {
-      "code": "4AJF7UE4RU",
-      "type": "normal",
-      "generatedDate": "2025-08-26T06:30:41.974Z",
-      "expiryDate": "2025-09-25T06:30:41.974Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null,
-      "usageCount": 0
-    },
-    {
-      "code": "4B396MN9W4",
-      "type": "normal",
-      "generatedDate": "2025-08-26T06:30:41.974Z",
-      "expiryDate": "2025-09-25T06:30:41.974Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null,
-      "usageCount": 0
-    },
-    {
-      "code": "N4CL69WKRZ",
-      "type": "normal",
-      "generatedDate": "2025-08-26T06:30:41.974Z",
-      "expiryDate": "2025-09-25T06:30:41.974Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null,
-      "usageCount": 0
     }
   ],
-  "uploadDate": "2025-08-26T06:30:47.025Z",
-  "totalCodes": 80,
-  "activeCodes": 66
+  "uploadDate": "2025-08-26T06:31:54.257Z",
+  "totalCodes": 75,
+  "activeCodes": 60
 }
