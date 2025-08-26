@@ -1922,218 +1922,258 @@
 
         <!-- 问题反馈页面 -->
         <div id="page-faq" class="page">
+            <!-- 顶部装饰条 -->
+            <div class="bg-gradient-to-r from-primary to-blue-400 h-2"></div>
+
             <!-- 面包屑导航 -->
-            <div class="breadcrumb container mx-auto max-w-6xl px-4 py-4">
-                <div class="flex items-center space-x-2 text-sm text-dark/60">
-                    <i class="fa fa-home"></i>
-                    <span onclick="navigateToPage('home')" class="cursor-pointer hover:text-primary">首页</span>
-                    <i class="fa fa-chevron-right text-xs"></i>
-                    <span class="text-primary">问题反馈</span>
+            <div class="bg-gray-50 border-b border-gray-100">
+                <div class="breadcrumb container mx-auto max-w-6xl px-4 py-4">
+                    <div class="flex items-center space-x-2 text-sm text-dark/60">
+                        <i class="fa fa-home"></i>
+                        <span onclick="navigateToPage('home')"
+                            class="cursor-pointer hover:text-primary transition-colors">首页</span>
+                        <i class="fa fa-chevron-right text-xs text-gray-400"></i>
+                        <span class="text-primary font-medium">问题反馈</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="container mx-auto max-w-6xl px-4 py-8">
-                <div class="flex items-center space-x-2 mb-8">
-                    <i class="fa fa-question-circle text-primary text-2xl"></i>
-                    <h1 class="text-3xl font-bold">问题反馈</h1>
+            <div class="container mx-auto max-w-6xl px-4 py-12">
+                <!-- 页面标题区域 -->
+                <div class="text-center mb-12">
+                    <div
+                        class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-4">
+                        <i class="fa fa-comments-o text-3xl"></i>
+                    </div>
+                    <h1 class="text-3xl md:text-4xl font-bold mb-4 text-dark">问题反馈</h1>
+                    <p class="text-gray-600 max-w-2xl mx-auto">
+                        遇到问题？有建议？我们很重视您的反馈。请通过以下表单提交您的问题，或查看常见问题解答获取帮助。
+                    </p>
                 </div>
 
-                <!-- 问题提交表单 -->
+                <!-- 问题提交表单 - 卡片设计优化 -->
                 <div
-                    class="bg-white rounded-xl shadow-card p-6 mb-8 transition-all duration-300 hover:shadow-card-hover">
-                    <h2 class="text-xl font-semibold mb-4 flex items-center">
-                        <i class="fa fa-pencil-square-o text-primary mr-2"></i>提交新问题
-                    </h2>
-                    <form id="question-form" class="space-y-4">
+                    class="bg-white rounded-xl shadow-lg overflow-hidden mb-10 transform transition-all duration-300 hover:shadow-xl">
+                    <div class="bg-primary/5 p-4 border-b border-gray-100">
+                        <h2 class="text-xl font-semibold flex items-center text-dark">
+                            <i class="fa fa-pencil-square-o text-primary mr-3"></i>提交新问题
+                        </h2>
+                    </div>
+                    <form id="question-form" class="p-6 space-y-6">
                         <div>
-                            <label for="question-title"
-                                class="block text-sm font-medium text-gray-700 mb-1">问题标题</label>
+                            <label for="question-title" class="block text-sm font-medium text-gray-700 mb-2">问题标题 <span
+                                    class="text-red-500">*</span></label>
                             <input type="text" id="question-title" name="question-title" required
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200"
+                                class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-3 focus:ring-primary/20 focus:border-primary transition-all duration-200 outline-none"
                                 placeholder="请输入您的问题标题">
                         </div>
                         <div>
-                            <label for="question-content"
-                                class="block text-sm font-medium text-gray-700 mb-1">问题详情</label>
-                            <textarea id="question-content" name="question-content" rows="4" required
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200"
+                            <label for="question-content" class="block text-sm font-medium text-gray-700 mb-2">问题详情
+                                <span class="text-red-500">*</span></label>
+                            <textarea id="question-content" name="question-content" rows="5" required
+                                class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-3 focus:ring-primary/20 focus:border-primary transition-all duration-200 outline-none"
                                 placeholder="请详细描述您的问题，以便我们更好地为您解答"></textarea>
+                            <p class="mt-2 text-xs text-gray-500">请尽可能详细描述您的问题，提供相关截图或上下文有助于我们更快地解决问题。</p>
                         </div>
-                        <button type="submit"
-                            class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all duration-200 flex items-center justify-center space-x-2 w-full md:w-auto">
-                            <i class="fa fa-paper-plane"></i>
-                            <span>提交问题</span>
-                        </button>
+                        <div class="pt-2">
+                            <button type="submit"
+                                class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all duration-200 flex items-center justify-center space-x-2 w-full md:w-auto shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                                <i class="fa fa-paper-plane"></i>
+                                <span>提交问题</span>
+                            </button>
+                        </div>
                     </form>
                 </div>
 
-                <!-- 标签页切换 -->
-                <div class="mb-6 border-b border-gray-200">
-                    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="faq-tabs">
-                        <li class="mr-2">
-                            <button class="inline-block p-4 border-b-2 border-primary text-primary rounded-t-lg"
-                                data-tab="common">
-                                常见问题
-                            </button>
-                        </li>
-                        <li class="mr-2">
-                            <button
-                                class="inline-block p-4 border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 rounded-t-lg"
-                                data-tab="submitted">
-                                用户提交
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- 常见问题板块 -->
-                <div class="bg-white rounded-xl shadow-card p-6 transition-all duration-300 hover:shadow-card-hover tab-content"
-                    id="tab-common">
-                    <div class="space-y-4" id="faq-container">
-
-                        <!-- FAQ项1 -->
-                        <div class="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
-                            <button
-                                class="faq-question w-full flex justify-between items-center text-left font-medium focus:outline-none">
-                                <span>数分高代参考课本是哪些？</span>
-                                <i class="fa fa-plus text-primary transition-transform duration-200"></i>
-                            </button>
-                            <div class="faq-answer mt-2 text-dark/70 hidden">
-                                <p>《数学分析》华东师大第五版，《高等代数》张禾瑞第五版。</p>
-                            </div>
-                        </div>
-
-                        <!-- FAQ项2 -->
-                        <div class="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
-                            <button
-                                class="faq-question w-full flex justify-between items-center text-left font-medium focus:outline-none">
-                                <span>数分课后题横线以下的要做吗？</span>
-                                <i class="fa fa-plus text-primary transition-transform duration-200"></i>
-                            </button>
-                            <div class="faq-answer mt-2 text-dark/70 hidden">
-                                <p>必须要做。本科上课期间老师说过，如果要考研的话可以自己做一做横线以下的题。</p>
-                            </div>
-                        </div>
-
-                        <!-- FAQ项3 -->
-                        <div class="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
-                            <button
-                                class="faq-question w-full flex justify-between items-center text-left font-medium focus:outline-none">
-                                <span>需要看强化吗？</span>
-                                <i class="fa fa-plus text-primary transition-transform duration-200"></i>
-                            </button>
-                            <div class="faq-answer mt-2 text-dark/70 hidden">
-                                <p>数学分析不需要，课后题已经够多了；高等代数如果看张禾瑞版的，需要看强化（李扬），如果看北师大版的，不需要看强化，因为强化题和北师大版课后题很多都相同。</p>
-                            </div>
-                        </div>
-
-                        <!-- FAQ项4 -->
-                        <div class="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
-                            <button
-                                class="faq-question w-full flex justify-between items-center text-left font-medium focus:outline-none">
-                                <span>真题难度怎么样？涉及到的课后原题占比多大？</span>
-                                <i class="fa fa-plus text-primary transition-transform duration-200"></i>
-                            </button>
-                            <div class="faq-answer mt-2 text-dark/70 hidden">
-                                <p>难度在双非里面算一般的，不难。具体课后题来源可以看真题解析，以往每年都有，最近两三年数分不怎么考原题了，高代会考，包括强化题。25年数分没有一道课后题原题，高代有一大半见过。
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- FAQ项5 -->
-                        <div class="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
-                            <button
-                                class="faq-question w-full flex justify-between items-center text-left font-medium focus:outline-none">
-                                <span>真题什么时候做？怎么做？</span>
-                                <i class="fa fa-plus text-primary transition-transform duration-200"></i>
-                            </button>
-                            <div class="faq-answer mt-2 text-dark/70 hidden">
-                                <p>理论上数分刷完两遍，高代刷完三遍后开始做，10-11月都可以。真题掐时间做，每套真题的时间最好都控制在3h以内，超过时间马上停止作答。这是为了避免在考场上把握不好时间而引起时间紧张的情况，所以平时要训练自己的速度和正确率。做完批改，错题分析原因，找课本上对应的知识点，刷类似题目。
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- FAQ项6 -->
-                        <div class="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
-                            <button
-                                class="faq-question w-full flex justify-between items-center text-left font-medium focus:outline-none">
-                                <span>课本考察的范围是？侧重考察哪些章节？</span>
-                                <i class="fa fa-plus text-primary transition-transform duration-200"></i>
-                            </button>
-                            <div class="faq-answer mt-2 text-dark/70 hidden">
-                                <p>本问题在"备考指南"中有说明。</p>
-                            </div>
-                        </div>
-
-                        <!-- FAQ项7 -->
-                        <div class="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
-                            <button
-                                class="faq-question w-full flex justify-between items-center text-left font-medium focus:outline-none">
-                                <span>课本刷到什么程度？</span>
-                                <i class="fa fa-plus text-primary transition-transform duration-200"></i>
-                            </button>
-                            <div class="faq-answer mt-2 text-dark/70 hidden">
-                                <p>需要做到看到题目能想起关键步骤，而且能完整写出来。</p>
-                            </div>
-                        </div>
-
-                        <!-- FAQ项8 -->
-                        <div class="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
-                            <button
-                                class="faq-question w-full flex justify-between items-center text-left font-medium focus:outline-none">
-                                <span>师兄师姐的经验哪些可以参考？</span>
-                                <i class="fa fa-plus text-primary transition-transform duration-200"></i>
-                            </button>
-                            <div class="faq-answer mt-2 text-dark/70 hidden">
-                                <p>关于考研所用到的网课、资料、方法等可以参考，而师兄师姐自己考研时的学习时长、学习习惯等都是非常主观的，也不可能完全效仿，因为每个人的情况不一样，有些人本科开设过数分高代强化的课程，有些人本身英语很好，……，所以可以参考，但是参考价值不大。在学习的时候，你首先要考虑的是自己学习进度怎么样，而不是有没有按照师兄师姐的进度去学。
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- FAQ项9 -->
-                        <div class="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
-                            <button
-                                class="faq-question w-full flex justify-between items-center text-left font-medium focus:outline-none">
-                                <span>本校生会有优势吗？</span>
-                                <i class="fa fa-plus text-primary transition-transform duration-200"></i>
-                            </button>
-                            <div class="faq-answer mt-2 text-dark/70 hidden">
-                                <p>不管哪个学校本校生都会有优势，因为本校生已经算生源最好的那一批了。但我们学院（数学与信息学院）在全校来看还算比较公平的，本校生和外校生大概对半开。</p>
-                            </div>
-                        </div>
-
-                        <!-- FAQ项10 -->
-                        <div class="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
-                            <button
-                                class="faq-question w-full flex justify-between items-center text-left font-medium focus:outline-none">
-                                <span>西华师范大学本科阶段的数学分析和高等代数的期末考试卷需要看吗？</span>
-                                <i class="fa fa-plus text-primary transition-transform duration-200"></i>
-                            </button>
-                            <div class="faq-answer mt-2 text-dark/70 hidden">
-                                <p>没有必要看，前期如果学有余力可以做一做（资料获取板块可下载），后期以课本、真题和强化为主。</p>
-                            </div>
-                        </div>
-
+                <!-- 标签页切换 - 更精致的标签设计 -->
+                <div class="mb-8">
+                    <div class="inline-flex p-1 bg-gray-100 rounded-lg">
+                        <button
+                            class="faq-tab px-6 py-3 rounded-lg bg-white text-primary font-medium shadow-sm transition-all duration-200"
+                            data-tab="common">
+                            <i class="fa fa-question-circle mr-2"></i>常见问题
+                        </button>
+                        <button
+                            class="faq-tab px-6 py-3 rounded-lg text-gray-600 hover:text-dark transition-all duration-200"
+                            data-tab="submitted">
+                            <i class="fa fa-list-alt mr-2"></i>用户提交
+                        </button>
                     </div>
                 </div>
 
-                <!-- 用户提交问题板块 -->
-                <div class="bg-white rounded-xl shadow-card p-6 transition-all duration-300 hover:shadow-card-hover tab-content hidden"
-                    id="tab-submitted">
-                    <!-- 无问题提示区域 -->
-                    <div id="no-submitted-questions"
-                        class="flex flex-col items-center justify-center py-12 text-center">
-                        <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                            <i class="fa fa-file-text-o text-gray-400 text-2xl"></i>
+                <!-- 常见问题板块 - 更现代的折叠面板设计 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden tab-content" id="tab-common">
+                    <div class="p-6">
+                        <div class="mb-6">
+                            <div class="relative">
+                                <input type="text" id="faq-search" placeholder="搜索常见问题..."
+                                    class="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-3 focus:ring-primary/20 focus:border-primary outline-none">
+                                <i
+                                    class="fa fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            </div>
                         </div>
-                        <h3 class="text-lg font-medium text-gray-700 mb-2">暂无提交的问题</h3>
-                        <p class="text-sm text-gray-500 mb-6 max-w-md">您还没有提交过任何问题，点击上方按钮提交您的问题，我们会尽快为您解答。</p>
 
+                        <div class="space-y-4" id="faq-container">
+                            <!-- FAQ项1 -->
+                            <div
+                                class="faq-item border border-gray-100 rounded-lg overflow-hidden transition-all duration-300 hover:border-gray-200">
+                                <button
+                                    class="faq-question w-full flex justify-between items-center text-left p-5 font-medium bg-gray-50 hover:bg-gray-100 transition-colors">
+                                    <span>数分高代参考课本是哪些？</span>
+                                    <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                                </button>
+                                <div class="faq-answer p-5 text-dark/80 hidden bg-white">
+                                    <p>《数学分析》华东师大第五版，《高等代数》张禾瑞第五版。</p>
+                                </div>
+                            </div>
+
+                            <!-- FAQ项2 -->
+                            <div
+                                class="faq-item border border-gray-100 rounded-lg overflow-hidden transition-all duration-300 hover:border-gray-200">
+                                <button
+                                    class="faq-question w-full flex justify-between items-center text-left p-5 font-medium bg-gray-50 hover:bg-gray-100 transition-colors">
+                                    <span>数分课后题横线以下的要做吗？</span>
+                                    <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                                </button>
+                                <div class="faq-answer p-5 text-dark/80 hidden bg-white">
+                                    <p>必须要做。本科上课期间老师说过，如果要考研的话可以自己做一做横线以下的题。</p>
+                                </div>
+                            </div>
+
+                            <!-- FAQ项3 -->
+                            <div
+                                class="faq-item border border-gray-100 rounded-lg overflow-hidden transition-all duration-300 hover:border-gray-200">
+                                <button
+                                    class="faq-question w-full flex justify-between items-center text-left p-5 font-medium bg-gray-50 hover:bg-gray-100 transition-colors">
+                                    <span>需要看强化吗？</span>
+                                    <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                                </button>
+                                <div class="faq-answer p-5 text-dark/80 hidden bg-white">
+                                    <p>数学分析不需要，课后题已经够多了；高等代数如果看张禾瑞版的，需要看强化（李扬），如果看北师大版的，不需要看强化，因为强化题和北师大版课后题很多都相同。</p>
+                                </div>
+                            </div>
+
+                            <!-- FAQ项4 -->
+                            <div
+                                class="faq-item border border-gray-100 rounded-lg overflow-hidden transition-all duration-300 hover:border-gray-200">
+                                <button
+                                    class="faq-question w-full flex justify-between items-center text-left p-5 font-medium bg-gray-50 hover:bg-gray-100 transition-colors">
+                                    <span>真题难度怎么样？涉及到的课后原题占比多大？</span>
+                                    <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                                </button>
+                                <div class="faq-answer p-5 text-dark/80 hidden bg-white">
+                                    <p>难度在双非里面算一般的，不难。具体课后题来源可以看真题解析，以往每年都有，最近两三年数分不怎么考原题了，高代会考，包括强化题。25年数分没有一道课后题原题，高代有一大半见过。
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- FAQ项5 -->
+                            <div
+                                class="faq-item border border-gray-100 rounded-lg overflow-hidden transition-all duration-300 hover:border-gray-200">
+                                <button
+                                    class="faq-question w-full flex justify-between items-center text-left p-5 font-medium bg-gray-50 hover:bg-gray-100 transition-colors">
+                                    <span>真题什么时候做？怎么做？</span>
+                                    <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                                </button>
+                                <div class="faq-answer p-5 text-dark/80 hidden bg-white">
+                                    <p>理论上数分刷完两遍，高代刷完三遍后开始做，10-11月都可以。真题掐时间做，每套真题的时间最好都控制在3h以内，超过时间马上停止作答。这是为了避免在考场上把握不好时间而引起时间紧张的情况，所以平时要训练自己的速度和正确率。做完批改，错题分析原因，找课本上对应的知识点，刷类似题目。
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- FAQ项6 -->
+                            <div
+                                class="faq-item border border-gray-100 rounded-lg overflow-hidden transition-all duration-300 hover:border-gray-200">
+                                <button
+                                    class="faq-question w-full flex justify-between items-center text-left p-5 font-medium bg-gray-50 hover:bg-gray-100 transition-colors">
+                                    <span>课本考察的范围是？侧重考察哪些章节？</span>
+                                    <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                                </button>
+                                <div class="faq-answer p-5 text-dark/80 hidden bg-white">
+                                    <p>本问题在"备考指南"中有说明。</p>
+                                </div>
+                            </div>
+
+                            <!-- FAQ项7 -->
+                            <div
+                                class="faq-item border border-gray-100 rounded-lg overflow-hidden transition-all duration-300 hover:border-gray-200">
+                                <button
+                                    class="faq-question w-full flex justify-between items-center text-left p-5 font-medium bg-gray-50 hover:bg-gray-100 transition-colors">
+                                    <span>课本刷到什么程度？</span>
+                                    <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                                </button>
+                                <div class="faq-answer p-5 text-dark/80 hidden bg-white">
+                                    <p>需要做到看到题目能想起关键步骤，而且能完整写出来。</p>
+                                </div>
+                            </div>
+
+                            <!-- FAQ项8 -->
+                            <div
+                                class="faq-item border border-gray-100 rounded-lg overflow-hidden transition-all duration-300 hover:border-gray-200">
+                                <button
+                                    class="faq-question w-full flex justify-between items-center text-left p-5 font-medium bg-gray-50 hover:bg-gray-100 transition-colors">
+                                    <span>师兄师姐的经验哪些可以参考？</span>
+                                    <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                                </button>
+                                <div class="faq-answer p-5 text-dark/80 hidden bg-white">
+                                    <p>关于考研所用到的网课、资料、方法等可以参考，而师兄师姐自己考研时的学习时长、学习习惯等都是非常主观的，也不可能完全效仿，因为每个人的情况不一样，有些人本科开设过数分高代强化的课程，有些人本身英语很好，……，所以可以参考，但是参考价值不大。在学习的时候，你首先要考虑的是自己学习进度怎么样，而不是有没有按照师兄师姐的进度去学。
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- FAQ项9 -->
+                            <div
+                                class="faq-item border border-gray-100 rounded-lg overflow-hidden transition-all duration-300 hover:border-gray-200">
+                                <button
+                                    class="faq-question w-full flex justify-between items-center text-left p-5 font-medium bg-gray-50 hover:bg-gray-100 transition-colors">
+                                    <span>本校生会有优势吗？</span>
+                                    <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                                </button>
+                                <div class="faq-answer p-5 text-dark/80 hidden bg-white">
+                                    <p>不管哪个学校本校生都会有优势，因为本校生已经算生源最好的那一批了。但我们学院（数学与信息学院）在全校来看还算比较公平的，本校生和外校生大概对半开。</p>
+                                </div>
+                            </div>
+
+                            <!-- FAQ项10 -->
+                            <div
+                                class="faq-item border border-gray-100 rounded-lg overflow-hidden transition-all duration-300 hover:border-gray-200">
+                                <button
+                                    class="faq-question w-full flex justify-between items-center text-left p-5 font-medium bg-gray-50 hover:bg-gray-100 transition-colors">
+                                    <span>西华师范大学本科阶段的数学分析和高等代数的期末考试卷需要看吗？</span>
+                                    <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                                </button>
+                                <div class="faq-answer p-5 text-dark/80 hidden bg-white">
+                                    <p>没有必要看，前期如果学有余力可以做一做（资料获取板块可下载），后期以课本、真题和强化为主。</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- 问题容器 -->
-                    <div id="submitted-questions-container" class="space-y-4"></div>
+                </div>
+
+                <!-- 用户提交问题板块 - 优化设计 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden tab-content hidden" id="tab-submitted">
+                    <div class="p-6">
+                        <!-- 无问题提示区域 -->
+                        <div id="no-submitted-questions"
+                            class="flex flex-col items-center justify-center py-16 text-center">
+                            <div class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-5">
+                                <i class="fa fa-file-text-o text-gray-300 text-3xl"></i>
+                            </div>
+                            <h3 class="text-lg font-medium text-gray-700 mb-3">暂无提交的问题</h3>
+                            <p class="text-sm text-gray-500 mb-6 max-w-md">您还没有提交过任何问题，点击上方按钮提交您的问题，我们会尽快为您解答。</p>
+                            <button
+                                class="px-5 py-2.5 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all duration-200 shadow-sm hover:shadow">
+                                <i class="fa fa-plus-circle mr-2"></i>提交新问题
+                            </button>
+                        </div>
+
+                        <!-- 问题容器 -->
+                        <div id="submitted-questions-container" class="space-y-6"></div>
+                    </div>
                 </div>
             </div>
+        </div>
+        </div>
         </div>
 
         <!-- 资源获取页面 -->
@@ -3185,8 +3225,7 @@
         document.getElementById('mobile-menu-button').addEventListener('click', toggleMobileMenu);
         document.getElementById('sidebar-overlay').addEventListener('click', closeMobileMenu);
 
-        // 移除原有的选项卡功能，因为已经改为子页面结构
-        // 保留FAQ功能
+        // 初始化FAQ页面功能
         function initFAQ() {
             // 常见问题折叠功能
             const faqQuestions = document.querySelectorAll('.faq-question');
@@ -3196,26 +3235,24 @@
                     const icon = question.querySelector('i');
 
                     answer.classList.toggle('hidden');
-                    icon.classList.toggle('fa-plus');
-                    icon.classList.toggle('fa-minus');
-                    icon.classList.toggle('rotate-45');
+                    icon.classList.toggle('rotate-180');
                 });
             });
 
             // 标签页切换功能
-            const tabButtons = document.querySelectorAll('#faq-tabs button');
+            const tabButtons = document.querySelectorAll('.faq-tab');
             if (tabButtons.length > 0) {
                 tabButtons.forEach(button => {
                     button.addEventListener('click', () => {
                         // 移除所有标签按钮的活动状态
                         tabButtons.forEach(btn => {
-                            btn.classList.remove('border-primary', 'text-primary');
-                            btn.classList.add('border-transparent', 'text-gray-500');
+                            btn.classList.remove('bg-white', 'text-primary', 'font-medium', 'shadow-sm');
+                            btn.classList.add('text-gray-600');
                         });
 
                         // 添加当前标签按钮的活动状态
-                        button.classList.remove('border-transparent', 'text-gray-500');
-                        button.classList.add('border-primary', 'text-primary');
+                        button.classList.remove('text-gray-600');
+                        button.classList.add('bg-white', 'text-primary', 'font-medium', 'shadow-sm');
 
                         // 隐藏所有内容区域
                         const tabContents = document.querySelectorAll('.tab-content');
@@ -3226,6 +3263,27 @@
                         // 显示当前内容区域
                         const tabId = button.getAttribute('data-tab');
                         document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+                    });
+                });
+            }
+
+            // FAQ搜索功能
+            const searchInput = document.getElementById('faq-search');
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            if (searchInput && faqItems.length > 0) {
+                searchInput.addEventListener('input', () => {
+                    const searchTerm = searchInput.value.toLowerCase().trim();
+
+                    faqItems.forEach(item => {
+                        const questionText = item.querySelector('.faq-question span').textContent.toLowerCase();
+                        const answerText = item.querySelector('.faq-answer').textContent.toLowerCase();
+
+                        if (questionText.includes(searchTerm) || answerText.includes(searchTerm)) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
                     });
                 });
             }
@@ -4176,7 +4234,7 @@
             function checkVerifiedStatus() {
                 const isVerified = localStorage.getItem('invitation_verified') === 'true';
                 const resourcesContent = document.getElementById('resources-content');
-                
+
                 if (resourcesContent) {
                     // 始终显示资源内容，但下载链接需要验证
                     resourcesContent.classList.remove('hidden');
@@ -4188,7 +4246,7 @@
                 } else {
                     console.error('无法获取必要的DOM元素');
                 }
-                
+
                 // 无论验证状态如何，都更新星级考点的显示
                 if (typeof setupStarPointVerification === 'function') {
                     setupStarPointVerification();
@@ -4201,7 +4259,7 @@
             setupStarPointVerification();
 
             // 为了确保元素已经加载，1秒后再次检查
-            setTimeout(function() {
+            setTimeout(function () {
                 checkElements();
                 checkVerifiedStatus();
                 setupStarPointVerification();
@@ -4218,7 +4276,7 @@
 
             // 如果是测试环境或开发环境，可以添加清除验证状态的按钮
             // 这里我们添加一个按特定组合键清除验证状态的功能
-            document.addEventListener('keydown', function(e) {
+            document.addEventListener('keydown', function (e) {
                 // Ctrl+Shift+C 清除验证状态
                 if (e.ctrlKey && e.shiftKey && e.key === 'C') {
                     clearVerificationStatus();
@@ -4226,19 +4284,19 @@
             });
 
             // 滚动到邀请码验证表单并显示 - 绑定到window对象以便在HTML中访问
-            window.scrollToVerificationForm = function() {
+            window.scrollToVerificationForm = function () {
                 // 跳转到专门的验证页面
                 window.location.href = 'verification.html';
             };
-            
+
             // 为星级考点添加验证逻辑
             function setupStarPointVerification() {
                 // 检查用户是否已验证
                 const isVerified = localStorage.getItem('invitation_verified') === 'true';
-                
+
                 // 获取所有星级考点的内容区域
                 const starPointSections = document.querySelectorAll('.p-4.bg-red-50, .p-4.bg-orange-50, .p-4.bg-yellow-50, .p-4.bg-blue-50');
-                
+
                 // 保存原始内容
                 starPointSections.forEach(section => {
                     // 只处理还没有被处理过的区域
@@ -4247,13 +4305,13 @@
                         section.setAttribute('data-original-content', section.innerHTML);
                     }
                 });
-                
+
                 // 根据验证状态显示或隐藏内容
                 starPointSections.forEach(section => {
                     const originalContent = section.getAttribute('data-original-content');
                     const levelElement = section.querySelector('.flex.items-center.mb-2');
                     const contentElement = section.querySelector('p');
-                    
+
                     if (isVerified) {
                         // 已验证，显示完整内容
                         section.innerHTML = originalContent;
@@ -4264,7 +4322,7 @@
                             const lockHint = document.createElement('div');
                             lockHint.className = 'text-sm text-gray-500 flex items-center mt-2 space-x-2';
                             lockHint.innerHTML = '<i class="fa fa-lock mr-1"></i> 请验证邀请码查看具体考点内容 <button class="bg-blue-500 text-white text-xs px-2 py-1 rounded hover:bg-blue-600 transition-colors" onclick="scrollToVerificationForm()">去验证</button>';
-                            
+
                             // 清空内容并只添加级别和锁定提示
                             section.innerHTML = '';
                             section.appendChild(levelElement);
@@ -4273,7 +4331,7 @@
                     }
                 });
             }
-            
+
             // 为下载链接添加验证逻辑
             function setupDownloadLinks() {
                 // 使用更可靠的方式找到所有下载按钮的链接
@@ -4283,7 +4341,7 @@
 
                 // 存储所有需要验证的下载链接
                 const downloadLinks = [];
-                
+
                 // 从图标找到对应的a标签
                 downloadIcons.forEach(icon => {
                     const button = icon.closest('button');
@@ -4292,7 +4350,7 @@
                         downloadLinks.push(link);
                     }
                 });
-                
+
                 console.log('找到下载链接数量:', downloadLinks.length);
 
                 // 为每个下载链接添加验证逻辑
@@ -4301,9 +4359,9 @@
                     const originalLink = link.href;
 
                     // 添加点击事件监听器
-                    link.onclick = function(e) {
+                    link.onclick = function (e) {
                         const isVerified = localStorage.getItem('invitation_verified') === 'true';
-                        
+
                         if (!isVerified) {
                             // 未验证，阻止默认行为并跳转到专门的验证页面
                             e.preventDefault();
