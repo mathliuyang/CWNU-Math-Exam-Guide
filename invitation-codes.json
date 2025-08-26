@@ -60,8 +60,8 @@
       "generatedDate": "2025-08-25T15:30:14.976Z",
       "expiryDate": "2025-09-24T15:30:14.976Z",
       "used": true,
-      "usedBy": "device_drt8tf5p4o_1756188612560",
-      "usedTime": "2025-08-26T06:14:06.466Z"
+      "usedBy": "device_v9ctbbhl17_1756184652337",
+      "usedTime": "2025-08-26T06:14:38.218Z"
     },
     {
       "code": "X6VEUVH558",
@@ -676,7 +676,7 @@
       "usedTime": null
     }
   ],
-  "uploadDate": "2025-08-26T06:14:06.466Z",
+  "uploadDate": "2025-08-26T06:14:38.235Z",
   "totalCodes": 75,
   "activeCodes": 62
 }
