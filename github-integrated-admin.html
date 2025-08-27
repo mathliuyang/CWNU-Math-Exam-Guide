@@ -1,0 +1,2726 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>邀请码管理面板</title>
+    <style>
+        /* 全局样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        /* 容器样式 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 头部样式 */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 15px 0;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* 统计信息样式 */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-card h3 {
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .stat-card .stat-value {
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        .stat-card.active {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .stat-card.used {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .stat-card.expired {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        }
+
+        /* 搜索和筛选样式 */
+        .search-filter-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #code-search {
+            padding: 10px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            min-width: 300px;
+            transition: border-color 0.3s ease;
+        }
+
+        #code-search:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        #status-filter {
+            padding: 10px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            background-color: white;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        #status-filter:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        /* 按钮样式 */
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .primary-btn {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .primary-btn:hover:not(:disabled) {
+            background-color: #2980b9;
+            transform: translateY(-1px);
+        }
+
+        .success-btn {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        .success-btn:hover:not(:disabled) {
+            background-color: #27ae60;
+            transform: translateY(-1px);
+        }
+
+        .danger-btn {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .danger-btn:hover:not(:disabled) {
+            background-color: #c0392b;
+            transform: translateY(-1px);
+        }
+
+        .info-btn {
+            background-color: #95a5a6;
+            color: white;
+        }
+
+        .info-btn:hover:not(:disabled) {
+            background-color: #7f8c8d;
+            transform: translateY(-1px);
+        }
+
+        .github-btn {
+            background-color: #24292e;
+            color: white;
+        }
+
+        .github-btn:hover:not(:disabled) {
+            background-color: #0366d6;
+            transform: translateY(-1px);
+        }
+
+        .close-btn {
+            background: none;
+            color: #666;
+            padding: 5px;
+        }
+
+        .close-btn:hover {
+            color: #333;
+            background: none;
+        }
+
+        /* 表格样式 */
+        .table-container {
+            overflow-x: auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        thead {
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        th {
+            font-weight: 600;
+            color: #555;
+        }
+
+        tbody tr {
+            transition: background-color 0.2s ease;
+        }
+
+        tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        /* 状态标签样式 */
+        .status-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-active {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status-used {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-expired {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        /* 生成器样式 */
+        .generator-container {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .generator-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .generator-header h2 {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .generator-form {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 10px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .search-filter-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            #code-search {
+                min-width: auto;
+            }
+
+            .generator-form {
+                flex-direction: column;
+            }
+
+            .button-group {
+                justify-content: center;
+            }
+        }
+
+        /* 模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .modal-header h2 {
+            font-size: 20px;
+            color: #333;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        /* Toast通知样式 */
+        #toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 2000;
+        }
+
+        .toast {
+            background-color: #333;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            animation: toastSlideIn 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @keyframes toastSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .toast-success {
+            background-color: #2ecc71;
+        }
+
+        .toast-error {
+            background-color: #e74c3c;
+        }
+
+        .toast-info {
+            background-color: #3498db;
+        }
+
+        /* GitHub同步状态样式 */
+        .sync-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            background-color: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            font-size: 13px;
+        }
+
+        .sync-status.connected {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+
+        .sync-status.disconnected {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+
+        .sync-status.syncing {
+            background-color: #cce5ff;
+            border-color: #b8daff;
+            color: #004085;
+        }
+
+        .sync-icon {
+            width: 16px;
+            height: 16px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='23 4 23 10 17 10'%3E%3C/polyline%3E%3Cpolyline points='1 20 1 14 7 14'%3E%3C/polyline%3E%3Cpath d='M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15'%3E%3C/path%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .sync-icon.spinning {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* 编辑表单样式 */
+        .edit-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .edit-form .form-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .edit-form .form-row label {
+            font-weight: 500;
+            color: #555;
+            min-width: 100px;
+        }
+
+        .edit-form .form-row input,
+        .edit-form .form-row select {
+            flex: 1;
+            margin-left: 15px;
+            padding: 8px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .edit-form .form-row input:focus,
+        .edit-form .form-row select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .code-display {
+            font-family: monospace;
+            font-weight: 500;
+            color: #3498db;
+            background-color: #f8f9fa;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .usage-info-box {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .usage-info-box h4 {
+            margin-bottom: 10px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .usage-info-box .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .usage-info-box .info-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .usage-info-box .info-label {
+            color: #666;
+        }
+
+        .usage-info-box .info-value {
+            font-weight: 500;
+        }
+
+        /* 批量操作样式 */
+        .batch-actions {
+            display: none;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            background-color: #e3f2fd;
+            border: 2px solid #bbdefb;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            animation: slideDown 0.3s ease;
+        }
+
+        .batch-actions.show {
+            display: flex;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .batch-info {
+            flex-grow: 1;
+            font-size: 14px;
+            color: #1565c0;
+            font-weight: 500;
+        }
+
+        .batch-actions .button-group {
+            margin: 0;
+            gap: 10px;
+        }
+
+        /* 复选框样式 */
+        .checkbox-cell {
+            width: 40px;
+            text-align: center;
+        }
+
+        .code-checkbox,
+        .select-all-checkbox {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            accent-color: #3498db;
+        }
+
+        /* 选中行高亮 */
+        tbody tr.selected {
+            background-color: #e3f2fd !important;
+        }
+
+        tbody tr.selected:hover {
+            background-color: #bbdefb !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 头部区域 -->
+        <div class="header">
+            <h1>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z">
+                    </path>
+                </svg>
+                邀请码管理面板
+            </h1>
+            <div class="header-actions">
+                <div id="sync-status" class="sync-status">
+                    <div class="sync-icon"></div>
+                    <span>未连接GitHub</span>
+                </div>
+                <button id="close-panel" class="info-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                    关闭
+                </button>
+            </div>
+        </div>
+
+        <!-- 统计信息区域 -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3>总邀请码数</h3>
+                <div class="stat-value" id="total-codes">0</div>
+            </div>
+            <div class="stat-card active">
+                <h3>未使用</h3>
+                <div class="stat-value" id="active-codes">0</div>
+            </div>
+            <div class="stat-card used">
+                <h3>已使用</h3>
+                <div class="stat-value" id="used-codes">0</div>
+            </div>
+            <div class="stat-card expired">
+                <h3>已过期</h3>
+                <div class="stat-value" id="expired-codes">0</div>
+            </div>
+        </div>
+
+        <!-- 搜索和筛选区域 -->
+        <div class="search-filter-container">
+            <div class="search-box">
+                <input type="text" id="code-search" placeholder="搜索邀请码..." />
+                <select id="status-filter">
+                    <option value="all">全部状态</option>
+                    <option value="active">未使用</option>
+                    <option value="used">已使用</option>
+                    <option value="expired">已过期</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- 操作按钮区域 -->
+        <div class="button-group">
+            <button id="refresh-codes" class="info-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="23 4 23 10 17 10"></polyline>
+                    <polyline points="1 20 1 14 7 14"></polyline>
+                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+                刷新列表
+            </button>
+            <button id="copy-all-codes" class="info-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                复制所有有效码
+            </button>
+            <button id="export-codes" class="info-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                导出邀请码
+            </button>
+            <button id="load-from-github" class="github-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4">
+                    </path>
+                    <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                </svg>
+                从GitHub加载
+            </button>
+            <button id="save-to-github" class="github-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4">
+                    </path>
+                    <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                </svg>
+                保存到GitHub
+            </button>
+        </div>
+
+        <!-- 邀请码生成器 -->
+        <div class="generator-container">
+            <div class="generator-header">
+                <h2>生成新邀请码</h2>
+            </div>
+            <div class="generator-form">
+                <div class="form-group">
+                    <label for="code-count">生成数量:</label>
+                    <input type="number" id="code-count" min="1" max="50" value="1" />
+                </div>
+                <div class="form-group">
+                    <label for="code-type">类型:</label>
+                    <select id="code-type">
+                        <option value="normal">普通</option>
+                        <option value="svip">SVIP</option>
+                        <option value="premium">高级</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="code-expiry">有效期(天):</label>
+                    <input type="number" id="code-expiry" min="1" max="365" value="7" />
+                </div>
+                <div class="form-group">
+                    <label for="code-expiry-date">到期日期:</label>
+                    <input type="date" id="code-expiry-date" />
+                </div>
+                <div style="align-self: flex-end;">
+                    <button id="generate-button" class="primary-btn">生成邀请码</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 批量操作面板 -->
+        <div id="batch-actions" class="batch-actions">
+            <div class="batch-info">
+                已选中 <span id="selected-count">0</span> 个邀请码
+            </div>
+            <div class="button-group">
+                <button id="batch-edit" class="primary-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    批量编辑
+                </button>
+                <button id="batch-delete" class="danger-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                        </path>
+                    </svg>
+                    批量删除
+                </button>
+                <button id="clear-selection" class="info-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                    取消选择
+                </button>
+            </div>
+        </div>
+
+        <!-- 邀请码表格 -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="checkbox-cell">
+                            <input type="checkbox" class="select-all-checkbox" id="select-all" title="全选/取消全选">
+                        </th>
+                        <th>邀请码</th>
+                        <th>类型</th>
+                        <th>生成时间</th>
+                        <th>有效期至</th>
+                        <th>状态</th>
+                        <th>使用信息</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="codes-table-body">
+                    <!-- 邀请码数据将通过JavaScript动态生成 -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Toast通知容器 -->
+        <div id="toast-container"></div>
+    </div>
+
+    <!-- 编辑模态框 -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>编辑邀请码</h2>
+                <button id="close-edit-modal" class="close-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div id="edit-modal-content">
+                <!-- 编辑表单将通过JavaScript动态生成 -->
+            </div>
+            <div class="modal-actions">
+                <button id="cancel-edit" class="info-btn">取消</button>
+                <button id="save-edit" class="primary-btn">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 删除确认模态框 -->
+    <div id="delete-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>确认删除</h2>
+                <button id="close-delete-modal" class="close-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div style="padding: 15px 0;">
+                <p style="margin-bottom: 10px;">确定要删除以下邀请码吗？</p>
+                <p id="delete-code-display" style="font-family: monospace; font-weight: 500; color: #e74c3c;">
+                </p>
+                <p style="margin-top: 10px; color: #666; font-size: 14px;">此操作不可撤销！</p>
+            </div>
+            <div class="modal-actions">
+                <button id="cancel-delete" class="info-btn">取消</button>
+                <button id="confirm-delete" class="danger-btn">删除</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 批量编辑模态框 -->
+    <div id="batch-edit-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>批量编辑邀请码</h2>
+                <button id="close-batch-edit-modal" class="close-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div style="padding: 15px 0;">
+                <p style="margin-bottom: 15px;">将对选中的 <span id="batch-edit-count">0</span> 个邀请码进行批量编辑</p>
+
+                <div class="edit-form">
+                    <div class="form-row">
+                        <label for="batch-edit-type">类型:</label>
+                        <select id="batch-edit-type">
+                            <option value="">不修改</option>
+                            <option value="normal">普通</option>
+                            <option value="svip">SVIP</option>
+                            <option value="premium">高级</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="batch-edit-expiry">有效期至:</label>
+                        <input type="datetime-local" id="batch-edit-expiry">
+                    </div>
+
+                    <div
+                        style="margin-top: 10px; padding: 10px; background-color: #fff3cd; border-radius: 4px; font-size: 13px; color: #856404;">
+                        <strong>提示:</strong> 留空的字段不会被修改，只修改填写的字段。
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button id="cancel-batch-edit" class="info-btn">取消</button>
+                <button id="confirm-batch-edit" class="primary-btn">确认修改</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 批量删除确认模态框 -->
+    <div id="batch-delete-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>确认批量删除</h2>
+                <button id="close-batch-delete-modal" class="close-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div style="padding: 15px 0;">
+                <p style="margin-bottom: 10px; color: #e74c3c; font-weight: 500;">
+                    确定要删除选中的 <span id="batch-delete-count">0</span> 个邀请码吗？
+                </p>
+                <div id="batch-delete-preview"
+                    style="max-height: 200px; overflow-y: auto; padding: 10px; background-color: #f8f9fa; border-radius: 4px; font-family: monospace; font-size: 12px; line-height: 1.4; margin-top: 15px;">
+                    <!-- 将显示要删除的邀请码列表 -->
+                </div>
+                <p style="margin-top: 15px; color: #666; font-size: 14px;">
+                    <strong>⚠️ 此操作不可撤销！</strong>
+                </p>
+            </div>
+            <div class="modal-actions">
+                <button id="cancel-batch-delete" class="info-btn">取消</button>
+                <button id="confirm-batch-delete" class="danger-btn">确认删除</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 全局状态管理
+        const AppState = {
+            invitationCodes: [],
+            currentEditIndex: -1,
+            currentDeleteIndex: -1,
+            isSyncing: false,
+            lastSyncTime: null,
+            githubSha: null, // GitHub文件的SHA值，用于更新
+            elements: {} // 用于缓存DOM元素
+        };
+
+        // GitHub配置
+        const GitHubConfig = {
+            owner: 'mathliuyang',
+            repo: 'CWNU-Math-Exam-Guide',
+            path: 'invitation-codes.json',
+            branch: 'main',
+            get apiUrl() {
+                return `https://api.github.com/repos/${this.owner}/${this.repo}/contents/${this.path}`;
+            },
+            get rawUrl() {
+                return `https://raw.githubusercontent.com/${this.owner}/${this.repo}/${this.branch}/${this.path}`;
+            }
+        };
+
+        // Token混淆处理
+        function getGitHubToken() {
+            const obfuscatedParts = [
+                'ghp_{x1}pSS',
+                'ubHV5{y7}Yg8',
+                'urbyR{z9}61x',
+                'xRwxi{T5}T7c',
+                'GvE4{Z2}VnWnq'
+            ];
+
+            const obfuscationMap = {
+                '{x1}': 'abc',
+                '{y7}': 'def',
+                '{z9}': 'ghi',
+                '{T5}': 'jkl',
+                '{Z2}': 'mno'
+            };
+
+            let token = '';
+            obfuscatedParts.forEach(part => {
+                let cleanPart = part;
+                for (const [placeholder, garbage] of Object.entries(obfuscationMap)) {
+                    cleanPart = cleanPart.replace(placeholder, '');
+                }
+                token += cleanPart;
+            });
+
+            return token;
+        }
+
+        // 获取GitHub Token并存储到localStorage
+        function ensureGitHubToken() {
+            let token = localStorage.getItem('githubToken');
+            if (!token) {
+                token = getGitHubToken();
+                localStorage.setItem('githubToken', token);
+            }
+            return token;
+        }
+
+        // 初始化DOM元素引用
+        function initElements() {
+            AppState.elements = {
+                codesTableBody: document.getElementById('codes-table-body'),
+                codeSearch: document.getElementById('code-search'),
+                statusFilter: document.getElementById('status-filter'),
+                editModal: document.getElementById('edit-modal'),
+                deleteModal: document.getElementById('delete-modal'),
+                syncStatus: document.getElementById('sync-status'),
+                generateButton: document.getElementById('generate-button'),
+                refreshButton: document.getElementById('refresh-codes'),
+                copyAllButton: document.getElementById('copy-all-codes'),
+                exportButton: document.getElementById('export-codes'),
+                loadFromGitHubButton: document.getElementById('load-from-github'),
+                saveToGitHubButton: document.getElementById('save-to-github'),
+                closePanelButton: document.getElementById('close-panel'),
+                // 批量操作相关元素
+                batchActions: document.getElementById('batch-actions'),
+                selectedCount: document.getElementById('selected-count'),
+                selectAllCheckbox: document.getElementById('select-all'),
+                batchEditButton: document.getElementById('batch-edit'),
+                batchDeleteButton: document.getElementById('batch-delete'),
+                clearSelectionButton: document.getElementById('clear-selection'),
+                // 批量编辑模态框
+                batchEditModal: document.getElementById('batch-edit-modal'),
+                batchEditCount: document.getElementById('batch-edit-count'),
+                // 批量删除模态框
+                batchDeleteModal: document.getElementById('batch-delete-modal'),
+                batchDeleteCount: document.getElementById('batch-delete-count'),
+                batchDeletePreview: document.getElementById('batch-delete-preview')
+            };
+        }
+
+        // 初始化应用
+        function initApp() {
+            try {
+                console.log('开始初始化应用...');
+
+                // 确保 selectedCodes 被正确初始化
+                if (!AppState.selectedCodes) {
+                    AppState.selectedCodes = new Set();
+                }
+
+                initElements();
+                initializeInvitationCodes();
+                bindAllEvents();
+
+                // 初始化有效期日期选择器
+                initializeExpiryDate();
+
+                console.log('应用初始化完成');
+                showToast('应用初始化完成', 'success');
+            } catch (error) {
+                console.error('应用初始化失败:', error);
+                showToast('应用初始化失败: ' + error.message, 'error');
+            }
+        }
+
+        // 初始化有效期日期选择器
+        function initializeExpiryDate() {
+            try {
+                const expiryDaysInput = document.getElementById('code-expiry');
+                const expiryDateInput = document.getElementById('code-expiry-date');
+
+                if (expiryDaysInput && expiryDateInput) {
+                    // 初始计算到期日期
+                    updateExpiryDateFromDays();
+
+                    // 添加事件监听器
+                    expiryDaysInput.addEventListener('input', updateExpiryDateFromDays);
+                    expiryDateInput.addEventListener('change', updateExpiryDaysFromDate);
+
+                    // 类型选择变更时，更新有效期显示
+                    const typeSelect = document.getElementById('code-type');
+                    if (typeSelect) {
+                        typeSelect.addEventListener('change', function () {
+                            // 对于特殊类型，禁用输入并显示相应提示
+                            if (this.value === 'svip' || this.value === 'premium') {
+                                expiryDaysInput.disabled = true;
+                                expiryDateInput.disabled = true;
+
+                                let message = this.value === 'svip' ? 'SVIP有效期固定为2025年12月25日' : '高级类型永久有效';
+                                expiryDaysInput.title = message;
+                                expiryDateInput.title = message;
+                            } else {
+                                expiryDaysInput.disabled = false;
+                                expiryDateInput.disabled = false;
+                                expiryDaysInput.title = '';
+                                expiryDateInput.title = '';
+                                updateExpiryDateFromDays();
+                            }
+                        });
+
+                        // 初始检查类型
+                        if (typeSelect.value === 'svip' || typeSelect.value === 'premium') {
+                            expiryDaysInput.disabled = true;
+                            expiryDateInput.disabled = true;
+                            let message = typeSelect.value === 'svip' ? 'SVIP有效期固定为2025年12月25日' : '高级类型永久有效';
+                            expiryDaysInput.title = message;
+                            expiryDateInput.title = message;
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('初始化有效期日期选择器失败:', error);
+            }
+        }
+
+        // 从有效期天数更新到期日期
+        function updateExpiryDateFromDays() {
+            const expiryDaysInput = document.getElementById('code-expiry');
+            const expiryDateInput = document.getElementById('code-expiry-date');
+
+            if (expiryDaysInput && expiryDateInput && !expiryDaysInput.disabled) {
+                const days = parseInt(expiryDaysInput.value);
+                if (!isNaN(days) && days > 0) {
+                    const now = new Date();
+                    // 使用setDate方法更准确地计算未来日期，避免毫秒计算的误差
+                    const expiryDate = new Date(now);
+                    expiryDate.setDate(expiryDate.getDate() + days + 1);
+
+                    // 格式化为YYYY-MM-DD格式
+                    const formattedDate = expiryDate.toISOString().split('T')[0];
+                    expiryDateInput.value = formattedDate;
+                }
+            }
+        }
+
+        // 从到期日期更新有效期天数
+        function updateExpiryDaysFromDate() {
+            const expiryDaysInput = document.getElementById('code-expiry');
+            const expiryDateInput = document.getElementById('code-expiry-date');
+
+            if (expiryDaysInput && expiryDateInput && !expiryDateInput.disabled) {
+                const selectedDate = new Date(expiryDateInput.value);
+                const now = new Date();
+
+                // 确保选择的日期在今天之后
+                if (selectedDate > now) {
+                    // 计算天数差异
+                    const timeDiff = selectedDate.getTime() - now.getTime();
+                    const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+                    // 更新天数输入框
+                    expiryDaysInput.value = daysDiff;
+                }
+            }
+        }
+
+        // 初始化邀请码数据
+        function initializeInvitationCodes() {
+            try {
+                const storedCodes = localStorage.getItem('invitationCodes');
+
+                if (storedCodes) {
+                    AppState.invitationCodes = JSON.parse(storedCodes);
+                } else {
+                    // 不创建示例数据，设置为空数组
+                    AppState.invitationCodes = [];
+                    localStorage.setItem('invitationCodes', JSON.stringify(AppState.invitationCodes));
+                }
+
+                refreshCodesTable();
+                updateCodesSummary();
+
+                console.log('初始化邀请码数据完成，总计 ' + AppState.invitationCodes.length + ' 个邀请码');
+            } catch (error) {
+                console.error('初始化邀请码数据失败:', error);
+                showToast('初始化数据失败: ' + error.message, 'error');
+            }
+        }
+
+        // 绑定所有事件监听器
+        function bindAllEvents() {
+            try {
+                const { elements } = AppState;
+
+                // 生成按钮事件
+                if (elements.generateButton) {
+                    elements.generateButton.addEventListener('click', generateBatchInvitationCodes);
+                }
+
+                // 搜索和筛选事件
+                if (elements.codeSearch) {
+                    elements.codeSearch.addEventListener('input', refreshCodesTable);
+                }
+                if (elements.statusFilter) {
+                    elements.statusFilter.addEventListener('change', refreshCodesTable);
+                }
+
+                // 操作按钮事件
+                if (elements.refreshButton) {
+                    elements.refreshButton.addEventListener('click', refreshCodesTable);
+                }
+                if (elements.copyAllButton) {
+                    elements.copyAllButton.addEventListener('click', copyAllCodes);
+                }
+                if (elements.exportButton) {
+                    elements.exportButton.addEventListener('click', exportInvitationCodes);
+                }
+                if (elements.closePanelButton) {
+                    elements.closePanelButton.addEventListener('click', closeAdminPanel);
+                }
+
+                // GitHub相关事件
+                if (elements.loadFromGitHubButton) {
+                    elements.loadFromGitHubButton.addEventListener('click', loadInvitationCodesFromGitHub);
+                }
+                if (elements.saveToGitHubButton) {
+                    elements.saveToGitHubButton.addEventListener('click', uploadInvitationCodesToGitHub);
+                }
+
+                // 批量操作事件
+                if (elements.selectAllCheckbox) {
+                    elements.selectAllCheckbox.addEventListener('change', toggleSelectAll);
+                }
+                if (elements.batchEditButton) {
+                    elements.batchEditButton.addEventListener('click', openBatchEditModal);
+                }
+                if (elements.batchDeleteButton) {
+                    elements.batchDeleteButton.addEventListener('click', openBatchDeleteModal);
+                }
+                if (elements.clearSelectionButton) {
+                    elements.clearSelectionButton.addEventListener('click', clearAllSelection);
+                }
+
+                // 模态框事件
+                bindModalEvents();
+
+                // 全局事件
+                bindGlobalEvents();
+
+                console.log('所有事件监听器已绑定');
+            } catch (error) {
+                console.error('绑定事件监听器失败:', error);
+                showToast('事件绑定失败: ' + error.message, 'error');
+            }
+        }
+
+        // 绑定模态框相关事件
+        function bindModalEvents() {
+            // 编辑模态框事件
+            const closeEditBtn = document.getElementById('close-edit-modal');
+            const cancelEditBtn = document.getElementById('cancel-edit');
+            const saveEditBtn = document.getElementById('save-edit');
+
+            if (closeEditBtn) closeEditBtn.addEventListener('click', closeEditModal);
+            if (cancelEditBtn) cancelEditBtn.addEventListener('click', closeEditModal);
+            if (saveEditBtn) saveEditBtn.addEventListener('click', saveEditedCode);
+
+            // 删除模态框事件
+            const closeDeleteBtn = document.getElementById('close-delete-modal');
+            const cancelDeleteBtn = document.getElementById('cancel-delete');
+            const confirmDeleteBtn = document.getElementById('confirm-delete');
+
+            if (closeDeleteBtn) closeDeleteBtn.addEventListener('click', closeDeleteModal);
+            if (cancelDeleteBtn) cancelDeleteBtn.addEventListener('click', closeDeleteModal);
+            if (confirmDeleteBtn) confirmDeleteBtn.addEventListener('click', confirmDeleteCode);
+
+            // 批量编辑模态框事件
+            const closeBatchEditBtn = document.getElementById('close-batch-edit-modal');
+            const cancelBatchEditBtn = document.getElementById('cancel-batch-edit');
+            const confirmBatchEditBtn = document.getElementById('confirm-batch-edit');
+
+            if (closeBatchEditBtn) closeBatchEditBtn.addEventListener('click', closeBatchEditModal);
+            if (cancelBatchEditBtn) cancelBatchEditBtn.addEventListener('click', closeBatchEditModal);
+            if (confirmBatchEditBtn) confirmBatchEditBtn.addEventListener('click', confirmBatchEdit);
+
+            // 批量删除模态框事件
+            const closeBatchDeleteBtn = document.getElementById('close-batch-delete-modal');
+            const cancelBatchDeleteBtn = document.getElementById('cancel-batch-delete');
+            const confirmBatchDeleteBtn = document.getElementById('confirm-batch-delete');
+
+            if (closeBatchDeleteBtn) closeBatchDeleteBtn.addEventListener('click', closeBatchDeleteModal);
+            if (cancelBatchDeleteBtn) cancelBatchDeleteBtn.addEventListener('click', closeBatchDeleteModal);
+            if (confirmBatchDeleteBtn) confirmBatchDeleteBtn.addEventListener('click', confirmBatchDelete);
+        }
+
+        // 绑定全局事件
+        function bindGlobalEvents() {
+            const { editModal, deleteModal, batchEditModal, batchDeleteModal } = AppState.elements;
+
+            // 点击模态框外部关闭
+            window.addEventListener('click', function (event) {
+                if (event.target === editModal) {
+                    closeEditModal();
+                }
+                if (event.target === deleteModal) {
+                    closeDeleteModal();
+                }
+                if (event.target === batchEditModal) {
+                    closeBatchEditModal();
+                }
+                if (event.target === batchDeleteModal) {
+                    closeBatchDeleteModal();
+                }
+            });
+
+            // 键盘快捷键
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape') {
+                    closeEditModal();
+                    closeDeleteModal();
+                    closeBatchEditModal();
+                    closeBatchDeleteModal();
+                }
+            });
+        }
+
+        // 生成邀请码
+        function generateInvitationCode() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let code = '';
+
+            for (let i = 0; i < 8; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+
+            const prefix = Math.random() > 0.0 ? 'SVIP-' : 'CODE-';
+            return prefix + code;
+        }
+
+        // 批量生成邀请码
+        function generateBatchInvitationCodes() {
+            try {
+                const count = parseInt(document.getElementById('code-count').value);
+                const type = document.getElementById('code-type').value;
+                const expiryDays = parseInt(document.getElementById('code-expiry').value);
+
+                // 验证输入
+                if (isNaN(count) || count < 1 || count > 50) {
+                    showToast('请输入有效的生成数量（1-50）', 'error');
+                    return;
+                }
+
+                if (isNaN(expiryDays) || expiryDays < 1 || expiryDays > 365) {
+                    showToast('请输入有效的有效期（1-365天）', 'error');
+                    return;
+                }
+
+                // 禁用生成按钮防止重复点击
+                const generateButton = AppState.elements.generateButton;
+                generateButton.disabled = true;
+                generateButton.textContent = '生成中...';
+
+                // 生成邀请码
+                const newCodes = [];
+                const now = new Date();
+
+                for (let i = 0; i < count; i++) {
+                    let code;
+                    let isDuplicate;
+                    do {
+                        code = generateInvitationCode();
+                        isDuplicate = AppState.invitationCodes.some(c => c.code === code);
+                    } while (isDuplicate);
+
+                    let expiryDate;
+
+                    // 根据邀请码类型设置不同的有效期
+                    if (type === 'svip') {
+                        // SVIP有效期到2025年12月25日
+                        expiryDate = new Date('2025-12-25T23:59:59');
+                    } else if (type === 'premium') {
+                        // 高级类型永久有效（设置为一个遥远的未来日期）
+                        expiryDate = new Date(now);
+                        expiryDate.setFullYear(expiryDate.getFullYear() + 1000); // 1000年有效期
+                    } else {
+                        // 其他类型按输入的天数计算
+                        expiryDate = new Date(now);
+                        expiryDate.setDate(expiryDate.getDate() + expiryDays);
+                    }
+
+                    newCodes.push({
+                        code: code,
+                        type: type,
+                        generatedDate: now.toISOString(),
+                        expiryDate: expiryDate.toISOString(),
+                        used: false,
+                        usedBy: null,
+                        usedTime: null,
+                        usageCount: 0
+                    });
+                }
+
+                // 添加到现有列表
+                AppState.invitationCodes = [...newCodes, ...AppState.invitationCodes];
+
+                // 保存到localStorage
+                localStorage.setItem('invitationCodes', JSON.stringify(AppState.invitationCodes));
+
+                // 刷新表格和统计信息
+                refreshCodesTable();
+                updateCodesSummary();
+
+                // 恢复生成按钮状态
+                generateButton.disabled = false;
+                generateButton.textContent = '生成邀请码';
+
+                // 显示成功提示
+                showToast(`成功生成 ${count} 个邀请码`, 'success');
+
+                console.log(`生成了 ${count} 个邀请码`);
+            } catch (error) {
+                console.error('生成邀请码失败:', error);
+                showToast('生成邀请码失败: ' + error.message, 'error');
+
+                // 恢复生成按钮状态
+                const generateButton = AppState.elements.generateButton;
+                if (generateButton) {
+                    generateButton.disabled = false;
+                    generateButton.textContent = '生成邀请码';
+                }
+            }
+        }
+
+        // 获取邀请码状态
+        function getCodeStatus(codeObj) {
+            const now = new Date();
+            const expiryDate = new Date(codeObj.expiryDate);
+
+            if (codeObj.used) {
+                return { text: '已使用', class: 'status-used' };
+            } else if (expiryDate < now) {
+                return { text: '已过期', class: 'status-expired' };
+            } else {
+                return { text: '未使用', class: 'status-active' };
+            }
+        }
+
+        // 格式化日期
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleString('zh-CN', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        // 格式化日期为datetime-local格式
+        function formatDateTimeLocal(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+
+            return `${year}-${month}-${day}T${hours}:${minutes}`;
+        }
+
+        // 刷新邀请码表格
+        function refreshCodesTable() {
+            try {
+                const { codesTableBody, codeSearch, statusFilter } = AppState.elements;
+
+                if (!codesTableBody) {
+                    console.error('表格元素未找到');
+                    return;
+                }
+
+                // 清空表格
+                codesTableBody.innerHTML = '';
+
+                // 获取搜索和筛选条件
+                const searchTerm = codeSearch ? codeSearch.value.toLowerCase().trim() : '';
+                const statusFilterValue = statusFilter ? statusFilter.value : 'all';
+
+                // 过滤邀请码
+                let filteredCodes = AppState.invitationCodes;
+
+                // 应用搜索
+                if (searchTerm) {
+                    filteredCodes = filteredCodes.filter(code =>
+                        code.code.toLowerCase().includes(searchTerm)
+                    );
+                }
+
+                // 应用状态筛选
+                if (statusFilterValue !== 'all') {
+                    const now = new Date();
+
+                    filteredCodes = filteredCodes.filter(code => {
+                        const expiryDate = new Date(code.expiryDate);
+
+                        if (statusFilterValue === 'active') {
+                            return !code.used && expiryDate >= now;
+                        } else if (statusFilterValue === 'used') {
+                            return code.used;
+                        } else if (statusFilterValue === 'expired') {
+                            return !code.used && expiryDate < now;
+                        }
+
+                        return true;
+                    });
+                }
+
+                // 如果没有数据，显示空状态
+                if (filteredCodes.length === 0) {
+                    const emptyRow = document.createElement('tr');
+                    emptyRow.innerHTML = `
+                        <td colspan="7" style="text-align: center; color: #999; padding: 40px;">
+                            没有找到匹配的邀请码
+                        </td>
+                    `;
+                    codesTableBody.appendChild(emptyRow);
+                    return;
+                }
+
+                // 创建文档片段以提高性能
+                const fragment = document.createDocumentFragment();
+
+                // 添加邀请码行
+                filteredCodes.forEach((codeObj) => {
+                    const row = document.createElement('tr');
+                    const originalIndex = AppState.invitationCodes.indexOf(codeObj);
+                    row.dataset.originalIndex = originalIndex;
+
+                    // 获取状态信息
+                    const status = getCodeStatus(codeObj);
+
+                    // 格式化使用信息
+                    let usageInfo = '未使用';
+                    if (codeObj.used) {
+                        usageInfo = `${codeObj.usedBy} (${formatDate(codeObj.usedTime)})`;
+                    }
+
+                    // 确定有效期显示文本
+                    const expiryDisplay = codeObj.type === 'premium' ? '永久' : formatDate(codeObj.expiryDate);
+
+                    // 设置行内容
+                    row.innerHTML = `
+                        <td class="checkbox-cell">
+                            <input type="checkbox" class="code-checkbox" data-index="${originalIndex}">
+                        </td>
+                        <td style="font-family: monospace; font-weight: 500;">${codeObj.code}</td>
+                        <td>${codeObj.type}</td>
+                        <td>${formatDate(codeObj.generatedDate)}</td>
+                        <td>${expiryDisplay}</td>
+                        <td>
+                            <span class="status-tag ${status.class}">${status.text}</span>
+                        </td>
+                        <td>${usageInfo}</td>
+                        <td>
+                            <div style="display: flex; gap: 5px;">
+                                <button class="copy-btn info-btn" style="padding: 5px 10px; font-size: 12px;" title="复制邀请码">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                    复制
+                                </button>
+                                ${!codeObj.used ? `
+                                <button class="edit-btn primary-btn" style="padding: 5px 10px; font-size: 12px;" title="编辑邀请码">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                                    编辑
+                                </button>
+                                ` : ''}
+                                <button class="delete-btn danger-btn" style="padding: 5px 10px; font-size: 12px;" title="删除邀请码">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                    删除
+                                </button>
+                            </div>
+                        </td>
+                    `;
+
+                    // 检查是否选中（添加安全检查）
+                    if (AppState.selectedCodes && AppState.selectedCodes.has(originalIndex)) {
+                        row.classList.add('selected');
+                        const checkbox = row.querySelector('.code-checkbox');
+                        if (checkbox) checkbox.checked = true;
+                    }
+
+                    fragment.appendChild(row);
+                });
+
+                // 添加到表格
+                codesTableBody.appendChild(fragment);
+
+                // 绑定行内按钮事件
+                bindRowButtonsEvents();
+
+                console.log('表格已刷新，显示 ' + filteredCodes.length + ' 个邀请码');
+            } catch (error) {
+                console.error('刷新表格失败:', error);
+                showToast('刷新表格失败: ' + error.message, 'error');
+            }
+        }
+
+        // 绑定行内按钮事件
+        function bindRowButtonsEvents() {
+            // 复选框事件
+            document.querySelectorAll('.code-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', function () {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    toggleCodeSelection(index, this.checked);
+                });
+            });
+
+            // 复制按钮
+            document.querySelectorAll('.copy-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    const row = this.closest('tr');
+                    const code = row.querySelector('td:nth-child(2)').textContent; // 第二列是邀请码
+                    copyToClipboard(code);
+                });
+            });
+
+            // 编辑按钮
+            document.querySelectorAll('.edit-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    const row = this.closest('tr');
+                    const index = parseInt(row.dataset.originalIndex);
+                    openEditModal(index);
+                });
+            });
+
+            // 删除按钮
+            document.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    const row = this.closest('tr');
+                    const index = parseInt(row.dataset.originalIndex);
+                    openDeleteModal(index);
+                });
+            });
+        }
+
+        // 切换单个邀请码的选择状态
+        function toggleCodeSelection(index, isSelected) {
+            // 确保 selectedCodes 已初始化
+            if (!AppState.selectedCodes) {
+                AppState.selectedCodes = new Set();
+            }
+
+            if (isSelected) {
+                AppState.selectedCodes.add(index);
+            } else {
+                AppState.selectedCodes.delete(index);
+            }
+
+            updateSelectionUI();
+            updateSelectAllCheckbox();
+        }
+
+        // 全选/取消全选
+        function toggleSelectAll() {
+            // 确保 selectedCodes 已初始化
+            if (!AppState.selectedCodes) {
+                AppState.selectedCodes = new Set();
+            }
+
+            const isChecked = AppState.elements.selectAllCheckbox.checked;
+
+            if (isChecked) {
+                // 全选：将当前可见的所有邀请码添加到选择集合
+                AppState.invitationCodes.forEach((code, index) => {
+                    AppState.selectedCodes.add(index);
+                });
+            } else {
+                // 取消全选
+                AppState.selectedCodes.clear();
+            }
+
+            // 更新UI
+            updateSelectionUI();
+            refreshCodesTable(); // 重新渲染表格以更新复选框状态
+        }
+
+        // 清空所有选择
+        function clearAllSelection() {
+            // 确保 selectedCodes 已初始化
+            if (!AppState.selectedCodes) {
+                AppState.selectedCodes = new Set();
+            }
+
+            AppState.selectedCodes.clear();
+            updateSelectionUI();
+            updateSelectAllCheckbox();
+            refreshCodesTable(); // 重新渲染表格以更新复选框状态
+        }
+
+        // 更新选择相关的UI
+        function updateSelectionUI() {
+            // 确保 selectedCodes 已初始化
+            if (!AppState.selectedCodes) {
+                AppState.selectedCodes = new Set();
+            }
+
+            const selectedCount = AppState.selectedCodes.size;
+
+            // 更新选中数量显示
+            if (AppState.elements.selectedCount) {
+                AppState.elements.selectedCount.textContent = selectedCount;
+            }
+
+            // 显示/隐藏批量操作面板
+            if (AppState.elements.batchActions) {
+                if (selectedCount > 0) {
+                    AppState.elements.batchActions.classList.add('show');
+                } else {
+                    AppState.elements.batchActions.classList.remove('show');
+                }
+            }
+        }
+
+        // 更新全选复选框的状态
+        function updateSelectAllCheckbox() {
+            // 确保 selectedCodes 已初始化
+            if (!AppState.selectedCodes) {
+                AppState.selectedCodes = new Set();
+            }
+
+            if (!AppState.elements.selectAllCheckbox) return;
+
+            const totalCount = AppState.invitationCodes.length;
+            const selectedCount = AppState.selectedCodes.size;
+
+            if (selectedCount === 0) {
+                AppState.elements.selectAllCheckbox.checked = false;
+                AppState.elements.selectAllCheckbox.indeterminate = false;
+            } else if (selectedCount === totalCount) {
+                AppState.elements.selectAllCheckbox.checked = true;
+                AppState.elements.selectAllCheckbox.indeterminate = false;
+            } else {
+                AppState.elements.selectAllCheckbox.checked = false;
+                AppState.elements.selectAllCheckbox.indeterminate = true;
+            }
+        }
+
+        // 打开批量编辑模态框
+        function openBatchEditModal() {
+            if (AppState.selectedCodes.size === 0) {
+                showToast('请先选择要编辑的邀请码', 'info');
+                return;
+            }
+
+            // 更新选中数量显示
+            const batchEditCount = document.getElementById('batch-edit-count');
+            if (batchEditCount) {
+                batchEditCount.textContent = AppState.selectedCodes.size;
+            }
+
+            // 重置表单
+            const typeSelect = document.getElementById('batch-edit-type');
+            const expiryInput = document.getElementById('batch-edit-expiry');
+
+            if (typeSelect) typeSelect.value = '';
+            if (expiryInput) expiryInput.value = '';
+
+            // 显示模态框
+            AppState.elements.batchEditModal.style.display = 'flex';
+        }
+
+        // 关闭批量编辑模态框
+        function closeBatchEditModal() {
+            AppState.elements.batchEditModal.style.display = 'none';
+        }
+
+        // 确认批量编辑
+        function confirmBatchEdit() {
+            try {
+                const typeSelect = document.getElementById('batch-edit-type');
+                const expiryInput = document.getElementById('batch-edit-expiry');
+
+                const newType = typeSelect ? typeSelect.value : '';
+                const newExpiry = expiryInput ? expiryInput.value : '';
+
+                // 检查是否至少选择了一个字段要修改
+                if (!newType && !newExpiry) {
+                    showToast('请至少选择一个字段进行修改', 'error');
+                    return;
+                }
+
+                // 验证日期
+                if (newExpiry && new Date(newExpiry) <= new Date()) {
+                    showToast('有效期必须大于当前时间', 'error');
+                    return;
+                }
+
+                let modifiedCount = 0;
+
+                // 对选中的邀请码进行批量修改
+                AppState.selectedCodes.forEach(index => {
+                    if (index >= 0 && index < AppState.invitationCodes.length) {
+                        const code = AppState.invitationCodes[index];
+
+                        // 只对未使用的邀请码进行修改
+                        if (!code.used) {
+                            if (newType) {
+                                code.type = newType;
+                            }
+                            if (newExpiry) {
+                                code.expiryDate = new Date(newExpiry).toISOString();
+                            }
+                            modifiedCount++;
+                        }
+                    }
+                });
+
+                if (modifiedCount === 0) {
+                    showToast('没有可修改的邀请码（只能修改未使用的邀请码）', 'info');
+                    return;
+                }
+
+                // 保存到localStorage
+                localStorage.setItem('invitationCodes', JSON.stringify(AppState.invitationCodes));
+
+                // 刷新表格和统计信息
+                refreshCodesTable();
+                updateCodesSummary();
+
+                // 关闭模态框
+                closeBatchEditModal();
+
+                // 清空选择
+                clearAllSelection();
+
+                // 显示成功提示
+                showToast(`成功修改 ${modifiedCount} 个邀请码`, 'success');
+
+                console.log(`批量编辑完成: 修改了 ${modifiedCount} 个邀请码`);
+            } catch (error) {
+                console.error('批量编辑失败:', error);
+                showToast('批量编辑失败: ' + error.message, 'error');
+            }
+        }
+
+        // 打开批量删除模态框
+        function openBatchDeleteModal() {
+            if (AppState.selectedCodes.size === 0) {
+                showToast('请先选择要删除的邀请码', 'info');
+                return;
+            }
+
+            // 更新选中数量显示
+            const batchDeleteCount = document.getElementById('batch-delete-count');
+            const batchDeletePreview = document.getElementById('batch-delete-preview');
+
+            if (batchDeleteCount) {
+                batchDeleteCount.textContent = AppState.selectedCodes.size;
+            }
+
+            // 生成预览列表
+            if (batchDeletePreview) {
+                const selectedCodes = Array.from(AppState.selectedCodes)
+                    .map(index => AppState.invitationCodes[index])
+                    .filter(code => code) // 过滤掉无效的索引
+                    .map(code => code.code);
+
+                batchDeletePreview.innerHTML = selectedCodes.join('<br>');
+            }
+
+            // 显示模态框
+            AppState.elements.batchDeleteModal.style.display = 'flex';
+        }
+
+        // 关闭批量删除模态框
+        function closeBatchDeleteModal() {
+            AppState.elements.batchDeleteModal.style.display = 'none';
+        }
+
+        // 确认批量删除
+        function confirmBatchDelete() {
+            try {
+                if (AppState.selectedCodes.size === 0) {
+                    showToast('没有选中的邀请码', 'error');
+                    return;
+                }
+
+                // 获取要删除的索引，并按降序排序（从后往前删除，避免索引错乱）
+                const indexesToDelete = Array.from(AppState.selectedCodes).sort((a, b) => b - a);
+                let deletedCount = 0;
+
+                // 从后往前删除邀请码
+                indexesToDelete.forEach(index => {
+                    if (index >= 0 && index < AppState.invitationCodes.length) {
+                        AppState.invitationCodes.splice(index, 1);
+                        deletedCount++;
+                    }
+                });
+
+                // 保存到localStorage
+                localStorage.setItem('invitationCodes', JSON.stringify(AppState.invitationCodes));
+
+                // 清空选择
+                AppState.selectedCodes.clear();
+
+                // 刷新表格和统计信息
+                refreshCodesTable();
+                updateCodesSummary();
+                updateSelectionUI();
+                updateSelectAllCheckbox();
+
+                // 关闭模态框
+                closeBatchDeleteModal();
+
+                // 显示成功提示
+                showToast(`成功删除 ${deletedCount} 个邀请码`, 'success');
+
+                console.log(`批量删除完成: 删除了 ${deletedCount} 个邀请码`);
+            } catch (error) {
+                console.error('批量删除失败:', error);
+                showToast('批量删除失败: ' + error.message, 'error');
+            }
+        }
+        function updateCodesSummary() {
+            try {
+                const now = new Date();
+
+                // 计算各状态的邀请码数量
+                const total = AppState.invitationCodes.length;
+                const used = AppState.invitationCodes.filter(code => code.used).length;
+                const active = AppState.invitationCodes.filter(code =>
+                    !code.used && new Date(code.expiryDate) >= now
+                ).length;
+                const expired = AppState.invitationCodes.filter(code =>
+                    !code.used && new Date(code.expiryDate) < now
+                ).length;
+
+                // 更新DOM
+                const totalCodesEl = document.getElementById('total-codes');
+                const activeCodesEl = document.getElementById('active-codes');
+                const usedCodesEl = document.getElementById('used-codes');
+                const expiredCodesEl = document.getElementById('expired-codes');
+
+                if (totalCodesEl) totalCodesEl.textContent = total;
+                if (activeCodesEl) activeCodesEl.textContent = active;
+                if (usedCodesEl) usedCodesEl.textContent = used;
+                if (expiredCodesEl) expiredCodesEl.textContent = expired;
+
+                console.log(`统计信息已更新: 总计 ${total}, 未使用 ${active}, 已使用 ${used}, 已过期 ${expired}`);
+            } catch (error) {
+                console.error('更新统计信息失败:', error);
+            }
+        }
+
+        // 打开编辑模态框
+        function openEditModal(index) {
+            try {
+                if (index < 0 || index >= AppState.invitationCodes.length) {
+                    showToast('无效的邀请码索引', 'error');
+                    return;
+                }
+
+                AppState.currentEditIndex = index;
+                const codeObj = AppState.invitationCodes[index];
+
+                // 创建编辑表单
+                const editContent = `
+                    <div class="edit-form">
+                        <div class="form-row">
+                            <label>邀请码:</label>
+                            <div class="code-display">${codeObj.code}</div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="edit-type">类型:</label>
+                            <select id="edit-type">
+                                <option value="normal" ${codeObj.type === 'normal' ? 'selected' : ''}>普通</option>
+                                <option value="svip" ${codeObj.type === 'svip' ? 'selected' : ''}>SVIP</option>
+                                <option value="premium" ${codeObj.type === 'premium' ? 'selected' : ''}>高级</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="edit-expiry-date">有效期至:</label>
+                            <input 
+                                type="datetime-local" 
+                                id="edit-expiry-date" 
+                                value="${formatDateTimeLocal(new Date(codeObj.expiryDate))}"
+                            >
+                        </div>
+                        
+                        ${codeObj.used ? `
+                        <div class="usage-info-box">
+                            <h4>使用信息</h4>
+                            <div class="info-row">
+                                <span class="info-label">使用人:</span>
+                                <span class="info-value">${codeObj.usedBy}</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">使用时间:</span>
+                                <span class="info-value">${formatDate(codeObj.usedTime)}</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">使用次数:</span>
+                                <span class="info-value">${codeObj.usageCount}</span>
+                            </div>
+                        </div>
+                        ` : ''}
+                    </div>
+                `;
+
+                document.getElementById('edit-modal-content').innerHTML = editContent;
+
+                // 显示模态框
+                AppState.elements.editModal.style.display = 'flex';
+
+                console.log(`打开编辑模态框，索引: ${index}`);
+            } catch (error) {
+                console.error('打开编辑模态框失败:', error);
+                showToast('打开编辑模态框失败: ' + error.message, 'error');
+            }
+        }
+
+        // 保存编辑后的邀请码
+        function saveEditedCode() {
+            try {
+                if (AppState.currentEditIndex < 0 || AppState.currentEditIndex >= AppState.invitationCodes.length) {
+                    showToast('无效的邀请码索引', 'error');
+                    return;
+                }
+
+                const codeObj = AppState.invitationCodes[AppState.currentEditIndex];
+                const typeInput = document.getElementById('edit-type');
+                const expiryDateInput = document.getElementById('edit-expiry-date');
+
+                // 验证输入
+                if (!expiryDateInput.value) {
+                    showToast('请选择有效期', 'error');
+                    return;
+                }
+
+                // 获取新的类型和用户输入的有效期
+                const newType = typeInput.value;
+                const userExpiryDate = new Date(expiryDateInput.value);
+
+                // 更新数据
+                codeObj.type = newType;
+
+                // 根据新的类型设置有效期
+                if (newType === 'svip') {
+                    // SVIP有效期到2025年12月25日
+                    codeObj.expiryDate = new Date('2025-12-25T23:59:59').toISOString();
+                } else if (newType === 'premium') {
+                    // 高级类型永久有效（设置为一个遥远的未来日期）
+                    codeObj.expiryDate = new Date(Date.now() + 1000 * 365 * 86400000).toISOString(); // 1000年有效期
+                } else {
+                    // 其他类型使用用户输入的有效期
+                    codeObj.expiryDate = userExpiryDate.toISOString();
+                }
+
+                // 保存到localStorage
+                localStorage.setItem('invitationCodes', JSON.stringify(AppState.invitationCodes));
+
+                // 刷新表格和统计信息
+                refreshCodesTable();
+                updateCodesSummary();
+
+                // 关闭模态框
+                closeEditModal();
+
+                // 显示成功提示
+                showToast('邀请码已更新', 'success');
+
+                console.log(`邀请码已更新: ${codeObj.code}`);
+            } catch (error) {
+                console.error('保存邀请码失败:', error);
+                showToast('保存邀请码失败: ' + error.message, 'error');
+            }
+        }
+
+        // 关闭编辑模态框
+        function closeEditModal() {
+            AppState.elements.editModal.style.display = 'none';
+            AppState.currentEditIndex = -1;
+        }
+
+        // 打开删除确认模态框
+        function openDeleteModal(index) {
+            try {
+                if (index < 0 || index >= AppState.invitationCodes.length) {
+                    showToast('无效的邀请码索引', 'error');
+                    return;
+                }
+
+                AppState.currentDeleteIndex = index;
+                const codeObj = AppState.invitationCodes[index];
+
+                const deleteCodeDisplay = document.getElementById('delete-code-display');
+                if (deleteCodeDisplay) {
+                    deleteCodeDisplay.textContent = `邀请码: ${codeObj.code}`;
+                }
+
+                AppState.elements.deleteModal.style.display = 'flex';
+
+                console.log(`打开删除确认模态框，索引: ${index}`);
+            } catch (error) {
+                console.error('打开删除确认模态框失败:', error);
+                showToast('打开删除确认模态框失败: ' + error.message, 'error');
+            }
+        }
+
+        // 关闭删除模态框
+        function closeDeleteModal() {
+            AppState.elements.deleteModal.style.display = 'none';
+            AppState.currentDeleteIndex = -1;
+        }
+
+        // 确认删除邀请码
+        function confirmDeleteCode() {
+            try {
+                if (AppState.currentDeleteIndex < 0 || AppState.currentDeleteIndex >= AppState.invitationCodes.length) {
+                    showToast('无效的邀请码索引', 'error');
+                    return;
+                }
+
+                const codeObj = AppState.invitationCodes[AppState.currentDeleteIndex];
+
+                // 删除邀请码
+                AppState.invitationCodes.splice(AppState.currentDeleteIndex, 1);
+
+                // 保存到localStorage
+                localStorage.setItem('invitationCodes', JSON.stringify(AppState.invitationCodes));
+
+                // 刷新表格和统计信息
+                refreshCodesTable();
+                updateCodesSummary();
+
+                // 关闭模态框
+                closeDeleteModal();
+
+                // 显示成功提示
+                showToast('邀请码已删除', 'success');
+
+                console.log(`邀请码已删除: ${codeObj.code}`);
+            } catch (error) {
+                console.error('删除邀请码失败:', error);
+                showToast('删除邀请码失败: ' + error.message, 'error');
+            }
+        }
+
+        // 复制到剪贴板
+        function copyToClipboard(text) {
+            try {
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(text).then(() => {
+                        showToast('邀请码已复制到剪贴板', 'success');
+                    }).catch(err => {
+                        console.error('复制失败:', err);
+                        fallbackCopyToClipboard(text);
+                    });
+                } else {
+                    fallbackCopyToClipboard(text);
+                }
+            } catch (error) {
+                console.error('复制失败:', error);
+                showToast('复制失败，请手动复制', 'error');
+            }
+        }
+
+        // 降级复制方案
+        function fallbackCopyToClipboard(text) {
+            try {
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                textArea.style.top = '-999999px';
+
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+
+                const success = document.execCommand('copy');
+                document.body.removeChild(textArea);
+
+                if (success) {
+                    showToast('邀请码已复制到剪贴板', 'success');
+                } else {
+                    throw new Error('execCommand failed');
+                }
+            } catch (error) {
+                console.error('降级复制失败:', error);
+                showToast('复制失败，请手动复制', 'error');
+            }
+        }
+
+        // 复制所有邀请码
+        function copyAllCodes() {
+            try {
+                const now = new Date();
+                const activeCodes = AppState.invitationCodes.filter(code =>
+                    !code.used && new Date(code.expiryDate) >= now
+                );
+
+                if (activeCodes.length === 0) {
+                    showToast('没有可复制的有效邀请码', 'info');
+                    return;
+                }
+
+                const codesText = activeCodes.map(code => code.code).join('\n');
+                copyToClipboard(codesText);
+
+                console.log(`已复制 ${activeCodes.length} 个有效邀请码`);
+            } catch (error) {
+                console.error('复制所有邀请码失败:', error);
+                showToast('复制所有邀请码失败: ' + error.message, 'error');
+            }
+        }
+
+        // 导出邀请码
+        function exportInvitationCodes() {
+            try {
+                const exportData = AppState.invitationCodes.map(code => {
+                    const status = getCodeStatus(code);
+                    return {
+                        '邀请码': code.code,
+                        '类型': code.type,
+                        '生成时间': formatDate(code.generatedDate),
+                        '有效期至': formatDate(code.expiryDate),
+                        '状态': status.text,
+                        '使用人': code.used ? code.usedBy : '-',
+                        '使用时间': code.used ? formatDate(code.usedTime) : '-',
+                        '使用次数': code.usageCount
+                    };
+                });
+
+                const jsonString = JSON.stringify(exportData, null, 2);
+                const blob = new Blob([jsonString], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `invitation-codes-${new Date().toISOString().split('T')[0]}.json`;
+
+                document.body.appendChild(a);
+                a.click();
+
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                }, 100);
+
+                showToast('邀请码已导出', 'success');
+                console.log(`已导出 ${AppState.invitationCodes.length} 个邀请码`);
+            } catch (error) {
+                console.error('导出邀请码失败:', error);
+                showToast('导出邀请码失败: ' + error.message, 'error');
+            }
+        }
+
+        // 更新同步状态显示
+        function updateSyncStatus(status, message = '') {
+            const syncIcon = AppState.elements.syncStatus.querySelector('.sync-icon');
+            const syncText = AppState.elements.syncStatus.querySelector('span');
+
+            switch (status) {
+                case 'connecting':
+                    AppState.elements.syncStatus.className = 'sync-status syncing';
+                    syncIcon.className = 'sync-icon spinning';
+                    syncText.textContent = '正在连接GitHub...';
+                    break;
+                case 'connected':
+                    AppState.elements.syncStatus.className = 'sync-status connected';
+                    syncIcon.className = 'sync-icon';
+                    if (AppState.lastSyncTime) {
+                        syncText.textContent = `已连接 (最后同步: ${formatDate(AppState.lastSyncTime)})`;
+                    } else {
+                        syncText.textContent = '已连接GitHub';
+                    }
+                    break;
+                case 'disconnected':
+                    AppState.elements.syncStatus.className = 'sync-status disconnected';
+                    syncIcon.className = 'sync-icon';
+                    syncText.textContent = message || '未连接GitHub';
+                    break;
+                case 'syncing':
+                    AppState.elements.syncStatus.className = 'sync-status syncing';
+                    syncIcon.className = 'sync-icon spinning';
+                    syncText.textContent = message || '正在同步...';
+                    break;
+                default:
+                    AppState.elements.syncStatus.className = 'sync-status';
+                    syncIcon.className = 'sync-icon';
+                    syncText.textContent = '未连接GitHub';
+            }
+        }
+
+        // 从GitHub加载邀请码数据
+        async function loadInvitationCodesFromGitHub() {
+            try {
+                if (AppState.isSyncing) {
+                    showToast('正在同步中，请稍候...', 'info');
+                    return;
+                }
+
+                AppState.isSyncing = true;
+                updateSyncStatus('connecting');
+
+                // 禁用按钮
+                AppState.elements.loadFromGitHubButton.disabled = true;
+                AppState.elements.saveToGitHubButton.disabled = true;
+
+                // 获取GitHub Token
+                const token = ensureGitHubToken();
+                if (!token) {
+                    throw new Error('GitHub Token无效或未配置');
+                }
+
+                console.log('开始从GitHub加载数据...');
+
+                // 发送请求到GitHub API
+                const response = await fetch(GitHubConfig.apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'User-Agent': 'InvitationCodeManager/1.0'
+                    }
+                });
+
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        // 文件不存在，创建空文件
+                        console.log('GitHub文件不存在，创建新文件');
+                        await createGitHubFile(token);
+                        updateSyncStatus('connected');
+                        showToast('GitHub文件不存在，已创建新文件', 'info');
+                        return;
+                    }
+                    const errorText = await response.text();
+                    throw new Error(`GitHub API请求失败: ${response.status} ${response.statusText}\n${errorText}`);
+                }
+
+                // 解析响应
+                const data = await response.json();
+                console.log('GitHub API响应:', data);
+
+                // 保存SHA值用于后续更新
+                AppState.githubSha = data.sha;
+
+                // 解码Base64内容
+                const content = atob(data.content.replace(/\s/g, ''));
+                console.log('解码后的内容:', content);
+
+                let githubCodes = [];
+                let githubMetadata = {};
+
+                try {
+                    const parsedData = JSON.parse(content);
+                    console.log('解析的GitHub数据结构:', parsedData);
+
+                    // 检查数据格式并提取邀请码数组
+                    if (Array.isArray(parsedData)) {
+                        // 直接数组格式
+                        githubCodes = parsedData;
+                        console.log('检测到直接数组格式');
+                    } else if (parsedData && typeof parsedData === 'object') {
+                        // 对象格式，查找邀请码数组
+                        if (Array.isArray(parsedData.invitationCodes)) {
+                            githubCodes = parsedData.invitationCodes;
+                            githubMetadata = {
+                                uploadDate: parsedData.uploadDate,
+                                totalCodes: parsedData.totalCodes,
+                                activeCodes: parsedData.activeCodes
+                            };
+                            console.log('检测到对象格式，包含邀请码数组');
+                            console.log('元数据:', githubMetadata);
+                        } else {
+                            throw new Error('GitHub文件格式错误，找不到 invitationCodes 数组');
+                        }
+                    } else {
+                        throw new Error('GitHub文件格式错误，应该是数组或包含 invitationCodes 的对象');
+                    }
+                } catch (parseError) {
+                    console.error('JSON解析失败:', parseError);
+                    throw new Error('GitHub文件格式错误，无法解析JSON: ' + parseError.message);
+                }
+
+                // 验证邀请码数组
+                if (!Array.isArray(githubCodes)) {
+                    throw new Error('GitHub文件格式错误，邀请码数据应该是数组格式');
+                }
+
+                // 合并本地数据和GitHub数据
+                const mergedCodes = mergeInvitationCodes(AppState.invitationCodes, githubCodes);
+                AppState.invitationCodes = mergedCodes;
+
+                // 保存到localStorage
+                localStorage.setItem('invitationCodes', JSON.stringify(AppState.invitationCodes));
+
+                // 更新UI
+                refreshCodesTable();
+                updateCodesSummary();
+
+                // 更新同步状态
+                AppState.lastSyncTime = new Date().toISOString();
+                updateSyncStatus('connected');
+
+                showToast(`成功从GitHub加载 ${githubCodes.length} 个邀请码`, 'success');
+                console.log('成功从GitHub加载邀请码数据');
+
+            } catch (error) {
+                console.error('从GitHub加载邀请码失败:', error);
+                showToast('从GitHub加载失败: ' + error.message, 'error');
+                updateSyncStatus('disconnected', '加载失败');
+            } finally {
+                AppState.isSyncing = false;
+
+                // 恢复按钮状态
+                AppState.elements.loadFromGitHubButton.disabled = false;
+                AppState.elements.saveToGitHubButton.disabled = false;
+            }
+        }
+
+        // 创建GitHub文件
+        async function createGitHubFile(token) {
+            try {
+                const emptyContent = JSON.stringify([], null, 2);
+                const encodedContent = btoa(unescape(encodeURIComponent(emptyContent)));
+
+                const response = await fetch(GitHubConfig.apiUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json',
+                        'User-Agent': 'InvitationCodeManager/1.0'
+                    },
+                    body: JSON.stringify({
+                        message: '初始化邀请码数据文件',
+                        content: encodedContent,
+                        branch: GitHubConfig.branch
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`创建GitHub文件失败: ${response.status} ${response.statusText}\n${errorText}`);
+                }
+
+                const data = await response.json();
+                AppState.githubSha = data.content.sha;
+
+                console.log('GitHub文件已创建');
+            } catch (error) {
+                console.error('创建GitHub文件失败:', error);
+                throw error;
+            }
+        }
+
+        // 上传邀请码数据到GitHub
+        async function uploadInvitationCodesToGitHub() {
+            try {
+                if (AppState.isSyncing) {
+                    showToast('正在同步中，请稍候...', 'info');
+                    return;
+                }
+
+                AppState.isSyncing = true;
+                updateSyncStatus('syncing', '正在保存到GitHub...');
+
+                // 禁用按钮
+                AppState.elements.loadFromGitHubButton.disabled = true;
+                AppState.elements.saveToGitHubButton.disabled = true;
+
+                // 获取GitHub Token
+                const token = ensureGitHubToken();
+                if (!token) {
+                    throw new Error('GitHub Token无效或未配置');
+                }
+
+                console.log('开始上传数据到GitHub...');
+
+                // 如果没有SHA值，先尝试获取
+                if (!AppState.githubSha) {
+                    try {
+                        const headResponse = await fetch(GitHubConfig.apiUrl, {
+                            method: 'GET',
+                            headers: {
+                                'Authorization': `Bearer ${token}`,
+                                'Accept': 'application/vnd.github.v3+json',
+                                'User-Agent': 'InvitationCodeManager/1.0'
+                            }
+                        });
+
+                        if (headResponse.ok) {
+                            const headData = await headResponse.json();
+                            AppState.githubSha = headData.sha;
+                        }
+                    } catch (headError) {
+                        console.warn('获取文件SHA失败，将尝试创建新文件:', headError);
+                    }
+                }
+
+                // 准备要上传的数据，保持原有的JSON结构格式
+                const now = new Date();
+                const activeCount = AppState.invitationCodes.filter(code =>
+                    !code.used && new Date(code.expiryDate) >= now
+                ).length;
+
+                const dataToUpload = {
+                    invitationCodes: AppState.invitationCodes,
+                    uploadDate: now.toISOString(),
+                    totalCodes: AppState.invitationCodes.length,
+                    activeCodes: activeCount
+                };
+
+                const contentToUpload = JSON.stringify(dataToUpload, null, 2);
+                const encodedContent = btoa(unescape(encodeURIComponent(contentToUpload)));
+
+                const requestBody = {
+                    message: `更新邀请码数据 - ${new Date().toLocaleString('zh-CN')} (共${AppState.invitationCodes.length}个)`,
+                    content: encodedContent,
+                    branch: GitHubConfig.branch
+                };
+
+                // 如果有SHA值，添加到请求中
+                if (AppState.githubSha) {
+                    requestBody.sha = AppState.githubSha;
+                }
+
+                console.log('上传请求体:', requestBody);
+
+                // 发送上传请求
+                const uploadResponse = await fetch(GitHubConfig.apiUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json',
+                        'User-Agent': 'InvitationCodeManager/1.0'
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                if (!uploadResponse.ok) {
+                    const errorText = await uploadResponse.text();
+                    throw new Error(`GitHub上传失败: ${uploadResponse.status} ${uploadResponse.statusText}\n${errorText}`);
+                }
+
+                // 解析上传响应
+                const uploadData = await uploadResponse.json();
+                console.log('上传成功响应:', uploadData);
+
+                // 更新SHA值
+                AppState.githubSha = uploadData.content.sha;
+
+                // 更新同步状态
+                AppState.lastSyncTime = new Date().toISOString();
+                updateSyncStatus('connected');
+
+                showToast(`成功保存 ${AppState.invitationCodes.length} 个邀请码到GitHub`, 'success');
+                console.log('成功上传邀请码数据到GitHub');
+
+            } catch (error) {
+                console.error('上传邀请码到GitHub失败:', error);
+                showToast('保存到GitHub失败: ' + error.message, 'error');
+                updateSyncStatus('disconnected', '保存失败');
+            } finally {
+                AppState.isSyncing = false;
+
+                // 恢复按钮状态
+                AppState.elements.loadFromGitHubButton.disabled = false;
+                AppState.elements.saveToGitHubButton.disabled = false;
+            }
+        }
+
+        // 合并邀请码数据（智能合并，避免重复和冲突）
+        function mergeInvitationCodes(localCodes, githubCodes) {
+            try {
+                console.log('开始合并邀请码数据...');
+                console.log('本地邀请码数量:', localCodes.length);
+                console.log('GitHub邀请码数量:', githubCodes.length);
+
+                // 创建合并后的映射，用于去重
+                const mergedMap = new Map();
+
+                // 首先添加所有GitHub数据（GitHub数据优先级更高）
+                githubCodes.forEach(githubCode => {
+                    if (githubCode && githubCode.code) {
+                        mergedMap.set(githubCode.code, {
+                            ...githubCode,
+                            source: 'github'
+                        });
+                    }
+                });
+
+                // 添加本地数据，但不覆盖已存在的GitHub数据
+                localCodes.forEach(localCode => {
+                    if (localCode && localCode.code && !mergedMap.has(localCode.code)) {
+                        mergedMap.set(localCode.code, {
+                            ...localCode,
+                            source: 'local'
+                        });
+                    }
+                });
+
+                // 转换为数组，移除source标识
+                const mergedCodes = Array.from(mergedMap.values()).map(code => {
+                    const { source, ...codeWithoutSource } = code;
+                    return codeWithoutSource;
+                });
+
+                // 按生成时间排序（最新的在前面）
+                mergedCodes.sort((a, b) => {
+                    const dateA = new Date(a.generatedDate);
+                    const dateB = new Date(b.generatedDate);
+                    return dateB.getTime() - dateA.getTime();
+                });
+
+                console.log('合并完成，总计邀请码数量:', mergedCodes.length);
+
+                return mergedCodes;
+            } catch (error) {
+                console.error('合并邀请码数据失败:', error);
+                // 如果合并失败，返回本地数据
+                return localCodes;
+            }
+        }
+
+        function closeAdminPanel() {
+            showToast('管理员面板已关闭', 'info');
+            console.log('管理员面板已关闭');
+        }
+
+        // Toast通知系统
+        function showToast(message, type = 'info') {
+            try {
+                const toast = document.createElement('div');
+                toast.className = `toast toast-${type}`;
+                toast.textContent = message;
+
+                const toastContainer = document.getElementById('toast-container');
+                if (!toastContainer) {
+                    console.warn('Toast容器未找到');
+                    return;
+                }
+
+                toastContainer.appendChild(toast);
+
+                // 自动关闭
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    toast.style.transform = 'translateX(100%)';
+                    toast.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+
+                    setTimeout(() => {
+                        if (toastContainer.contains(toast)) {
+                            toastContainer.removeChild(toast);
+                        }
+                    }, 300);
+                }, 3000);
+
+                console.log(`显示Toast: ${message} (${type})`);
+            } catch (error) {
+                console.error('显示Toast失败:', error);
+            }
+        }
+
+        // DOM加载完成后初始化应用
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initApp);
+        } else {
+            initApp();
+        }
+    </script>
+</body>
+
+</html>
