@@ -5,10 +5,10 @@
       "type": "premium",
       "generatedDate": "2025-08-28T17:53:27.881Z",
       "expiryDate": "3025-08-28T17:53:27.881Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null,
-      "usageCount": 0
+      "used": true,
+      "usedBy": "device_6e7e47edwo_1756403702450",
+      "usedTime": "2025-08-28T17:55:02.450Z",
+      "usageCount": 2
     },
     {
       "code": "SVIP-MSW1YGG8",
@@ -501,7 +501,7 @@
       "usageCount": 0
     }
   ],
-  "uploadDate": "2025-08-28T17:53:31.573Z",
+  "uploadDate": "2025-08-28T17:55:03.365Z",
   "totalCodes": 50,
-  "activeCodes": 50
+  "activeCodes": 49
 }
