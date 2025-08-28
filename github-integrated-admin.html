@@ -174,13 +174,17 @@
         }
 
         .success-btn {
-            background-color: #2ecc71;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+            transform: translateY(0);
         }
 
         .success-btn:hover:not(:disabled) {
-            background-color: #27ae60;
-            transform: translateY(-1px);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
         }
 
         .danger-btn {
@@ -686,13 +690,13 @@
                     <div class="sync-icon"></div>
                     <span>未连接GitHub</span>
                 </div>
-                <button id="close-panel" class="info-btn">
+                <button id="return-home" class="success-btn">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
                     </svg>
-                    关闭
+                    返回首页
                 </button>
             </div>
         </div>
@@ -1080,7 +1084,7 @@
                 exportButton: document.getElementById('export-codes'),
                 loadFromGitHubButton: document.getElementById('load-from-github'),
                 saveToGitHubButton: document.getElementById('save-to-github'),
-                closePanelButton: document.getElementById('close-panel'),
+                returnHomeButton: document.getElementById('return-home'),
                 // 批量操作相关元素
                 batchActions: document.getElementById('batch-actions'),
                 selectedCount: document.getElementById('selected-count'),
@@ -1265,8 +1269,8 @@
                 if (elements.exportButton) {
                     elements.exportButton.addEventListener('click', exportInvitationCodes);
                 }
-                if (elements.closePanelButton) {
-                    elements.closePanelButton.addEventListener('click', closeAdminPanel);
+                if (elements.returnHomeButton) {
+                    elements.returnHomeButton.addEventListener('click', returnToHomePage);
                 }
 
                 // GitHub相关事件
@@ -2675,9 +2679,14 @@
             }
         }
 
-        function closeAdminPanel() {
-            showToast('管理员面板已关闭', 'info');
-            console.log('管理员面板已关闭');
+        function returnToHomePage() {
+            showToast('正在返回首页...', 'info');
+            console.log('管理员面板已关闭，正在返回首页...');
+
+            // 延迟跳转，让用户看到提示信息
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 800);
         }
 
         // Toast通知系统
