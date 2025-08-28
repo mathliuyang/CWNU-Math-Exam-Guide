@@ -21,46 +21,6 @@
       "usageCount": 0
     },
     {
-      "code": "SVIP-GZO1D6OV",
-      "type": "svip",
-      "generatedDate": "2025-08-26T17:41:10.973Z",
-      "expiryDate": "2025-12-25T15:59:59.000Z",
-      "used": true,
-      "usedBy": "device_b9qi1dwf7lj_1756401816951",
-      "usedTime": "2025-08-28T17:23:36.951Z",
-      "usageCount": 2
-    },
-    {
-      "code": "SVIP-IKCUPQ3Y",
-      "type": "svip",
-      "generatedDate": "2025-08-26T17:41:10.973Z",
-      "expiryDate": "2025-12-25T15:59:59.000Z",
-      "used": true,
-      "usedBy": "device_scou8r1q84_1756393147927",
-      "usedTime": "2025-08-28T15:19:09.590Z",
-      "usageCount": 2
-    },
-    {
-      "code": "SVIP-A28PHGYC",
-      "type": "svip",
-      "generatedDate": "2025-08-26T17:41:10.973Z",
-      "expiryDate": "2025-12-25T15:59:59.000Z",
-      "used": true,
-      "usedBy": "device_5q2gzykkvea_1756402792577",
-      "usedTime": "2025-08-28T17:39:52.577Z",
-      "usageCount": 2
-    },
-    {
-      "code": "SVIP-FLK3X3ES",
-      "type": "svip",
-      "generatedDate": "2025-08-26T17:41:10.973Z",
-      "expiryDate": "2025-12-25T15:59:59.000Z",
-      "used": true,
-      "usedBy": "device_qzkikznik19_1756403231085",
-      "usedTime": "2025-08-28T17:47:11.085Z",
-      "usageCount": 2
-    },
-    {
       "code": "SVIP-XTQ1DP66",
       "type": "svip",
       "generatedDate": "2025-08-26T17:41:10.973Z",
@@ -99,16 +59,6 @@
       "usedBy": null,
       "usedTime": null,
       "usageCount": 0
-    },
-    {
-      "code": "SVIP-DDQ0HWCI",
-      "type": "svip",
-      "generatedDate": "2025-08-26T17:41:10.973Z",
-      "expiryDate": "2025-12-25T15:59:59.000Z",
-      "used": true,
-      "usedBy": "device_9amg97jrar7_1756392244623",
-      "usedTime": "2025-08-28T14:44:58.957Z",
-      "usageCount": 5
     },
     {
       "code": "SVIP-GHQ5JCXL",
@@ -521,7 +471,7 @@
       "usageCount": 0
     }
   ],
-  "uploadDate": "2025-08-28T17:47:11.540Z",
-  "totalCodes": 52,
+  "uploadDate": "2025-08-28T17:52:27.857Z",
+  "totalCodes": 47,
   "activeCodes": 47
 }
