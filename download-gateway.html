@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下载验证网关</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gateway-container {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            margin: 20px 0;
+            padding: 15px;
+            background: #ffeaea;
+            border-radius: 5px;
+            border: 1px solid #e74c3c;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #5a6fd8;
+        }
+    </style>
+</head>
+<body>
+    <div class="gateway-container">
+        <div class="spinner" id="spinner"></div>
+        <h2>正在验证下载权限...</h2>
+        <p id="status">正在验证您的下载令牌...</p>
+        <div id="error-container" style="display: none;">
+            <div class="error-message" id="error-message"></div>
+            <a href="index.html" class="btn">返回首页</a>
+            <a href="verification.html" class="btn" style="margin-left: 10px;">重新验证</a>
+        </div>
+    </div>
+
+    <script>
+        // 验证下载令牌并处理重定向
+        function validateAndRedirect() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
+            const downloadUrl = urlParams.get('url');
+            
+            if (!token || !downloadUrl) {
+                showError('下载令牌或链接缺失，请重新验证');
+                return;
+            }
+            
+            // 检查邀请码验证状态
+            const isVerified = localStorage.getItem('invitation_verified') === 'true';
+            if (!isVerified) {
+                showError('您需要先验证邀请码才能下载文件');
+                return;
+            }
+            
+            // 验证下载令牌
+            const tokenKey = 'download_token_' + token;
+            const tokenTime = sessionStorage.getItem(tokenKey);
+            
+            if (!tokenTime) {
+                showError('下载令牌无效或已过期，请重新验证');
+                return;
+            }
+            
+            // 检查令牌有效期（5分钟）
+            const currentTime = Date.now();
+            const timeDiff = currentTime - parseInt(tokenTime);
+            const fiveMinutes = 5 * 60 * 1000;
+            
+            if (timeDiff > fiveMinutes) {
+                sessionStorage.removeItem(tokenKey);
+                showError('下载令牌已过期，请重新验证');
+                return;
+            }
+            
+            // 验证通过，清理令牌并重定向
+            sessionStorage.removeItem(tokenKey);
+            
+            // 显示成功消息并跳转
+            document.getElementById('status').innerHTML = '验证成功！正在跳转到下载页面...';
+            
+            // 延迟跳转，让用户看到验证成功消息
+            setTimeout(() => {
+                window.location.href = decodeURIComponent(downloadUrl);
+            }, 1500);
+        }
+        
+        function showError(message) {
+            document.getElementById('spinner').style.display = 'none';
+            document.getElementById('status').style.display = 'none';
+            document.getElementById('error-message').textContent = message;
+            document.getElementById('error-container').style.display = 'block';
+        }
+        
+        // 页面加载完成后立即验证
+        document.addEventListener('DOMContentLoaded', validateAndRedirect);
+    </script>
+</body>
+</html>
