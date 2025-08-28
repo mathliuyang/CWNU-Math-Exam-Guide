@@ -15,10 +15,10 @@
       "type": "premium",
       "generatedDate": "2025-08-28T17:53:26.393Z",
       "expiryDate": "3025-08-28T17:53:26.393Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null,
-      "usageCount": 0
+      "used": true,
+      "usedBy": "device_7zj7kz3453p_1756403816713",
+      "usedTime": "2025-08-28T17:56:56.713Z",
+      "usageCount": 2
     },
     {
       "code": "SVIP-RPVCAVPA",
@@ -501,7 +501,7 @@
       "usageCount": 0
     }
   ],
-  "uploadDate": "2025-08-28T17:55:13.460Z",
+  "uploadDate": "2025-08-28T17:56:58.051Z",
   "totalCodes": 50,
-  "activeCodes": 49
+  "activeCodes": 48
 }
