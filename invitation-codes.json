@@ -55,10 +55,10 @@
       "type": "svip",
       "generatedDate": "2025-08-26T17:41:10.973Z",
       "expiryDate": "2025-12-25T15:59:59.000Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null,
-      "usageCount": 0
+      "used": true,
+      "usedBy": "device_qzkikznik19_1756403231085",
+      "usedTime": "2025-08-28T17:47:11.085Z",
+      "usageCount": 2
     },
     {
       "code": "SVIP-XTQ1DP66",
@@ -521,7 +521,7 @@
       "usageCount": 0
     }
   ],
-  "uploadDate": "2025-08-28T17:39:53.651Z",
+  "uploadDate": "2025-08-28T17:47:11.540Z",
   "totalCodes": 52,
-  "activeCodes": 48
+  "activeCodes": 47
 }
