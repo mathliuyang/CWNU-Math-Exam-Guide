@@ -105,10 +105,10 @@
       "type": "svip",
       "generatedDate": "2025-08-26T17:41:10.973Z",
       "expiryDate": "2025-12-25T15:59:59.000Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null,
-      "usageCount": 0
+      "used": true,
+      "usedBy": "device_9amg97jrar7_1756392244623",
+      "usedTime": "2025-08-28T14:44:04.623Z",
+      "usageCount": 2
     },
     {
       "code": "SVIP-GHQ5JCXL",
@@ -521,7 +521,7 @@
       "usageCount": 0
     }
   ],
-  "uploadDate": "2025-08-26T17:41:24.457Z",
+  "uploadDate": "2025-08-28T14:44:05.715Z",
   "totalCodes": 52,
-  "activeCodes": 52
+  "activeCodes": 51
 }
