@@ -4759,9 +4759,10 @@
             // 允许在控制台手动显示测试按钮
             window.toggleTestButton = function (show) {
                 console.log('注意：在index.html中没有找到可见的测试按钮，但仍可通过控制台调用testGitHubFailureHandling()函数进行测试');
-                if (show && window.testGitHubFailureHandling) {
-                    window.testGitHubFailureHandling();
-                }
+                // 仅当手动触发时才执行测试
+            // if (show && window.testGitHubFailureHandling) {
+            //     window.testGitHubFailureHandling();
+            // }
             }
 
             // 测试GitHub连接失败处理机制的函数
