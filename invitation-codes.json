@@ -5,10 +5,10 @@
       "type": "normal",
       "generatedDate": "2025-08-29T03:45:54.830Z",
       "expiryDate": "2025-09-05T03:45:54.830Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null,
-      "usageCount": 0
+      "used": true,
+      "usedBy": "device_qg9gy3lkfpt_1756442698647",
+      "usedTime": "2025-08-29T04:46:24.428Z",
+      "usageCount": 2
     },
     {
       "code": "SVIP-D1A6F4GJ",
@@ -541,7 +541,7 @@
       "usageCount": 0
     }
   ],
-  "uploadDate": "2025-08-29T04:30:28.098Z",
+  "uploadDate": "2025-08-29T04:46:25.659Z",
   "totalCodes": 54,
-  "activeCodes": 47
+  "activeCodes": 46
 }
