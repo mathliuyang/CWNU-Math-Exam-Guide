@@ -1,6 +1,46 @@
 {
   "invitationCodes": [
     {
+      "code": "SVIP-6R9Q35SY",
+      "type": "normal",
+      "generatedDate": "2025-08-29T03:45:54.830Z",
+      "expiryDate": "2025-09-05T03:45:54.830Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-D1A6F4GJ",
+      "type": "normal",
+      "generatedDate": "2025-08-29T03:45:54.471Z",
+      "expiryDate": "2025-09-05T03:45:54.471Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-XTL8MM6U",
+      "type": "normal",
+      "generatedDate": "2025-08-29T03:45:53.721Z",
+      "expiryDate": "2025-09-05T03:45:53.721Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
+      "code": "SVIP-8NIATB4W",
+      "type": "normal",
+      "generatedDate": "2025-08-29T03:45:52.519Z",
+      "expiryDate": "2025-09-05T03:45:52.519Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
       "code": "SVIP-HAR52DSS",
       "type": "premium",
       "generatedDate": "2025-08-28T17:53:27.881Z",
@@ -501,7 +541,7 @@
       "usageCount": 0
     }
   ],
-  "uploadDate": "2025-08-29T03:03:13.922Z",
-  "totalCodes": 50,
-  "activeCodes": 47
+  "uploadDate": "2025-08-29T03:46:00.672Z",
+  "totalCodes": 54,
+  "activeCodes": 51
 }
