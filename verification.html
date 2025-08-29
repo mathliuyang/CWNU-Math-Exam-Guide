@@ -1119,11 +1119,8 @@
             if (testButton) {
                 // 可以在控制台通过 `window.showTestButton = true` 来显示测试按钮
                 testButton.addEventListener('click', function () {
-                    if (window.testGitHubFailureHandling && typeof window.testGitHubFailureHandling === 'function') {
-                        window.testGitHubFailureHandling();
-                    } else {
-                        alert('测试函数未找到，请刷新页面后重试。');
-                    }
+                    // 仅当手动触发时才执行测试
+            // window.testGitHubFailureHandling(); // 已移除自动调用
                 });
 
                 // 允许在控制台手动显示测试按钮
@@ -1385,7 +1382,7 @@
                 refreshInvitationCodesFromGitHub();
             }, 1000);
 
-            // 6. 5秒后恢复原始设置
+            // 5秒后恢复原始设置
             setTimeout(() => {
                 console.log('恢复原始设置');
                 githubRawUrl = originalGithubRawUrl;
