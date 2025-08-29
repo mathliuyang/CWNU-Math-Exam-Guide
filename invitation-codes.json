@@ -21,16 +21,6 @@
       "usageCount": 0
     },
     {
-      "code": "SVIP-8LU330NK",
-      "type": "svip",
-      "generatedDate": "2025-08-29T04:49:58.390Z",
-      "expiryDate": "2025-12-25T15:59:59.000Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null,
-      "usageCount": 0
-    },
-    {
       "code": "SVIP-DM3TDCWC",
       "type": "svip",
       "generatedDate": "2025-08-29T04:49:58.390Z",
@@ -741,7 +731,7 @@
       "usageCount": 0
     }
   ],
-  "uploadDate": "2025-08-29T04:51:47.057Z",
-  "totalCodes": 74,
-  "activeCodes": 66
+  "uploadDate": "2025-08-29T04:52:20.096Z",
+  "totalCodes": 73,
+  "activeCodes": 65
 }
