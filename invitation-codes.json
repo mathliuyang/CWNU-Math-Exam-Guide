@@ -95,10 +95,10 @@
       "type": "svip",
       "generatedDate": "2025-08-26T17:41:10.973Z",
       "expiryDate": "2025-12-25T15:59:59.000Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null,
-      "usageCount": 0
+      "used": true,
+      "usedBy": "device_oqt8z9gknho_1756439051738",
+      "usedTime": "2025-08-29T03:48:59.803Z",
+      "usageCount": 2
     },
     {
       "code": "SVIP-0BVI37V4",
@@ -541,7 +541,7 @@
       "usageCount": 0
     }
   ],
-  "uploadDate": "2025-08-29T03:46:00.672Z",
+  "uploadDate": "2025-08-29T03:49:00.875Z",
   "totalCodes": 54,
-  "activeCodes": 51
+  "activeCodes": 50
 }
