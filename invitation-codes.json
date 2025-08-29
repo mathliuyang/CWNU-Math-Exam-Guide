@@ -35,10 +35,10 @@
       "type": "normal",
       "generatedDate": "2025-08-29T03:45:52.519Z",
       "expiryDate": "2025-09-05T03:45:52.519Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null,
-      "usageCount": 0
+      "used": true,
+      "usedBy": "device_oqt8z9gknho_1756439051738",
+      "usedTime": "2025-08-29T03:49:13.477Z",
+      "usageCount": 2
     },
     {
       "code": "SVIP-HAR52DSS",
@@ -541,7 +541,7 @@
       "usageCount": 0
     }
   ],
-  "uploadDate": "2025-08-29T03:49:00.875Z",
+  "uploadDate": "2025-08-29T03:49:13.952Z",
   "totalCodes": 54,
-  "activeCodes": 50
+  "activeCodes": 49
 }
