@@ -900,8 +900,8 @@
                                 const daysInMonth = getDaysInMonth(currentYear, currentMonth);
                                 const midMonth = Math.ceil(daysInMonth / 2);
 
-                                // 如果是月末事件且当前日期在中旬之后
-                                if (isLateMonth && currentDay > midMonth) {
+                                // 如果是月末事件，整个月都显示为当前（提前提醒）
+                                if (isLateMonth) {
                                     status = 'current';
                                 }
                                 // 如果是非月末事件且当前日期在中旬之前
@@ -1278,6 +1278,8 @@
                                         注：数分3☆-5☆基本涵盖95%的题目。"全部"包括本章内所有小节和总练习题。未提及章节可不重点复习。
                                     </div>
                                 </div>
+
+
                             </div>
                         </div>
                     </div>
@@ -2375,6 +2377,31 @@
                             </div>
                         </div>
 
+                        <!-- 2025年10月1日 - 西华师大数学考研真题下载 -->
+                        <div class="timeline-item relative flex items-start opacity-0" data-start-month="10"
+                            data-end-month="10" data-year="2025" data-late="true">
+                            <div
+                                class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-blue-400 shadow-lg flex items-center justify-center relative z-10">
+                                <i class="fa fa-download text-blue-400 text-lg"></i>
+                            </div>
+                            <div class="ml-6 flex-1">
+                                <div
+                                    class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-dark">西华师大数学考研真题下载</h3>
+                                        <span
+                                            class="timeline-date text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full font-medium">2025年10月1日</span>
+                                    </div>
+                                    <p class="text-sm text-dark/70 mb-2">
+                                        2025年西华师范大学数学考研真题正式发布，包含数学分析、高等代数2025年真题题单及详细解析。</p>
+                                    <div class="flex items-center text-xs text-blue-600">
+                                        <i class="fa fa-lightbulb mr-1"></i>
+                                        <span>试卷还原度超95%，建议用作考前模拟，熟悉题型和节奏。</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- 2025年10月中旬-10月底 - 考研正式报名 -->
                         <div class="timeline-item relative flex items-start opacity-0" data-start-month="10"
                             data-end-month="10" data-year="2025" data-late="true">
@@ -2733,6 +2760,58 @@
                                         </a>
                                     </div>
                                 </div>
+
+                                <!-- 2025年真题倒计时 -->
+                                <div
+                                    class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-200 mt-4">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <h4 class="font-semibold text-lg text-gray-800">2025年西华师范大学数学考研真题</h4>
+                                        <span
+                                            class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">即将开放</span>
+                                    </div>
+
+                                    <div class="space-y-3">
+                                        <div class="text-sm text-gray-600">
+                                            真题将于 <span class="font-semibold text-blue-600">2025年10月1日</span> 正式开放下载
+                                        </div>
+
+                                        <!-- 倒计时显示 -->
+                                        <div class="flex justify-center space-x-2 text-center">
+                                            <div class="bg-white rounded-lg p-2 shadow-sm min-w-[60px]">
+                                                <div class="text-lg font-bold text-blue-600" id="countdownDays2025">--
+                                                </div>
+                                                <div class="text-xs text-gray-500">天</div>
+                                            </div>
+                                            <div class="bg-white rounded-lg p-2 shadow-sm min-w-[60px]">
+                                                <div class="text-lg font-bold text-blue-600" id="countdownHours2025">0
+                                                </div>
+                                                <div class="text-xs text-gray-500">时</div>
+                                            </div>
+                                            <div class="bg-white rounded-lg p-2 shadow-sm min-w-[60px]">
+                                                <div class="text-lg font-bold text-blue-600" id="countdownMinutes2025">0
+                                                </div>
+                                                <div class="text-xs text-gray-500">分</div>
+                                            </div>
+                                            <div class="bg-white rounded-lg p-2 shadow-sm min-w-[60px]">
+                                                <div class="text-lg font-bold text-blue-600" id="countdownSeconds2025">0
+                                                </div>
+                                                <div class="text-xs text-gray-500">秒</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 下载按钮和状态 -->
+                                        <div class="text-center space-y-2">
+                                            <button id="downloadButton2025"
+                                                class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all duration-300 opacity-60 cursor-not-allowed"
+                                                disabled onclick="download2025Resources()">
+                                                <i class="fa fa-download mr-1"></i> 🔒 立即下载 2025 年真题
+                                            </button>
+                                            <div id="statusMessage2025" class="text-sm text-gray-500">
+                                                ⏳ 系统将在指定时间自动激活下载功能
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -2785,6 +2864,49 @@
                                                 <i class="fa fa-download mr-1"></i>试读
                                             </button>
                                         </a>
+                                    </div>
+                                </div>
+
+                                <!-- 下载信息卡片 -->
+                                <div
+                                    class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-3 border border-blue-200 mt-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h4 class="font-semibold text-lg text-gray-800"><i
+                                                class="fa fa-arrow-left mr-1"></i>2025年真题下载须知</h4>
+                                        <span
+                                            class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">重要提示</span>
+                                    </div>
+
+                                    <div class="space-y-2">
+                                        <div
+                                            class="info-item flex items-start space-x-2 p-2 bg-white/60 rounded-lg hover:bg-white/80 transition-colors">
+                                            <div class="info-icon text-lg mt-0.5">🔐</div>
+                                            <div class="info-content flex-1">
+                                                <h4 class="font-medium text-gray-800 mb-0.5 text-sm">下载限制原因</h4>
+                                                <p class="text-xs text-gray-600 leading-tight">
+                                                    为保障独家优质资源，防止恶意倒卖，采用定时开放机制，敬请理解。</p>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="info-item flex items-start space-x-2 p-2 bg-white/60 rounded-lg hover:bg-white/80 transition-colors">
+                                            <div class="info-icon text-lg mt-0.5">⚠️</div>
+                                            <div class="info-content flex-1">
+                                                <h4 class="font-medium text-gray-800 mb-0.5 text-sm">使用须知</h4>
+                                                <p class="text-xs text-gray-600 leading-tight">
+                                                    真题资源收集整理耗费诸多心力，恳请不要倒卖或公开分享。</p>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="info-item flex items-start space-x-2 p-2 bg-white/60 rounded-lg hover:bg-white/80 transition-colors">
+                                            <div class="info-icon text-lg mt-0.5">🎯</div>
+                                            <div class="info-content flex-1">
+                                                <h4 class="font-medium text-gray-800 mb-0.5 text-sm">学习建议</h4>
+                                                <p class="text-xs text-gray-600 leading-tight">
+                                                    试卷还原度超95%，建议用作考前模拟，熟悉题型和节奏。</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -4760,9 +4882,9 @@
             window.toggleTestButton = function (show) {
                 console.log('注意：在index.html中没有找到可见的测试按钮，但仍可通过控制台调用testGitHubFailureHandling()函数进行测试');
                 // 仅当手动触发时才执行测试
-            // if (show && window.testGitHubFailureHandling) {
-            //     window.testGitHubFailureHandling();
-            // }
+                // if (show && window.testGitHubFailureHandling) {
+                //     window.testGitHubFailureHandling();
+                // }
             }
 
             // 测试GitHub连接失败处理机制的函数
@@ -5153,7 +5275,7 @@
                         // 保存原始链接并加密存储
                         const originalLink = link.href;
                         const encryptedLink = btoa(originalLink); // 使用base64编码作为简单加密
-                        
+
                         // 移除href属性，防止直接访问
                         link.removeAttribute('href');
                         link.setAttribute('data-download-link', encryptedLink);
@@ -5172,10 +5294,10 @@
                                 // 已验证，生成临时下载令牌并跳转
                                 const downloadToken = generateDownloadToken();
                                 const actualLink = atob(this.getAttribute('data-download-link'));
-                                
+
                                 // 记录下载令牌（有效期5分钟）
                                 sessionStorage.setItem('download_token_' + downloadToken, Date.now().toString());
-                                
+
                                 // 通过验证拦截器打开下载链接
                                 window.location.href = 'download-gateway.html?token=' + downloadToken + '&url=' + encodeURIComponent(actualLink);
                                 console.log('已验证邀请码，开始下载');
@@ -5543,6 +5665,120 @@
             }
 
 
+        });
+    </script>
+
+    <!-- 2025年真题倒计时功能 - 仅针对资源获取板块 -->
+    <script>
+        // 仅针对资源获取板块的倒计时功能
+        function updateResourcesCountdown() {
+            const targetDate = new Date('2025-10-01T00:00:00');
+            const now = new Date();
+            const timeLeft = targetDate - now;
+
+            // 获取资源板块特定的倒计时元素
+            const daysEl = document.getElementById('countdownDays2025');
+            const hoursEl = document.getElementById('countdownHours2025');
+            const minutesEl = document.getElementById('countdownMinutes2025');
+            const secondsEl = document.getElementById('countdownSeconds2025');
+            const downloadBtn = document.getElementById('downloadButton2025');
+            const statusMessage = document.getElementById('statusMessage2025');
+
+            if (!daysEl || !hoursEl || !minutesEl || !secondsEl || !downloadBtn || !statusMessage) {
+                return false; // 元素不存在，退出
+            }
+
+            if (timeLeft <= 0) {
+                // 倒计时结束，启用下载
+                daysEl.textContent = '0';
+                hoursEl.textContent = '00';
+                minutesEl.textContent = '00';
+                secondsEl.textContent = '00';
+
+                downloadBtn.disabled = false;
+                downloadBtn.classList.remove('bg-gray-400', 'cursor-not-allowed', 'opacity-60');
+                downloadBtn.classList.add('bg-primary', 'hover:bg-primary/90', 'cursor-pointer');
+                downloadBtn.innerHTML = '<i class="fa fa-download mr-1"></i>立即下载 2025 年真题';
+
+                // 更新状态消息为更明确的提示
+                statusMessage.innerHTML = '🎉 <strong>花会沿路盛开，你以后的路也是！</strong> ';
+                statusMessage.className = 'text-sm text-green-600 font-medium';
+
+                // 更新倒计时区域的提示文字
+                const countdownTitle = document.querySelector('#countdownDays2025').closest('.bg-gradient-to-r').querySelector('.text-sm.text-gray-600');
+                if (countdownTitle) {
+                    countdownTitle.innerHTML = '真题已于 <strong class="text-green-600">2025年10月1日</strong> 正式开放下载！';
+                }
+
+                // 更新"即将开放"标签为"已开放"
+                const statusBadge = document.querySelector('#countdownDays2025').closest('.bg-gradient-to-r').querySelector('.px-2.py-1');
+                if (statusBadge) {
+                    statusBadge.textContent = '已开放';
+                    statusBadge.classList.remove('bg-blue-100', 'text-blue-800');
+                    statusBadge.classList.add('bg-green-100', 'text-green-800');
+                }
+
+                return true;
+            }
+
+            // 计算剩余时间
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            // 更新显示
+            daysEl.textContent = days.toString();
+            hoursEl.textContent = hours.toString().padStart(2, '0');
+            minutesEl.textContent = minutes.toString().padStart(2, '0');
+            secondsEl.textContent = seconds.toString().padStart(2, '0');
+
+            // 更新倒计时区域的提示文字，显示剩余时间
+            const countdownTitle = document.querySelector('#countdownDays2025').closest('.bg-gradient-to-r').querySelector('.text-sm.text-gray-600');
+            if (countdownTitle) {
+                countdownTitle.innerHTML = `距离 <strong class="text-blue-600">2025年10月1日</strong> 真题开放下载还有 <strong class="text-red-600">${days}天${hours}时${minutes}分${seconds}秒</strong>`;
+            }
+
+            return false;
+        }
+
+        // 仅针对资源板块的下载功能
+        function download2025Resources() {
+            const downloadBtn = document.getElementById('downloadButton2025');
+            const statusMessage = document.getElementById('statusMessage2025');
+
+            if (!downloadBtn || downloadBtn.disabled) {
+                return;
+            }
+
+            // 检查是否已通过邀请码验证
+            const isVerified = localStorage.getItem('invitation_verified') === 'true';
+
+            if (!isVerified) {
+                // 如果未验证，跳转到邀请码验证页面
+                window.location.href = 'verification.html';
+                return;
+            }
+
+            // 已验证，直接跳转到真实的下载链接
+            window.open('https://www.jianguoyun.com/p/DY5IhF8Q3_vSDRjZh4YGIAA', '_blank');
+
+            // 更新按钮状态为已下载
+            statusMessage.textContent = '📥 正在跳转到下载页面...';
+            statusMessage.className = 'text-sm text-green-600 font-medium';
+            downloadBtn.innerHTML = '<i class="fa fa-check mr-1"></i> 已跳转下载';
+            downloadBtn.className = 'px-6 py-2 bg-green-600 text-white rounded-lg cursor-default transition-all duration-300';
+            downloadBtn.disabled = true;
+        }
+
+        // 页面加载完成后初始化资源板块倒计时
+        document.addEventListener('DOMContentLoaded', function () {
+            // 初始化倒计时并自动更新显示
+            setTimeout(() => {
+                updateResourcesCountdown(); // 立即执行一次
+                // 继续定期更新，确保实时性
+                setInterval(updateResourcesCountdown, 1000);
+            }, 1000);
         });
     </script>
 
