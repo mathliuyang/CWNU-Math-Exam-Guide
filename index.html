@@ -700,12 +700,228 @@
         <div id="page-home" class="page active">
 
             <!-- 英雄区 -->
-            <section class="pb-16 px-4 bg-gradient-to-b from-white to-secondary">
+            <section class="pb-16 px-4 bg-gradient-to-br from-white via-blue-50/30 to-secondary">
                 <div class="container mx-auto max-w-5xl text-center fade-in">
-                    <h1 class="hero-title text-[clamp(2.5rem,5vw,3.5rem)] font-bold text-dark mb-4">西华师范大学数学考研指南</h1>
-                    <p class="text-[clamp(1rem,2vw,1.25rem)] text-dark/70 mb-8 max-w-3xl mx-auto text-balance">
-                        全面的备考经验、考试信息和录取数据分析，助你顺利考上西华师范大学数学系研究生
-                    </p>
+                    <div class="hero-title-container mb-4 animate-fade-in-up">
+
+                        <h1
+                            class="hero-title text-[clamp(2.5rem,5vw,4rem)] font-bold text-dark mb-2 relative inline-block">
+                            <br>
+                            <span
+                                class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-gradient">西华师范大学</span>
+
+                            <span class="text-dark">数学考研指南</span>
+                            <div
+                                class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full animate-expand-width">
+                            </div>
+                        </h1>
+
+                    </div>
+
+                    <style>
+                        @keyframes fade-in-up {
+                            from {
+                                opacity: 0;
+                                transform: translateY(30px);
+                            }
+
+                            to {
+                                opacity: 1;
+                                transform: translateY(0);
+                            }
+                        }
+
+                        @keyframes fade-in {
+                            from {
+                                opacity: 0;
+                            }
+
+                            to {
+                                opacity: 1;
+                            }
+                        }
+
+                        @keyframes expand-width {
+                            from {
+                                width: 0;
+                            }
+
+                            to {
+                                width: 100%;
+                            }
+                        }
+
+                        @keyframes bounce-slow {
+
+                            0%,
+                            100% {
+                                transform: translateY(0);
+                            }
+
+                            50% {
+                                transform: translateY(-5px);
+                            }
+                        }
+
+                        @keyframes gradient {
+                            0% {
+                                background-position: 0% 50%;
+                            }
+
+                            50% {
+                                background-position: 100% 50%;
+                            }
+
+                            100% {
+                                background-position: 0% 50%;
+                            }
+                        }
+
+                        .animate-fade-in-up {
+                            animation: fade-in-up 0.8s ease-out forwards;
+                        }
+
+                        .animate-fade-in {
+                            animation: fade-in 0.6s ease-out forwards;
+                            opacity: 0;
+                        }
+
+                        .animate-expand-width {
+                            animation: expand-width 1.2s ease-out forwards;
+                        }
+
+                        .animate-bounce-slow {
+                            animation: bounce-slow 2s ease-in-out infinite;
+                        }
+
+                        .animate-gradient {
+                            background-size: 200% 200%;
+                            animation: gradient 3s ease infinite;
+                        }
+                    </style>
+                    <div class="slogan-wrapper mb-8">
+                        <div class="flex flex-wrap justify-center items-center gap-3 mb-4">
+                            <div
+                                class="slogan-badge inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full text-sm font-medium text-blue-700">
+                                <i class="fa fa-chart-line mr-2"></i>
+                                2026考研 · 一站式导航平台
+                            </div>
+                            <div
+                                class="hero-badge inline-flex items-center px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full text-sm font-semibold relative overflow-hidden cursor-pointer hover:shadow-lg transition-shadow">
+                                <span
+                                    class="absolute inset-0 bg-white/20 transform -translate-x-full skew-x-45 animate-shimmer"></span>
+                                <i class="fa fa-star mr-2"></i>
+                                领取优惠券
+                            </div>
+                        </div>
+                        <style>
+                            @keyframes shimmer {
+                                0% {
+                                    transform: translateX(-100%) skewX(-45deg);
+                                }
+
+                                100% {
+                                    transform: translateX(100%) skewX(-45deg);
+                                }
+                            }
+
+                            .animate-shimmer {
+                                animation: shimmer 2.5s infinite linear;
+                            }
+                        </style>
+                        <div
+                            class="slogan-container text-[clamp(1.1rem,2vw,1.5rem)] text-dark/80 mb-8 max-w-3xl mx-auto text-balance font-medium">
+                            <p id="slogan-1" class="slogan-item">🎯 研路向西华，一站全指南</p>
+                            <p id="slogan-2" class="slogan-item">📊 数据驱动上岸，西华师大研路一本通</p>
+                            <p id="slogan-3" class="slogan-item">📋 报考-备考-录取，一页掌握西华师大</p>
+                            <p id="slogan-4" class="slogan-item">📈 可视化分数线，让努力有坐标</p>
+                            <p id="slogan-5" class="slogan-item">📚 历年真题+经验帖，一站打包下载</p>
+                            <p id="slogan-6" class="slogan-item">🔍 透视录取大数据，择校备考更精准</p>
+                            <p id="slogan-7" class="slogan-item">🔄 研招信息零延迟，官网变动秒同步</p>
+                            <p id="slogan-8" class="slogan-item">🗺️ 从初试到复试，全流程导航</p>
+                            <p id="slogan-9" class="slogan-item">🎪 用图表看懂竞争，用策略锁定名额</p>
+                            <p id="slogan-10" class="slogan-item">🏠 西华师大考研人每日第一站</p>
+                            <p id="slogan-11" class="slogan-item">⚡ 考情更新、资料速达、经验直连</p>
+                            <p id="slogan-12" class="slogan-item">⏰ 把复杂研招变简单，把时间还给复习</p>
+                            <p id="slogan-13" class="slogan-item">🤝 数据说话，经验引路，资源护航</p>
+                            <p id="slogan-14" class="slogan-item">🚀 上岸捷径：先看数据，再下资料</p>
+                            <p id="slogan-15" class="slogan-item">🧭 研途不迷茫，西华师大指南导航</p>
+                            <p id="slogan-16" class="slogan-item">💪 你只管努力，其余交给我们</p>
+                        </div>
+                    </div>
+                    <style>
+                        .slogan-container {
+                            position: relative;
+                            height: 4.5rem;
+                            overflow: hidden;
+                        }
+
+                        .slogan-item {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            opacity: 0;
+                            transform: translateY(10px) scale(0.98);
+                            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1),
+                                transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+                            pointer-events: none;
+                        }
+
+                        .slogan-item.active {
+                            opacity: 1;
+                            transform: translateY(0) scale(1);
+                            pointer-events: auto;
+                        }
+
+                        .slogan-item.prev {
+                            opacity: 0;
+                            transform: translateY(-10px) scale(0.98);
+                            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1),
+                                transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+                        }
+                    </style>
+                    <script>
+                        let currentSlogan = 1;
+                        const totalSlogans = 16;
+                        let isTransitioning = false;
+
+                        function rotateSlogans() {
+                            if (isTransitioning) return;
+                            isTransitioning = true;
+
+                            const currentElement = document.getElementById(`slogan-${currentSlogan}`);
+                            const nextIndex = currentSlogan === totalSlogans ? 1 : currentSlogan + 1;
+                            const nextElement = document.getElementById(`slogan-${nextIndex}`);
+
+                            // 标记当前为上一张
+                            currentElement.classList.remove('active');
+                            currentElement.classList.add('prev');
+
+                            // 预激活下一张，产生交叉淡入淡出效果
+                            nextElement.classList.add('active');
+
+                            // 更新当前索引
+                            currentSlogan = nextIndex;
+
+                            // 清理状态
+                            setTimeout(() => {
+                                document.querySelectorAll('.slogan-item').forEach(item => {
+                                    item.classList.remove('prev');
+                                });
+                                isTransitioning = false;
+                            }, 1200);
+                        }
+
+                        // 初始化：显示第一个标语
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const firstSlogan = document.getElementById('slogan-1');
+                            firstSlogan.classList.add('active');
+
+                            // 每5秒切换一次，16个标语循环播放
+                            setInterval(rotateSlogans, 5000);
+                        });
+                    </script>
 
                     <!-- 考研倒计时和通知组合模块 -->
                     <div class="flex flex-col lg:flex-row gap-6 mb-8 max-w-5xl mx-auto">
@@ -1092,53 +1308,124 @@
             </div>
 
             <div class="container mx-auto max-w-6xl px-4 py-8">
-                <div class="flex items-center space-x-2 mb-8">
-                    <i class="fa fa-book text-primary text-2xl"></i>
-                    <h1 class="text-3xl font-bold">备考指南</h1>
-                    <span class="text-dark/50 text-sm ml-4">选择科目开始学习</span>
-                </div>
+                <!-- 页面标题区域 - 优化视觉层次 -->
 
-                <!-- 科目导航卡片 -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+
+                <!-- 科目导航卡片 - 优化动效和视觉层次 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                    <!-- 数学分析卡片 -->
                     <div onclick="navigateToSubject('math-analysis')"
-                        class="subject-card bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 cursor-pointer transform hover:scale-105 hover:shadow-lg transition-all duration-300 border border-blue-200">
-                        <div class="text-blue-600 text-3xl mb-4">
-                            <i class="fa fa-calculator"></i>
+                        class="subject-card group relative bg-gradient-to-br from-blue-50 via-white to-blue-100 rounded-2xl p-8 cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-translate-y-2 border-2 border-blue-200 hover:border-blue-400 hover:shadow-2xl overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-blue-400/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                         </div>
-                        <h3 class="font-semibold text-lg mb-2 text-blue-800">数学分析</h3>
-                        <p class="text-blue-700 text-sm mb-3">华东师大第五版</p>
-                        <div class="text-xs text-blue-600 bg-blue-200 px-2 py-1 rounded-full inline-block">22个章节</div>
+                        <div class="relative z-10">
+                            <div
+                                class="text-blue-600 text-4xl mb-6 transform group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+                                <i class="fa fa-calculator"></i>
+                            </div>
+                            <h3
+                                class="font-bold text-xl mb-3 text-blue-900 group-hover:text-blue-700 transition-colors">
+                                数学分析</h3>
+                            <p class="text-blue-700 text-sm mb-4 opacity-80">华东师大第五版 · 经典教材</p>
+                            <div class="flex items-center justify-between">
+                                <div class="text-xs text-blue-600 bg-blue-100 px-3 py-1.5 rounded-full font-medium">
+                                    22个章节</div>
+                                <div
+                                    class="text-blue-500 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+                                    <i class="fa fa-arrow-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-blue-400/20 to-transparent rounded-bl-full transform translate-x-10 -translate-y-10 group-hover:translate-x-8 group-hover:-translate-y-8 transition-transform duration-500">
+                        </div>
                     </div>
 
+                    <!-- 高等代数卡片 -->
                     <div onclick="navigateToSubject('linear-algebra')"
-                        class="subject-card bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 cursor-pointer transform hover:scale-105 hover:shadow-lg transition-all duration-300 border border-green-200">
-                        <div class="text-green-600 text-3xl mb-4">
-                            <i class="fa fa-th"></i>
+                        class="subject-card group relative bg-gradient-to-br from-green-50 via-white to-green-100 rounded-2xl p-8 cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-translate-y-2 border-2 border-green-200 hover:border-green-400 hover:shadow-2xl overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-green-400/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                         </div>
-                        <h3 class="font-semibold text-lg mb-2 text-green-800">高等代数</h3>
-                        <p class="text-green-700 text-sm mb-3">张禾瑞第五版</p>
-                        <div class="text-xs text-green-600 bg-green-200 px-2 py-1 rounded-full inline-block">9个章节</div>
+                        <div class="relative z-10">
+                            <div
+                                class="text-green-600 text-4xl mb-6 transform group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500">
+                                <i class="fa fa-th"></i>
+                            </div>
+                            <h3
+                                class="font-bold text-xl mb-3 text-green-900 group-hover:text-green-700 transition-colors">
+                                高等代数</h3>
+                            <p class="text-green-700 text-sm mb-4 opacity-80">张禾瑞第五版 · 权威教材</p>
+                            <div class="flex items-center justify-between">
+                                <div class="text-xs text-green-600 bg-green-100 px-3 py-1.5 rounded-full font-medium">
+                                    9个章节</div>
+                                <div
+                                    class="text-green-500 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+                                    <i class="fa fa-arrow-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-green-400/20 to-transparent rounded-bl-full transform translate-x-10 -translate-y-10 group-hover:translate-x-8 group-hover:-translate-y-8 transition-transform duration-500">
+                        </div>
                     </div>
 
+                    <!-- 复试信息卡片 -->
                     <div onclick="navigateToSubject('reexam-info')"
-                        class="subject-card bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 cursor-pointer transform hover:scale-105 hover:shadow-lg transition-all duration-300 border border-purple-200">
-                        <div class="text-purple-600 text-3xl mb-4">
-                            <i class="fa fa-users"></i>
+                        class="subject-card group relative bg-gradient-to-br from-purple-50 via-white to-purple-100 rounded-2xl p-8 cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-translate-y-2 border-2 border-purple-200 hover:border-purple-400 hover:shadow-2xl overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-purple-400/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                         </div>
-                        <h3 class="font-semibold text-lg mb-2 text-purple-800">复试信息</h3>
-                        <p class="text-purple-700 text-sm mb-3">面试+笔试流程</p>
-                        <div class="text-xs text-purple-600 bg-purple-200 px-2 py-1 rounded-full inline-block">详细流程
+                        <div class="relative z-10">
+                            <div
+                                class="text-purple-600 text-4xl mb-6 transform group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+                                <i class="fa fa-users"></i>
+                            </div>
+                            <h3
+                                class="font-bold text-xl mb-3 text-purple-900 group-hover:text-purple-700 transition-colors">
+                                复试信息</h3>
+                            <p class="text-purple-700 text-sm mb-4 opacity-80">面试+笔试流程 · 全流程解析</p>
+                            <div class="flex items-center justify-between">
+                                <div class="text-xs text-purple-600 bg-purple-100 px-3 py-1.5 rounded-full font-medium">
+                                    详细流程</div>
+                                <div
+                                    class="text-purple-500 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+                                    <i class="fa fa-arrow-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-purple-400/20 to-transparent rounded-bl-full transform translate-x-10 -translate-y-10 group-hover:translate-x-8 group-hover:-translate-y-8 transition-transform duration-500">
                         </div>
                     </div>
 
+                    <!-- 复习方法卡片 -->
                     <div onclick="navigateToSubject('study-methods')"
-                        class="subject-card bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 cursor-pointer transform hover:scale-105 hover:shadow-lg transition-all duration-300 border border-orange-200">
-                        <div class="text-orange-600 text-3xl mb-4">
-                            <i class="fa fa-lightbulb-o"></i>
+                        class="subject-card group relative bg-gradient-to-br from-orange-50 via-white to-orange-100 rounded-2xl p-8 cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-translate-y-2 border-2 border-orange-200 hover:border-orange-400 hover:shadow-2xl overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-orange-400/10 to-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                         </div>
-                        <h3 class="font-semibold text-lg mb-2 text-orange-800">复习方法</h3>
-                        <p class="text-orange-700 text-sm mb-3">高分学长经验</p>
-                        <div class="text-xs text-orange-600 bg-orange-200 px-2 py-1 rounded-full inline-block">核心技巧
+                        <div class="relative z-10">
+                            <div
+                                class="text-orange-600 text-4xl mb-6 transform group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500">
+                                <i class="fa fa-lightbulb-o"></i>
+                            </div>
+                            <h3
+                                class="font-bold text-xl mb-3 text-orange-900 group-hover:text-orange-700 transition-colors">
+                                复习方法</h3>
+                            <p class="text-orange-700 text-sm mb-4 opacity-80">高分学长经验 · 核心技巧</p>
+                            <div class="flex items-center justify-between">
+                                <div class="text-xs text-orange-600 bg-orange-100 px-3 py-1.5 rounded-full font-medium">
+                                    核心技巧</div>
+                                <div
+                                    class="text-orange-500 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+                                    <i class="fa fa-arrow-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-orange-400/20 to-transparent rounded-bl-full transform translate-x-10 -translate-y-10 group-hover:translate-x-8 group-hover:-translate-y-8 transition-transform duration-500">
                         </div>
                     </div>
                 </div>
@@ -1147,28 +1434,63 @@
 
                 <!-- 子页面内容区域 -->
                 <div id="subject-content" class="min-h-96">
-                    <!-- 默认显示概览 -->
+                    <!-- 默认显示概览 - 优化视觉和动效 -->
                     <div id="study-overview" class="study-content active">
-                        <div class="text-center py-16">
-                            <div class="text-6xl text-dark/20 mb-6">
-                                <i class="fa fa-graduation-cap"></i>
+                        <div class="text-center py-20">
+                            <div class="relative inline-block mb-8">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-r from-primary/20 to-blue-500/20 rounded-full blur-2xl animate-pulse">
+                                </div>
+                                <div
+                                    class="relative text-7xl text-primary/30 mb-6 transform hover:scale-110 transition-transform duration-500">
+                                    <i class="fa fa-graduation-cap"></i>
+                                </div>
                             </div>
-                            <h2 class="text-2xl font-semibold text-dark/70 mb-4">选择上方任一科目开始学习</h2>
-                            <p class="text-dark/50 max-w-md mx-auto">点击科目卡片查看详细的备考指南、重点章节和学习方法</p>
+                            <h2
+                                class="text-3xl font-bold text-dark/80 mb-4 bg-gradient-to-r from-dark to-dark/70 bg-clip-text text-transparent">
+                                开启你的学习之旅
+                            </h2>
+                            <p class="text-dark/60 text-lg max-w-lg mx-auto leading-relaxed">
+                                点击上方任一科目卡片，探索为你精心准备的<br>
+                                <span class="text-primary font-medium">备考指南</span> ·
+                                <span class="text-green-600 font-medium">重点章节</span> ·
+                                <span class="text-purple-600 font-medium">高分经验</span>
+                            </p>
+                            <div class="mt-8 flex justify-center space-x-2">
+                                <div class="w-2 h-2 bg-primary rounded-full animate-bounce"
+                                    style="animation-delay: 0ms"></div>
+                                <div class="w-2 h-2 bg-primary rounded-full animate-bounce"
+                                    style="animation-delay: 150ms"></div>
+                                <div class="w-2 h-2 bg-primary rounded-full animate-bounce"
+                                    style="animation-delay: 300ms"></div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- 数学分析子页面 -->
                     <div id="math-analysis-content" class="study-content">
                         <div class="bg-white rounded-xl shadow-card p-8">
-                            <div class="flex items-center justify-between mb-6">
-                                <h2 class="text-2xl font-bold flex items-center">
-                                    <i class="fa fa-calculator text-blue-600 mr-3"></i>数学分析备考指南
-                                </h2>
-                                <button onclick="navigateToSubject('overview')"
-                                    class="text-dark/60 hover:text-dark transition-colors">
-                                    <i class="fa fa-times text-xl"></i>
-                                </button>
+                            <!-- 优化后的页面头部 -->
+                            <div class="flex items-center justify-between mb-8">
+                                <div class="flex items-center">
+                                    <div class="relative mr-4">
+                                        <div
+                                            class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl blur-lg opacity-20">
+                                        </div>
+                                        <div
+                                            class="relative w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                                            <i class="fa fa-calculator text-white text-2xl"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h2
+                                            class="text-3xl font-bold text-dark mb-1 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                                            数学分析备考指南
+                                        </h2>
+                                        <p class="text-dark/60">极限思维 · 连续分析 · 积分应用</p>
+                                    </div>
+                                </div>
+
                             </div>
 
                             <!-- 科目概览 -->
@@ -1196,22 +1518,61 @@
                                     <i class="fa fa-road text-blue-600 mr-2"></i>学习阶段规划
                                 </h3>
                                 <div class="space-y-4">
-                                    <div class="border-l-4 border-blue-200 pl-4">
-                                        <h4 class="font-medium text-blue-800">一轮复习（基础阶段）</h4>
-                                        <p class="text-dark/70 text-sm mt-1">
-                                            系统学习知识点，完成所有课后习题。认真看知识点，不懂的看B站。所有题目都做，先自己做再看解析。</p>
+                                    <div
+                                        class="border-l-4 border-blue-200 pl-4 bg-gradient-to-r from-blue-50/50 to-transparent rounded-r-lg p-4 hover:from-blue-100/70 transition-colors duration-300">
+                                        <h4 class="font-medium text-blue-800 flex items-center">
+                                            <i class="fa fa-play-circle text-blue-500 mr-2"></i>
+                                            一轮复习（基础阶段）
+                                        </h4>
+                                        <p class="text-dark/70 text-sm mt-2 leading-relaxed">
+                                            系统学习知识点，完成所有课后习题。认真看知识点，不懂的看B站。所有题目都做，先自己做再看解析。
+                                        </p>
+                                        <div
+                                            class="mt-2 text-xs text-blue-600 bg-blue-100 px-2 py-1 rounded-full inline-block">
+                                            建议时长：2-3个月
+                                        </div>
                                     </div>
-                                    <div class="border-l-4 border-blue-300 pl-4">
-                                        <h4 class="font-medium text-blue-800">二轮复习（强化阶段）</h4>
-                                        <p class="text-dark/70 text-sm mt-1">复盘知识点，重点攻克错题难题，总结题型解题方法。每天复盘，每周复盘。</p>
+                                    <div
+                                        class="border-l-4 border-blue-300 pl-4 bg-gradient-to-r from-blue-50/50 to-transparent rounded-r-lg p-4 hover:from-blue-100/70 transition-colors duration-300">
+                                        <h4 class="font-medium text-blue-800 flex items-center">
+                                            <i class="fa fa-rocket text-blue-500 mr-2"></i>
+                                            二轮复习（强化阶段）
+                                        </h4>
+                                        <p class="text-dark/70 text-sm mt-2 leading-relaxed">
+                                            复盘知识点，重点攻克错题难题，总结题型解题方法。每天复盘，每周复盘。
+                                        </p>
+                                        <div
+                                            class="mt-2 text-xs text-blue-600 bg-blue-100 px-2 py-1 rounded-full inline-block">
+                                            建议时长：1.5-2个月
+                                        </div>
                                     </div>
-                                    <div class="border-l-4 border-blue-400 pl-4">
-                                        <h4 class="font-medium text-blue-800">三轮复习（真题阶段）</h4>
-                                        <p class="text-dark/70 text-sm mt-1">掐时间做真题，根据真题查漏补缺，针对性强化。控制时间在3小时内。</p>
+                                    <div
+                                        class="border-l-4 border-blue-400 pl-4 bg-gradient-to-r from-blue-50/50 to-transparent rounded-r-lg p-4 hover:from-blue-100/70 transition-colors duration-300">
+                                        <h4 class="font-medium text-blue-800 flex items-center">
+                                            <i class="fa fa-file-text text-blue-500 mr-2"></i>
+                                            三轮复习（真题阶段）
+                                        </h4>
+                                        <p class="text-dark/70 text-sm mt-2 leading-relaxed">
+                                            掐时间做真题，根据真题查漏补缺，针对性强化。控制时间在3小时内。
+                                        </p>
+                                        <div
+                                            class="mt-2 text-xs text-blue-600 bg-blue-100 px-2 py-1 rounded-full inline-block">
+                                            建议时长：1个月
+                                        </div>
                                     </div>
-                                    <div class="border-l-4 border-blue-500 pl-4">
-                                        <h4 class="font-medium text-blue-800">冲刺阶段</h4>
-                                        <p class="text-dark/70 text-sm mt-1">回顾重点，巩固薄弱环节，保持手感。重点看标注的难题和错题。</p>
+                                    <div
+                                        class="border-l-4 border-blue-500 pl-4 bg-gradient-to-r from-blue-50/50 to-transparent rounded-r-lg p-4 hover:from-blue-100/70 transition-colors duration-300">
+                                        <h4 class="font-medium text-blue-800 flex items-center">
+                                            <i class="fa fa-flag-checkered text-blue-500 mr-2"></i>
+                                            冲刺阶段
+                                        </h4>
+                                        <p class="text-dark/70 text-sm mt-2 leading-relaxed">
+                                            回顾重点，巩固薄弱环节，保持手感。重点看标注的难题和错题。
+                                        </p>
+                                        <div
+                                            class="mt-2 text-xs text-blue-600 bg-blue-100 px-2 py-1 rounded-full inline-block">
+                                            建议时长：2-3周
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1287,14 +1648,27 @@
                     <!-- 高等代数子页面 -->
                     <div id="linear-algebra-content" class="study-content">
                         <div class="bg-white rounded-xl shadow-card p-8">
-                            <div class="flex items-center justify-between mb-6">
-                                <h2 class="text-2xl font-bold flex items-center">
-                                    <i class="fa fa-th text-green-600 mr-3"></i>高等代数备考指南
-                                </h2>
-                                <button onclick="navigateToSubject('overview')"
-                                    class="text-dark/60 hover:text-dark transition-colors">
-                                    <i class="fa fa-times text-xl"></i>
-                                </button>
+                            <!-- 优化后的页面头部 -->
+                            <div class="flex items-center justify-between mb-8">
+                                <div class="flex items-center">
+                                    <div class="relative mr-4">
+                                        <div
+                                            class="absolute inset-0 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl blur-lg opacity-20">
+                                        </div>
+                                        <div
+                                            class="relative w-14 h-14 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg">
+                                            <i class="fa fa-th text-white text-2xl"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h2
+                                            class="text-3xl font-bold text-dark mb-1 bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                                            高等代数备考指南
+                                        </h2>
+                                        <p class="text-dark/60">矩阵运算 · 线性变换 · 多项式理论</p>
+                                    </div>
+                                </div>
+
                             </div>
 
                             <!-- 科目概览 -->
@@ -1322,21 +1696,61 @@
                                     <i class="fa fa-road text-green-600 mr-2"></i>学习阶段规划
                                 </h3>
                                 <div class="space-y-4">
-                                    <div class="border-l-4 border-green-200 pl-4">
-                                        <h4 class="font-medium text-green-800">一轮复习（与数分上册同步）</h4>
-                                        <p class="text-dark/70 text-sm mt-1">系统学习知识点，完成所有课后习题。买专门本子做题，先自己做再看解析。</p>
+                                    <div
+                                        class="border-l-4 border-green-200 pl-4 bg-gradient-to-r from-green-50/50 to-transparent rounded-r-lg p-4 hover:from-green-100/70 transition-colors duration-300">
+                                        <h4 class="font-medium text-green-800 flex items-center">
+                                            <i class="fa fa-play-circle text-green-500 mr-2"></i>
+                                            一轮复习（与数分上册同步）
+                                        </h4>
+                                        <p class="text-dark/70 text-sm mt-2 leading-relaxed">
+                                            系统学习知识点，完成所有课后习题。买专门本子做题，先自己做再看解析。
+                                        </p>
+                                        <div
+                                            class="mt-2 text-xs text-green-600 bg-green-100 px-2 py-1 rounded-full inline-block">
+                                            建议时长：1.5-2个月
+                                        </div>
                                     </div>
-                                    <div class="border-l-4 border-green-300 pl-4">
-                                        <h4 class="font-medium text-green-800">二轮复习（重点强化）</h4>
-                                        <p class="text-dark/70 text-sm mt-1">复盘知识点，重点攻克错题难题。继续看书刷题，先自己做，做完再看答案。</p>
+                                    <div
+                                        class="border-l-4 border-green-300 pl-4 bg-gradient-to-r from-green-50/50 to-transparent rounded-r-lg p-4 hover:from-green-100/70 transition-colors duration-300">
+                                        <h4 class="font-medium text-green-800 flex items-center">
+                                            <i class="fa fa-rocket text-green-500 mr-2"></i>
+                                            二轮复习（重点强化）
+                                        </h4>
+                                        <p class="text-dark/70 text-sm mt-2 leading-relaxed">
+                                            复盘知识点，重点攻克错题难题。继续看书刷题，先自己做，做完再看答案。
+                                        </p>
+                                        <div
+                                            class="mt-2 text-xs text-green-600 bg-green-100 px-2 py-1 rounded-full inline-block">
+                                            建议时长：1.5个月
+                                        </div>
                                     </div>
-                                    <div class="border-l-4 border-green-400 pl-4">
-                                        <h4 class="font-medium text-green-800">三轮复习（强化讲义）</h4>
-                                        <p class="text-dark/70 text-sm mt-1">结合李扬强化讲义，深入理解重点难点。高代有很多强化上的重要知识和典型题目。</p>
+                                    <div
+                                        class="border-l-4 border-green-400 pl-4 bg-gradient-to-r from-green-50/50 to-transparent rounded-r-lg p-4 hover:from-green-100/70 transition-colors duration-300">
+                                        <h4 class="font-medium text-green-800 flex items-center">
+                                            <i class="fa fa-book-open text-green-500 mr-2"></i>
+                                            三轮复习（强化讲义）
+                                        </h4>
+                                        <p class="text-dark/70 text-sm mt-2 leading-relaxed">
+                                            结合李扬强化讲义，深入理解重点难点。高代有很多强化上的重要知识和典型题目。
+                                        </p>
+                                        <div
+                                            class="mt-2 text-xs text-green-600 bg-green-100 px-2 py-1 rounded-full inline-block">
+                                            建议时长：1个月
+                                        </div>
                                     </div>
-                                    <div class="border-l-4 border-green-500 pl-4">
-                                        <h4 class="font-medium text-green-800">真题+冲刺</h4>
-                                        <p class="text-dark/70 text-sm mt-1">掐时间做真题，每天做课本和强化讲义相关题目。注重计算正确率训练。</p>
+                                    <div
+                                        class="border-l-4 border-green-500 pl-4 bg-gradient-to-r from-green-50/50 to-transparent rounded-r-lg p-4 hover:from-green-100/70 transition-colors duration-300">
+                                        <h4 class="font-medium text-green-800 flex items-center">
+                                            <i class="fa fa-flag-checkered text-green-500 mr-2"></i>
+                                            真题+冲刺
+                                        </h4>
+                                        <p class="text-dark/70 text-sm mt-2 leading-relaxed">
+                                            掐时间做真题，每天做课本和强化讲义相关题目。注重计算正确率训练。
+                                        </p>
+                                        <div
+                                            class="mt-2 text-xs text-green-600 bg-green-100 px-2 py-1 rounded-full inline-block">
+                                            建议时长：3-4周
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1408,14 +1822,27 @@
                     <!-- 复试信息子页面 -->
                     <div id="reexam-info-content" class="study-content">
                         <div class="bg-white rounded-xl shadow-card p-8">
-                            <div class="flex items-center justify-between mb-6">
-                                <h2 class="text-2xl font-bold flex items-center">
-                                    <i class="fa fa-users text-purple-600 mr-3"></i>复试信息详解
-                                </h2>
-                                <button onclick="navigateToSubject('overview')"
-                                    class="text-dark/60 hover:text-dark transition-colors">
-                                    <i class="fa fa-times text-xl"></i>
-                                </button>
+                            <!-- 优化后的页面头部 -->
+                            <div class="flex items-center justify-between mb-8">
+                                <div class="flex items-center">
+                                    <div class="relative mr-4">
+                                        <div
+                                            class="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl blur-lg opacity-20">
+                                        </div>
+                                        <div
+                                            class="relative w-14 h-14 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center shadow-lg">
+                                            <i class="fa fa-users text-white text-2xl"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h2
+                                            class="text-3xl font-bold text-dark mb-1 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                                            复试信息详解
+                                        </h2>
+                                        <p class="text-dark/60">4天流程 · 笔试面试 · 成功上岸</p>
+                                    </div>
+                                </div>
+
                             </div>
 
                             <!-- 复试概览 -->
@@ -1443,46 +1870,88 @@
                                     <i class="fa fa-sitemap text-purple-600 mr-2"></i>复试流程
                                 </h3>
                                 <div class="relative">
-                                    <div class="absolute left-6 top-8 bottom-0 w-0.5 bg-purple-200"></div>
+                                    <div
+                                        class="absolute left-6 top-8 bottom-0 w-0.5 bg-gradient-to-b from-purple-300 to-purple-100">
+                                    </div>
                                     <div class="space-y-6">
-                                        <div class="relative flex items-start">
+                                        <div class="relative flex items-start group">
                                             <div
-                                                class="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center border-4 border-white shadow">
-                                                <span class="text-purple-600 font-semibold">1</span>
+                                                class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center border-4 border-white shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                                <span class="text-white font-bold">1</span>
                                             </div>
-                                            <div class="ml-4">
-                                                <h4 class="font-medium text-purple-800">第一天：报到注册</h4>
-                                                <p class="text-dark/70 text-sm mt-1">领取复试安排和相关表格，准备第二天开会需要提交的材料</p>
+                                            <div
+                                                class="ml-4 bg-gradient-to-r from-purple-50 to-transparent rounded-lg p-4 flex-1 group-hover:from-purple-100 transition-colors duration-300">
+                                                <h4 class="font-semibold text-purple-800 flex items-center">
+                                                    <i class="fa fa-clipboard-list text-purple-600 mr-2"></i>
+                                                    第一天：报到注册
+                                                </h4>
+                                                <p class="text-dark/70 text-sm mt-2 leading-relaxed">
+                                                    领取复试安排和相关表格，准备第二天开会需要提交的材料
+                                                </p>
+                                                <div
+                                                    class="mt-2 text-xs text-purple-600 bg-purple-100 px-2 py-1 rounded-full inline-block">
+                                                    准备材料日
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="relative flex items-start">
+                                        <div class="relative flex items-start group">
                                             <div
-                                                class="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center border-4 border-white shadow">
-                                                <span class="text-purple-600 font-semibold">2</span>
+                                                class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center border-4 border-white shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                                <span class="text-white font-bold">2</span>
                                             </div>
-                                            <div class="ml-4">
-                                                <h4 class="font-medium text-purple-800">第二天：会议+笔试</h4>
-                                                <p class="text-dark/70 text-sm mt-1">开会说明复试工作，会议结束时抽面试分组和序号，随后进行笔试</p>
+                                            <div
+                                                class="ml-4 bg-gradient-to-r from-purple-50 to-transparent rounded-lg p-4 flex-1 group-hover:from-purple-100 transition-colors duration-300">
+                                                <h4 class="font-semibold text-purple-800 flex items-center">
+                                                    <i class="fa fa-users text-purple-600 mr-2"></i>
+                                                    第二天：会议+笔试
+                                                </h4>
+                                                <p class="text-dark/70 text-sm mt-2 leading-relaxed">
+                                                    开会说明复试工作，会议结束时抽面试分组和序号，随后进行笔试
+                                                </p>
+                                                <div
+                                                    class="mt-2 text-xs text-purple-600 bg-purple-100 px-2 py-1 rounded-full inline-block">
+                                                    关键日
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="relative flex items-start">
+                                        <div class="relative flex items-start group">
                                             <div
-                                                class="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center border-4 border-white shadow">
-                                                <span class="text-purple-600 font-semibold">3</span>
+                                                class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center border-4 border-white shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                                <span class="text-white font-bold">3</span>
                                             </div>
-                                            <div class="ml-4">
-                                                <h4 class="font-medium text-purple-800">第三天：面试</h4>
-                                                <p class="text-dark/70 text-sm mt-1">按抽签顺序进行面试，面试后数信院官网公布综合成绩</p>
+                                            <div
+                                                class="ml-4 bg-gradient-to-r from-purple-50 to-transparent rounded-lg p-4 flex-1 group-hover:from-purple-100 transition-colors duration-300">
+                                                <h4 class="font-semibold text-purple-800 flex items-center">
+                                                    <i class="fa fa-microphone text-purple-600 mr-2"></i>
+                                                    第三天：面试
+                                                </h4>
+                                                <p class="text-dark/70 text-sm mt-2 leading-relaxed">
+                                                    按抽签顺序进行面试，面试后数信院官网公布综合成绩
+                                                </p>
+                                                <div
+                                                    class="mt-2 text-xs text-purple-600 bg-purple-100 px-2 py-1 rounded-full inline-block">
+                                                    决定性日
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="relative flex items-start">
+                                        <div class="relative flex items-start group">
                                             <div
-                                                class="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center border-4 border-white shadow">
-                                                <span class="text-purple-600 font-semibold">4</span>
+                                                class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center border-4 border-white shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                                <span class="text-white font-bold">4</span>
                                             </div>
-                                            <div class="ml-4">
-                                                <h4 class="font-medium text-purple-800">第四天：体检+总结</h4>
-                                                <p class="text-dark/70 text-sm mt-1">拟录取考生自行体检，开会通报复试情况</p>
+                                            <div
+                                                class="ml-4 bg-gradient-to-r from-green-50 to-transparent rounded-lg p-4 flex-1 group-hover:from-green-100 transition-colors duration-300">
+                                                <h4 class="font-semibold text-green-800 flex items-center">
+                                                    <i class="fa fa-check-circle text-green-600 mr-2"></i>
+                                                    第四天：体检+总结
+                                                </h4>
+                                                <p class="text-dark/70 text-sm mt-2 leading-relaxed">
+                                                    拟录取考生自行体检，开会通报复试情况
+                                                </p>
+                                                <div
+                                                    class="mt-2 text-xs text-green-600 bg-green-100 px-2 py-1 rounded-full inline-block">
+                                                    完成日
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1562,14 +2031,27 @@
                     <!-- 复习方法子页面 -->
                     <div id="study-methods-content" class="study-content">
                         <div class="bg-white rounded-xl shadow-card p-8">
-                            <div class="flex items-center justify-between mb-6">
-                                <h2 class="text-2xl font-bold flex items-center">
-                                    <i class="fa fa-lightbulb-o text-orange-600 mr-3"></i>复习方法与技巧
-                                </h2>
-                                <button onclick="navigateToSubject('overview')"
-                                    class="text-dark/60 hover:text-dark transition-colors">
-                                    <i class="fa fa-times text-xl"></i>
-                                </button>
+                            <!-- 优化后的页面头部 -->
+                            <div class="flex items-center justify-between mb-8">
+                                <div class="flex items-center">
+                                    <div class="relative mr-4">
+                                        <div
+                                            class="absolute inset-0 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl blur-lg opacity-20">
+                                        </div>
+                                        <div
+                                            class="relative w-14 h-14 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg">
+                                            <i class="fa fa-lightbulb-o text-white text-2xl"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h2
+                                            class="text-3xl font-bold text-dark mb-1 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+                                            复习方法与技巧
+                                        </h2>
+                                        <p class="text-dark/60">高效学习 · 科学备考 · 成功秘诀</p>
+                                    </div>
+                                </div>
+
                             </div>
 
                             <!-- 通用复习原则 -->
@@ -1578,26 +2060,37 @@
                                     <i class="fa fa-compass text-orange-600 mr-2"></i>核心复习原则
                                 </h3>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div class="p-6 bg-orange-50 rounded-lg border border-orange-200">
+                                    <div
+                                        class="group p-6 bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl border border-orange-200 hover:shadow-lg transition-all duration-300">
                                         <h4 class="font-medium text-orange-800 mb-3 flex items-center">
-                                            <i class="fa fa-repeat text-orange-600 mr-2"></i>重复是学习的本质
+                                            <i class="fa fa-repeat text-orange-600 mr-2 group-hover:animate-spin"></i>
+                                            重复是学习的本质
                                         </h4>
                                         <ul class="space-y-2 text-sm text-orange-700">
-                                            <li>• 每晚复盘当天所学内容</li>
-                                            <li>• 每周总结本周重点难点</li>
-                                            <li>• 错题必须反复练习</li>
-                                            <li>• 重要结论需要熟记</li>
+                                            <li class="flex items-center"><i
+                                                    class="fa fa-moon text-orange-500 mr-2"></i>每晚复盘当天所学内容</li>
+                                            <li class="flex items-center"><i
+                                                    class="fa fa-calendar-week text-orange-500 mr-2"></i>每周总结本周重点难点</li>
+                                            <li class="flex items-center"><i
+                                                    class="fa fa-redo text-orange-500 mr-2"></i>错题必须反复练习</li>
+                                            <li class="flex items-center"><i
+                                                    class="fa fa-star text-orange-500 mr-2"></i>重要结论需要熟记</li>
                                         </ul>
                                     </div>
-                                    <div class="p-6 bg-blue-50 rounded-lg border border-blue-200">
+                                    <div
+                                        class="group p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl border border-blue-200 hover:shadow-lg transition-all duration-300">
                                         <h4 class="font-medium text-blue-800 mb-3 flex items-center">
                                             <i class="fa fa-pencil text-blue-600 mr-2"></i>做题方法
                                         </h4>
                                         <ul class="space-y-2 text-sm text-blue-700">
-                                            <li>• 先自己做，再看解析</li>
-                                            <li>• 认真批改，标注错题</li>
-                                            <li>• 理解答案逻辑过程</li>
-                                            <li>• 难题标注，决定取舍</li>
+                                            <li class="flex items-center"><i
+                                                    class="fa fa-user-check text-blue-500 mr-2"></i>先自己做，再看解析</li>
+                                            <li class="flex items-center"><i
+                                                    class="fa fa-edit text-blue-500 mr-2"></i>认真批改，标注错题</li>
+                                            <li class="flex items-center"><i
+                                                    class="fa fa-brain text-blue-500 mr-2"></i>理解答案逻辑过程</li>
+                                            <li class="flex items-center"><i
+                                                    class="fa fa-flag text-blue-500 mr-2"></i>难题标注，决定取舍</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -1608,31 +2101,80 @@
                                 <h3 class="text-lg font-semibold mb-4 flex items-center">
                                     <i class="fa fa-calculator text-blue-600 mr-2"></i>数学分析专项技巧
                                 </h3>
-                                <div class="space-y-4">
-                                    <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
-                                        <h4 class="font-medium text-blue-800 mb-2">培养"分析感"</h4>
-                                        <p class="text-blue-700 text-sm">通过大量做题熟悉各种证明方法和题型。刚开始学习时，疯狂做题是提升最快的方式。</p>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    <div
+                                        class="group p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl border border-blue-200 hover:shadow-lg transition-all duration-300 hover:scale-105">
+                                        <div class="flex items-center mb-4">
+                                            <div
+                                                class="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mr-3 group-hover:animate-bounce">
+                                                <i class="fa fa-lightbulb text-white"></i>
+                                            </div>
+                                            <h4 class="font-medium text-blue-800 text-lg">培养"分析感"</h4>
+                                        </div>
+                                        <p class="text-blue-700 text-sm mb-4">通过大量做题熟悉各种证明方法和题型。刚开始学习时，疯狂做题是提升最快的方式。</p>
+                                        <div class="space-y-2">
+                                            <div class="flex items-center text-xs text-blue-600">
+                                                <i class="fa fa-check-circle mr-2"></i>
+                                                <span>极限思想是基础</span>
+                                            </div>
+                                            <div class="flex items-center text-xs text-blue-600">
+                                                <i class="fa fa-check-circle mr-2"></i>
+                                                <span>学会用ε-δ语言</span>
+                                            </div>
+                                            <div class="flex items-center text-xs text-blue-600">
+                                                <i class="fa fa-check-circle mr-2"></i>
+                                                <span>掌握连续性概念</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
-                                        <h4 class="font-medium text-blue-800 mb-2">专题总结（超重要）</h4>
-                                        <p class="text-blue-700 text-sm">
-                                            按专题总结题型和解题方法：极限专题、微分中值定理专题、定积分专题等。这是应对琐碎知识点的最佳方式。</p>
+
+                                    <div
+                                        class="group p-6 bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-xl border border-cyan-200 hover:shadow-lg transition-all duration-300 hover:scale-105">
+                                        <div class="flex items-center mb-4">
+                                            <div
+                                                class="w-10 h-10 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-full flex items-center justify-center mr-3 group-hover:animate-pulse">
+                                                <i class="fa fa-chart-bar text-white"></i>
+                                            </div>
+                                            <h4 class="font-medium text-cyan-800 text-lg">专题总结</h4>
+                                            <span
+                                                class="ml-auto text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">超重要</span>
+                                        </div>
+                                        <p class="text-cyan-700 text-sm mb-4">按专题总结题型和解题方法：极限专题、微分中值定理专题、定积分专题等。</p>
+                                        <div class="grid grid-cols-2 gap-2">
+                                            <span
+                                                class="text-xs bg-cyan-200 text-cyan-800 px-2 py-1 rounded text-center">极限专题</span>
+                                            <span
+                                                class="text-xs bg-cyan-200 text-cyan-800 px-2 py-1 rounded text-center">中值定理</span>
+                                            <span
+                                                class="text-xs bg-cyan-200 text-cyan-800 px-2 py-1 rounded text-center">定积分</span>
+                                            <span
+                                                class="text-xs bg-cyan-200 text-cyan-800 px-2 py-1 rounded text-center">级数专题</span>
+                                        </div>
                                     </div>
-                                    <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
-                                        <h4 class="font-medium text-blue-800 mb-2">核心证明方法</h4>
-                                        <div class="grid grid-cols-2 gap-2 mt-2">
+
+                                    <div
+                                        class="group p-6 bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl border border-indigo-200 hover:shadow-lg transition-all duration-300 hover:scale-105">
+                                        <div class="flex items-center mb-4">
+                                            <div
+                                                class="w-10 h-10 bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-full flex items-center justify-center mr-3 group-hover:animate-spin">
+                                                <i class="fa fa-certificate text-white"></i>
+                                            </div>
+                                            <h4 class="font-medium text-indigo-800 text-lg">核心证明方法</h4>
+                                        </div>
+                                        <p class="text-indigo-700 text-sm mb-4">掌握数学分析中最核心的证明技巧和方法论。</p>
+                                        <div class="grid grid-cols-2 gap-2">
                                             <span
-                                                class="text-xs bg-blue-200 text-blue-800 px-2 py-1 rounded">Taylor公式</span>
+                                                class="text-xs bg-indigo-200 text-indigo-800 px-2 py-1 rounded text-center">Taylor公式</span>
                                             <span
-                                                class="text-xs bg-blue-200 text-blue-800 px-2 py-1 rounded">微分中值定理</span>
+                                                class="text-xs bg-indigo-200 text-indigo-800 px-2 py-1 rounded text-center">中值定理</span>
                                             <span
-                                                class="text-xs bg-blue-200 text-blue-800 px-2 py-1 rounded">各种判别法</span>
+                                                class="text-xs bg-indigo-200 text-indigo-800 px-2 py-1 rounded text-center">判别法</span>
                                             <a href="https://e.tb.cn/h.hFmbMMmXIj9CuXW?tk=ixuS4l367j0"
-                                                class="text-xs bg-blue-200 text-blue-800 px-2 py-1 rounded">查看更多</a>
+                                                class="text-xs bg-indigo-200 text-indigo-800 px-2 py-1 rounded text-center hover:bg-indigo-300 transition-colors">查看更多</a>
                                         </div>
                                     </div>
                                 </div>
-                                <p class="text-xs text-gray-500 mt-2 text-right italic">参考小红书博主"数学与你"经验技巧</p>
+                                <p class="text-xs text-gray-500 mt-4 text-right italic">参考小红书博主"数学与你"经验技巧</p>
                             </div>
 
                             <!-- 高等代数专项技巧 -->
@@ -1640,32 +2182,81 @@
                                 <h3 class="text-lg font-semibold mb-4 flex items-center">
                                     <i class="fa fa-th text-green-600 mr-2"></i>高等代数专项技巧
                                 </h3>
-                                <div class="space-y-4">
-                                    <div class="p-4 bg-green-50 rounded-lg border-l-4 border-green-400">
-                                        <h4 class="font-medium text-green-800 mb-2">多计算（超重要）</h4>
-                                        <p class="text-green-700 text-sm">行列式、矩阵、相似标准型等计算，不仅要会算，更要保证正确率。每年因计算错误失分的人很多。
-                                        </p>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    <div
+                                        class="group p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-xl border border-green-200 hover:shadow-lg transition-all duration-300 hover:scale-105">
+                                        <div class="flex items-center mb-4">
+                                            <div
+                                                class="w-10 h-10 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center mr-3 group-hover:animate-pulse">
+                                                <i class="fa fa-calculator text-white"></i>
+                                            </div>
+                                            <h4 class="font-medium text-green-800 text-lg">多计算</h4>
+                                            <span
+                                                class="ml-auto text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">超重要</span>
+                                        </div>
+                                        <p class="text-green-700 text-sm mb-4">
+                                            行列式、矩阵、相似标准型等计算，不仅要会算，更要保证正确率。每年因计算错误失分的人很多。</p>
+                                        <div class="space-y-2">
+                                            <div class="flex items-center text-xs text-green-600">
+                                                <i class="fa fa-matrix mr-2"></i>
+                                                <span>行列式计算</span>
+                                            </div>
+                                            <div class="flex items-center text-xs text-green-600">
+                                                <i class="fa fa-table mr-2"></i>
+                                                <span>矩阵运算</span>
+                                            </div>
+                                            <div class="flex items-center text-xs text-green-600">
+                                                <i class="fa fa-shapes mr-2"></i>
+                                                <span>标准型计算</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="p-4 bg-green-50 rounded-lg border-l-4 border-green-400">
-                                        <h4 class="font-medium text-green-800 mb-2">标准型理论（重要）</h4>
-                                        <p class="text-green-700 text-sm">
-                                            高等代数中，很多时候对一般矩阵A的研究都变成某个标准型的研究。掌握相似、合同、正交相似标准型。</p>
+
+                                    <div
+                                        class="group p-6 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-xl border border-emerald-200 hover:shadow-lg transition-all duration-300 hover:scale-105">
+                                        <div class="flex items-center mb-4">
+                                            <div
+                                                class="w-10 h-10 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center mr-3 group-hover:animate-bounce">
+                                                <i class="fa fa-cube text-white"></i>
+                                            </div>
+                                            <h4 class="font-medium text-emerald-800 text-lg">标准型理论</h4>
+                                            <span
+                                                class="ml-auto text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded-full">重要</span>
+                                        </div>
+                                        <p class="text-emerald-700 text-sm mb-4">高等代数中，很多时候对一般矩阵A的研究都变成某个标准型的研究。</p>
+                                        <div class="grid grid-cols-1 gap-2">
+                                            <span
+                                                class="text-xs bg-emerald-200 text-emerald-800 px-2 py-1 rounded text-center">相似标准型</span>
+                                            <span
+                                                class="text-xs bg-emerald-200 text-emerald-800 px-2 py-1 rounded text-center">合同标准型</span>
+                                            <span
+                                                class="text-xs bg-emerald-200 text-emerald-800 px-2 py-1 rounded text-center">正交相似标准型</span>
+                                        </div>
                                     </div>
-                                    <div class="p-4 bg-green-50 rounded-lg border-l-4 border-green-400">
-                                        <h4 class="font-medium text-green-800 mb-2">核心证明方法</h4>
-                                        <div class="grid grid-cols-2 gap-2 mt-2">
+
+                                    <div
+                                        class="group p-6 bg-gradient-to-br from-teal-50 to-teal-100 rounded-xl border border-teal-200 hover:shadow-lg transition-all duration-300 hover:scale-105">
+                                        <div class="flex items-center mb-4">
+                                            <div
+                                                class="w-10 h-10 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full flex items-center justify-center mr-3 group-hover:animate-spin">
+                                                <i class="fa fa-cogs text-white"></i>
+                                            </div>
+                                            <h4 class="font-medium text-teal-800 text-lg">核心证明方法</h4>
+                                        </div>
+                                        <p class="text-teal-700 text-sm mb-4">掌握高等代数中最核心的证明技巧和方法论。</p>
+                                        <div class="grid grid-cols-2 gap-2">
                                             <span
-                                                class="text-xs bg-green-200 text-green-800 px-2 py-1 rounded">矩阵打洞</span>
+                                                class="text-xs bg-teal-200 text-teal-800 px-2 py-1 rounded text-center">矩阵打洞</span>
                                             <span
-                                                class="text-xs bg-green-200 text-green-800 px-2 py-1 rounded">标准型方法</span>
+                                                class="text-xs bg-teal-200 text-teal-800 px-2 py-1 rounded text-center">标准型方法</span>
                                             <span
-                                                class="text-xs bg-green-200 text-green-800 px-2 py-1 rounded">同时对角化</span>
+                                                class="text-xs bg-teal-200 text-teal-800 px-2 py-1 rounded text-center">同时对角化</span>
                                             <a href="https://e.tb.cn/h.hFmbMMmXIj9CuXW?tk=ixuS4l367j0"
-                                                class="text-xs bg-green-200 text-green-800 px-2 py-1 rounded">查看更多</a>
+                                                class="text-xs bg-teal-200 text-teal-800 px-2 py-1 rounded text-center hover:bg-teal-300 transition-colors">查看更多</a>
                                         </div>
                                     </div>
                                 </div>
-                                <p class="text-xs text-gray-500 mt-2 text-right italic">参考小红书博主"数学与你"经验技巧</p>
+                                <p class="text-xs text-gray-500 mt-4 text-right italic">参考小红书博主"数学与你"经验技巧</p>
                             </div>
 
                             <!-- 时间管理建议 -->
@@ -1673,43 +2264,82 @@
                                 <h3 class="text-lg font-semibold mb-4 flex items-center">
                                     <i class="fa fa-clock-o text-purple-600 mr-2"></i>时间安排建议
                                 </h3>
-                                <div
-                                    class="bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg p-6 border border-purple-200">
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        <div>
-                                            <h4 class="font-medium text-purple-800 mb-3">学习顺序</h4>
-                                            <div class="space-y-2 text-sm">
-                                                <div class="flex items-center">
-                                                    <span
-                                                        class="w-6 h-6 bg-purple-200 text-purple-800 rounded-full text-xs flex items-center justify-center mr-2">1</span>
-                                                    <span>数分早点开始学</span>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div
+                                        class="group p-6 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl border border-purple-200 hover:shadow-lg transition-all duration-300 hover:scale-105">
+                                        <div class="flex items-center mb-4">
+                                            <div
+                                                class="w-10 h-10 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center mr-3 group-hover:animate-pulse">
+                                                <i class="fa fa-route text-white"></i>
+                                            </div>
+                                            <h4 class="font-medium text-purple-800 text-lg">学习顺序</h4>
+                                        </div>
+                                        <div class="space-y-3">
+                                            <div
+                                                class="flex items-center bg-white/50 rounded-lg p-3 hover:bg-white/70 transition-colors">
+                                                <div
+                                                    class="w-8 h-8 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full text-white text-sm flex items-center justify-center mr-3 font-bold">
+                                                    1</div>
+                                                <div>
+                                                    <div class="font-medium text-purple-800 text-sm">数分早点开始学</div>
+                                                    <div class="text-xs text-purple-600">基础阶段，重点掌握</div>
                                                 </div>
-                                                <div class="flex items-center">
-                                                    <span
-                                                        class="w-6 h-6 bg-purple-200 text-purple-800 rounded-full text-xs flex items-center justify-center mr-2">2</span>
-                                                    <span>高代在数分上册后开始</span>
+                                            </div>
+                                            <div
+                                                class="flex items-center bg-white/50 rounded-lg p-3 hover:bg-white/70 transition-colors">
+                                                <div
+                                                    class="w-8 h-8 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full text-white text-sm flex items-center justify-center mr-3 font-bold">
+                                                    2</div>
+                                                <div>
+                                                    <div class="font-medium text-purple-800 text-sm">高代在数分上册后开始</div>
+                                                    <div class="text-xs text-purple-600">同步推进，相互促进</div>
                                                 </div>
-                                                <div class="flex items-center">
-                                                    <span
-                                                        class="w-6 h-6 bg-purple-200 text-purple-800 rounded-full text-xs flex items-center justify-center mr-2">3</span>
-                                                    <span>真题阶段同步进行</span>
+                                            </div>
+                                            <div
+                                                class="flex items-center bg-white/50 rounded-lg p-3 hover:bg-white/70 transition-colors">
+                                                <div
+                                                    class="w-8 h-8 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full text-white text-sm flex items-center justify-center mr-3 font-bold">
+                                                    3</div>
+                                                <div>
+                                                    <div class="font-medium text-purple-800 text-sm">真题阶段同步进行</div>
+                                                    <div class="text-xs text-purple-600">查漏补缺，冲刺提分</div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div>
-                                            <h4 class="font-medium text-blue-800 mb-3">真题练习</h4>
-                                            <div class="space-y-2 text-sm">
-                                                <div class="flex items-center">
-                                                    <i class="fa fa-clock-o text-blue-600 mr-2"></i>
-                                                    <span>控制在3小时内完成</span>
+                                    </div>
+
+                                    <div
+                                        class="group p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl border border-blue-200 hover:shadow-lg transition-all duration-300 hover:scale-105">
+                                        <div class="flex items-center mb-4">
+                                            <div
+                                                class="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mr-3 group-hover:animate-bounce">
+                                                <i class="fa fa-stopwatch text-white"></i>
+                                            </div>
+                                            <h4 class="font-medium text-blue-800 text-lg">真题练习</h4>
+                                        </div>
+                                        <div class="space-y-3">
+                                            <div
+                                                class="flex items-center bg-white/50 rounded-lg p-3 hover:bg-white/70 transition-colors">
+                                                <i class="fa fa-clock-o text-blue-600 mr-3"></i>
+                                                <div>
+                                                    <div class="font-medium text-blue-800 text-sm">控制在3小时内完成</div>
+                                                    <div class="text-xs text-blue-600">模拟真实考试环境</div>
                                                 </div>
-                                                <div class="flex items-center">
-                                                    <i class="fa fa-calendar text-blue-600 mr-2"></i>
-                                                    <span>10-11月开始真题</span>
+                                            </div>
+                                            <div
+                                                class="flex items-center bg-white/50 rounded-lg p-3 hover:bg-white/70 transition-colors">
+                                                <i class="fa fa-calendar text-blue-600 mr-3"></i>
+                                                <div>
+                                                    <div class="font-medium text-blue-800 text-sm">10-11月开始真题</div>
+                                                    <div class="text-xs text-blue-600">最佳复习时机</div>
                                                 </div>
-                                                <div class="flex items-center">
-                                                    <i class="fa fa-check text-blue-600 mr-2"></i>
-                                                    <span>及时批改分析错题</span>
+                                            </div>
+                                            <div
+                                                class="flex items-center bg-white/50 rounded-lg p-3 hover:bg-white/70 transition-colors">
+                                                <i class="fa fa-check text-blue-600 mr-3"></i>
+                                                <div>
+                                                    <div class="font-medium text-blue-800 text-sm">及时批改分析错题</div>
+                                                    <div class="text-xs text-blue-600">针对性提升弱项</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -2193,7 +2823,69 @@
                     <span class="text-gray-600">考研时间节点</span>
                 </div>
 
-                <h1 class="text-3xl font-bold mb-8 text-center">考研重要时间节点</h1>
+                <div class="text-center mb-12">
+                    <div class="inline-block animate-fade-in-up">
+                        <h1 class="text-4xl md:text-5xl font-bold text-dark mb-4 relative">
+                            考研重要时间节点
+                            <span
+                                class="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full animate-expand-width"></span>
+                        </h1>
+                        <p class="text-lg text-gray-600 mt-6 max-w-2xl mx-auto leading-relaxed animate-fade-in"
+                            style="animation-delay: 0.3s">
+                            把握每一个关键节点，让备考之路不再迷茫
+                            <br>
+                            <span class="text-sm text-gray-500 mt-2 inline-block animate-fade-in"
+                                style="animation-delay: 0.6s">基于历年数据科学规划，助你稳步上岸</span>
+                        </p>
+                    </div>
+                </div>
+
+                <style>
+                    @keyframes fade-in-up {
+                        from {
+                            opacity: 0;
+                            transform: translateY(30px);
+                        }
+
+                        to {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                    }
+
+                    @keyframes fade-in {
+                        from {
+                            opacity: 0;
+                        }
+
+                        to {
+                            opacity: 1;
+                        }
+                    }
+
+                    @keyframes expand-width {
+                        from {
+                            width: 0;
+                        }
+
+                        to {
+                            width: 100%;
+                        }
+                    }
+
+                    .animate-fade-in-up {
+                        animation: fade-in-up 0.8s ease-out forwards;
+                    }
+
+                    .animate-fade-in {
+                        animation: fade-in 0.6s ease-out forwards;
+                        opacity: 0;
+                    }
+
+                    .animate-expand-width {
+                        animation: expand-width 1s ease-out forwards;
+                    }
+                </style>
                 <div class="relative max-w-4xl mx-auto">
 
 
