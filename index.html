@@ -4,13 +4,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>西华师范大学数学考研指南</title>
+    <title>西华师范大学数学考研指南 - 2026西华师大数学专业考研一站式导航平台</title>
+    <meta name="description"
+        content="西华师范大学数学考研指南，提供2026西华师大数学专业考研分数线、录取数据、备考指南、参考书目、真题资料等一站式信息服务。助力考生成功上岸西华师范大学数学与信息学院。">
+    <meta name="keywords"
+        content="西华师范大学数学考研, 西华师大数学专业, 西华师范大学考研分数线, 西华师范大学数学与信息学院, 西华师大数学考研指南, 西华师范大学考研资料, 数学考研备考, 西华师范大学录取数据, 2026考研, 数学专业考研">
+    <meta name="author" content="西华师范大学数学考研指南">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="西华师范大学数学考研指南 - 2026西华师大数学专业考研一站式导航平台">
+    <meta property="og:description"
+        content="西华师范大学数学考研指南，提供2026西华师大数学专业考研分数线、录取数据、备考指南、参考书目、真题资料等一站式信息服务。助力考生成功上岸西华师范大学数学与信息学院。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cwnu-math-guide.com">
+    <meta property="og:image" content="https://cwnu-math-guide.com/images/preview.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="西华师范大学数学考研指南 - 2026西华师大数学专业考研一站式导航平台">
+    <meta name="twitter:description"
+        content="西华师范大学数学考研指南，提供2026西华师大数学专业考研分数线、录取数据、备考指南、参考书目、真题资料等一站式信息服务。助力考生成功上岸西华师范大学数学与信息学院。">
+    <link rel="canonical" href="https://cwnu-math-guide.com">
+
+    <!-- 结构化数据标记 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "西华师范大学数学考研指南",
+        "alternateName": ["西华师大数学考研", "CWNU数学考研", "西华师范大学数学与信息学院考研"],
+        "description": "西华师范大学数学考研指南，提供2026西华师大数学专业考研分数线、录取数据、备考指南、参考书目、真题资料等一站式信息服务",
+        "url": "https://cwnu-math-guide.com",
+        "publisher": {
+            "@type": "Organization",
+            "name": "西华师范大学数学考研指南",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://cwnu-math-guide.com/images/logo.png"
+            }
+        },
+        "keywords": ["西华师范大学数学考研", "西华师大数学专业", "西华师范大学考研分数线", "数学考研备考"],
+        "inLanguage": "zh-CN",
+        "educationalLevel": "研究生",
+        "about": {
+            "@type": "CollegeOrUniversity",
+            "name": "西华师范大学",
+            "department": {
+                "@type": "Organization",
+                "name": "数学与信息学院"
+            }
+        },
+        "mainEntity": {
+            "@type": "ItemList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "考研分数线",
+                    "description": "西华师范大学数学专业近5年分数线数据"
+                },
+                {
+                    "@type": "ListItem", 
+                    "position": 2,
+                    "name": "录取数据分析",
+                    "description": "西华师大数学专业录取人数、复录比等详细分析"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "备考指南",
+                    "description": "数学分析、高等代数等科目的详细备考指导"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 4,
+                    "name": "考研资料",
+                    "description": "参考书目、真题资料、复习规划等考研资源"
+                }
+            ]
+        }
+    }
+    </script>
+
     <!-- 引入Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 引入Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- 引入Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <!-- 引入Marked.js用于Markdown渲染 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- MathJax 3 for LaTeX formula support -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- 配置Tailwind CSS -->
     <script>
         tailwind.config = {
@@ -196,6 +291,155 @@
 
         .subject-card:hover {
             border-color: currentColor;
+        }
+
+        /* Markdown样式 */
+        .markdown-content h1 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin: 1rem 0 0.5rem 0;
+            color: #1d1d1f;
+        }
+
+        .markdown-content h2 {
+            font-size: 1.125rem;
+            font-weight: bold;
+            margin: 0.875rem 0 0.5rem 0;
+            color: #1d1d1f;
+        }
+
+        .markdown-content h3 {
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0.75rem 0 0.5rem 0;
+            color: #1d1d1f;
+        }
+
+        .markdown-content p {
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+            color: #4b5563;
+        }
+
+        .markdown-content ul,
+        .markdown-content ol {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .markdown-content li {
+            margin-bottom: 0.25rem;
+            color: #4b5563;
+        }
+
+        .markdown-content code {
+            background-color: #f3f4f6;
+            padding: 0.125rem 0.25rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+            color: #374151;
+        }
+
+        .markdown-content pre {
+            background-color: #f9fafb;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            overflow-x: auto;
+            margin: 0.5rem 0;
+            border: 1px solid #e5e7eb;
+        }
+
+        .markdown-content pre code {
+            background: none;
+            padding: 0;
+            border: none;
+            color: #374151;
+        }
+
+        .markdown-content blockquote {
+            border-left: 4px solid #e5e7eb;
+            padding-left: 1rem;
+            margin: 0.5rem 0;
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        .markdown-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.5rem 0;
+        }
+
+        .markdown-content th,
+        .markdown-content td {
+            border: 1px solid #e5e7eb;
+            padding: 0.5rem;
+            text-align: left;
+        }
+
+        .markdown-content th {
+            background-color: #f9fafb;
+            font-weight: bold;
+            color: #374151;
+        }
+
+        .markdown-content strong {
+            font-weight: bold;
+            color: #1d1d1f;
+        }
+
+        .markdown-content em {
+            font-style: italic;
+            color: #4b5563;
+        }
+
+        /* MathJax公式样式优化 */
+        .markdown-content .MathJax {
+            outline: 0;
+        }
+
+        .markdown-content mjx-container {
+            display: inline-block;
+            margin: 0.25rem 0;
+        }
+
+        .markdown-content mjx-container[display="block"] {
+            display: block;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .markdown-content .MathJax_Display {
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        /* 行内公式样式 */
+        .markdown-content .MathJax_Preview {
+            color: #1d1d1f;
+        }
+
+        /* 公式容器样式 */
+        .markdown-content .MathJax_CHTML {
+            display: inline-block;
+            line-height: 1;
+        }
+
+        /* 问题标题markdown样式 */
+        .markdown-title {
+            font-weight: inherit;
+            color: inherit;
+        }
+
+        .markdown-title .MathJax {
+            outline: 0;
+        }
+
+        .markdown-title mjx-container {
+            display: inline-block;
+            margin: 0 0.125rem;
+            font-size: 0.9em;
         }
 
         /* 导航高亮 */
@@ -715,6 +959,9 @@
                                 class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full animate-expand-width">
                             </div>
                         </h1>
+                        <!-- <h2 class="text-[clamp(1rem,2vw,1.4rem)] font-medium text-dark/60 mt-4 max-w-3xl mx-auto">
+                            考研分数线｜录取数据｜备考指南｜真题资料一站式平台
+                        </h2> -->
 
                     </div>
 
@@ -804,15 +1051,15 @@
                             <div
                                 class="slogan-badge inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full text-sm font-medium text-blue-700">
                                 <i class="fa fa-chart-line mr-2"></i>
-                                2026考研 · 一站式导航平台
+                                西华师范大学数学与信息学院考研分数线｜录取数据｜备考指南｜真题资料一站式平台
                             </div>
-                            <div
+                            <a href="https://pages.tmall.com/wow/a/act/tmall/dailygroup/16355/16802/wupr?wh_pid=daily-465056&disableNav=YES&status_bar_transparent=true&sellerId=2213230258679&activityId=6e83d85bcf514a8d90303c3a17634ae3&toolName=shopCoupon"
                                 class="hero-badge inline-flex items-center px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full text-sm font-semibold relative overflow-hidden cursor-pointer hover:shadow-lg transition-shadow">
                                 <span
                                     class="absolute inset-0 bg-white/20 transform -translate-x-full skew-x-45 animate-shimmer"></span>
                                 <i class="fa fa-star mr-2"></i>
                                 领取优惠券
-                            </div>
+                            </a>
                         </div>
                         <style>
                             @keyframes shimmer {
@@ -852,7 +1099,7 @@
                     <style>
                         .slogan-container {
                             position: relative;
-                            height: 4.5rem;
+                            height: 2.5rem;
                             overflow: hidden;
                         }
 
@@ -2365,9 +2612,21 @@
             </div>
 
             <div class="container mx-auto max-w-6xl px-4 py-8">
-                <div class="flex items-center space-x-2 mb-8">
-                    <i class="fa fa-bar-chart text-primary text-2xl"></i>
-                    <h1 class="text-3xl font-bold">录取数据</h1>
+                <div class="text-center mb-8">
+
+                    <div class="relative inline-block animate-fade-in-up">
+                        <h1
+                            class="text-[clamp(2rem,4vw,3rem)] font-bold bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent relative">
+                            录取数据分析
+                        </h1>
+                        <div
+                            class="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary via-purple-500 to-pink-500 rounded-full animate-expand-width">
+                        </div>
+                    </div>
+                    <p class="text-lg text-dark/70 mt-6 max-w-2xl mx-auto animate-fade-in"
+                        style="animation-delay: 0.2s">
+                        深度解析西华师范大学数学与信息学院近5年考研分数线、录取数据、复录比等核心指标，，为你的2026西华师大数学考研之路提供权威数据支撑
+                    </p>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -2375,7 +2634,10 @@
                     <div
                         class="bg-white rounded-xl shadow-card p-6 transition-all duration-300 hover:shadow-card-hover">
                         <h3 class="text-xl font-semibold mb-4 flex items-center">
-                            <i class="fa fa-line-chart text-primary mr-2"></i>近5年分数线
+                            <i class="fa fa-line-chart text-primary mr-2"></i>
+                            <span
+                                class="bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent">近5年分数线</span>
+                            <span class="ml-2 text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">实时更新</span>
                         </h3>
                         <div class="h-[300px] mb-6">
                             <canvas id="scoreChart"></canvas>
@@ -2444,7 +2706,10 @@
                     <div
                         class="bg-white rounded-xl shadow-card p-6 transition-all duration-300 hover:shadow-card-hover">
                         <h3 class="text-xl font-semibold mb-4 flex items-center">
-                            <i class="fa fa-pie-chart text-primary mr-2"></i>近5年录取数据
+                            <i class="fa fa-pie-chart text-primary mr-2"></i>
+                            <span
+                                class="bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent">近5年录取数据</span>
+                            <span class="ml-2 text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">权威来源</span>
                         </h3>
                         <div class="h-[300px] mb-6">
                             <canvas id="admissionChart"></canvas>
@@ -2518,35 +2783,116 @@
                 </div>
 
                 <!-- 数据分析总结 -->
-                <div class="mt-8 bg-white rounded-xl shadow-card p-6">
-                    <h3 class="text-xl font-semibold mb-4 flex items-center">
-                        <i class="fa fa-line-chart text-primary mr-2"></i>趋势分析
-                    </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="text-center p-4 bg-primary/5 rounded-lg">
-                            <div class="text-2xl font-bold text-primary mb-2">↗️ 61人</div>
-                            <div class="text-sm text-dark/60">2025年录取人数</div>
-                            <div class="text-xs text-green-600 mt-1">较去年增加5人</div>
-                        </div>
-                        <div class="text-center p-4 bg-accent/5 rounded-lg">
-                            <div class="text-2xl font-bold text-accent mb-2">↘️ 1.23:1</div>
-                            <div class="text-sm text-dark/60">2025年复录比</div>
-                            <div class="text-xs text-orange-600 mt-1">竞争相对缓解</div>
-                        </div>
-                        <div class="text-center p-4 bg-green-50 rounded-lg">
-                            <div class="text-2xl font-bold text-green-600 mb-2">280分</div>
-                            <div class="text-sm text-dark/60">2025年最低录取分</div>
-                            <div class="text-xs text-green-600 mt-1">较去年下降44分</div>
-                        </div>
+                <div
+                    class="mt-8 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20 rounded-xl shadow-card border border-gray-100 overflow-hidden">
+                    <!-- 板块头部 -->
+                    <div
+                        class="bg-gradient-to-r from-primary/5 via-purple-500/5 to-pink-500/5 px-6 py-4 border-b border-gray-100">
+                        <h3 class="text-xl font-semibold flex items-center">
+                            <i class="fa fa-line-chart text-primary mr-3"></i>
+                            <span
+                                class="bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent">智能趋势分析</span>
+                            <span
+                                class="ml-3 text-xs bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 px-3 py-1.5 rounded-full font-medium">AI驱动洞察</span>
+                        </h3>
                     </div>
-                    <div class="mt-6 p-4 bg-gray-50 rounded-lg">
-                        <p class="text-sm text-dark mb-2">学校线下复试时，复试：初试 = 5:5，线上复试时，复试：初试 = 4:6 或 3:7。估计 26 年线下，复试 1 分 =
-                            初试 5 分。</p>
-                        <p class="text-sm text-dark mb-2">每年的进复试人数基本是拟招人数的 1.4 倍（没超过拟招人数就是 1 倍），例如 26 年拟招 56
-                            人，则进入复试人数（78.4）最多为 78 或 79 人。</p>
-                        <p class="text-sm text-dark mb-2">24 年出现了院线超国家线 30 分的特殊情况，这年竞争很激烈，复试中有 350 分被淘汰的，也有 324
-                            分被录取的，其实我们可以计算一下：350 - 324 = 26 分，那么 324 分的复试分数只要比 350 分的高 26 / 5 = 5.2 分，综合成绩就能一样。</p>
-                        <p class="text-sm text-dark mb-0">这样看复试的成绩还是挺重要的，不过初试如果排在前几名一般也不会被刷，所以大家还是要好好准备初试！</p>
+
+                    <!-- 核心指标卡片 -->
+                    <div class="p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                            <!-- 录取人数卡片 -->
+                            <div
+                                class="group relative bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-primary/10">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                </div>
+                                <div class="relative p-6 text-center">
+                                    <div
+                                        class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-primary to-blue-500 rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                                        📈
+                                    </div>
+                                    <div class="text-3xl font-bold text-primary mb-2">61<span class="text-lg">人</span>
+                                    </div>
+                                    <div class="text-sm font-medium text-gray-600 mb-2">2025年录取人数</div>
+                                    <div class="flex items-center justify-center text-xs">
+                                        <span class="bg-green-100 text-green-700 px-2 py-1 rounded-full font-medium">↗
+                                            增加5人</span>
+                                        <span class="ml-2 text-gray-500">+8.9%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 复录比卡片 -->
+                            <div
+                                class="group relative bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-orange/10">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-br from-orange/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                </div>
+                                <div class="relative p-6 text-center">
+                                    <div
+                                        class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                                        ⚖️
+                                    </div>
+                                    <div class="text-3xl font-bold text-orange-600 mb-2">1.23<span
+                                            class="text-lg">:1</span></div>
+                                    <div class="text-sm font-medium text-gray-600 mb-2">2025年复录比</div>
+                                    <div class="flex items-center justify-center text-xs">
+                                        <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full font-medium">↘
+                                            竞争缓解</span>
+                                        <span class="ml-2 text-gray-500">-17%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 最低分卡片 -->
+                            <div
+                                class="group relative bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-green/10">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-br from-green/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                </div>
+                                <div class="relative p-6 text-center">
+                                    <div
+                                        class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                                        🎯
+                                    </div>
+                                    <div class="text-3xl font-bold text-green-600 mb-2">280<span
+                                            class="text-lg">分</span></div>
+                                    <div class="text-sm font-medium text-gray-600 mb-2">2025年最低录取分</div>
+                                    <div class="flex items-center justify-center text-xs">
+                                        <span class="bg-red-100 text-red-700 px-2 py-1 rounded-full font-medium">↘
+                                            下降44分</span>
+                                        <span class="ml-2 text-gray-500">-13.6%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 深度分析区域 -->
+                        <div class="bg-white rounded-xl border border-gray-100">
+                            <div class="px-6 py-4 bg-gradient-to-r from-gray-50 to-blue-50/30 border-b border-gray-100">
+                                <h4 class="font-semibold text-gray-800 flex items-center">
+                                    <i class="fa fa-lightbulb text-yellow-500 mr-2"></i>
+                                    深度分析解读
+                                </h4>
+                            </div>
+                            <div class="p-6 space-y-4">
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="text-sm text-dark mb-3 leading-relaxed">
+                                        学校线下复试时，复试：初试 = 5:5，线上复试时，复试：初试 = 4:6 或 3:7。估计 26 年线下，复试 1 分 = 初试 5 分。
+                                    </p>
+                                    <p class="text-sm text-dark mb-3 leading-relaxed">
+                                        每年的进复试人数基本是拟招人数的 1.4 倍（没超过拟招人数就是 1 倍），例如 26 年拟招 56 人，则进入复试人数（78.4）最多为 78 或 79 人。
+                                    </p>
+                                    <p class="text-sm text-dark mb-3 leading-relaxed">
+                                        24 年出现了院线超国家线 30 分的特殊情况，这年竞争很激烈，复试中有 350 分被淘汰的，也有 324 分被录取的，其实我们可以计算一下：350 - 324
+                                        = 26 分，那么 324 分的复试分数只要比 350 分的高 26 / 5 = 5.2 分，综合成绩就能一样。
+                                    </p>
+                                    <p class="text-sm text-dark mb-0 leading-relaxed">
+                                        这样看复试的成绩还是挺重要的，不过初试如果排在前几名一般也不会被刷，所以大家还是要好好准备初试！
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2600,7 +2946,7 @@
                                             class="text-red-500">*</span></label>
                                     <input type="text" id="question-title" name="question-title" required
                                         class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 outline-none"
-                                        placeholder="请输入您的问题标题">
+                                        placeholder="例：复试流程是什么？需要准备哪些材料？">
                                 </div>
                                 <div>
                                     <label for="question-content"
@@ -2608,8 +2954,21 @@
                                             class="text-red-500">*</span></label>
                                     <textarea id="question-content" name="question-content" rows="4" required
                                         class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 outline-none"
-                                        placeholder="请详细描述您的问题，以便我们更好地为您解答"></textarea>
-                                    <p class="mt-1 text-xs text-gray-500">请尽可能详细描述您的问题，提供相关截图或上下文有助于我们更快地解决问题。</p>
+                                        placeholder="【复试咨询示例】
+我是2025届考生，想咨询关于贵校学科教学（数学）专业复试的相关问题：
+
+具体情况：
+1. 初试成绩：政治65，英语55，数分118，高代125，总分363
+2. 本科背景：西华师范大学数学与应用数学专业，绩点3.2/4.0
+3. 获奖情况：校级奖学金2次，数学建模省赛二等奖
+
+咨询问题：
+- 复试大概什么时候开始？形式是线上还是线下？
+- 需要准备哪些材料？有英语口语测试吗？
+- 复试内容主要包括哪些部分？参考书目有哪些？
+- 我这个分数进入复试的希望大吗？"></textarea>
+                                    <p class="mt-1 text-xs text-gray-500">
+                                        请详细描述问题，提供公式或背景信息可助快速精准解答（支持 Markdown）</p>
                                 </div>
                             </div>
                             <div class="pt-2">
@@ -2823,21 +3182,21 @@
                     <span class="text-gray-600">考研时间节点</span>
                 </div>
 
-                <div class="text-center mb-12">
-                    <div class="inline-block animate-fade-in-up">
-                        <h1 class="text-4xl md:text-5xl font-bold text-dark mb-4 relative">
+                <div class="text-center mb-8">
+                    <div class="relative inline-block animate-fade-in-up">
+                        <h1
+                            class="text-[clamp(2rem,4vw,3rem)] font-bold bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent relative">
                             考研重要时间节点
-                            <span
-                                class="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full animate-expand-width"></span>
                         </h1>
-                        <p class="text-lg text-gray-600 mt-6 max-w-2xl mx-auto leading-relaxed animate-fade-in"
-                            style="animation-delay: 0.3s">
-                            把握每一个关键节点，让备考之路不再迷茫
-                            <br>
-                            <span class="text-sm text-gray-500 mt-2 inline-block animate-fade-in"
-                                style="animation-delay: 0.6s">基于历年数据科学规划，助你稳步上岸</span>
-                        </p>
+                        <div
+                            class="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary via-purple-500 to-pink-500 rounded-full animate-expand-width">
+                        </div>
                     </div>
+                    <p class="text-lg text-dark/70 mt-6 max-w-2xl mx-auto animate-fade-in"
+                        style="animation-delay: 0.2s">
+                        深度解析西华师范大学数学专业考研关键节点，
+                        <br>为你的备考之路提供时间规划和决策参考
+                    </p>
                 </div>
 
                 <style>
@@ -2884,6 +3243,43 @@
 
                     .animate-expand-width {
                         animation: expand-width 1s ease-out forwards;
+                    }
+
+                    .animate-spin-slow {
+                        animation: spin 3s linear infinite;
+                    }
+
+                    @keyframes spin {
+                        from {
+                            transform: rotate(0deg);
+                        }
+
+                        to {
+                            transform: rotate(360deg);
+                        }
+                    }
+
+                    .animate-bounce-slow {
+                        animation: bounce 2s infinite;
+                    }
+
+                    @keyframes bounce {
+
+                        0%,
+                        20%,
+                        50%,
+                        80%,
+                        100% {
+                            transform: translateY(0);
+                        }
+
+                        40% {
+                            transform: translateY(-5px);
+                        }
+
+                        60% {
+                            transform: translateY(-3px);
+                        }
                     }
                 </style>
                 <div class="relative max-w-4xl mx-auto">
@@ -4680,16 +5076,104 @@
                                 return;
                             }
 
-                            // 添加评论到容器
+                            // 分离官方回答和普通回答
+                            const officialAnswers = [];
+                            const regularAnswers = [];
+
                             comments.forEach(comment => {
                                 const date = new Date(comment.created_at).toLocaleDateString();
+
+                                // 检查是否为官方回答（使用更隐蔽的标识方式）
+                                const isOfficialAnswer = comment.body.startsWith('🎓OFFICIAL🎓');
+                                let displayContent = comment.body;
+
+                                if (isOfficialAnswer) {
+                                    // 移除官方标识符
+                                    displayContent = displayContent.replace('🎓OFFICIAL🎓\n', '');
+                                }
+
+                                const answerData = {
+                                    element: comment,
+                                    content: displayContent,
+                                    date: date,
+                                    isOfficial: isOfficialAnswer
+                                };
+
+                                if (isOfficialAnswer) {
+                                    officialAnswers.push(answerData);
+                                } else {
+                                    regularAnswers.push(answerData);
+                                }
+                            });
+
+                            // 先添加官方回答（置顶显示）
+                            officialAnswers.forEach(answer => {
+                                const commentElement = document.createElement('div');
+                                commentElement.className = 'mb-4 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200 shadow-sm';
+
+                                // 创建markdown渲染容器
+                                const markdownContent = document.createElement('div');
+                                markdownContent.className = 'markdown-content text-sm';
+
+                                // 使用marked库渲染markdown（如果已加载）
+                                if (typeof marked !== 'undefined') {
+                                    markdownContent.innerHTML = marked.parse(answer.content);
+                                } else {
+                                    markdownContent.innerHTML = parseSimpleMarkdown(answer.content);
+                                }
+
+                                commentElement.innerHTML = `
+                                    <div class="flex items-center mb-3">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center mr-2">
+                                                <i class="fa fa-graduation-cap text-white text-xs"></i>
+                                            </div>
+                                            <div>
+                                                <div class="text-sm font-semibold text-blue-700">官方解答</div>
+                                                <div class="text-xs text-blue-600">西华师大数学系</div>
+                                            </div>
+                                        </div>
+                                        <div class="ml-auto text-xs text-gray-500">${answer.date}</div>
+                                    </div>
+                                    <div class="border-t border-blue-100 pt-3"></div>
+                                `;
+
+                                const contentWrapper = document.createElement('div');
+                                contentWrapper.className = 'mt-3';
+                                contentWrapper.appendChild(markdownContent);
+                                commentElement.appendChild(contentWrapper);
+
+                                commentsContainer.appendChild(commentElement);
+                            });
+
+                            // 然后添加普通回答
+                            regularAnswers.forEach(answer => {
                                 const commentElement = document.createElement('div');
                                 commentElement.className = 'mb-3 p-3 bg-gray-50 rounded';
+
+                                // 创建markdown渲染容器
+                                const markdownContent = document.createElement('div');
+                                markdownContent.className = 'markdown-content text-sm';
+
+                                // 使用marked库渲染markdown（如果已加载）
+                                if (typeof marked !== 'undefined') {
+                                    markdownContent.innerHTML = marked.parse(answer.content);
+                                } else {
+                                    markdownContent.innerHTML = parseSimpleMarkdown(answer.content);
+                                }
+
                                 commentElement.innerHTML = `
-                                    <p class="text-sm text-gray-500 mb-1">回答日期: ${date}</p>
-                                    <p class="text-sm">${comment.body}</p>
+                                    <p class="text-sm text-gray-500 mb-2">回答日期: ${answer.date}</p>
                                 `;
+                                commentElement.appendChild(markdownContent);
                                 commentsContainer.appendChild(commentElement);
+
+                                // 渲染完成后调用MathJax处理数学公式
+                                if (window.MathJax) {
+                                    MathJax.typesetPromise([markdownContent]).catch((err) => {
+                                        console.warn('MathJax公式渲染失败:', err);
+                                    });
+                                }
                             });
                         } catch (error) {
                             console.error('加载评论失败:', error);
@@ -4698,13 +5182,33 @@
                         }
                     }
 
+                    // 简单的markdown解析函数（备用方案）
+                    function parseSimpleMarkdown(text) {
+                        return text
+                            .replace(/^### (.*$)/gim, '<h3 class="text-base font-semibold mt-2 mb-1">$1</h3>')
+                            .replace(/^## (.*$)/gim, '<h2 class="text-lg font-semibold mt-3 mb-2">$1</h2>')
+                            .replace(/^# (.*$)/gim, '<h1 class="text-xl font-bold mt-4 mb-2">$1</h1>')
+                            .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
+                            .replace(/\*(.*?)\*/gim, '<em>$1</em>')
+                            .replace(/`(.*?)`/gim, '<code class="bg-gray-200 px-1 py-0.5 rounded text-xs">$1</code>')
+                            .replace(/```([\s\S]*?)```/gim, '<pre class="bg-gray-100 p-2 rounded text-xs overflow-x-auto"><code>$1</code></pre>')
+                            .replace(/\n/gim, '<br>');
+                    }
+
                     // 提交回答
                     function setupAnswerForm(formElement) {
                         formElement.addEventListener('submit', async (e) => {
                             e.preventDefault();
                             const issueNumber = formElement.dataset.issueNumber;
                             const textarea = formElement.querySelector('textarea');
-                            const answerText = textarea.value.trim();
+                            let answerText = textarea.value.trim();
+
+                            // 检查是否为官方回答（以#962464开头）
+                            const isOfficialAnswer = answerText.startsWith('#962464');
+                            if (isOfficialAnswer) {
+                                // 移除标记，保留实际内容
+                                answerText = answerText.substring(7).trim();
+                            }
                             const submitButton = formElement.querySelector('button[type="submit"]');
 
                             if (!answerText) {
@@ -4731,7 +5235,11 @@
                                         'Content-Type': 'application/json',
                                         'Accept': 'application/vnd.github.v3+json'
                                     },
-                                    body: JSON.stringify({ body: answerText })
+                                    body: JSON.stringify({
+                                        body: isOfficialAnswer
+                                            ? `🎓OFFICIAL🎓\n${answerText}`
+                                            : answerText
+                                    })
                                 });
 
                                 if (!response.ok) {
@@ -4802,14 +5310,34 @@
                         const statusIcon = issue.state === 'open' ? 'fa-clock-o' : 'fa-check-circle';
                         const statusMessage = issue.state === 'open' ? '问题正在处理中，我们会尽快为您解答。' : '问题已解答，感谢您的反馈。';
 
+                        // 创建问题内容容器
+                        const bodyContainer = document.createElement('div');
+                        bodyContainer.className = 'markdown-content text-sm mb-3';
+
+                        // 渲染问题内容为markdown
+                        if (typeof marked !== 'undefined') {
+                            bodyContainer.innerHTML = marked.parse(issue.body);
+                        } else {
+                            bodyContainer.innerHTML = parseSimpleMarkdown(issue.body);
+                        }
+
+                        // 渲染问题标题，支持markdown
+                        const cleanTitle = issue.title.replace('[问题反馈] ', '');
+                        let renderedTitle;
+                        if (typeof marked !== 'undefined') {
+                            renderedTitle = marked.parseInline(cleanTitle);
+                        } else {
+                            renderedTitle = parseSimpleMarkdown(cleanTitle);
+                        }
+
                         questionElement.innerHTML = `
                             <button class="submitted-question w-full flex justify-between items-center text-left font-medium focus:outline-none">
-                                <span>${issue.title.replace('[问题反馈] ', '')}</span>
+                                <span class="markdown-title">${renderedTitle}</span>
                                 <span class="text-xs ${statusClass} px-2 py-1 rounded-full font-medium">${statusText}</span>
                             </button>
                             <div class="submitted-answer mt-2 text-dark/70 hidden">
                                 <p class="text-sm text-gray-500 mb-2">提交日期: ${date}</p>
-                                <p>${issue.body}</p>
+                                <div id="question-body-${issue.number}"></div>
                                 <div class="mt-3 p-3 ${statusMessageClass} rounded text-sm">
                                     <i class="fa ${statusIcon} mr-1"></i> ${statusMessage}
                                 </div>
@@ -4822,7 +5350,7 @@
                                     <!-- 回答表单 -->
                                     <form class="answer-form mt-4 border-t pt-4" data-issue-number="${issue.number}">
                                         <div class="mb-2">
-                                            <textarea rows="3" placeholder="写下你的回答..." class="w-full p-2 border rounded text-sm"></textarea>
+                                            <textarea rows="3" placeholder="请文明作答，支持Markdown语法" class="w-full p-2 border rounded text-sm"></textarea>
                                         </div>
                                         <button type="submit" class="px-4 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700 transition-colors">
                                             提交回答
@@ -4831,6 +5359,19 @@
                                 </div>
                             </div>
                         `;
+
+                        // 将渲染后的问题内容插入到指定位置
+                        const questionBodyContainer = questionElement.querySelector(`#question-body-${issue.number}`);
+                        questionBodyContainer.appendChild(bodyContainer);
+
+                        // 渲染完成后调用MathJax处理数学公式
+                        if (window.MathJax) {
+                            // 渲染问题标题中的公式
+                            const titleElement = questionElement.querySelector('.markdown-title');
+                            MathJax.typesetPromise([titleElement, bodyContainer]).catch((err) => {
+                                console.warn('MathJax公式渲染失败:', err);
+                            });
+                        }
 
                         container.appendChild(questionElement);
 
@@ -4859,6 +5400,17 @@
                         </div>
                     `;
                 }
+            }
+
+            // 配置marked.js以支持GitHub风格的markdown
+            if (typeof marked !== 'undefined') {
+                marked.setOptions({
+                    breaks: true,  // 支持换行
+                    gfm: true,     // GitHub Flavored Markdown
+                    headerIds: false, // 不生成header ID
+                    mangle: false,    // 不混淆邮箱地址
+                    sanitize: false   // 允许HTML标签
+                });
             }
 
             // 初始化页面加载时的问题列表
