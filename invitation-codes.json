@@ -85,10 +85,10 @@
       "type": "svip",
       "generatedDate": "2025-08-29T04:49:58.390Z",
       "expiryDate": "2025-12-25T15:59:59.000Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null,
-      "usageCount": 0
+      "used": true,
+      "usedBy": "device_7os7mkf515b_1756729017473",
+      "usedTime": "2025-09-01T12:17:08.887Z",
+      "usageCount": 2
     },
     {
       "code": "SVIP-BA9YLH01",
@@ -731,7 +731,7 @@
       "usageCount": 0
     }
   ],
-  "uploadDate": "2025-09-01T12:15:24.224Z",
+  "uploadDate": "2025-09-01T12:17:10.212Z",
   "totalCodes": 73,
-  "activeCodes": 60
+  "activeCodes": 59
 }
