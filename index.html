@@ -3369,7 +3369,7 @@
 
                         <!-- 2025年9月中上旬-中下旬 - 考研大纲公布 -->
                         <div class="timeline-item relative flex items-start opacity-0" data-start-month="9"
-                            data-end-month="9" data-year="2025">
+                            data-end-month="9" data-year="2025" data-late="true">
                             <div
                                 class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-red-400 shadow-lg flex items-center justify-center relative z-10">
                                 <i class="fa fa-bookmark text-red-400 text-lg"></i>
@@ -3391,6 +3391,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <!-- 2025年9月中下旬-10月上旬 - 西华师大招生章程公布 -->
                         <div class="timeline-item relative flex items-start opacity-0" data-start-month="9"
                             data-end-month="10" data-year="2025">
@@ -3465,30 +3466,6 @@
                             </div>
                         </div>
 
-                        <!-- 2025年11月1日 - 西华师大数学考研真题下载 -->
-                        <div class="timeline-item relative flex items-start opacity-0" data-start-month="11"
-                            data-end-month="11" data-year="2025" data-late="true">
-                            <div
-                                class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-blue-400 shadow-lg flex items-center justify-center relative z-10">
-                                <i class="fa fa-download text-blue-400 text-lg"></i>
-                            </div>
-                            <div class="ml-6 flex-1">
-                                <div
-                                    class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
-                                    <div class="flex items-center justify-between mb-2">
-                                        <h3 class="font-semibold text-dark">西华师大数学考研真题下载</h3>
-                                        <span
-                                            class="timeline-date text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full font-medium">2025年11月1日</span>
-                                    </div>
-                                    <p class="text-sm text-dark/70 mb-2">
-                                        2025年西华师范大学数学考研真题正式发布，包含数学分析、高等代数2025年真题题单及详细解析。</p>
-                                    <div class="flex items-center text-xs text-blue-600">
-                                        <i class="fa fa-lightbulb mr-1"></i>
-                                        <span>试卷还原度超95%，建议用作考前模拟，熟悉题型和节奏。</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                         <!-- 2025年10月中旬-10月底 - 考研正式报名 -->
                         <div class="timeline-item relative flex items-start opacity-0" data-start-month="10"
@@ -3509,6 +3486,31 @@
                                     <div class="flex items-center text-xs text-pink-600">
                                         <i class="fa fa-lightbulb mr-1"></i>
                                         <span>硕士研究生考生一律采取网上报名方式，逾期不再补报</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2025年11月1日 - 西华师大数学考研真题下载 -->
+                        <div class="timeline-item relative flex items-start opacity-0" data-start-month="11"
+                            data-end-month="11" data-year="2025" data-late="true">
+                            <div
+                                class="timeline-node flex-shrink-0 w-16 h-16 bg-white rounded-full border-4 border-blue-400 shadow-lg flex items-center justify-center relative z-10">
+                                <i class="fa fa-download text-blue-400 text-lg"></i>
+                            </div>
+                            <div class="ml-6 flex-1">
+                                <div
+                                    class="bg-white rounded-xl shadow-card p-4 transform hover:scale-[1.02] transition-all duration-300">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-dark">西华师大数学考研真题下载</h3>
+                                        <span
+                                            class="timeline-date text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full font-medium">2025年11月1日</span>
+                                    </div>
+                                    <p class="text-sm text-dark/70 mb-2">
+                                        2025年西华师范大学数学考研真题正式发布，包含数学分析、高等代数2025年真题题单及详细解析。</p>
+                                    <div class="flex items-center text-xs text-blue-600">
+                                        <i class="fa fa-lightbulb mr-1"></i>
+                                        <span>试卷还原度超95%，建议用作考前模拟，熟悉题型和节奏。</span>
                                     </div>
                                 </div>
                             </div>
@@ -6916,7 +6918,7 @@
     <script>
         // 仅针对资源获取板块的倒计时功能
         function updateResourcesCountdown() {
-            const targetDate = new Date('2025-10-01T00:00:00');
+            const targetDate = new Date('2025-11-01T00:00:00');
             const now = new Date();
             const timeLeft = targetDate - now;
 
