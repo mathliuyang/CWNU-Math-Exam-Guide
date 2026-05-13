@@ -5,10 +5,10 @@
       "type": "normal",
       "generatedDate": "2026-05-13T03:52:31.762Z",
       "expiryDate": "2026-05-20T03:52:31.762Z",
-      "used": false,
-      "usedBy": null,
-      "usedTime": null,
-      "usageCount": 0
+      "used": true,
+      "usedBy": "device_6evhalphh5x_1778644372376",
+      "usedTime": "2026-05-13T03:52:52.376Z",
+      "usageCount": 2
     },
     {
       "code": "SVIP-7V0IO3GX",
@@ -551,7 +551,7 @@
       "usageCount": 0
     }
   ],
-  "uploadDate": "2026-05-13T03:52:34.642Z",
+  "uploadDate": "2026-05-13T03:52:53.190Z",
   "totalCodes": 55,
-  "activeCodes": 3
+  "activeCodes": 2
 }
