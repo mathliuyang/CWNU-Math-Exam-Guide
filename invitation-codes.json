@@ -1,6 +1,16 @@
 {
   "invitationCodes": [
     {
+      "code": "SVIP-VQI8R6QR",
+      "type": "normal",
+      "generatedDate": "2026-06-26T20:57:45.587Z",
+      "expiryDate": "2026-07-03T20:57:45.587Z",
+      "used": false,
+      "usedBy": null,
+      "usedTime": null,
+      "usageCount": 0
+    },
+    {
       "code": "SVIP-7LOTAFDU",
       "type": "normal",
       "generatedDate": "2026-05-13T03:52:31.762Z",
@@ -551,7 +561,7 @@
       "usageCount": 0
     }
   ],
-  "uploadDate": "2026-05-13T03:52:53.190Z",
-  "totalCodes": 55,
-  "activeCodes": 2
+  "uploadDate": "2026-06-26T21:02:32.293Z",
+  "totalCodes": 56,
+  "activeCodes": 1
 }
