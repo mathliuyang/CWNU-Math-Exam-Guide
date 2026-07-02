@@ -1,17 +1,17 @@
 {
   "invitationCodes": [
     {
-      "code": "SVIP-HPYQXQ4V",
+      "code": "SVIP-EHF0TBB7",
       "type": "normal",
-      "generatedDate": "2026-06-29T21:20:18.422Z",
-      "expiryDate": "2026-07-06T21:20:18.422Z",
+      "generatedDate": "2026-07-02T22:06:42.832Z",
+      "expiryDate": "2026-07-09T22:06:42.832Z",
       "used": false,
       "usedBy": null,
       "usedTime": null,
       "usageCount": 0
     }
   ],
-  "uploadDate": "2026-06-29T21:27:47.544Z",
+  "uploadDate": "2026-07-02T22:20:19.307Z",
   "totalCodes": 1,
   "activeCodes": 1
 }
